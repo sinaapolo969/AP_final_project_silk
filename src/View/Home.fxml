@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpController">
+   <children>
+      <ImageView fitHeight="290.0" fitWidth="439.0" layoutX="483.0" layoutY="251.0" pickOnBounds="true">
+         <image>
+            <Image url="@1.jpg" />
+         </image>
+      </ImageView>
+      <VBox prefHeight="769.0" prefWidth="234.0" style="-fx-background-color: #593B45;">
+         <children>
+            <GridPane prefHeight="90.0" prefWidth="197.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.66665649414062" minWidth="10.0" prefWidth="60.666656494140625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.66665649414062" minWidth="10.0" prefWidth="38.666656494140625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.66665649414062" minWidth="10.0" prefWidth="146.33334350585938" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="25.333328247070312" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXButton alignment="BASELINE_LEFT" prefHeight="90.0" prefWidth="178.0" text="Silk" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="Georgia Bold Italic" size="27.0" />
+                     </font>
+                  </JFXButton>
+                  <ImageView fitHeight="50.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@photo_2022-06-03_02-39-57-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+            <JFXButton layoutX="10.0" layoutY="121.0" prefHeight="74.0" prefWidth="234.0" text="SignUp">
+               <font>
+                  <Font name="Franklin Gothic Medium Italic" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="10.0" layoutY="195.0" prefHeight="74.0" prefWidth="234.0" text="Login">
+               <font>
+                  <Font name="Franklin Gothic Medium Italic" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="10.0" layoutY="269.0" prefHeight="74.0" prefWidth="234.0" text="Setting">
+               <font>
+                  <Font name="Franklin Gothic Medium Italic" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+      <HBox layoutX="234.0" prefHeight="74.0" prefWidth="1016.0">
+         <children>
+            <JFXButton prefHeight="119.0" prefWidth="506.0" text="Post">
+               <font>
+                  <Font name="Franklin Gothic Medium Italic" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="10.0" layoutY="10.0" prefHeight="116.0" prefWidth="722.0" text="Home">
+               <font>
+                  <Font name="Franklin Gothic Medium Italic" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="214.0" layoutY="10.0" prefHeight="116.0" prefWidth="647.0" text="Dashbord">
+               <font>
+                  <Font name="Franklin Gothic Medium Italic" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
