@@ -1,63 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 
 <AnchorPane prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpController">
    <children>
-      <ImageView fitHeight="290.0" fitWidth="439.0" layoutX="481.0" layoutY="246.0" pickOnBounds="true">
-         <image>
-            <Image url="@1.jpg" />
-         </image>
-      </ImageView>
-      <VBox prefHeight="769.0" prefWidth="234.0" style="-fx-background-color: #9D605F;">
-         <children>
-            <JFXButton prefHeight="116.0" prefWidth="234.0" text="Silk">
-               <font>
-                  <Font name="Georgia Bold Italic" size="27.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="10.0" layoutY="121.0" prefHeight="74.0" prefWidth="234.0" text="SignUp">
-               <font>
-                  <Font name="Franklin Gothic Medium Italic" size="14.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="10.0" layoutY="195.0" prefHeight="74.0" prefWidth="234.0" text="Login">
-               <font>
-                  <Font name="Franklin Gothic Medium Italic" size="14.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="10.0" layoutY="269.0" prefHeight="74.0" prefWidth="234.0" text="Setting">
-               <font>
-                  <Font name="Franklin Gothic Medium Italic" size="14.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </VBox>
-      <HBox layoutX="234.0" prefHeight="74.0" prefWidth="1016.0" style="-fx-background-color: #593B45;">
-         <children>
-            <JFXButton prefHeight="119.0" prefWidth="506.0" text="Post" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Medium Italic" size="12.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="10.0" layoutY="10.0" prefHeight="116.0" prefWidth="722.0" text="Home" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Medium Italic" size="12.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="214.0" layoutY="10.0" prefHeight="116.0" prefWidth="647.0" text="Dashbord" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Medium Italic" size="12.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </HBox>
+      <JFXDatePicker layoutX="242.0" layoutY="189.0" prefHeight="40.0" prefWidth="244.0" />
    </children>
 </AnchorPane>

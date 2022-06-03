@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.layout.AnchorPane?>
 
 
 <AnchorPane prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpController">
-
+   <children>
+      <JFXDatePicker layoutX="242.0" layoutY="189.0" prefHeight="40.0" prefWidth="244.0" />
+   </children>
 </AnchorPane>
