@@ -11,7 +11,8 @@ import java.sql.SQLException;
 //this class contains the databases methods that we need for this project
 public abstract class DbMethods
 {
-    //user methods
+    //---------------------user methods
+
     //insert data to table
     public void insertUserData(String jsonString) throws SQLException, IOException, ClassNotFoundException
     {
@@ -89,7 +90,7 @@ public abstract class DbMethods
         }
         return jsonString;
     }
-    //end of user methods
+    //----------------------end of user methods
 
 
 }
