@@ -1,11 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpController">
+<AnchorPane prefHeight="774.0" prefWidth="1242.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpController">
    <children>
-      <JFXDatePicker layoutX="242.0" layoutY="189.0" prefHeight="40.0" prefWidth="244.0" />
+      <ImageView fitHeight="638.0" fitWidth="73.0" layoutX="19.0" layoutY="139.0" pickOnBounds="true">
+         <image>
+            <Image url="@2.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="211.0" layoutY="166.0" prefHeight="580.0" prefWidth="830.0" style="-fx-border-color: #581F30; -fx-background-color: white; -fx-border-radius: 5;">
+         <children>
+            <AnchorPane layoutX="12.0" layoutY="15.0" prefHeight="551.0" prefWidth="805.0" style="-fx-border-color: #581F30; -fx-background-color: white; -fx-border-radius: 5;">
+               <children>
+                  <JFXTextField focusColor="#581f30" labelFloat="true" layoutX="101.0" layoutY="193.0" prefHeight="34.0" prefWidth="218.0" promptText="last name" />
+                  <JFXTextField focusColor="#581f30" labelFloat="true" layoutX="101.0" layoutY="384.0" prefHeight="34.0" prefWidth="218.0" promptText="email" />
+                  <JFXPasswordField focusColor="#581f30" labelFloat="true" layoutX="486.0" layoutY="193.0" prefHeight="34.0" prefWidth="218.0" promptText="confirm password" />
+                  <JFXButton layoutX="346.0" layoutY="455.0" prefHeight="38.0" prefWidth="113.0" ripplerFill="#8f3939" style="-fx-background-color: #581F30; -fx-background-radius: 50;" text="Sign Up" textFill="#d6db95">
+                     <font>
+                        <Font name="Yu Gothic UI Light" size="21.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXTextField focusColor="#581f30" labelFloat="true" layoutX="101.0" layoutY="108.0" prefHeight="34.0" prefWidth="218.0" promptText="name" />
+                  <JFXTextField focusColor="#581f30" labelFloat="true" layoutX="101.0" layoutY="310.0" prefHeight="34.0" prefWidth="218.0" promptText="username" />
+                  <JFXPasswordField focusColor="#581f30" labelFloat="true" layoutX="486.0" layoutY="117.0" prefHeight="34.0" prefWidth="218.0" promptText="password" />
+                  <Label layoutX="330.0" layoutY="39.0" text="Sign Up" textFill="#450421">
+                     <font>
+                        <Font name="Bookman Old Style Bold Italic" size="35.0" />
+                     </font>
+                  </Label>
+                  <JFXButton buttonType="RAISED" layoutX="512.0" layoutY="389.0" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #d8cbcb;" text="Upload Profile Picture" textFill="#040404">
+                     <font>
+                        <Font name="Book Antiqua Italic" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <AnchorPane layoutX="512.0" layoutY="256.0" prefHeight="124.0" prefWidth="165.0" style="-fx-border-width: 3; -fx-border-color: #d8cbcb;" />
+                  <ImageView fitHeight="124.0" fitWidth="165.0" layoutX="512.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" />
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-4.0" prefHeight="77.0" prefWidth="1256.0" style="-fx-border-color: #7f5e08; -fx-background-color: #450421;">
+         <children>
+            <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@11zon_cropped.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="91.0" layoutY="28.0" text="The Road To Your Comfort" textFill="#706c5d">
+               <font>
+                  <Font name="Book Antiqua Italic" size="17.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="#d9b6b6" glyphName="LINKEDIN_SQUARE" layoutX="1192.0" layoutY="46.0" onMouseClicked="#linkedIn" size="25" />
+            <FontAwesomeIconView fill="#d9b6b6" glyphName="INSTAGRAM" layoutX="1157.0" layoutY="46.0" onMouseClicked="#instagram" size="25" text="" />
+            <FontAwesomeIconView fill="#d9b6b6" glyphName="TWITTER_SQUARE" layoutX="1118.0" layoutY="46.0" onMouseClicked="#twitter" size="25" text="" />
+            <Label layoutX="935.0" layoutY="26.0" prefHeight="22.0" prefWidth="165.0" text="Contact Us On Our Social Medias" textFill="#a19393">
+               <font>
+                  <Font name="Bookman Old Style Bold Italic" size="9.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="8.0" layoutY="77.0" prefHeight="60.0" prefWidth="1242.0" style="-fx-background-color: white;">
+         <children>
+            <Circle fx:id="common" layoutX="1198.0" layoutY="31.0" onMouseClicked="#userMenu" radius="29.0" stroke="WHITE" strokeType="INSIDE">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#751347" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Circle>
+            <JFXTextField focusColor="#9fa3ae" layoutX="79.0" layoutY="8.0" prefHeight="42.0" prefWidth="187.0" promptText="Search ..." unFocusColor="#e9e0e0">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </JFXTextField>
+            <FontAwesomeIconView fill="#b5a7ad" glyphName="SEARCH" layoutX="58.0" layoutY="35.0" size="15" text="" />
+            <FontAwesomeIconView fill="#550328d9" glyphName="REORDER" layoutX="14.0" layoutY="43.0" onMouseClicked="#menu" size="30" text="" wrappingWidth="30.66673105955124" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="638.0" fitWidth="73.0" layoutX="1165.0" layoutY="137.0" pickOnBounds="true">
+         <image>
+            <Image url="@3.jpg" />
+         </image>
+      </ImageView>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="266.0" layoutX="5.0" layoutY="133.0" prefHeight="645.0" prefWidth="266.0" />
    </children>
 </AnchorPane>

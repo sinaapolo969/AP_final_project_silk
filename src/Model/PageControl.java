@@ -1,5 +1,6 @@
 package Model;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -47,6 +48,7 @@ public class PageControl
 
     public static void close()
     {
-
+        Stage stage = new Stage();
+        stage.close();
     }
 }

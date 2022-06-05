@@ -1,14 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controller.LoginController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+   <children>
+      <AnchorPane layoutX="251.0" layoutY="159.0" prefHeight="580.0" prefWidth="758.0" style="-fx-border-color: #581F30; -fx-background-color: white; -fx-border-radius: 5;">
+         <children>
+            <AnchorPane layoutX="12.0" layoutY="15.0" prefHeight="551.0" prefWidth="735.0" style="-fx-border-color: #581F30; -fx-background-color: white; -fx-border-radius: 5;">
+               <children>
+                  <JFXButton layoutX="442.0" layoutY="356.0" prefHeight="38.0" prefWidth="113.0" ripplerFill="#8f3939" style="-fx-background-color: #581F30; -fx-background-radius: 50;" text="Log In" textFill="#d6db95">
+                     <font>
+                        <Font name="Yu Gothic UI Light" size="21.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXTextField focusColor="#581f30" labelFloat="true" layoutX="181.0" layoutY="338.0" prefHeight="37.0" prefWidth="213.0" promptText="username" />
+                  <JFXPasswordField focusColor="#581f30" labelFloat="true" layoutX="179.0" layoutY="412.0" prefHeight="37.0" prefWidth="213.0" promptText="password" />
+                  <ImageView fitHeight="230.0" fitWidth="434.0" layoutX="151.0" layoutY="65.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@1.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="210.0" layoutY="116.0" prefHeight="128.0" prefWidth="317.0" text="Log In" textFill="#ffe691">
+                     <font>
+                        <Font name="PMingLiU-ExtB" size="96.0" />
+                     </font>
+                  </Label>
+                  <JFXButton buttonType="RAISED" layoutX="421.0" layoutY="414.0" onAction="#createNewAcc" prefHeight="27.0" prefWidth="164.0" ripplerFill="#c01d1d" text="Or Create New Account?" textFill="#280f0fbf">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <FontAwesomeIconView fill="#581f30" glyphName="USER" layoutX="151.0" layoutY="373.0" size="20" />
+                  <FontAwesomeIconView fill="#581f30" glyphName="EXPEDITEDSSL" layoutX="152.0" layoutY="444.0" size="20" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #450421;">
+         <children>
+            <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@11zon_cropped.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="91.0" layoutY="28.0" text="The Road To Your Comfort" textFill="#706c5d">
+               <font>
+                  <Font name="Book Antiqua Italic" size="17.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="#d9b6b6" glyphName="LINKEDIN_SQUARE" layoutX="1192.0" layoutY="46.0" onMouseClicked="#linkedIn" size="25" />
+            <FontAwesomeIconView fill="#d9b6b6" glyphName="INSTAGRAM" layoutX="1157.0" layoutY="46.0" onMouseClicked="#instagram" size="25" text="" />
+            <FontAwesomeIconView fill="#d9b6b6" glyphName="TWITTER_SQUARE" layoutX="1118.0" layoutY="46.0" onMouseClicked="#twitter" size="25" text="" />
+            <Label layoutX="935.0" layoutY="26.0" prefHeight="22.0" prefWidth="165.0" text="Contact Us On Our Social Medias" textFill="#a19393">
+               <font>
+                  <Font name="Bookman Old Style Bold Italic" size="9.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="77.0" prefHeight="60.0" prefWidth="1254.0" style="-fx-background-color: white;">
+         <children>
+            <Circle fx:id="common" layoutX="1198.0" layoutY="31.0" onMouseClicked="#userMenu" radius="29.0" stroke="WHITE" strokeType="INSIDE">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#751347" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Circle>
+            <JFXTextField focusColor="#9fa3ae" layoutX="79.0" layoutY="8.0" prefHeight="42.0" prefWidth="187.0" promptText="Search ..." unFocusColor="#e9e0e0">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </JFXTextField>
+            <FontAwesomeIconView fill="#b5a7ad" glyphName="SEARCH" layoutX="58.0" layoutY="35.0" size="15" text="" />
+            <FontAwesomeIconView fill="#550328d9" glyphName="REORDER" layoutX="14.0" layoutY="43.0" onMouseClicked="#menu" size="30" text="" wrappingWidth="30.66673105955124" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="634.0" fitWidth="68.0" layoutX="1165.0" layoutY="137.0" pickOnBounds="true">
+         <image>
+            <Image url="@3.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="634.0" fitWidth="58.0" layoutX="17.0" layoutY="137.0" pickOnBounds="true">
+         <image>
+            <Image url="@2.jpg" />
+         </image>
+      </ImageView>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="266.0" layoutY="132.0" prefHeight="634.0" prefWidth="263.0" />
+   </children>
 </AnchorPane>
