@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class DbHandler
+public class DbHandler extends DbMethods
 {
     Connection connection;
 
@@ -24,7 +24,7 @@ public class DbHandler
                 properties.getProperty("db.username"), properties.getProperty("db.password"));
         return connection;
     }
-    public Properties getProperties() throws IOException
+    private Properties getProperties() throws IOException
     {
         Properties properties = new Properties();
         InputStream inputStream = new FileInputStream(
