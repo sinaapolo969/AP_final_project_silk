@@ -7,40 +7,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="266.0" style="-fx-background-color: white; -fx-border-color: #570f2f; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeMenuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="266.0" style="-fx-background-color: #f3f0ed;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeMenuController">
    <children>
-      <ImageView fitHeight="261.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="266.0" fitWidth="269.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@user.png" />
+            <Image url="@rr.jpg" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="159.0" onAction="#categories" prefHeight="79.0" prefWidth="256.0" ripplerFill="#9c3a3aab" text="Categories">
+      <JFXButton layoutX="10.0" layoutY="159.0" onAction="#categories" prefHeight="75.0" prefWidth="266.0" ripplerFill="#9c3a3aab" text="Categories">
          <font>
-            <Font name="Arabic Typesetting" size="20.0" />
+            <Font name="Sitka Banner Italic" size="20.0" />
          </font>
          <graphic>
             <FontAwesomeIconView glyphName="ALIGN_JUSTIFY" />
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="417.0" onAction="#advertise" prefHeight="84.0" prefWidth="262.0" ripplerFill="#9c3a3aad" text="Advertise">
+      <JFXButton layoutX="10.0" layoutY="417.0" onAction="#advertise" prefHeight="75.0" prefWidth="266.0" ripplerFill="#9c3a3aad" text="Advertise">
          <font>
-            <Font name="Arabic Typesetting" size="20.0" />
+            <Font name="Sitka Banner Italic" size="20.0" />
          </font>
          <graphic>
             <FontAwesomeIconView glyphName="CAMERA" />
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" onAction="#location" prefHeight="79.0" prefWidth="262.0" ripplerFill="#9c3b3bad" text="Location">
+      <JFXButton onAction="#location" prefHeight="68.0" prefWidth="266.0" ripplerFill="#9c3b3bad" text="Location">
          <font>
-            <Font name="Arabic Typesetting" size="20.0" />
+            <Font name="Sitka Banner Italic" size="20.0" />
          </font>
          <graphic>
             <FontAwesomeIconView glyphName="LOCATION_ARROW" size="15" />
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="10.0" layoutY="331.0" onAction="#exit" prefHeight="68.0" prefWidth="262.0" ripplerFill="#9c3b3bad" text="Exit">
+      <JFXButton layoutX="10.0" layoutY="331.0" onAction="#exit" prefHeight="68.0" prefWidth="273.0" ripplerFill="#9c3b3bad" text="Exit">
          <font>
-            <Font name="Arabic Typesetting" size="20.0" />
+            <Font name="Sitka Banner Italic" size="20.0" />
          </font>
          <graphic>
             <FontAwesomeIconView glyphName="POWER_OFF" size="15" />

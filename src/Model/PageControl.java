@@ -16,10 +16,11 @@ public class PageControl
     private static double x = 0;
     private static double y = 0;
 
+    private static Stage primaryStage = new Stage();
+
     public static void open(String name) throws IOException
     {
         Parent root = FXMLLoader.load(PageControl.class.getResource("/view/" + name + ".fxml"));
-        Stage primaryStage = new Stage();
 
         root.setOnMousePressed(new EventHandler<MouseEvent>()
         {
@@ -46,9 +47,8 @@ public class PageControl
         primaryStage.show();
     }
 
-    public static void close()
+    public static void close(Stage stage)
     {
-        Stage stage = new Stage();
         stage.close();
     }
 }

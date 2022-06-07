@@ -8,12 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -28,10 +24,60 @@ public class HomeController implements Initializable
     private AnchorPane home;
 
     @FXML
-    private JFXDrawer drawer;
+    private JFXDrawer leftDrawer;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        if (!StartController.isSplashed)
+        {
+            try
+            {
+                loadSplash();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        Common.initialDrawer("HomeMenu", leftDrawer);
+    }
 
     @FXML
-    private Circle common;
+    private void menu(MouseEvent mouseEvent)
+    {
+        Common.openOrCloseDrawer(leftDrawer);
+    }
+
+    @FXML
+    private void linkedIn(MouseEvent mouseEvent) throws IOException
+    {
+        Common.linkedIn();
+    }
+
+    @FXML
+    private void instagram(MouseEvent mouseEvent) throws IOException
+    {
+        Common.instagram();
+    }
+
+    @FXML
+    private void twitter(MouseEvent mouseEvent) throws IOException
+    {
+        Common.twitter();
+    }
+
+    @FXML
+    private void signUp(ActionEvent actionEvent) throws IOException
+    {
+        PageControl.open("SignUp");
+    }
+
+    @FXML
+    private void logIn(ActionEvent actionEvent) throws IOException
+    {
+        PageControl.open("Login");
+    }
 
     public void loadSplash() throws IOException
     {
@@ -71,84 +117,5 @@ public class HomeController implements Initializable
                 Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-        if (!StartController.isSplashed)
-        {
-            try
-            {
-                loadSplash();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        try
-        {
-            VBox vb = FXMLLoader.load(getClass().getResource("/View/HomeMenu.fxml"));
-            drawer.setSidePane(vb);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
-        Image profile = new Image(getClass().getResource("/View/user.png").toExternalForm());
-        common.setFill(new ImagePattern(profile));
-    }
-
-    @FXML
-    private void menu(MouseEvent mouseEvent)
-    {
-        if (drawer.isOpened())
-        {
-            drawer.close();
-        }
-        else
-        {
-            drawer.open();
-        }
-    }
-
-    @FXML
-    private void userMenu(MouseEvent mouseEvent)
-    {
-
-    }
-
-    @FXML
-    private void linkedIn(MouseEvent mouseEvent) throws IOException
-    {
-        Common.linkedIn();
-    }
-
-    @FXML
-    private void instagram(MouseEvent mouseEvent) throws IOException
-    {
-        Common.instagram();
-    }
-
-    @FXML
-    private void twitter(MouseEvent mouseEvent) throws IOException
-    {
-        Common.twitter();
-    }
-
-    @FXML
-    private void signUp(ActionEvent actionEvent) throws IOException
-    {
-        PageControl.open("SignUp");
-    }
-
-    @FXML
-    private void logIn(ActionEvent actionEvent) throws IOException
-    {
-        PageControl.close();
-        PageControl.open("Login");
     }
 }

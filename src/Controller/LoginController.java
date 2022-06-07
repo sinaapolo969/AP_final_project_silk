@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable
 {
     @FXML
-    private JFXDrawer drawer;
+    private JFXDrawer leftDrawer;
 
     @FXML
     private Circle common;
@@ -52,28 +52,13 @@ public class LoginController implements Initializable
     @FXML
     private void menu(MouseEvent mouseEvent)
     {
-        if (drawer.isOpened())
-        {
-            drawer.close();
-        }
-        else
-        {
-            drawer.open();
-        }
+        Common.openOrCloseDrawer(leftDrawer);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        try
-        {
-            VBox vb = FXMLLoader.load(getClass().getResource("/View/HomeMenu.fxml"));
-            drawer.setSidePane(vb);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        Common.initialDrawer("HomeMenu", leftDrawer);
 
         Image profile = new Image(getClass().getResource("/View/user.png").toExternalForm());
         common.setFill(new ImagePattern(profile));
