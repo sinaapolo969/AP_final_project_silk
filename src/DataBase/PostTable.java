@@ -102,12 +102,21 @@ public class PostTable extends DbHandler
             {
                 break;
             }
+            String query2 = "select users.phoneNumber from users inner join posts on posts.owner = users.userName where owner = ?";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(query2);
+            preparedStatement2.setString(1, resultSet.getString("owner"));
+            ResultSet resultSet1 = preparedStatement2.executeQuery();
+            String phoneNumber = null;
+            while (resultSet1.next())
+            {
+                phoneNumber = resultSet1.getString("phoneNumber");
+            }
             String jsonString = "{\n \"title\": " + resultSet.getString("title") + ",\n" + "\"category\": " +
                     resultSet.getString("category") + ",\n" + "\"price\": "
-                    + resultSet.getNString("price") + ",\n" +
+                    + resultSet.getString("price") + ",\n" +
                     "\"description\": " + resultSet.getString("description") + ",\n" + "\"owner\": " +
                     resultSet.getString("owner") + ",\n" + "\"sold\" : " + resultSet.getString("sold") +
-                    ",\n" + "\"photo\": " + resultSet.getString("photo") + "\n}";
+                    ",\n" + "\"photo\": " + resultSet.getString("photo") + ",\n" + "\"phoneNumber\":" + phoneNumber + "\n}";
             posts.add(jsonString);
             counter++;
         }
