@@ -12,5 +12,15 @@
     <orderEntry type="library" name="com.jfoenix:jfoenix:8.0.10" level="project" />
     <orderEntry type="library" name="de.jensd:fontawesomefx:8.0.10" level="project" />
     <orderEntry type="library" name="fontawesomefx-8.5" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.29.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Maven: org.json:json:20220320" level="project" />
   </component>
 </module>
