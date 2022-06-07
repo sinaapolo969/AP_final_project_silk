@@ -1,6 +1,6 @@
 package Network;
 
-import DataBase.DbHandler;
+import DataBase.UserTable;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -35,10 +35,10 @@ public class ClientHandler implements Runnable
     //for make a new row in database table for user
     public void makeNewAccount(String jsonString)
     {
-        DbHandler dbHandler = new DbHandler();
+        UserTable userTable = new UserTable();
         try
         {
-            dbHandler.insertUserData(jsonString);
+            userTable.insertUserData(jsonString);
         }
         catch (SQLException | ClassNotFoundException | IOException e)
         {
@@ -50,10 +50,10 @@ public class ClientHandler implements Runnable
     //this method should return an object of User class that has not made yet!
     public void getUserAccount(String userName)
     {
-        DbHandler dbHandler = new DbHandler();
+        UserTable userTable = new UserTable();
         try
         {
-            dbHandler.getUserData(userName);
+            userTable.getUserData(userName);
         }
         catch (SQLException | ClassNotFoundException | IOException e)
         {
@@ -65,9 +65,9 @@ public class ClientHandler implements Runnable
 
     public void editUserInfo(String jsonString)
     {
-        DbHandler dbHandler = new DbHandler();
+        UserTable userTable = new UserTable();
         try {
-            dbHandler.updateUserData(jsonString);
+            userTable.updateUserData(jsonString);
         }
         catch (SQLException | IOException | ClassNotFoundException e)
         {
@@ -77,10 +77,10 @@ public class ClientHandler implements Runnable
 
     public void deleteUserAccount(String userName)
     {
-        DbHandler dbHandler = new DbHandler();
+        UserTable userTable = new UserTable();
         try
         {
-            dbHandler.deleteUserData(userName);
+            userTable.deleteUserData(userName);
         }
         catch (SQLException | IOException | ClassNotFoundException e)
         {
