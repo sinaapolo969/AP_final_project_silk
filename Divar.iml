@@ -18,5 +18,9 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="com.jfoenix:jfoenix:8.0.10" level="project" />
+    <orderEntry type="library" name="mail" level="project" />
+    <orderEntry type="library" name="activation" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.1" level="project" />
   </component>
 </module>
