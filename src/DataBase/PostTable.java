@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PostTable extends DbHandler
 {
@@ -58,32 +59,60 @@ public class PostTable extends DbHandler
 
     public void deletePost(String userName) throws SQLException
     {
-        String query = "delete * from posts where owner = ?";
+        String query = "delete from posts where owner = ?";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
         preparedStatement.executeUpdate();
         close();
     }
 
-    public String getPostData(String userName) throws SQLException
+    public ArrayList<String> getPostDataByOwner(String userName) throws SQLException
     {
         String query = "select * from posts where owner = ?";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
         ResultSet resultSet = preparedStatement.executeQuery();
-        String jsonString = null;
+        ArrayList<String> posts = new ArrayList<>();
         while (resultSet.next())
         {
-            jsonString = "{\n \"title\": " + resultSet.getString("title") + ",\n" + "\"category\": " +
+            String jsonString = "{\n \"title\": " + resultSet.getString("title") + ",\n" + "\"category\": " +
                     resultSet.getString("category") + ",\n" + "\"price\": "
                     + resultSet.getNString("price") + ",\n" +
                     "\"description\": " + resultSet.getString("description") + ",\n" + "\"owner\": " +
                     resultSet.getString("owner") + ",\n" + "\"sold\" : " + resultSet.getString("sold") +
                     ",\n" + "\"photo\": " + resultSet.getString("photo") + "\n}";
+            posts.add(jsonString);
         }
         close();
 
-        return jsonString;
+        return posts;
+    }
+
+    public ArrayList<String> getPostByCategory(String category) throws SQLException
+    {
+        String query = "select * from posts where category = ?";
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, category);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        int counter = 1;
+        ArrayList<String> posts = new ArrayList<>();
+        while (resultSet.next())
+        {
+            if (counter > 4)
+            {
+                break;
+            }
+            String jsonString = "{\n \"title\": " + resultSet.getString("title") + ",\n" + "\"category\": " +
+                    resultSet.getString("category") + ",\n" + "\"price\": "
+                    + resultSet.getNString("price") + ",\n" +
+                    "\"description\": " + resultSet.getString("description") + ",\n" + "\"owner\": " +
+                    resultSet.getString("owner") + ",\n" + "\"sold\" : " + resultSet.getString("sold") +
+                    ",\n" + "\"photo\": " + resultSet.getString("photo") + "\n}";
+            posts.add(jsonString);
+            counter++;
+        }
+
+        return posts;
     }
 
     private void close() throws SQLException
