@@ -1,5 +1,8 @@
 package DataBase;
 
+import Model.DataRequestSender;
+import Model.Post;
+import javafx.geometry.Pos;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -36,6 +39,16 @@ public class test
             "}";
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException
     {
-
+        ArrayList<Post> posts = new DataRequestSender().postRequestByCategory("home");
+//        UserTable userTable = new UserTable();
+//        String json = userTable.getUserData("sina");
+//        JSONObject jsonObject = new JSONObject(json);
+//        System.out.println(jsonObject.getString("firstName"));
+        for (Post post : posts)
+        {
+            System.out.println(post.getCategory() + "   " + post.getTitle());
+        }
+//        PostTable postTable = new PostTable();
+//        System.out.println(postTable.getPostByCategory("home"));
     }
 }
