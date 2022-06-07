@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class test
 {
@@ -24,7 +25,17 @@ public class test
             "  \"emailAddress\": \"sdadfdfsd\",\n" +
             "  \"location\": \"abodan\"\n" +
             "}";
+    static String json3 = "{\n" +
+            "  \"title\": \"bib\",\n" +
+            "  \"category\": \"home\",\n" +
+            "  \"description\": \"something\",\n" +
+            "  \"price\": \"10000\",\n" +
+            "  \"owner\": \"sina\",\n" +
+            "  \"sold\": \"0\",\n" +
+            "  \"photo\": \"something\"\n" +
+            "}";
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException
     {
+
     }
 }
