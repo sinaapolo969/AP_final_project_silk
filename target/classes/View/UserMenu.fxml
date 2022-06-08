@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="152.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserMenuController">
+   <children>
+      <JFXButton onAction="#edit" prefHeight="70.0" prefWidth="152.0" text="Edit Info">
+         <font>
+            <Font name="Arial Italic" size="17.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="10.0" layoutY="58.0" onAction="#logOut" prefHeight="69.0" prefWidth="157.0" text="Log Out">
+         <font>
+            <Font name="Arial Italic" size="17.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="SIGN_OUT" size="15" />
+         </graphic>
+      </JFXButton>
+   </children>
+</VBox>

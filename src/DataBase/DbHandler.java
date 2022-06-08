@@ -9,9 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class DbHandler
+public abstract class DbHandler
 {
-    Connection connection;
 
     public Connection getDbConnection() throws IOException, SQLException, ClassNotFoundException
     {
@@ -20,11 +19,10 @@ public class DbHandler
                 properties.getProperty("db.host") + ":" + properties.getProperty("db.port") + "/" +
                 properties.getProperty("db.name");
         Class.forName(properties.getProperty("db.driver"));
-        connection = DriverManager.getConnection(connectionString,
+        return DriverManager.getConnection(connectionString,
                 properties.getProperty("db.username"), properties.getProperty("db.password"));
-        return connection;
     }
-    public Properties getProperties() throws IOException
+    private Properties getProperties() throws IOException
     {
         Properties properties = new Properties();
         InputStream inputStream = new FileInputStream(
