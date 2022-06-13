@@ -10,6 +10,7 @@ abstract public  class Person {
         this.password = password;
         this.userName = userName;
         this.email = email;
+        this.identity = userName + " " + password + " " + email;
     }
 
     public String getUserName() {

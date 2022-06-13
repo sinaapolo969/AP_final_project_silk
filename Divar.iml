@@ -11,7 +11,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.jfoenix:jfoenix:8.0.10" level="project" />
     <orderEntry type="library" name="de.jensd:fontawesomefx:8.0.10" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="fontawesomefx-8.5" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -29,5 +28,7 @@
     <orderEntry type="library" name="de.jensd.fontawesomefx" level="project" />
     <orderEntry type="library" name="fontawesomefx-8.51" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20220320" level="project" />
+    <orderEntry type="library" name="com.jfoenix:jfoenix:8.0.101" level="project" />
+    <orderEntry type="library" name="4_5834495626011741870" level="project" />
   </component>
 </module>

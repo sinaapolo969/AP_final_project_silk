@@ -13,34 +13,48 @@ public class Admin {
     private static AdminStruct admin = new AdminStruct("Admin", "1234", "silkroadhelpu@gmail.com");
 
     public static void sendEmail(String costumerEmail) {
-        String recipient = costumerEmail;
-        String sender = admin.getEmail();
-        String host = "127.0.0.1";
+        String recipient = "omidsltni@gmail.com";
+        String sender = "omidsltni@gmail.com";
+        //String password = "Asap1234";
+        //String host = "smtp.gmail.com";
 
-        Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", host);
-        Session session = Session.getDefaultInstance(properties);
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.user", "omidsltni@gmail.com");
+        //properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.elasticemail.com");
+        properties.put("mail.smtp.port", "2525");
+
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(sender, "A33191238B52D232020B2F375A40386FE4B6");
+            }
+        });
+
+        Message message = prepareMessage(session, sender, recipient);
 
         try {
-            MimeMessage message = new MimeMessage(session);
-
-            // Set From Field: adding senders email to from field.
-            message.setFrom(new InternetAddress(sender));
-
-            // Set To Field: adding recipient's email to from field.
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-
-            // Set Subject: subject of the email
-            message.setSubject("This is Subject");
-
-            // set body of the email.
-            message.setText("This is a test mail");
-
-            // Send email.
+            assert message != null;
             Transport.send(message);
-            System.out.println("Mail successfully sent");
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
+        System.out.println("massage send successfully");
+    }
+
+    private static Message prepareMessage(Session session, String sender, String recipient) {
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(sender));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+            message.setSubject("Welcoming message");
+            message.setText("Hi There,\n Welcome to silk road app. \n We are so glad to see you here. ");
+            return message;
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

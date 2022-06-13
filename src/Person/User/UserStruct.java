@@ -3,27 +3,36 @@ package Person.User;
 import Person.Person;
 import org.json.simple.JSONObject;
 
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+
 public class UserStruct extends Person
 {
-    JSONObject person = new JSONObject();
-    private final String firstName;
+    private String firstName;
     private String phoneNumber;
-    String lastName;
+    private String location;
+    private String lastName;
 
-    public UserStruct(String userName, String password, String firstName, String email, String phoneNumber, String lastName) {
+    public UserStruct(String userName, String password, String firstName, String email, String phoneNumber, String lastName, String location)
+    {
         super(userName ,password ,email);
         this.firstName = firstName;
         this.phoneNumber = phoneNumber;
-        super.setIdentity(userName + " " + password + " " + email);
-        person.put("lastName", lastName);
-        person.put("firstName", firstName);
-        person.put("userName", userName);
-        person.put("emailAddress", email);
-        person.put("password", password);
-        person.put("phoneNumber", phoneNumber);
+        this.lastName = lastName;
+        this.location = location;
     }
 
-    public String getIDNumber() {
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -31,7 +40,20 @@ public class UserStruct extends Person
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
