@@ -3,15 +3,12 @@ package Controller;
 import Model.Common;
 import Model.PageControl;
 import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,7 +20,11 @@ public class LoginController implements Initializable
     private JFXDrawer leftDrawer;
 
     @FXML
-    private Circle common;
+    private JFXTextField username;
+
+    @FXML
+    private JFXPasswordField password;
+
 
     @FXML
     private void linkedIn(MouseEvent mouseEvent) throws IOException
@@ -43,8 +44,15 @@ public class LoginController implements Initializable
         Common.twitter();
     }
 
+
     @FXML
-    private void userMenu(MouseEvent mouseEvent)
+    private void signUp(ActionEvent event) throws IOException
+    {
+        PageControl.open("SignUp");
+    }
+
+    @FXML
+    private void logIn(ActionEvent event) throws IOException
     {
 
     }
@@ -59,13 +67,5 @@ public class LoginController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         Common.initialDrawer("HomeMenu", leftDrawer);
-
-        Image profile = new Image(getClass().getResource("/View/user.png").toExternalForm());
-        common.setFill(new ImagePattern(profile));
-    }
-
-    public void createNewAcc(ActionEvent actionEvent) throws IOException
-    {
-        PageControl.open("SignUp");
     }
 }

@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
@@ -26,13 +28,16 @@ import java.util.logging.Logger;
 public class SignUpController implements Initializable
 {
     @FXML
-    private ImageView chosen;
+    private Circle photo;
 
     @FXML
     private JFXTextField lastName;
 
     @FXML
     private JFXTextField email;
+
+    @FXML
+    private JFXTextField confirmEmail;
 
     @FXML
     private JFXPasswordField confirmPass;
@@ -71,12 +76,6 @@ public class SignUpController implements Initializable
     }
 
     @FXML
-    private void userMenu(MouseEvent mouseEvent)
-    {
-
-    }
-
-    @FXML
     private void menu(MouseEvent mouseEvent)
     {
         Common.openOrCloseDrawer(leftDrawer);
@@ -99,15 +98,13 @@ public class SignUpController implements Initializable
         try
         {
             BufferedImage bufferedImage = ImageIO.read(file);
-            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-            chosen.setImage(image);
+            Image profile = SwingFXUtils.toFXImage(bufferedImage, null);
+            photo.setFill(new ImagePattern(profile));
         }
         catch (IOException ex)
         {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }
-
-
     }
 
     @FXML
@@ -116,12 +113,25 @@ public class SignUpController implements Initializable
         PageControl.open("Login");
     }
 
+
+    @FXML
+    private void signUp(ActionEvent actionEvent)
+    {
+
+    }
+
+    @FXML
+    void home(MouseEvent event) throws IOException
+    {
+        PageControl.open("Home");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         Common.initialDrawer("HomeMenu", leftDrawer);
 
-//        Image profile = new Image(getClass().getResource("/View/user.png").toExternalForm());
-//        common.setFill(new ImagePattern(profile));
+        Image profile = new Image(getClass().getResource("/View/user.png").toExternalForm());
+        photo.setFill(new ImagePattern(profile));
     }
 }
