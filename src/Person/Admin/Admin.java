@@ -2,11 +2,7 @@ package Person.Admin;
 
 
 import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
-import javax.mail.Session;
-import javax.mail.Transport;
+
 
 
 public class Admin {
@@ -26,35 +22,36 @@ public class Admin {
         properties.put("mail.smtp.port", "2525");
 
 
-        Session session = Session.getInstance(properties, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(sender, "A33191238B52D232020B2F375A40386FE4B6");
-            }
-        });
-
-        Message message = prepareMessage(session, sender, recipient);
-
-        try {
-            assert message != null;
-            Transport.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-        System.out.println("massage send successfully");
-    }
-
-    private static Message prepareMessage(Session session, String sender, String recipient) {
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(sender));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-            message.setSubject("Welcoming message");
-            message.setText("Hi There,\n Welcome to silk road app. \n We are so glad to see you here. ");
-            return message;
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-        return null;
+//        Session session = Session.getInstance(properties, new Authenticator() {
+//            @Override
+//            protected PasswordAuthentication getPasswordAuthentication() {
+//                return new PasswordAuthentication(sender, "A33191238B52D232020B2F375A40386FE4B6");
+//            }
+//        });
+//
+//        Message message = prepareMessage(session, sender, recipient);
+//
+//        try {
+//            assert message != null;
+//            Transport.send(message);
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("massage send successfully");
+//    }
+//
+//    private static Message prepareMessage(Session session, String sender, String recipient) {
+//        try {
+//            Message message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(sender));
+//            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+//            message.setSubject("Welcoming message");
+//            message.setText("Hi There,\n Welcome to silk road app. \n We are so glad to see you here. ");
+//            return message;
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
     }
 }

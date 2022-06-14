@@ -3,14 +3,11 @@ package Person.User;
 import Person.Admin.Admin;
 import Person.EmailValidationException;
 import Person.PhoneNumberValidationException;
-import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
-//import java.util.Scanner;
 
-import static java.lang.System.*;
+import static java.lang.System.out;
 
 public class User
 {

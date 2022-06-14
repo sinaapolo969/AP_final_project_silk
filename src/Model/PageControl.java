@@ -1,6 +1,6 @@
 package Model;
 
-import javafx.application.Platform;
+import Controller.HomeController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,8 +20,9 @@ public class PageControl
 
     public static void open(String name) throws IOException
     {
-        Parent root = FXMLLoader.load(PageControl.class.getResource("/view/" + name + ".fxml"));
+        Parent root = FXMLLoader.load(PageControl.class.getResource("/View/" + name + ".fxml"));
 
+        //the ability to move our stage
         root.setOnMousePressed(new EventHandler<MouseEvent>()
         {
             @Override
@@ -42,13 +43,23 @@ public class PageControl
             }
         });
 
-        primaryStage.setScene(new Scene(root));
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.show();
+        //setting the scene to stage , deleting the line above our stage and showing it
+        try
+        {
+            primaryStage.setScene(new Scene(root));
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
+            primaryStage.show();
+        }
+        catch(Exception e)
+        {
+
+        }
     }
 
-    public static void close(Stage stage)
+    public static FXMLLoader loader(String name)
     {
-        stage.close();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(HomeController.class.getResource("/View/" + name + ".fxml"));
+        return loader;
     }
 }

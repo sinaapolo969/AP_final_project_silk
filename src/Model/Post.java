@@ -5,25 +5,15 @@ import javafx.geometry.Pos;
 public class Post
 {
     private String title;
+    private String postId;
     private String category;
     private String description;
     private double price;
     private boolean saleStatus;
     private String owner;
     private String photo;
-
-//    public Post(String title, String category, String description, double price, boolean saleStatus, String owner, String photo)
-//    {
-//        this.title = title;
-//        this.category = category;
-//        this.description = description;
-//        this.price = price;
-//        this.saleStatus = saleStatus;
-//        this.owner = owner;
-//        this.photo = photo;
-//    }
-
-
+    private String phoneNumber;
+    private String location;
 
 
     public String getTitle()
@@ -94,5 +84,35 @@ public class Post
     public void setPhoto(String photo)
     {
         this.photo = photo;
+    }
+
+    public void setPhoneNumber(String phoneNumber)
+    {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+
+    public String getLocation()
+    {
+        return location;
+    }
+
+    public void setLocation(String location)
+    {
+        this.location = location;
+    }
+
+    public String getPostId()
+    {
+        return postId;
+    }
+
+    public void setPostId(String postId)
+    {
+        this.postId = postId;
     }
 }
