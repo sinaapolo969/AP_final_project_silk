@@ -1,6 +1,6 @@
-package Person.User;
+package Model.Person.User;
 
-import Person.Person;
+import Model.Person.Person;
 
 public class UserStruct extends Person
 {

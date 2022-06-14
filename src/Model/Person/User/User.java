@@ -1,8 +1,8 @@
-package Person.User;
+package Model.Person.User;
 
-import Person.Admin.Admin;
-import Person.EmailValidationException;
-import Person.PhoneNumberValidationException;
+import Model.Person.Admin.Admin;
+import Model.Person.EmailValidationException;
+import Model.Person.PhoneNumberValidationException;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -11,7 +11,7 @@ import static java.lang.System.out;
 
 public class User
 {
-    public static ArrayList<UserStruct> users = new ArrayList<>();
+    public static ArrayList<Model.Person.User.UserStruct> users = new ArrayList<>();
 
     public static void signUp(String userName, String passWord, String firstName, String lastName, String email, String phoneNumber, String location)
     {
@@ -43,7 +43,7 @@ public class User
 
 
         boolean flag = true;
-        for (UserStruct user : users)
+        for (Model.Person.User.UserStruct user : users)
         {
             if (Objects.equals(user.getEmail(), email))
             {
@@ -54,7 +54,7 @@ public class User
 
         if (flag)
         {
-            users.add(new UserStruct(userName, passWord, firstName, email, phoneNumber, lastName, location));
+            users.add(new Model.Person.User.UserStruct(userName, passWord, firstName, email, phoneNumber, lastName, location));
             int userNumber = users.size() - 1;
             SendingDataToServer(userNumber);
             Admin.sendEmail(users.get(userNumber).getEmail());

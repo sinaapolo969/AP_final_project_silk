@@ -86,15 +86,15 @@
       </Label>
       <AnchorPane layoutX="148.0" layoutY="281.0" prefHeight="326.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <JFXTextField fx:id="username" layoutX="29.0" layoutY="68.0" prefHeight="34.0" prefWidth="214.0" promptText="username" unFocusColor="#83430e">
+            <JFXTextField fx:id="username" labelFloat="true" layoutX="29.0" layoutY="68.0" prefHeight="34.0" prefWidth="214.0" promptText="username" unFocusColor="#83430e">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXTextField>
-            <JFXPasswordField fx:id="pass" layoutX="28.0" layoutY="146.0" prefHeight="34.0" prefWidth="214.0" promptText="password" unFocusColor="#83430e">
+            <JFXPasswordField fx:id="pass" labelFloat="true" layoutX="28.0" layoutY="146.0" prefHeight="34.0" prefWidth="214.0" promptText="password" unFocusColor="#83430e">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXPasswordField>
-            <JFXPasswordField fx:id="confirmPass" layoutX="29.0" layoutY="224.0" prefHeight="34.0" prefWidth="214.0" promptText="confirm password" unFocusColor="#83430e">
+            <JFXPasswordField fx:id="confirmPass" labelFloat="true" layoutX="29.0" layoutY="224.0" prefHeight="34.0" prefWidth="214.0" promptText="confirm password" unFocusColor="#83430e">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXPasswordField>
@@ -111,7 +111,7 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <JFXButton layoutX="328.0" layoutY="640.0" onAction="#signUp" prefHeight="77.0" prefWidth="594.0" style="-fx-border-color: white;" text="Sign Up" textFill="WHITE">
+      <JFXButton layoutX="153.0" layoutY="640.0" onAction="#signUp" prefHeight="77.0" prefWidth="960.0" style="-fx-border-color: white;" text="Sign Up" textFill="WHITE">
          <font>
             <Font name="Sitka Banner Italic" size="35.0" />
          </font>

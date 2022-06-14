@@ -131,7 +131,7 @@ public class SignUpController implements Initializable
     {
         Common.initialDrawer("HomeMenu", leftDrawer);
 
-        Image profile = new Image(getClass().getResource("/View/user.png").toExternalForm());
+        Image profile = new Image(getClass().getResource("/View/Images/user.png").toExternalForm());
         photo.setFill(new ImagePattern(profile));
     }
 }
