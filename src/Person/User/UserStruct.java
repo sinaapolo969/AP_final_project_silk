@@ -1,11 +1,6 @@
 package Person.User;
 
 import Person.Person;
-import org.json.simple.JSONObject;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
 
 public class UserStruct extends Person
 {
