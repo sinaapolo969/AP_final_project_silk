@@ -75,13 +75,8 @@ public class PostTable extends DbHandler
         String query = "select * from posts where owner = ?";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
-        ArrayList<String> posts = new ArrayList<>();
-        for (int i = 0; i < preparedStatement.executeUpdate(); i++)
-        {
-            posts.add(convertDataToJsonString(preparedStatement));
-        }
 
-        return posts;
+        return convertDataToArrayJsonString(preparedStatement);
     }
 
     public ArrayList<String> getPostByCategory(String category) throws SQLException
@@ -107,27 +102,7 @@ public class PostTable extends DbHandler
         return phoneNumber;
     }
 
-    private String convertDataToJsonString(PreparedStatement preparedStatement1) throws SQLException
-    {
-        ResultSet resultSet = preparedStatement1.executeQuery();
-        String jsonString = null;
-        if (resultSet.next())
-        {
-            String phoneNumber = getOwnerPhoneNumber(resultSet.getString("owner"));
-            jsonString = "{\n \"title\": " + "\"" + resultSet.getString("title") +
-                    "\"" + ",\n" + "\"postId\": " + "\"" + resultSet.getInt("postId") + "\"" + ",\n" + "\"category\": " +
-                "\"" + resultSet.getString("category") + "\"" + ",\n" + "\"price\": "
-                + "\"" + resultSet.getNString("price") + "\"" + ",\n" +
-                "\"description\": " + "\"" + resultSet.getString("description") + "\"" + ",\n" + "\"owner\": " + "\"" +
-                resultSet.getString("owner") + "\"" + ",\n" + "\"location\": "
-                + "\"" + resultSet.getString("location") + "\"" + ",\n" + "\"sold\" : "
-                    + "\"" + resultSet.getString("sold") + "\"" +
-                ",\n" + "\"photo\": " + "\"" + resultSet.getString("photo") + "\"" +",\n" + "\"phoneNumber\": " +
-                "\"" + phoneNumber + "\"" + "\n}";
-        }
 
-        return jsonString;
-    }
 
     private ArrayList<String> convertDataToArrayJsonString(PreparedStatement preparedStatement1) throws SQLException
     {
@@ -152,35 +127,27 @@ public class PostTable extends DbHandler
         return posts;
     }
 
+    public void insertBookMark(String userName, int postId) throws SQLException
+    {
+        String query = "insert into bookmarks (userName, postId) values (?, ?)";
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, userName);
+        preparedStatement.setInt(2, postId);
+        preparedStatement.executeUpdate();
+    }
+
     //this method is for return posts that bookmarked from a user
     public ArrayList<String> getBookMarks(String userName) throws SQLException
     {
-        String query = "select bookMarks from users where userName = ?";
+        String query = "select * from posts inner join bookmarks on posts.postId = bookmarks.postId where bookmarks.userName = ?";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        String[] id = new String[0];
-        while (resultSet.next())
-        {
-            id = resultSet.getString("bookMarks").split(",");
 
-        }
-
-        ArrayList<String> posts = new ArrayList<>();
-        for (int i = 0; i < id.length; i++)
-        {
-            String query2 = "select * from posts where postId = ?";
-            PreparedStatement preparedStatement1 = connection.prepareStatement(query2);
-            preparedStatement1.setString(1, id[i]);
-            posts.add(convertDataToJsonString(preparedStatement1));
-        }
-
-        return posts;
+        return convertDataToArrayJsonString(preparedStatement);
     }
 
-    /* i can make a post object then turn it to json insted of writing yo method to make json String
-    think about it ...............
-     */
+
+
 
     public void close() throws SQLException
     {

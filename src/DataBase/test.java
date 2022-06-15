@@ -1,14 +1,8 @@
 package DataBase;
 
-import Model.DataRequestSender;
-import Model.Post;
-import javafx.geometry.Pos;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class test
 {
@@ -54,12 +48,17 @@ public class test
 //            System.out.println(post.getCategory() + "   " + post.getTitle() +
 //                     post.getPostId() + "  " + post.getPhoneNumber() + "   " + post.getLocation());
 //        }
-        PostTable postTable = new PostTable();
-        ArrayList<String> posts = postTable.getPostByCategory("eih");
-        System.out.println(posts);
-        System.out.println("-------------------------------------");
-        System.out.println(postTable.getBookMarks("sinat"));
-        postTable.close();
+
+        //PostTable postTable = new PostTable();
+//        ArrayList<String> posts = postTable.getPostDataByOwner("omidslt");
+//        for (String s : posts) {
+//            System.out.println(s);
+//        }
+        //postTable.insertBookMark("sina", 3);
+
+        LocalDateTime dateTime = LocalDateTime.now();
+        System.out.println(dateTime.getDayOfMonth());
+
 
     }
 }
