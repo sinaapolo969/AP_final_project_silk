@@ -1,18 +1,11 @@
 package Model.Person.User;
 
-import Model.Person.Admin.Admin;
 import Model.Person.EmailValidationException;
-import Model.Person.PhoneNumberValidationException;
-import org.json.JSONObject;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Map;
-import java.util.Objects;
-
-import static java.lang.System.out;
 
 public class Request
 {
@@ -37,43 +30,44 @@ public class Request
 
     public void signUp(User receivedUser)
     {
-        if(!checkingEmail(receivedUser.getEmail()))
-        {
-            try
-            {
-                throw new EmailValidationException("Wrong Email");
-            }
-            catch (EmailValidationException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        else if(!checkingPhoneNumber(receivedUser.getPhoneNumber()))
-        {
-            try
-            {
-                throw new PhoneNumberValidationException("Wrong Phone-number");
-            }
-            catch (PhoneNumberValidationException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        else
-        {
-            boolean flag = true;//repetitionOfEmail(receivedUser.getEmail());
-
-            if (flag)
-            {
-                //sendingDataToServer(userNumber);
-                sendingDataToServer(receivedUser);
-                Admin.sendEmail(receivedUser.getEmail());
-            }
-            else
-            {
-                out.println("u are already signed up");
-            }
-        }
+//        if(!checkingEmail(receivedUser.getEmail()))
+//        {
+//            try
+//            {
+//                throw new EmailValidationException("Wrong Email");
+//            }
+//            catch (EmailValidationException e)
+//            {
+//                e.printStackTrace();
+//            }
+//        }
+//        else if(!checkingPhoneNumber(receivedUser.getPhoneNumber()))
+//        {
+//            try
+//            {
+//                throw new PhoneNumberValidationException("Wrong Phone-number");
+//            }
+//            catch (PhoneNumberValidationException e)
+//            {
+//                e.printStackTrace();
+//            }
+//        }
+//        else
+//        {
+//            boolean flag = true;//repetitionOfEmail(receivedUser.getEmail());
+//
+//            if (flag)
+//            {
+//                //sendingDataToServer(userNumber);
+//                sendingDataToServer(receivedUser);
+//                Admin.sendEmail(receivedUser.getEmail());
+//            }
+//            else
+//            {
+//                out.println("u are already signed up");
+//            }
+//        }
+        sendingDataToServer(receivedUser);
     }
 
 //    private boolean repetitionOfEmail(String email)
@@ -122,18 +116,25 @@ public class Request
     }
 
 
-    private String sendingDataToServer(User receivedUser)
+    private void sendingDataToServer(User receivedUser)
     {
-        JSONObject jsonObject = new JSONObject(receivedUser);
+        String jsonString = "{\n \"firstName\": " + receivedUser.getFirstName() + ",\n" + "\"lastName\": " +
+                receivedUser.getLastName() + ",\n" + "\"userName\": " + receivedUser.getUserName() + ",\n" +
+                "\"password\": " + receivedUser.getPassword() + ",\n" + "\"phoneNumber\": " +
+                receivedUser.getPhoneNumber() + ",\n" + "\"emailAddress\" : " + receivedUser.getEmail() +
+                ",\n" + "\"location\": " + receivedUser.getLocation() + "\n}";
+        System.out.println(jsonString);
+        //JSONObject jsonObject = new JSONObject(receivedUser);
         try
         {
-            dataOutputStream.writeUTF(jsonObject.toString());
+            dataOutputStream.writeInt(1);
+            dataOutputStream.writeUTF(jsonString);
+            dataOutputStream.writeInt(0);
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-        return null;
     }
 
 

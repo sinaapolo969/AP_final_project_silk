@@ -107,11 +107,11 @@ public class SignUpController implements Initializable
     @FXML
     private void signUp(ActionEvent actionEvent)
     {
-        if (!pass.equals(confirmPass))
+        if (!pass.getText().equals(confirmPass.getText()))
         {
             out.println("confirmation of password is false");
         }
-        else if (!email.equals(confirmEmail))
+        else if (!email.getText().equals(confirmEmail.getText()))
         {
             out.println("confirmation of email is false");
         }
@@ -120,7 +120,7 @@ public class SignUpController implements Initializable
             if (nullChecker())
             {
                 User user = new User(username.getText(), pass.getText(), name.getText(), lastName.getText(),
-                        email.getText(),number.getText(), city.getValue(), profile);
+                        number.getText(), email.getText(), city.getValue(), profile);
 
                 Client client = new Client();
                 Socket socket = client.setUp();

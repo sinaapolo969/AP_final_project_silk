@@ -1,21 +1,10 @@
 package Model.Person.User;
 
-import Model.PageControl;
-import Model.Person.Admin.Admin;
-import Model.Person.EmailValidationException;
 import Model.Person.Person;
-import Model.Person.PhoneNumberValidationException;
 import javafx.scene.image.Image;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
-
-import static java.lang.System.out;
 
 public class User extends Person
 {
-    public static ArrayList<User> users = new ArrayList<User>();
 
     private String firstName;
     private String lastName;
