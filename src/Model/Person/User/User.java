@@ -1,157 +1,75 @@
 package Model.Person.User;
 
+import Model.PageControl;
 import Model.Person.Admin.Admin;
 import Model.Person.EmailValidationException;
+import Model.Person.Person;
 import Model.Person.PhoneNumberValidationException;
+import javafx.scene.image.Image;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 import static java.lang.System.out;
 
-public class User
+public class User extends Person
 {
-    public static ArrayList<Model.Person.User.UserStruct> users = new ArrayList<>();
+    public static ArrayList<User> users = new ArrayList<User>();
 
-    public static void signUp(String userName, String passWord, String firstName, String lastName, String email, String phoneNumber, String location)
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String location;
+    private Image profile;
+
+    public User(String userName, String password, String firstName, String lastName,
+                String phoneNumber, String email, String location, Image profile)
     {
-        if(!CheckingEmail(email))
-        {
-            signUp(userName, passWord, firstName, lastName, email, phoneNumber, location);// we should get input here instead of sign up
-            try
-            {
-                throw new EmailValidationException("Wrong Email");
-            }
-            catch (EmailValidationException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        if(!CheckingPhoneNumber(phoneNumber))
-        {
-            signUp(userName, passWord, firstName, lastName, email, phoneNumber, location);// we should get input here instead of sign up
-            try
-            {
-                throw new PhoneNumberValidationException("Wrong Phone-number");
-            }
-            catch (PhoneNumberValidationException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-
-        boolean flag = true;
-        for (Model.Person.User.UserStruct user : users)
-        {
-            if (Objects.equals(user.getEmail(), email))
-            {
-                flag = false;
-                break;
-            }
-        }
-
-        if (flag)
-        {
-            users.add(new Model.Person.User.UserStruct(userName, passWord, firstName, email, phoneNumber, lastName, location));
-            int userNumber = users.size() - 1;
-            SendingDataToServer(userNumber);
-            Admin.sendEmail(users.get(userNumber).getEmail());
-        }
-        else
-        {
-            out.println("u are already signed up");//we should call a method to get input again
-            signUp(userName,passWord,firstName,lastName,email,phoneNumber,location);
-            login(userName, passWord, email);
-        }
+        super(userName ,password ,email);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.location = location;
+        this.profile = profile;
     }
 
-
-    public static void login(String inputUserName, String inputPassWord, String inputEmail)
+    public String getFirstName()
     {
-        if(!CheckingEmail(inputEmail))
-        {
-            login (inputUserName, inputPassWord, inputEmail);// we should get input here instead of sign up
-            try
-            {
-                throw new EmailValidationException("Wrong Email");
-            }
-            catch (EmailValidationException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        int userNumber = 0;
-        String inputIdentity = inputUserName + " " + inputPassWord + " " + inputEmail;
-
-        boolean flag = false;
-        for (int j = 0; j < users.size(); j++)
-        {
-            if (Objects.equals(users.get(j).getIdentity(), inputIdentity))
-            {
-                flag = true;
-                userNumber = j;
-                break;
-            }
-        }
-
-        if (flag)
-        {
-            Admin.sendEmail(users.get(userNumber).getEmail());
-        }
-        else
-        {
-            out.println("You have not Signed up yet.\n");
-            login(inputUserName, inputPassWord, inputEmail);
-            signUp(inputUserName, inputPassWord, "", "", inputEmail, "", "");
-        }
+        return firstName;
     }
 
-
-    private static boolean CheckingEmail(String email)
+    public void setFirstName(String firstName)
     {
-        String regex = "[0-9a-zA-Z_.]*@[0-9a-zA-Z]*\\.[a-zA-Z]{3}";
-
-        return email.matches(regex);
+        this.firstName = firstName;
     }
 
-
-    private static boolean CheckingPhoneNumber(String phoneNumber)
+    public String getPhoneNumber()
     {
-        char[] charNum = phoneNumber.toCharArray();
-
-        if (charNum[0] == '0' && charNum[1] == '9')
-        {
-            String regexNum = "[0-9]{11}";
-
-            return phoneNumber.matches(regexNum);
-        }
-        else if (charNum[0] == '+' && charNum[1] == '9' && charNum[2] == '8' && charNum[3] == '9')
-        {
-            String regexNum = "\\+[0-9]{12}";
-
-            return phoneNumber.matches(regexNum);
-        }
-        else if (charNum[0] == '0' && charNum[1] == '0' && charNum[2] == '9' && charNum[3] == '8' && charNum[4] == '9')
-        {
-            String regexNum = "[0-9]{14}";
-
-            return phoneNumber.matches(regexNum);
-        }
-        else
-        {
-            return false;
-        }
+        return phoneNumber;
     }
 
-
-    private static String SendingDataToServer(int userNumber)
+    public void setPhoneNumber(String phoneNumber)
     {
-//        JSONObject jsonObject = new JSONObject((Map) users.get(userNumber));
-//        out.println(jsonObject.toString());
-//        return new JSONObject((Map) users.get(userNumber)).toJSONString();
-        return null;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location)
+    {
+        this.location = location;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
     }
 }

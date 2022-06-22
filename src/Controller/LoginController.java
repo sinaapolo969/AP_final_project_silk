@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.Common;
 import Model.PageControl;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXPasswordField;
@@ -29,19 +28,19 @@ public class LoginController implements Initializable
     @FXML
     private void linkedIn(MouseEvent mouseEvent) throws IOException
     {
-        Common.linkedIn();
+        PageControl.linkedIn();
     }
 
     @FXML
     private void instagram(MouseEvent mouseEvent) throws IOException
     {
-        Common.instagram();
+        PageControl.instagram();
     }
 
     @FXML
     private void twitter(MouseEvent mouseEvent) throws IOException
     {
-        Common.twitter();
+        PageControl.twitter();
     }
 
 
@@ -60,12 +59,12 @@ public class LoginController implements Initializable
     @FXML
     private void menu(MouseEvent mouseEvent)
     {
-        Common.openOrCloseDrawer(leftDrawer);
+        PageControl.openOrCloseDrawer(leftDrawer);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        Common.initialDrawer("HomeMenu", leftDrawer);
+        PageControl.initialDrawer("HomeMenu", leftDrawer);
     }
 }

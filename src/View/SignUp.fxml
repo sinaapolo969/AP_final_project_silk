@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -23,7 +24,6 @@
             <Image url="@Images/shaun-patrick-kbWnCg9hza0-unsplash.jpg" />
          </image>
       </ImageView>
-      <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutY="132.0" prefHeight="678.0" prefWidth="237.0" />
       <AnchorPane layoutX="1.0" layoutY="-3.0" prefHeight="77.0" prefWidth="1249.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
          <children>
             <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
@@ -48,15 +48,15 @@
       </AnchorPane>
       <AnchorPane layoutX="500.0" layoutY="226.0" prefHeight="378.0" prefWidth="251.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <JFXTextField fx:id="name" focusColor="#581f30" labelFloat="true" layoutX="27.0" layoutY="210.0" prefHeight="34.0" prefWidth="197.0" promptText="name" unFocusColor="#83430e">
+            <JFXTextField fx:id="name" focusColor="#86331e" labelFloat="true" layoutX="27.0" layoutY="172.0" prefHeight="34.0" prefWidth="197.0" promptText="name" unFocusColor="#83430e">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="lastName" focusColor="#581f30" labelFloat="true" layoutX="28.0" layoutY="278.0" prefHeight="34.0" prefWidth="197.0" promptText="last name" unFocusColor="#83430e">
+            <JFXTextField fx:id="lastName" focusColor="#86331e" labelFloat="true" layoutX="27.0" layoutY="231.0" prefHeight="34.0" prefWidth="197.0" promptText="last name" unFocusColor="#83430e">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXTextField>
-            <Circle fx:id="photo" layoutX="126.0" layoutY="80.0" radius="60.0" stroke="WHITE" strokeType="INSIDE">
+            <Circle fx:id="photo" layoutX="126.0" layoutY="62.0" radius="48.0" stroke="WHITE" strokeType="INSIDE">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -66,11 +66,12 @@
                   </LinearGradient>
                </fill>
             </Circle>
-            <JFXButton buttonType="RAISED" layoutX="37.0" layoutY="140.0" onAction="#fileChoose" prefHeight="31.0" prefWidth="177.0" style="-fx-background-color: #708A95; -fx-background-radius: 50;" text="Wish To Upload A Photo?" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="37.0" layoutY="118.0" onAction="#fileChoose" prefHeight="31.0" prefWidth="177.0" style="-fx-border-radius: 50; -fx-border-color: #603c40;" text="Wish To Upload A Photo?" textFill="#591d1d">
                <font>
                   <Font name="Book Antiqua Italic" size="13.0" />
                </font>
             </JFXButton>
+            <JFXComboBox fx:id="city" focusColor="#86331e" labelFloat="true" layoutX="27.0" layoutY="297.0" opacity="0.75" prefHeight="31.0" prefWidth="197.0" promptText="select your city" unFocusColor="#651515" />
          </children>
          <effect>
             <DropShadow />
@@ -86,15 +87,15 @@
       </Label>
       <AnchorPane layoutX="148.0" layoutY="281.0" prefHeight="326.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <JFXTextField fx:id="username" labelFloat="true" layoutX="29.0" layoutY="68.0" prefHeight="34.0" prefWidth="214.0" promptText="username" unFocusColor="#83430e">
+            <JFXTextField fx:id="username" focusColor="#86331e" labelFloat="true" layoutX="29.0" layoutY="68.0" prefHeight="34.0" prefWidth="214.0" promptText="username" unFocusColor="#83430e">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXTextField>
-            <JFXPasswordField fx:id="pass" labelFloat="true" layoutX="28.0" layoutY="146.0" prefHeight="34.0" prefWidth="214.0" promptText="password" unFocusColor="#83430e">
+            <JFXPasswordField fx:id="pass" focusColor="#86331e" labelFloat="true" layoutX="28.0" layoutY="146.0" prefHeight="34.0" prefWidth="214.0" promptText="password" unFocusColor="#83430e">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXPasswordField>
-            <JFXPasswordField fx:id="confirmPass" labelFloat="true" layoutX="29.0" layoutY="224.0" prefHeight="34.0" prefWidth="214.0" promptText="confirm password" unFocusColor="#83430e">
+            <JFXPasswordField fx:id="confirmPass" focusColor="#86331e" labelFloat="true" layoutX="29.0" layoutY="224.0" prefHeight="34.0" prefWidth="214.0" promptText="confirm password" unFocusColor="#83430e">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXPasswordField>
@@ -122,11 +123,11 @@
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="number" focusColor="#581f30" labelFloat="true" layoutX="32.0" layoutY="58.0" prefHeight="34.0" prefWidth="197.0" promptText="phone number" unFocusColor="#83430e">
+            <JFXTextField fx:id="number" focusColor="#86331e" labelFloat="true" layoutX="32.0" layoutY="58.0" prefHeight="34.0" prefWidth="197.0" promptText="phone number" unFocusColor="#83430e">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXTextField>
-            <JFXTextField fx:id="confirmEmail" focusColor="#581f30" labelFloat="true" layoutX="32.0" layoutY="226.0" prefHeight="34.0" prefWidth="197.0" promptText="confirm email" unFocusColor="#83430e">
+            <JFXTextField fx:id="confirmEmail" focusColor="#86331e" labelFloat="true" layoutX="32.0" layoutY="226.0" prefHeight="34.0" prefWidth="197.0" promptText="confirm email" unFocusColor="#83430e">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></JFXTextField>
@@ -162,12 +163,13 @@
                   <Font name="Bookman Old Style Italic" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="1038.0" layoutY="9.0" onAction="#signUp" prefHeight="42.0" prefWidth="95.0" ripplerFill="#141414" style="-fx-border-color: #8f8e8e;" text="Sign Up" textFill="#8f8e8e">
+            <JFXButton buttonType="RAISED" layoutX="1038.0" layoutY="9.0" prefHeight="42.0" prefWidth="95.0" ripplerFill="#141414" style="-fx-border-color: #8f8e8e;" text="Sign Up" textFill="#8f8e8e">
                <font>
                   <Font name="Bookman Old Style Italic" size="16.0" />
                </font>
             </JFXButton>
          </children>
       </AnchorPane>
+      <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutY="132.0" prefHeight="679.0" prefWidth="237.0" />
    </children>
 </AnchorPane>

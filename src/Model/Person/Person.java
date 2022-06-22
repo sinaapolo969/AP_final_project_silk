@@ -1,6 +1,6 @@
 package Model.Person;
 
-abstract public  class Person
+abstract public class Person
 {
     private String password;
     private String userName;
