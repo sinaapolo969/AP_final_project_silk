@@ -7,25 +7,31 @@ import java.net.Socket;
 public class Server
 {
     private ServerSocket serverSocket;
-    private Socket socket;
-    private DataOutputStream dataOutputStream;
-    private DataInputStream dataInputStream;
 
     public void setUp()
     {
+        try
+        {
+            serverSocket = new ServerSocket(6666);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
         while (true)
         {
             try
             {
-                serverSocket = new ServerSocket(6666);
-                socket = serverSocket.accept();
-                dataInputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-                dataOutputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-                ClientHandler clientHandler = new ClientHandler(socket, dataInputStream, dataOutputStream);
+
+                Socket socket = serverSocket.accept();
+                DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+                DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+                new ClientHandler(socket, dataInputStream, dataOutputStream).start();
             }
             catch (IOException e)
             {
                 e.printStackTrace();
+                break;
             }
         }
     }

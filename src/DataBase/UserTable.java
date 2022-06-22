@@ -56,7 +56,6 @@ public class UserTable extends DbHandler
         preparedStatement.setString(6, jsonObject.getString("emailAddress"));
         preparedStatement.setString(7, jsonObject.getString("location"));
         preparedStatement.executeUpdate();
-        close();
     }
 
     //delete user data
@@ -66,7 +65,6 @@ public class UserTable extends DbHandler
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
         preparedStatement.executeUpdate();
-        close();
     }
 
     //getting user data from table
@@ -86,12 +84,11 @@ public class UserTable extends DbHandler
                     resultSet.getString("phoneNumber") + ",\n" + "\"emailAddress\" : " + resultSet.getString("emailAddress") +
                     ",\n" + "\"location\": " + resultSet.getString("location") + "\n}";
         }
-        close();
 
         return jsonString;
     }
 
-    private void close() throws SQLException
+    public void close() throws SQLException
     {
         preparedStatement.close();
         connection.close();
