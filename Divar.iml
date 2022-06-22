@@ -11,6 +11,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.jfoenix:jfoenix:8.0.10" level="project" />
     <orderEntry type="library" name="de.jensd:fontawesomefx:8.0.10" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="fontawesomefx-8.5" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -20,15 +21,13 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../fontawesomefx-8.5.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="com.jfoenix:jfoenix:8.0.10" level="project" />
+    <orderEntry type="library" name="mail" level="project" />
+    <orderEntry type="library" name="activation" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.1" level="project" />
+    <orderEntry type="library" name="jfoenix" level="project" />
+    <orderEntry type="library" name="de.jensd.fontawesomefx" level="project" />
+    <orderEntry type="library" name="fontawesomefx-8.51" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20220320" level="project" />
   </component>
 </module>
