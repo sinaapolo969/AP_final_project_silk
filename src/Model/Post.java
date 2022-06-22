@@ -36,7 +36,7 @@ public class Post
         return price;
     }
 
-    public boolean isSaleStatus()
+    public boolean saleStatus()
     {
         return saleStatus;
     }

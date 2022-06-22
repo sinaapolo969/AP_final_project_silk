@@ -1,6 +1,9 @@
 <component name="libraryTable">
   <library name="de.jensd:fontawesomefx:8.0.10" type="repository">
     <properties maven-id="de.jensd:fontawesomefx:8.0.10" />
+    <ANNOTATIONS>
+      <root url="file://$MAVEN_REPOSITORY$/de/jensd/fontawesomefx/8.0.10" />
+    </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/de/jensd/fontawesomefx/8.0.10/fontawesomefx-8.0.10.jar!/" />
     </CLASSES>

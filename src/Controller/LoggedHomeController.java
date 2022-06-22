@@ -1,13 +1,11 @@
 package Controller;
 
-import Model.Common;
+import Model.PageControl;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
@@ -43,25 +41,25 @@ public class LoggedHomeController implements Initializable
     @FXML
     private void linkedIn(MouseEvent mouseEvent) throws IOException
     {
-        Common.linkedIn();
+        PageControl.linkedIn();
     }
 
     @FXML
     private void instagram(MouseEvent mouseEvent) throws IOException
     {
-        Common.instagram();
+        PageControl.instagram();
     }
 
     @FXML
     private void twitter(MouseEvent mouseEvent) throws IOException
     {
-        Common.twitter();
+        PageControl.twitter();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        Common.initialDrawer("UserMenu", userDrawer);
-        Common.initialDrawer("HomeMenu", leftDrawer);
+        PageControl.initialDrawer("UserMenu", userDrawer);
+        PageControl.initialDrawer("HomeMenu", leftDrawer);
     }
 }

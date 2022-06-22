@@ -1,15 +1,28 @@
 package Model;
 
 import Controller.HomeController;
+import com.jfoenix.controls.JFXDrawer;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PageControl
 {
@@ -50,7 +63,7 @@ public class PageControl
             primaryStage.initStyle(StageStyle.TRANSPARENT);
             primaryStage.show();
         }
-        catch(Exception e)
+        catch(Exception ignored)
         {
 
         }
@@ -61,5 +74,70 @@ public class PageControl
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(HomeController.class.getResource("/View/" + name + ".fxml"));
         return loader;
+    }
+
+    public static Image fileChoose()
+    {
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+
+        Image profile = null;
+        try
+        {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            profile = SwingFXUtils.toFXImage(bufferedImage, null);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(PageControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return profile;
+    }
+
+    public static void instagram() throws IOException
+    {
+        java.awt.Desktop.getDesktop().browse(URI.create("https://www.instagram.com/divar.official/"));
+    }
+
+    public static void linkedIn() throws IOException
+    {
+        java.awt.Desktop.getDesktop().browse(URI.create("https://www.linkedin.com/company/divarofficial/"));
+    }
+
+    public static void twitter() throws IOException
+    {
+        java.awt.Desktop.getDesktop().browse(URI.create("https://twitter.com/divar_official/"));
+    }
+
+    public static void initialDrawer(String name, JFXDrawer drawer)
+    {
+        try
+        {
+            VBox vb = FXMLLoader.load(PageControl.class.getResource("/View/" + name + ".fxml"));
+            drawer.setSidePane(vb);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void openOrCloseDrawer(JFXDrawer drawer)
+    {
+        if (drawer.isOpened())
+        {
+            drawer.close();
+        }
+        else
+        {
+            drawer.open();
+        }
     }
 }

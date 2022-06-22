@@ -1,32 +1,30 @@
 package Controller;
 
-import Model.Common;
 import Model.PageControl;
+import Model.Person.User.User;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.stage.FileChooser;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import static java.lang.System.out;
 
 public class SignUpController implements Initializable
 {
+    private Image profile;
+
     @FXML
     private Circle photo;
 
@@ -58,52 +56,41 @@ public class SignUpController implements Initializable
     private JFXDrawer leftDrawer;
 
     @FXML
+    private JFXComboBox<String> city;
+
+    @FXML
     private void linkedIn(MouseEvent mouseEvent) throws IOException
     {
-        Common.linkedIn();
+        PageControl.linkedIn();
     }
 
     @FXML
     private void instagram(MouseEvent mouseEvent) throws IOException
     {
-        Common.instagram();
+        PageControl.instagram();
     }
 
     @FXML
     private void twitter(MouseEvent mouseEvent) throws IOException
     {
-        Common.twitter();
+        PageControl.twitter();
     }
 
     @FXML
     private void menu(MouseEvent mouseEvent)
     {
-        Common.openOrCloseDrawer(leftDrawer);
+        PageControl.openOrCloseDrawer(leftDrawer);
     }
 
 
     @FXML
     void fileChoose(ActionEvent event)
     {
-        FileChooser fileChooser = new FileChooser();
+        Image profile = PageControl.fileChoose();
 
-        //Set extension filter
-        FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-        FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
-
-        //Show open file dialog
-        File file = fileChooser.showOpenDialog(null);
-
-        try
+        if (profile != null)
         {
-            BufferedImage bufferedImage = ImageIO.read(file);
-            Image profile = SwingFXUtils.toFXImage(bufferedImage, null);
             photo.setFill(new ImagePattern(profile));
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -117,7 +104,20 @@ public class SignUpController implements Initializable
     @FXML
     private void signUp(ActionEvent actionEvent)
     {
-
+        if (!pass.equals(confirmPass))
+        {
+            out.println("confirmation of password is false");
+        }
+        else if (!email.equals(confirmEmail))
+        {
+            out.println("confirmation of email is false");
+        }
+        else
+        {
+            User user = new User(username.getText(), pass.getText(), name.getText(), lastName.getText(),
+                    email.getText(),number.getText(), city.getValue(), profile);
+            //user.signUp(user);
+        }
     }
 
     @FXML
@@ -129,9 +129,21 @@ public class SignUpController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        Common.initialDrawer("HomeMenu", leftDrawer);
+        PageControl.initialDrawer("HomeMenu", leftDrawer);
 
-        Image profile = new Image(getClass().getResource("/View/user.png").toExternalForm());
+        Image profile = new Image(getClass().getResource("/View/Images/user.png").toExternalForm());
+        this.profile = profile;
         photo.setFill(new ImagePattern(profile));
+
+        ArrayList<String> cities = new ArrayList<>();
+        cities.add("Chicago");
+        cities.add("NewYork");
+        cities.add("Washington");
+        cities.add("Seattle");
+        cities.add("San Francisco");
+        cities.add("Miami");
+        cities.add("Orlando");
+
+        city.getItems().addAll(cities);
     }
 }
