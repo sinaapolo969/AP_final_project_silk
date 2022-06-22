@@ -1,24 +1,24 @@
 package Model.Person.User;
 
-import Model.PageControl;
 import Model.Person.Admin.Admin;
 import Model.Person.EmailValidationException;
 import Model.Person.PhoneNumberValidationException;
+import org.json.JSONObject;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Map;
 import java.util.Objects;
 
 import static java.lang.System.out;
 
 public class Request
 {
-    User user;
     private Socket socket;
     private DataOutputStream dataOutputStream;
-    DataInputStream dataInputStream;
+    private DataInputStream dataInputStream;
 
     public Request(Socket socket)
     {
@@ -61,11 +61,12 @@ public class Request
         }
         else
         {
-            boolean flag = repetitionOfEmail(receivedUser.getEmail());
+            boolean flag = true;//repetitionOfEmail(receivedUser.getEmail());
 
             if (flag)
             {
                 //sendingDataToServer(userNumber);
+                sendingDataToServer(receivedUser);
                 Admin.sendEmail(receivedUser.getEmail());
             }
             else
@@ -75,10 +76,10 @@ public class Request
         }
     }
 
-    private boolean repetitionOfEmail(String email)
-    {
-
-    }
+//    private boolean repetitionOfEmail(String email)
+//    {
+//
+//    }
 
 
     public void login(String inputUserName, String inputPassWord, String inputEmail) throws IOException
@@ -121,18 +122,25 @@ public class Request
     }
 
 
-    private static String sendingDataToServer(int userNumber)
+    private String sendingDataToServer(User receivedUser)
     {
-//        JSONObject jsonObject = new JSONObject((Map) users.get(userNumber));
-//        out.println(jsonObject.toString());
-//        return new JSONObject((Map) users.get(userNumber)).toJSONString();
+        JSONObject jsonObject = new JSONObject(receivedUser);
+        try
+        {
+            dataOutputStream.writeUTF(jsonObject.toString());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
         return null;
     }
 
 
     public void logOut()
     {
-        try {
+        try
+        {
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();

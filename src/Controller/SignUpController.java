@@ -116,7 +116,7 @@ public class SignUpController implements Initializable
         {
             User user = new User(username.getText(), pass.getText(), name.getText(), lastName.getText(),
                     email.getText(),number.getText(), city.getValue(), profile);
-            user.signUp(user);
+            //user.signUp(user);
         }
     }
 
