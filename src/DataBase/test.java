@@ -1,15 +1,17 @@
 package DataBase;
 
-import java.io.IOException;
+import Network.Client;
+
+import java.io.*;
+import java.net.Socket;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
 public class test
 {
     static String json = "{\n" +
-            "  \"firstName\": \"mmadreza\",\n" +
-            "  \"lastName\": \"tayebi\",\n" +
-            "  \"userName\": \"sinaApolo\",\n" +
+            "  \"firstName\": \"sssdsds\",\n" +
+            "  \"lastName\": \"mehhh\",\n" +
+            "  \"userName\": \"ssss\",\n" +
             "  \"password\": \"sina1381\",\n" +
             "  \"phoneNumber\": \"11111\",\n" +
             "  \"emailAddress\": \"sdadfdfsd\",\n" +
@@ -56,9 +58,34 @@ public class test
 //        }
         //postTable.insertBookMark("sina", 3);
 
-        LocalDateTime dateTime = LocalDateTime.now();
-        System.out.println(dateTime.getDayOfMonth());
+        Client client = new Client();
+        Socket socket = client.setUp();
+        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        dataOutputStream.writeInt(2);
+        dataOutputStream.writeUTF("sina");
+        String data;
+        data = dataInputStream.readUTF();
+        System.out.println(data);
+        dataOutputStream.writeInt(1);
+        dataOutputStream.writeUTF(json);
+        dataOutputStream.writeInt(0);
+//        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+//        Object o = objectInputStream.readObject();
+//        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+//        String data = null;
+//        while (dataInputStream.available() > 0)
+//        {
+//            data = dataInputStream.readUTF();
+//        }
+//        System.out.println(data);
+//        dataInputStream.close();
 
+
+//        for (String string : posts)
+//        {
+//            System.out.println(string);
+//        }
 
     }
 }
