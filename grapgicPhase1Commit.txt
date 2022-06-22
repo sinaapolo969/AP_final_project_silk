@@ -1,7 +1,0 @@
-creating fxml files in phase1 graphic:
-1- starting screen when application is runned.
-2- the home page when the user is not logged in yet that shows the latest adverrtisements.
-3- sign up page.
-4- log in page.
-5- home page when user is logged in.
-6- jfxdrawers.
