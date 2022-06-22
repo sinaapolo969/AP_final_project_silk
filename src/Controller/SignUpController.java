@@ -1,7 +1,9 @@
 package Controller;
 
 import Model.PageControl;
+import Model.Person.User.Request;
 import Model.Person.User.User;
+import Network.Client;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXPasswordField;
@@ -15,6 +17,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -114,10 +117,55 @@ public class SignUpController implements Initializable
         }
         else
         {
-            User user = new User(username.getText(), pass.getText(), name.getText(), lastName.getText(),
-                    email.getText(),number.getText(), city.getValue(), profile);
-            //user.signUp(user);
+            if (nullChecker())
+            {
+                User user = new User(username.getText(), pass.getText(), name.getText(), lastName.getText(),
+                        email.getText(),number.getText(), city.getValue(), profile);
+
+                Client client = new Client();
+                Socket socket = client.setUp();
+                Request request = new Request(socket);
+                request.signUp(user);
+            }
+
         }
+    }
+
+    private Boolean nullChecker()
+    {
+        if (name.getText().equals(""))
+        {
+            return false;
+        }
+        if (lastName.getText().equals(""))
+        {
+            return false;
+        }
+        if (username.getText().equals(""))
+        {
+            return false;
+        }
+        if (pass.getText().equals(""))
+        {
+            return false;
+        }
+        if (confirmPass.getText().equals(""))
+        {
+            return false;
+        }
+        if (email.getText().equals(""))
+        {
+            return false;
+        }
+        if (confirmEmail.getText().equals(""))
+        {
+            return false;
+        }
+        if (number.getText().equals(""))
+        {
+            return false;
+        }
+        return true;
     }
 
     @FXML
