@@ -1,0 +1,19 @@
+<filetype binary="false" description="CSS (syntax highlighting only)" name="CSS">
+    <extensionMap>
+        <mapping ext="css" />
+    </extensionMap>
+    <highlighting>
+        <options>
+            <option name="LINE_COMMENT" value="" />
+            <option name="COMMENT_START" value="/*" />
+            <option name="COMMENT_END" value="*/" />
+            <option name="HEX_PREFIX" value="" />
+            <option name="NUM_POSTFIXES" value="" />
+            <option name="HAS_BRACES" value="true" />
+        </options>
+        <keywords keywords="a;body;button;div;font;font-face;form;frame;h1;h2;h3;h4;iframe;img;import;input;li;link;media;nav;ol;option;p;select;span;table;td;th;title;tr;u;ul;video" ignore_case="false" />
+        <keywords2 keywords="  box-shadow;background;background-color;border;border-radius;bottom;box-shadow;color;content;cursor;display;float;font-family;font-size;font-weight;height;left;line-height;list-style-type;margin;margin-bottom;margin-left;margin-right;margin-top;outline;overflow;padding;padding-bottom;padding-left;padding-right;padding-top;position;right;text-align;text-decoration;text-transform;top;vertical-align;white-space;width;z-index;zoom" />
+        <keywords3 keywords="em;pt;px;rgb;rgba" />
+        <keywords4 keywords="!important;active;after;before;hover;none;visited" />
+    </highlighting>
+</filetype>

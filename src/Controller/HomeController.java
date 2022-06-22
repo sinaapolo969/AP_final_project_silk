@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Advertise;
-import Model.Common;
 import Model.PageControl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
@@ -59,7 +58,7 @@ public class HomeController implements Initializable
         }
 
         //left drawer initializing
-        Common.initialDrawer("HomeMenu", leftDrawer);
+        PageControl.initialDrawer("HomeMenu", leftDrawer);
 
         //loading advertises
         try
@@ -146,25 +145,25 @@ public class HomeController implements Initializable
     @FXML
     private void menu(MouseEvent mouseEvent)
     {
-        Common.openOrCloseDrawer(leftDrawer);
+        PageControl.openOrCloseDrawer(leftDrawer);
     }
 
     @FXML
     private void linkedIn(MouseEvent mouseEvent) throws IOException
     {
-        Common.linkedIn();
+        PageControl.linkedIn();
     }
 
     @FXML
     private void instagram(MouseEvent mouseEvent) throws IOException
     {
-        Common.instagram();
+        PageControl.instagram();
     }
 
     @FXML
     private void twitter(MouseEvent mouseEvent) throws IOException
     {
-        Common.twitter();
+        PageControl.twitter();
     }
 
     @FXML
