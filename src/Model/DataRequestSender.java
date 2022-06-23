@@ -37,7 +37,7 @@ public class DataRequestSender
         post.setDescription(jsonObject.getString("description"));
         post.setOwner(jsonObject.getString("owner"));
         post.setLocation(jsonObject.getString("location"));
-        post.setPhoto(jsonObject.getString("photo"));
+        //post.setPhoto(jsonObject.get("photo"));
         post.setSaleStatus(jsonObject.getInt("sold") != 0);
         post.setPhoneNumber(jsonObject.getString("phoneNumber"));
 

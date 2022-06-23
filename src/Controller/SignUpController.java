@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import static java.lang.System.out;
 
 public class SignUpController implements Initializable
 {
-    private Image profile;
+    private BufferedImage profile;
 
     @FXML
     private Circle photo;
@@ -90,7 +91,7 @@ public class SignUpController implements Initializable
 
         if (profile != null)
         {
-            photo.setFill(new ImagePattern(profile));
+            photo.setFill(new ImagePattern(SwingFXUtils.toFXImage(profile, null));
         }
     }
 

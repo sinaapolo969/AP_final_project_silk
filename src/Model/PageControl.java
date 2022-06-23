@@ -76,7 +76,7 @@ public class PageControl
         return loader;
     }
 
-    public static Image fileChoose()
+    public static BufferedImage fileChoose()
     {
         FileChooser fileChooser = new FileChooser();
 
@@ -91,14 +91,13 @@ public class PageControl
         Image profile = null;
         try
         {
-            BufferedImage bufferedImage = ImageIO.read(file);
-            profile = SwingFXUtils.toFXImage(bufferedImage, null);
+            BufferedImage image = ImageIO.read(file);
         }
         catch (IOException ex)
         {
             Logger.getLogger(PageControl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return profile;
+        return image;
     }
 
     public static void instagram() throws IOException

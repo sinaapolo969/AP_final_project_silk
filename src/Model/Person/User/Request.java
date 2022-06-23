@@ -4,21 +4,20 @@ import Model.PageControl;
 import Model.Person.Admin.Admin;
 import Model.Person.EmailValidationException;
 import Model.Person.PhoneNumberValidationException;
+import org.json.JSONObject;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
-import java.util.Objects;
 
 import static java.lang.System.out;
 
 public class Request
 {
-    User user;
-    private Socket socket;
+    private final Socket socket;
     private DataOutputStream dataOutputStream;
-    DataInputStream dataInputStream;
+    private DataInputStream dataInputStream;
+    private ObjectInputStream objectInputStream;
+    private ObjectOutputStream objectOutputStream;
 
     public Request(Socket socket)
     {
@@ -27,6 +26,8 @@ public class Request
         {
             this.dataInputStream = new DataInputStream(socket.getInputStream());
             this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
+            this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            this.objectInputStream = new ObjectInputStream(socket.getInputStream());
         }
         catch (IOException e)
         {
@@ -37,7 +38,7 @@ public class Request
 
     public void signUp(User receivedUser)
     {
-        if(!checkingEmail(receivedUser.getEmail()))
+        if(!checkingEmailValidation(receivedUser.getEmail()))
         {
             try
             {
@@ -61,12 +62,12 @@ public class Request
         }
         else
         {
-            boolean flag = repetitionOfEmail(receivedUser.getEmail());
+            boolean flag = existenceOfEmail(receivedUser.getEmail());
 
             if (flag)
             {
-                //sendingDataToServer(userNumber);
-                Admin.sendEmail(receivedUser.getEmail());
+                sendingDataToServer(receivedUser);
+                Admin.sendEmail(receivedUser.getEmail(), "Wellcomeee! viiii!!!", "Hi\nWellcome to the app. We are so glad to have you here.");
             }
             else
             {
@@ -75,15 +76,29 @@ public class Request
         }
     }
 
-    private boolean repetitionOfEmail(String email)
-    {
 
+    public void login(String inputUserName, String inputPassWord) {
+        User receivedUser = existenceOfUser(inputUserName, inputPassWord);
+
+        if (receivedUser == null)
+        {
+            out.println("You have not signed up yet.\nmiss information");
+        }
+        else
+        {
+            try {
+                Admin.sendEmail(receivedUser.getEmail(), "Wellcome Back!!!", "some one login your account contact us if you didn't do it.");
+                PageControl.open("LoggedHome");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
-    public void login(String inputUserName, String inputPassWord, String inputEmail) throws IOException
+    public void editInfo(User receivedUser)
     {
-        if(!checkingEmail(inputEmail))
+        if(!checkingEmailValidation(receivedUser.getEmail()))
         {
             try
             {
@@ -94,45 +109,87 @@ public class Request
                 e.printStackTrace();
             }
         }
-
-        int userNumber = 0;
-        String inputIdentity = inputUserName + " " + inputPassWord + " " + inputEmail;
-
-        boolean flag = false;
-//        for (int j = 0; j < users.size(); j++)
-//        {
-//            if (Objects.equals(users.get(j).getIdentity(), inputIdentity))
-//            {
-//                flag = true;
-//                userNumber = j;
-//                break;
-//            }
-//        }
-//
-//        if (flag)
-//        {
-//            Admin.sendEmail(users.get(userNumber).getEmail());
-//            PageControl.open("LoggedHome");
-//        }
-//        else
-//        {
-//            out.println("You have not signed up yet.\n");
-//        }
+        else if(!checkingPhoneNumber(receivedUser.getPhoneNumber()))
+        {
+            try
+            {
+                throw new PhoneNumberValidationException("Wrong Phone-number");
+            }
+            catch (PhoneNumberValidationException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            sendingDataToServer(receivedUser);
+        }
     }
 
 
-    private static String sendingDataToServer(int userNumber)
+    private User existenceOfUser(String inputUserName, String inputPassWord)
     {
-//        JSONObject jsonObject = new JSONObject((Map) users.get(userNumber));
-//        out.println(jsonObject.toString());
-//        return new JSONObject((Map) users.get(userNumber)).toJSONString();
-        return null;
+        try {
+            dataOutputStream.writeUTF(inputUserName);
+            dataOutputStream.writeUTF(inputPassWord);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String receivedUser = null;
+        try {
+            receivedUser = dataInputStream.readUTF();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        File receivedImage = null;
+        try {
+            receivedImage = (File) objectInputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        if(receivedUser == null)
+        {
+            return null;
+        }
+        JSONObject receivedUserJason = new JSONObject(receivedUser);
+
+        User user = new User(receivedUserJason.getString("userName"), receivedUserJason.getString("password"),
+                receivedUserJason.getString("firstName"), receivedUserJason.getString("lastName"),
+                receivedUserJason.getString("phoneNumber"), receivedUserJason.getString("email"),
+                receivedUserJason.getString("location"), receivedImage);
+
+        return user;
+    }
+
+
+    private void sendingDataToServer(User receivedUser)
+    {
+        String jsonString = "{\n \"firstName\": " + receivedUser.getFirstName() + ",\n" + "\"lastName\": " +
+                receivedUser.getLastName() + ",\n" + "\"userName\": " + receivedUser.getUserName() + ",\n" +
+                "\"password\": " + receivedUser.getPassword() + ",\n" + "\"phoneNumber\": " +
+                receivedUser.getPhoneNumber() + ",\n" + "\"emailAddress\" : " + receivedUser.getEmail() +
+                ",\n" + "\"location\": " + receivedUser.getLocation() + "\n}";
+
+        out.println(jsonString);
+
+        try
+        {
+            dataOutputStream.writeInt(1);
+            dataOutputStream.writeUTF(jsonString);
+            objectOutputStream.writeObject(receivedUser.getProfile());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
     public void logOut()
     {
-        try {
+        try
+        {
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -140,7 +197,7 @@ public class Request
     }
 
 
-    private boolean checkingEmail(String email)
+    private boolean checkingEmailValidation(String email)
     {
         String regex = "[0-9a-zA-Z_.]*@[0-9a-zA-Z]*\\.[a-zA-Z]{3}";
         return email.matches(regex);
@@ -152,4 +209,22 @@ public class Request
         String regex = "09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}";
         return phoneNumber.matches(regex);
     }
+
+
+    private boolean existenceOfEmail(String email) {
+        try {
+            dataOutputStream.writeUTF(email);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            return dataInputStream.readBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    public
 }
