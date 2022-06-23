@@ -76,22 +76,8 @@ public class Request
 //    }
 
 
-    public void login(String inputUserName, String inputPassWord, String inputEmail) throws IOException
+    public void login(String inputUserName, String inputPassWord) throws IOException
     {
-        if(!checkingEmail(inputEmail))
-        {
-            try
-            {
-                throw new EmailValidationException("Wrong Email");
-            }
-            catch (EmailValidationException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        int userNumber = 0;
-        String inputIdentity = inputUserName + " " + inputPassWord + " " + inputEmail;
 
         boolean flag = false;
 //        for (int j = 0; j < users.size(); j++)

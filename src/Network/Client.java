@@ -11,7 +11,7 @@ public class Client
     {
         try
         {
-            socket = new Socket("127.0.0.1", 6666);
+            socket = new Socket("172.20.120.54", 6666);
             //we should call the launch method here and send the requests for server
         }
         catch (IOException e)
