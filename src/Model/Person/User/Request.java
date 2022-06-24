@@ -2,7 +2,6 @@ package Model.Person.User;
 
 
 import Model.PageControl;
-import Model.Person.Admin.Admin;
 import Model.Person.EmailValidationException;
 import Model.Person.PhoneNumberValidationException;
 import org.json.JSONObject;
@@ -90,8 +89,8 @@ public class Request
         else
         {
             try {
-                Admin.sendEmail(receivedUser.getEmail(), "Wellcome Back!!!",
-                        "some one login your account contact us if you didn't do it.");
+//                Admin.sendEmail(receivedUser.getEmail(), "Wellcome Back!!!",
+//                        "some one login your account contact us if you didn't do it.");
                 PageControl.open("LoggedHome");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -150,7 +149,7 @@ public class Request
 
         User user = new User(receivedUserJason.getString("userName"), receivedUserJason.getString("password"),
                 receivedUserJason.getString("firstName"), receivedUserJason.getString("lastName"),
-                receivedUserJason.getString("phoneNumber"), receivedUserJason.getString("email"),
+                receivedUserJason.getString("phoneNumber"), receivedUserJason.getString("emailAddress"),
                 receivedUserJason.getString("location"), receivedImage);
 
         return user;

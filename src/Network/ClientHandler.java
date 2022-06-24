@@ -49,9 +49,20 @@ public class ClientHandler extends Thread
                     //log in
                     case 2:
                         String userName = dataInputStream.readUTF();
-                        String data = getUserAccount(userName);
-                        dataOutputStream.writeUTF(data);
-                        objectOutputStream.writeObject(getUserProfilePhoto(userName));
+                        String password = dataInputStream.readUTF();
+                        try
+                        {
+                            if (password.equals(checkPassword(userName)))
+                            {
+                                String data = getUserAccount(userName);
+                                dataOutputStream.writeUTF(data);
+                                objectOutputStream.writeObject(getUserProfilePhoto(userName));
+                            }
+                        }
+                        catch (NullPointerException e)
+                        {
+                            System.out.println("userName isnt exists");
+                        }
                         break;
                     //get post by owner
                     case 3:
@@ -116,12 +127,30 @@ public class ClientHandler extends Thread
         return userInfo;
     }
 
+    private String checkPassword(String userName)
+    {
+        UserTable userTable = new UserTable();
+        try
+        {
+            String password = userTable.checkPassword(userName);
+            userTable.close();
+            return password;
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     private File getUserProfilePhoto(String userName)
     {
         UserTable userTable = new UserTable();
         try
         {
             return userTable.getUserProfilePhoto(userName);
+            //table must ne closed
         }
         catch (SQLException e)
         {
