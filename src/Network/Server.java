@@ -24,9 +24,12 @@ public class Server
             {
 
                 Socket socket = serverSocket.accept();
+                System.out.println("client accepted");
                 DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
                 DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-                new ClientHandler(socket, dataInputStream, dataOutputStream).start();
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                new ClientHandler(socket, dataInputStream, dataOutputStream, objectInputStream, objectOutputStream).start();
             }
             catch (IOException e)
             {
