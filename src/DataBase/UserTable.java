@@ -2,6 +2,7 @@ package DataBase;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,27 +26,27 @@ public class UserTable extends DbHandler
         }
     }
     //insert data to table
-    public void insertUserData(String jsonString) throws SQLException, IOException, ClassNotFoundException
+    public void insertUserData(String jsonString, String photoUrl) throws SQLException, IOException, ClassNotFoundException
     {
         //this json contains the user data
         JSONObject jsonObject = new JSONObject(jsonString);
         //query for save the data in table
-        String query = "insert into users (firstName, lastName, userName, password, phoneNumber, emailAddress, location) " +
+        String query = "insert into users (firstName, lastName, userName, password, phoneNumber, emailAddress, location, profilePhoto) " +
                 "values (?, ?, ?, ?, ?, ?, ?)";
-        userExecutor(jsonObject, query);
+        userExecutor(jsonObject, query, photoUrl);
     }
 
     //update user data
-    public void updateUserData(String jsonString) throws SQLException, IOException, ClassNotFoundException
+    public void updateUserData(String jsonString, String photoUrl) throws SQLException, IOException, ClassNotFoundException
     {
         JSONObject jsonObject = new JSONObject(jsonString);
         String query = "update users set firstName = ?, lastName = ?," +
                 " phoneNumber = ?, emailAddress = ?, location = ? where userName = ?";
-        userExecutor(jsonObject, query);
+        userExecutor(jsonObject, query, photoUrl);
     }
 
     //to avoid duplicate code
-    private void userExecutor( JSONObject jsonObject, String query) throws SQLException
+    private void userExecutor(JSONObject jsonObject, String query, String photoUrl) throws SQLException
     {
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, jsonObject.getString("firstName"));
@@ -55,6 +56,7 @@ public class UserTable extends DbHandler
         preparedStatement.setString(5, jsonObject.getString("phoneNumber"));
         preparedStatement.setString(6, jsonObject.getString("emailAddress"));
         preparedStatement.setString(7, jsonObject.getString("location"));
+        preparedStatement.setString(8, photoUrl);
         preparedStatement.executeUpdate();
     }
 
@@ -86,6 +88,21 @@ public class UserTable extends DbHandler
         }
 
         return jsonString;
+    }
+
+    public File getUserProfilePhoto(String userName) throws SQLException
+    {
+        String query = "select profilePhoto from users where userName = ?";
+        preparedStatement.setString(1, userName);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        String filePath = null;
+        while (resultSet.next())
+        {
+            filePath = resultSet.getString("profilePhoto");
+        }
+
+        assert filePath != null;
+        return new File(filePath);
     }
 
     public void close() throws SQLException
