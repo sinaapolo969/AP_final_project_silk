@@ -76,7 +76,7 @@ public class PageControl
         return loader;
     }
 
-    public static BufferedImage fileChoose()
+    public static File fileChoose()
     {
         FileChooser fileChooser = new FileChooser();
 
@@ -87,17 +87,7 @@ public class PageControl
 
         //Show open file dialog
         File file = fileChooser.showOpenDialog(null);
-
-        Image profile = null;
-        try
-        {
-            BufferedImage image = ImageIO.read(file);
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(PageControl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return image;
+        return file;
     }
 
     public static void instagram() throws IOException

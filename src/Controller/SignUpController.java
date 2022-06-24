@@ -17,18 +17,22 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static java.lang.System.out;
 
 public class SignUpController implements Initializable
 {
-    private BufferedImage profile;
+    private File profile;
 
     @FXML
     private Circle photo;
@@ -91,11 +95,12 @@ public class SignUpController implements Initializable
     @FXML
     void fileChoose(ActionEvent event)
     {
-        Image profile = PageControl.fileChoose();
-
-        if (profile != null)
+        File profile = PageControl.fileChoose();
+        Image image  = new Image(profile.toURI().toString());
+        if (image != null)
         {
-            photo.setFill(new ImagePattern(SwingFXUtils.toFXImage(profile, null));
+            this.profile = profile;
+            photo.setFill(new ImagePattern(image));
         }
     }
 
@@ -123,7 +128,6 @@ public class SignUpController implements Initializable
             {
                 User user = new User(username.getText(), pass.getText(), name.getText(), lastName.getText(),
                         number.getText(), email.getText(), city.getValue(), profile);
-
                 Client client = new Client();
                 Socket socket = client.setUp();
                 Request request = new Request(socket);
@@ -181,9 +185,10 @@ public class SignUpController implements Initializable
     {
         PageControl.initialDrawer("HomeMenu", leftDrawer);
 
-        Image profile = new Image(getClass().getResource("/View/Images/user.png").toExternalForm());
-        this.profile = profile;
-        photo.setFill(new ImagePattern(profile));
+        File file = new File("/View/Images/user.png");
+        this.profile = file;
+        Image image = new Image("/View/Images/user.png");
+        photo.setFill(new ImagePattern(image));
 
         ArrayList<String> cities = new ArrayList<>();
         cities.add("Chicago");
@@ -197,3 +202,4 @@ public class SignUpController implements Initializable
         city.getItems().addAll(cities);
     }
 }
+

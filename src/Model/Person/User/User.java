@@ -14,7 +14,6 @@ public class User extends Person
     private String location;
     private File profile;
 
-
     public User(String userName, String password, String firstName, String lastName,
                 String phoneNumber, String email, String location, File profile)
     {

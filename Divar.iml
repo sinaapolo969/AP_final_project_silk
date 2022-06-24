@@ -11,6 +11,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="de.jensd:fontawesomefx:8.0.10" level="project" />
     <orderEntry type="library" name="com.jfoenix:jfoenix:8.0.101" level="project" />
+    <orderEntry type="library" name="mail1" level="project" />
+    <orderEntry type="library" name="activation1" level="project" />
+    <orderEntry type="library" name="Maven: org.json:json:20220320" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -29,8 +32,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="mail1" level="project" />
-    <orderEntry type="library" name="activation1" level="project" />
-    <orderEntry type="library" name="Maven: org.json:json:20220320" level="project" />
   </component>
 </module>

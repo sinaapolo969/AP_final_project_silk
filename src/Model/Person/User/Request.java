@@ -90,7 +90,8 @@ public class Request
         else
         {
             try {
-                Admin.sendEmail(receivedUser.getEmail(), "Wellcome Back!!!", "some one login your account contact us if you didn't do it.");
+                Admin.sendEmail(receivedUser.getEmail(), "Wellcome Back!!!",
+                        "some one login your account contact us if you didn't do it.");
                 PageControl.open("LoggedHome");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -99,40 +100,30 @@ public class Request
     }
 
 
-    public void editInfo(User receivedUser)
-    {
-        if(!checkingEmailValidation(receivedUser.getEmail()))
-        {
-            try
-            {
+    public void editInfo(User receivedUser) {
+        if (!checkingEmailValidation(receivedUser.getEmail())) {
+            try {
                 throw new EmailValidationException("Wrong Email");
-            }
-            catch (EmailValidationException e)
-            {
+            } catch (EmailValidationException e) {
                 e.printStackTrace();
             }
-        }
-        else if(!checkingPhoneNumber(receivedUser.getPhoneNumber()))
-        {
-            try
-            {
+        } else if (!checkingPhoneNumber(receivedUser.getPhoneNumber())) {
+            try {
                 throw new PhoneNumberValidationException("Wrong Phone-number");
-            }
-            catch (PhoneNumberValidationException e)
-            {
+            } catch (PhoneNumberValidationException e) {
                 e.printStackTrace();
             }
-        }
-        else
-        {
+        } else {
             sendingDataToServer(receivedUser);
         }
+
     }
 
 
     private User existenceOfUser(String inputUserName, String inputPassWord)
     {
         try {
+            dataOutputStream.writeInt(2);
             dataOutputStream.writeUTF(inputUserName);
             dataOutputStream.writeUTF(inputPassWord);
         } catch (IOException e) {

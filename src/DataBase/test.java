@@ -60,16 +60,17 @@ public class test
 
         Client client = new Client();
         Socket socket = client.setUp();
-        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-        dataOutputStream.writeInt(2);
-        dataOutputStream.writeUTF("sina");
-        String data;
-        data = dataInputStream.readUTF();
-        System.out.println(data);
-        dataOutputStream.writeInt(1);
-        dataOutputStream.writeUTF(json);
-        dataOutputStream.writeInt(0);
+        System.out.println("connected");
+//        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+//        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+//        dataOutputStream.writeInt(2);
+//        dataOutputStream.writeUTF("sina");
+//        String data;
+//        data = dataInputStream.readUTF();
+//        System.out.println(data);
+//        dataOutputStream.writeInt(1);
+//        dataOutputStream.writeUTF(json);
+//        dataOutputStream.writeInt(0);
 //        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
 //        Object o = objectInputStream.readObject();
 //        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
