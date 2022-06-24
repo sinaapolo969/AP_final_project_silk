@@ -32,7 +32,7 @@ public class UserTable extends DbHandler
         JSONObject jsonObject = new JSONObject(jsonString);
         //query for save the data in table
         String query = "insert into users (firstName, lastName, userName, password, phoneNumber, emailAddress, location, profilePhoto) " +
-                "values (?, ?, ?, ?, ?, ?, ?)";
+                "values (?, ?, ?, ?, ?, ?, ?, ?)";
         userExecutor(jsonObject, query, photoUrl);
     }
 

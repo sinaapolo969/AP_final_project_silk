@@ -99,13 +99,32 @@ public class ClientHandler extends Thread
         UserTable userTable = new UserTable();
         try
         {
-            userTable.insertUserData(jsonString, file.getAbsolutePath());
+            String path = savePhotoToDirectory(file);
+            userTable.insertUserData(jsonString, path);
             userTable.close();
         }
         catch (SQLException | ClassNotFoundException | IOException e)
         {
             e.printStackTrace();
         }
+    }
+
+    //this method is for saving profiles to server side
+    private String savePhotoToDirectory(File file)
+    {
+        String path = null;
+        try
+        {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            path = "D://final project/userProfiles/" + file.getName();
+            ImageIO.write(bufferedImage, "jpg", new File(path));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return path;
     }
 
     //for get the user data when it logged in
@@ -150,7 +169,7 @@ public class ClientHandler extends Thread
         try
         {
             return userTable.getUserProfilePhoto(userName);
-            //table must ne closed
+            //table must be closed
         }
         catch (SQLException e)
         {
@@ -250,21 +269,6 @@ public class ClientHandler extends Thread
         }
 
         return posts;
-    }
-
-    //this method is for saving profiles to server side
-    private void savePhotoToDirectory(File file)
-    {
-        try
-        {
-            BufferedImage bufferedImage = ImageIO.read(file);
-            ImageIO.write(bufferedImage, "jpg", new File("D://final project/userProfiles" + file.getName()));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
     }
 
     //for terminate the thread and logout

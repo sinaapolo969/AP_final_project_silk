@@ -2,6 +2,8 @@ package DataBase;
 
 import Network.Client;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
@@ -9,9 +11,9 @@ import java.sql.SQLException;
 public class test
 {
     static String json = "{\n" +
-            "  \"firstName\": \"sssdsds\",\n" +
+            "  \"firstName\": \"ariana\",\n" +
             "  \"lastName\": \"mehhh\",\n" +
-            "  \"userName\": \"ssss\",\n" +
+            "  \"userName\": \"meow\",\n" +
             "  \"password\": \"sina1381\",\n" +
             "  \"phoneNumber\": \"11111\",\n" +
             "  \"emailAddress\": \"sdadfdfsd\",\n" +
@@ -60,9 +62,21 @@ public class test
 
         Client client = new Client();
         Socket socket = client.setUp();
-        System.out.println("connected");
-//        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-//        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+
+        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+        dataOutputStream.writeInt(2);
+        dataOutputStream.writeUTF("meow");
+        dataOutputStream.writeUTF("sina1381");
+        String userData = dataInputStream.readUTF();
+        File file = (File) objectInputStream.readObject();
+        System.out.println(userData);
+        BufferedImage bufferedImage = ImageIO.read(file);
+        ImageIO.write(bufferedImage, "jpg", new File("D:/succssed.jpg"));
+        dataOutputStream.writeInt(0);
+
 //        dataOutputStream.writeInt(2);
 //        dataOutputStream.writeUTF("sina");
 //        String data;
