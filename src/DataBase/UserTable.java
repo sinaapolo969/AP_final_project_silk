@@ -80,19 +80,34 @@ public class UserTable extends DbHandler
         String jsonString = null;
         while (resultSet.next())
         {
-            jsonString = "{\n \"firstName\": " + resultSet.getString("firstName") + ",\n" + "\"lastName\": " +
-                    resultSet.getString("lastName") + ",\n" + "\"userName\": " + resultSet.getNString("userName") + ",\n" +
-                    "\"password\": " + resultSet.getString("password") + ",\n" + "\"phoneNumber\": " +
-                    resultSet.getString("phoneNumber") + ",\n" + "\"emailAddress\" : " + resultSet.getString("emailAddress") +
-                    ",\n" + "\"location\": " + resultSet.getString("location") + "\n}";
+            jsonString = "{\n \"firstName\": " + "\"" + resultSet.getString("firstName") + "\"" + ",\n" + "\"lastName\": " +
+                    "\"" + resultSet.getString("lastName") + "\"" + ",\n" + "\"userName\": " + "\"" + resultSet.getNString("userName") + "\"" + ",\n" +
+                    "\"password\": " + "\"" + resultSet.getString("password") + "\"" + ",\n" + "\"phoneNumber\": " +
+                    "\"" + resultSet.getString("phoneNumber") + "\"" + ",\n" + "\"emailAddress\" : " + "\"" + resultSet.getString("emailAddress") + "\"" +
+                    ",\n" + "\"location\": " + "\"" + resultSet.getString("location") + "\"" + "\n}";
         }
 
         return jsonString;
     }
 
+    public String checkPassword(String userName) throws SQLException
+    {
+        String query = "select password from users where userName = ?";
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, userName);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next())
+        {
+            return resultSet.getString("password");
+        }
+
+        return null;
+    }
+
     public File getUserProfilePhoto(String userName) throws SQLException
     {
         String query = "select profilePhoto from users where userName = ?";
+        preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
         ResultSet resultSet = preparedStatement.executeQuery();
         String filePath = null;
