@@ -2,6 +2,7 @@ package Model.Person.User;
 
 
 import Model.PageControl;
+import Model.Person.Admin.Admin;
 import Model.Person.EmailValidationException;
 import Model.Person.PhoneNumberValidationException;
 import org.json.JSONObject;
@@ -95,6 +96,35 @@ public class Request
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+
+    public synchronized void sendingEmailForResettingPassword(User user)// ariana should call this when user push reset password button
+    {
+        int code = 1000 + (int) (Math.random() * 10000);
+        Admin.sendEmail(user.getEmail(), "Resetting Email", "here's your code for resetting your password" + code);
+        // I will send this code and user for ariana
+    }
+
+    public synchronized void gettingCode(int inputCode, int originalCode, User user) // ariana will send the input code for me and als resend the original code and the user
+    {
+        if (inputCode == originalCode)
+        {
+            //calling the page that get new pass then there we call editInfo(user)
+        }
+        else {
+            //out.println("wrong code");
+            //if (they push new code button)
+            //{
+            //  sout("enter the new code)
+            //  sendingEmailForResettingPassword(user);
+            //
+            //}
+            //elseif(they push exit)
+            //{
+            //      go back
+            //}
         }
     }
 

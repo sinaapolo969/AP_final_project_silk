@@ -4,16 +4,38 @@ package Model.Person.Admin;
 //import javax.mail.*;
 //import javax.mail.internet.InternetAddress;
 //import javax.mail.internet.MimeMessage;
+import Model.PageControl;
+import Model.Person.User.User;
+
+import java.io.IOException;
 import java.util.*;
 
+import static java.lang.System.out;
 
 
-public class Admin
-{
+public class Admin {
     private static AdminStruct admin = new AdminStruct("Admin", "1234", "silkroadhelpu@gmail.com");
 
-    public static void sendEmail(String recipient, String subject,String sentMassage)
+    public static String[] states = new String[]{"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana",
+                                                "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+                                                "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
+                                                "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsinite", "Wyoming"};
+
+
+    public void adminLogin(String inputUserName, String inputPassWord)
     {
+        if (inputUserName == admin.getUserName() && inputPassWord.equals(admin.getPassword()))
+        {
+            //login
+        }
+        else
+        {
+            out.println("miss information");
+        }
+    }
+
+
+    public static void sendEmail(String recipient, String subject, String sentMassage) {
         String sender = "omidsltni@gmail.com";
         //String password = "Asap1234";
         //String host = "smtp.gmail.com";
@@ -58,5 +80,5 @@ public class Admin
 //        }
 //        return null;
 //    }
-}
     }
+}
