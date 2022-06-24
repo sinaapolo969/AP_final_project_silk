@@ -51,6 +51,7 @@ public class ClientHandler extends Thread
                         String userName = dataInputStream.readUTF();
                         String data = getUserAccount(userName);
                         dataOutputStream.writeUTF(data);
+                        objectOutputStream.writeObject(getUserProfilePhoto(userName));
                         break;
                     //get post by owner
                     case 3:
