@@ -1,7 +1,9 @@
 package Model.Person.User;
 
 import Model.Person.Person;
-import javafx.scene.image.Image;
+
+import java.io.File;
+
 
 public class User extends Person
 {
@@ -10,10 +12,11 @@ public class User extends Person
     private String lastName;
     private String phoneNumber;
     private String location;
-    private Image profile;
+    private File profile;
+
 
     public User(String userName, String password, String firstName, String lastName,
-                String phoneNumber, String email, String location, Image profile)
+                String phoneNumber, String email, String location, File profile)
     {
         super(userName ,password ,email);
         this.firstName = firstName;
@@ -60,5 +63,13 @@ public class User extends Person
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
+    }
+
+    public File getProfile() {
+        return profile;
+    }
+
+    public void setProfile(File profile) {
+        this.profile = profile;
     }
 }

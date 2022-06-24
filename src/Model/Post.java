@@ -2,6 +2,8 @@ package Model;
 
 import javafx.geometry.Pos;
 
+import java.awt.*;
+
 public class Post
 {
     private String title;
@@ -11,7 +13,7 @@ public class Post
     private double price;
     private boolean saleStatus;
     private String owner;
-    private String photo;
+    private Image photo;
     private String phoneNumber;
     private String location;
 
@@ -46,7 +48,7 @@ public class Post
         return owner;
     }
 
-    public String getPhoto()
+    public Image getPhoto()
     {
         return photo;
     }
@@ -81,7 +83,7 @@ public class Post
         this.owner = owner;
     }
 
-    public void setPhoto(String photo)
+    public void setPhoto(Image photo)
     {
         this.photo = photo;
     }
