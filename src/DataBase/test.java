@@ -1,13 +1,13 @@
 package DataBase;
 
+import Model.Post;
 import Network.Client;
+import org.json.JSONObject;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class test
 {
@@ -40,88 +40,40 @@ public class test
             "}";
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException
     {
-        //ArrayList<Post> posts = new DataRequestSender().postRequestByCategory("home");
+
 //        PostTable postTable = new PostTable();
 //        ArrayList<String> posts = postTable.getPostDataByOwner("sina");
-//        JSONObject jsonObject = new JSONObject(posts.get(0));
-//        System.out.println(jsonObject.getString("title"));
-//        String json = userTable.getUserData("sina");
-//        JSONObject jsonObject = new JSONObject(json);
-//        System.out.println(jsonObject.getString("firstName"));
-//        for (Post post : posts)
-//        {
-//            System.out.println(post.getCategory() + "   " + post.getTitle() +
-//                     post.getPostId() + "  " + post.getPhoneNumber() + "   " + post.getLocation());
-//        }
-
-        //PostTable postTable = new PostTable();
-//        ArrayList<String> posts = postTable.getPostDataByOwner("omidslt");
-//        for (String s : posts) {
-//            System.out.println(s);
-//        }
-        //postTable.insertBookMark("sina", 3);
+//        System.out.println(posts.get(0));
 
         Client client = new Client();
         Socket socket = client.setUp();
 
-        //DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
         DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-//        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-//        dataOutputStream.writeInt(2);
-//        dataOutputStream.writeUTF("meow");
-//        dataOutputStream.writeUTF("sina1381");
-//        String userData = dataInputStream.readUTF();
-//        objectOutputStream.writeInt(2);
-//        objectOutputStream.writeUTF("meow");
-//        objectOutputStream.writeUTF("sina1381");
-//        String userData = objectInputStream.readUTF();
-//        File file = (File) objectInputStream.readObject();
-//        BufferedImage bufferedImage = ImageIO.read(file);
-//        ImageIO.write(bufferedImage, "jpg", new File("D:/succssed.jpg"));
-//        System.out.println(userData);
-//        objectOutputStream.writeInt(0);
-    //File file = (File) objectInputStream.readObject();
-//        String fileType = dataInputStream.readUTF();
-//        FileOutputStream fileOutputStream = new FileOutputStream("D:/final project/userProfiles/photo" + fileType);
-//        int length = dataInputStream.readInt();
-//        if (length > 0)
-//        {
-//            byte[] bytes = new byte[length];
-//            dataInputStream.readFully(bytes, 0, length);
-//            fileOutputStream.write(bytes);
-//            System.out.println("file received!");
-//            fileOutputStream.close();
-//            dataOutputStream.writeInt(0);
-//        }
-
-
-//        dataOutputStream.writeInt(2);
-//        dataOutputStream.writeUTF("sina");
-//        String data;
-//        data = dataInputStream.readUTF();
-//        System.out.println(data);
-        dataOutputStream.writeInt(1);
-        dataOutputStream.writeUTF(json);
-        File file = new File("D:/succssed.jpg");
-        sendProfile(file.getAbsolutePath(), dataOutputStream);
+        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+        dataOutputStream.writeInt(3);
+        dataOutputStream.writeUTF("sina");
+        ArrayList<Post> posts = new ArrayList<>();
+        String jsonString;
+        while (true)
+        {
+            jsonString = dataInputStream.readUTF();
+            if (!jsonString.equals("EXIT"))
+            {
+                JSONObject jsonObject = new JSONObject(jsonString);
+                File file = new File("D:/" + jsonObject.getString("postId") +
+                        jsonObject.getString("photo").substring(jsonObject.getString("photo").indexOf(".")));
+                System.out.println(jsonObject.toString());
+                System.out.println(file.getAbsolutePath());
+                System.out.println(jsonString);
+                receiveProfilePhoto(file.getAbsolutePath(), dataInputStream);
+            }
+            else
+            {
+                break;
+            }
+        }
         dataOutputStream.writeInt(0);
-//        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-//        Object o = objectInputStream.readObject();
-//        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-//        String data = null;
-//        while (dataInputStream.available() > 0)
-//        {
-//            data = dataInputStream.readUTF();
-//        }
-//        System.out.println(data);
-//        dataInputStream.close();
 
-
-//        for (String string : posts)
-//        {
-//            System.out.println(string);
-//        }
 
     }
 
@@ -143,6 +95,26 @@ public class test
         }
         catch (IOException e)
         {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    private static void receiveProfilePhoto(String path, DataInputStream dataInputStream)
+    {
+        int bytes = 0;
+        File file = new File(path);
+        try
+        {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            long size = dataInputStream.readLong();
+            byte[] buffer = new byte[4 * 1024];
+            while (size > 0 && (bytes = dataInputStream.read(buffer, 0, (int) Math.min(buffer.length, size))) != -1)
+            {
+                fileOutputStream.write(buffer, 0, bytes);
+                size -= bytes;
+            }
+            fileOutputStream.close();
+        }catch(IOException e){
             System.err.println(e.getMessage());
         }
     }

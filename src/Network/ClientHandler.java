@@ -63,8 +63,8 @@ public class ClientHandler extends Thread
                         break;
                     //get post by owner
                     case 3:
-                        //userName = dataInputStream.readUTF();
-                        //objectOutputStream.writeObject(getPostByOwner(userName));
+                        userName = dataInputStream.readUTF();
+                        getPostByOwner(userName);
                         break;
                     //get post by category
                     case 4:
@@ -276,7 +276,7 @@ public class ClientHandler extends Thread
         return posts;
     }
 
-    private ArrayList<String> getPostByOwner(String userName)
+    private void getPostByOwner(String userName)
     {
         PostTable postTable = new PostTable();
         ArrayList<String> posts = null;
@@ -284,13 +284,20 @@ public class ClientHandler extends Thread
         {
             posts = postTable.getPostDataByOwner(userName);
             postTable.close();
+            for (String post : posts)
+            {
+                JSONObject jsonObject = new JSONObject(post);
+                dataOutputStream.writeUTF(post);
+                sendProfilePhoto(new File(jsonObject.getString("photo")));
+            }
+            //this is temprary
+            dataOutputStream.writeUTF("EXIT");
         }
-        catch (SQLException e)
+        catch (SQLException | IOException e)
         {
             e.printStackTrace();
         }
 
-        return posts;
     }
 
     private ArrayList<String> getUserBookMarks(String userName)
