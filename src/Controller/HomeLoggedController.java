@@ -1,4 +1,6 @@
 package Controller;
 
-public class HomeLoggedController {
+public class HomeLoggedController
+{
+
 }

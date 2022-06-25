@@ -4,12 +4,13 @@ import Model.Advertise;
 import Model.PageControl;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
-import javafx.animation.FadeTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -28,6 +29,8 @@ public class HomeController implements Initializable
 {
     public static ArrayList<Advertise> advertises = new ArrayList<>();
 
+    @FXML
+    private ImageView base;
     @FXML
     private GridPane grid;
 
@@ -79,18 +82,38 @@ public class HomeController implements Initializable
             //-------------------------------------------
 
             pagesButtons();
-            loading32(1);
+            loading15(1);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+
+        timelineImages();
+    }
+
+    private void timelineImages()
+    {
+        Image one = new Image("View/Images/lrHome/15.jpg");
+        Image two = new Image("View/Images/lrHome/7.jpg");
+        Image three = new Image("View/Images/lrHome/12.jpg");
+        Image four = new Image("View/Images/lrHome/2.jpg");
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(base.imageProperty(), one)),
+                new KeyFrame(Duration.seconds(5), new KeyValue(base.imageProperty(), two)),
+                new KeyFrame(Duration.seconds(10), new KeyValue(base.imageProperty(), three)),
+                new KeyFrame(Duration.seconds(15), new KeyValue(base.imageProperty(), four)),
+                new KeyFrame(Duration.seconds(20), new KeyValue(base.imageProperty(), null))
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     //creating needed buttons to show 30 advertises on each page
     private void pagesButtons() throws IOException
     {
-        for (int i = 0; i < Math.ceil(advertises.size() / 32.0); i ++)
+        for (int i = 0; i < Math.ceil(advertises.size() / 15.0); i ++)
         {
             JFXButton page = PageControl.loader("PageNumber").load();
             page.setText(Integer.toString(i + 1));
@@ -111,14 +134,14 @@ public class HomeController implements Initializable
         }
     }
 
-    public void loading32(int num)
+    public void loading15(int num)
     {
         //clearingGridPane();
-        int column = 0, row = 1;
+        int column = 0, row = (num * 15) - 14;
 
         try
         {
-            for (int i = 32 * (num - 1); i < 32 * num; i ++)
+            for (int i = 15 * (num - 1); i < 15 * num; i ++)
             {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/View/AdvertisePre.fxml"));
@@ -127,7 +150,7 @@ public class HomeController implements Initializable
                 AdvertisePreController adCon = loader.getController();
                 adCon.setData(HomeController.advertises.get(i));
 
-                if (column == 4)
+                if (column == 3)
                 {
                     column = 0;
                     row ++;

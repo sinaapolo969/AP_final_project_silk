@@ -90,7 +90,7 @@
       </AnchorPane>
    </children>
    <stylesheets>
-      <URL value="@main.css" />
-      <URL value="@signUp.css" />
+      <URL value="@Style/main.css" />
+      <URL value="@Style/signUp.css" />
    </stylesheets>
 </AnchorPane>
