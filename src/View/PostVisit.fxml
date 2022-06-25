@@ -8,13 +8,17 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -89,9 +93,9 @@
          </children>
       </AnchorPane>
       <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutY="136.0" prefHeight="634.0" prefWidth="266.0" />
-      <HBox layoutX="160.0" layoutY="184.0" prefHeight="539.0" prefWidth="848.0" style="-fx-border-color: black;">
+      <HBox layoutX="160.0" layoutY="184.0" prefHeight="539.0" prefWidth="901.0" style="-fx-border-color: black;">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: black;">
+            <VBox prefHeight="537.0" prefWidth="357.0" style="-fx-background-color: black;">
                <children>
                   <ImageView fx:id="image" fitHeight="432.0" fitWidth="354.0" pickOnBounds="true">
                      <image>
@@ -131,18 +135,18 @@
                   </HBox>
                </children>
             </VBox>
-            <JFXTabPane prefHeight="575.0" prefWidth="494.0" side="RIGHT">
+            <JFXTabPane prefHeight="537.0" prefWidth="543.0" side="RIGHT" stylesheets="@Style/post.css">
                <tabs>
                   <Tab>
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="594.0" style="-fx-background-color: white;">
                            <children>
-                              <Label layoutX="119.0" layoutY="439.0" text="Contact Information :">
+                              <Label layoutX="144.0" layoutY="428.0" text="Contact Information :">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="number" alignment="CENTER" layoutX="100.0" layoutY="480.0" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: white; -fx-background-radius: 40;">
+                              <Label fx:id="number" alignment="CENTER" layoutX="137.0" layoutY="468.0" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: white; -fx-background-radius: 40;">
                                  <effect>
                                     <DropShadow />
                                  </effect>
@@ -150,19 +154,19 @@
                                     <Font name="Segoe UI Light Italic" size="23.0" />
                                  </font>
                               </Label>
-                              <FontAwesomeIconView fill="#847b7b" glyphName="COPY" layoutX="304.0" layoutY="509.0" onMouseClicked="#copy" size="25" wrappingWidth="29.999998211860657" />
-                              <FontAwesomeIconView glyphName="PHONE" layoutX="95.0" layoutY="464.0" size="30" />
-                              <JFXTextArea fx:id="description" editable="false" labelFloat="true" layoutX="17.0" layoutY="93.0" prefHeight="326.0" prefWidth="396.0" promptText="Description :">
+                              <FontAwesomeIconView fill="#847b7b" glyphName="COPY" layoutX="329.0" layoutY="498.0" onMouseClicked="#copy" size="25" wrappingWidth="29.999998211860657" />
+                              <FontAwesomeIconView glyphName="PHONE" layoutX="113.0" layoutY="453.0" size="30" />
+                              <JFXTextArea fx:id="description" editable="false" labelFloat="true" layoutX="34.0" layoutY="105.0" prefHeight="311.0" prefWidth="396.0" promptText="Description :">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="19.0" />
                                  </font>
                               </JFXTextArea>
-                              <JFXTextField fx:id="category" editable="false" layoutX="10.0" layoutY="37.0" prefHeight="36.0" prefWidth="222.0" promptText="Category :">
+                              <JFXTextField fx:id="category" editable="false" layoutX="23.0" layoutY="37.0" prefHeight="36.0" prefWidth="222.0" promptText="Category :">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="19.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="price" editable="false" layoutX="226.0" layoutY="37.0" prefHeight="36.0" prefWidth="194.0" promptText="Price : ">
+                              <JFXTextField fx:id="price" editable="false" layoutX="241.0" layoutY="37.0" prefHeight="36.0" prefWidth="206.0" promptText="Price : ">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="19.0" />
                                  </font>
@@ -170,24 +174,71 @@
                            </children></AnchorPane>
                     </content>
                      <graphic>
-                        <FontAwesomeIconView glyphName="LIST_ALT" rotate="270.0" size="40" />
+                        <FontAwesomeIconView fx:id="icon" glyphName="LIST_ALT" rotate="270.0" size="40">
+                           <effect>
+                              <ColorAdjust />
+                           </effect></FontAwesomeIconView>
                      </graphic>
                   </Tab>
                   <Tab>
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="276.0" style="-fx-background-color: white;">
                            <children>
-                              <JFXTextField layoutX="6.0" layoutY="487.0" prefHeight="42.0" prefWidth="428.0" style="-fx-border-color: #4a3939; -fx-border-radius: 40;" />
-                              <Label alignment="CENTER" layoutX="365.0" layoutY="487.0" prefHeight="42.0" prefWidth="69.0">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="#4a3939" glyphName="PAPER_PLANE" size="25" />
-                                 </graphic>
-                              </Label>
-                              <AnchorPane layoutX="-4.0" layoutY="-4.0" prefHeight="77.0" prefWidth="446.0" style="-fx-background-color: #4a3939;" />
+                              <JFXTextField layoutX="-3.0" layoutY="483.0" prefHeight="51.0" prefWidth="491.0" promptText="Type Message" style="-fx-border-radius: 40; -fx-border-color: white;">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding></JFXTextField>
+                              <Label alignment="CENTER" layoutX="365.0" layoutY="487.0" prefHeight="42.0" prefWidth="69.0" />
+                              <AnchorPane layoutX="-4.0" layoutY="-4.0" prefHeight="70.0" prefWidth="496.0" style="-fx-background-color: #522D2DFF;">
+                                 <children>
+                                    <Circle fx:id="profile" layoutX="43.0" layoutY="35.0" radius="21.0" strokeType="INSIDE">
+                                       <fill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop color="#311a1a" />
+                                                <Stop color="WHITE" offset="1.0" />
+                                             </stops>
+                                          </LinearGradient>
+                                       </fill>
+                                       <stroke>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop color="BLACK" />
+                                                <Stop color="WHITE" offset="1.0" />
+                                             </stops>
+                                          </LinearGradient>
+                                       </stroke>
+                                    </Circle>
+                                    <Label fx:id="owner" layoutX="74.0" layoutY="20.0" prefHeight="30.0" prefWidth="401.0" textFill="#ddd1d1">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children></AnchorPane>
+                              <ScrollPane hbarPolicy="NEVER" layoutX="-2.0" layoutY="63.0" prefHeight="419.0" prefWidth="492.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="421.0" prefWidth="487.0">
+                                       <children>
+                                          <GridPane prefHeight="0.0" prefWidth="0.0">
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </ScrollPane>
+                              <FontAwesomeIconView fill="#4a3939" glyphName="PAPER_PLANE" layoutX="444.0" layoutY="516.0" size="25" />
                            </children></AnchorPane>
                     </content>
                      <graphic>
-                        <FontAwesomeIconView glyphName="WECHAT" rotate="270.0" size="40" text="" />
+                        <FontAwesomeIconView fx:id="icon" glyphName="WECHAT" rotate="270.0" size="40" text="">
+                           <effect>
+                              <ColorAdjust />
+                           </effect></FontAwesomeIconView>
                      </graphic>
                   </Tab>
                </tabs>

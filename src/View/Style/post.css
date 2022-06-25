@@ -1,0 +1,19 @@
+.tab
+{
+    -fx-background-color : #000000;
+}
+
+.tab-header-background
+{
+    -fx-background-color : #000000;
+}
+
+.glyph-icon
+{
+    -fx-fill: #a9a9a9;
+}
+
+.glyph-icon:hover
+{
+    -fx-fill: #ffffff;
+}
