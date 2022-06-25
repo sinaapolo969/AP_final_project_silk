@@ -65,7 +65,8 @@ public class LoggedHomeController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         PageControl.initialDrawer("LoggedHomeMenu", leftDrawer);
-        Image image  = new Image(currentUser.getProfile().toURI().toString());
+        String url = currentUser.getProfile().toURI().toString().replaceAll("file:/", "file:///");
+        Image image  = new Image(url);
         profile.setFill(new ImagePattern(image));
     }
 }
