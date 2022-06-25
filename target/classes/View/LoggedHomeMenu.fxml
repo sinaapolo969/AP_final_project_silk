@@ -58,7 +58,7 @@
       </AnchorPane>
       <HBox layoutY="127.0" prefHeight="509.0" prefWidth="268.0">
          <children>
-            <VBox fx:id="icons" prefHeight="509.0" prefWidth="41.0" style="-fx-background-color: #603c40;">
+            <VBox fx:id="icons" prefHeight="509.0" prefWidth="41.0" style="-fx-background-color: BBBABAFF;">
                <children>
                   <FontAwesomeIconView glyphName="TH_LARGE" size="40" wrappingWidth="40.595197677612305">
                      <VBox.margin>
@@ -75,7 +75,7 @@
                         <Insets bottom="20.0" left="5.0" top="30.0" />
                      </VBox.margin>
                   </FontAwesomeIconView>
-                  <FontAwesomeIconView glyphName="LOCATION_ARROW" size="40">
+                  <FontAwesomeIconView glyphName="MAP_MARKER" size="40">
                      <VBox.margin>
                         <Insets bottom="20.0" left="5.0" top="26.0" />
                      </VBox.margin>

@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="268.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="268.0" stylesheets="@Style/menu.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeMenuController">
    <children>
       <AnchorPane fx:id="info" prefHeight="127.0" prefWidth="266.0" stylesheets="@Style/menu.css">
          <children>
@@ -56,7 +56,7 @@
                         <Insets bottom="20.0" left="15.0" top="23.0" />
                      </VBox.margin>
                   </FontAwesomeIconView>
-                  <FontAwesomeIconView glyphName="LOCATION_ARROW" size="25">
+                  <FontAwesomeIconView glyphName="MAP_MARKER" size="25">
                      <VBox.margin>
                         <Insets bottom="20.0" left="15.0" top="23.0" />
                      </VBox.margin>
@@ -83,7 +83,7 @@
             </VBox>
             <VBox fx:id="menu" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="212.0" style="-fx-background-color: white;" stylesheets="@Style/menu.css">
                <children>
-                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="159.0" onAction="#signup" prefHeight="69.0" prefWidth="219.0" ripplerFill="#9c3a3aab" text="Register">
+                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="159.0" onAction="#signup" prefHeight="69.0" prefWidth="219.0" ripplerFill="#ffffffab" text="Register">
                      <font>
                         <Font name="Simple Bold Jut Out" size="18.0" />
                      </font>

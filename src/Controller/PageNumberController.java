@@ -1,14 +1,8 @@
 package Controller;
 
-import Model.Advertise;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-
-import java.util.ArrayList;
 
 public class PageNumberController
 {
@@ -19,7 +13,9 @@ public class PageNumberController
     @FXML
     void toPage(ActionEvent event)
     {
+        int num = Integer.parseInt(page.getText());
+        System.out.println(num);
         HomeController h = new HomeController();
-        h.loading15(Integer.parseInt(page.getText()));
+        h.loading15(num);
     }
 }

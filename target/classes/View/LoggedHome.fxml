@@ -46,6 +46,11 @@
                   <FontAwesomeIconView fill="#9a9a9a" glyphName="SORT_AMOUNT_ASC" size="15" />
                </graphic>
             </JFXButton>
+            <Label alignment="CENTER" layoutX="1133.0" layoutY="27.0" prefHeight="21.0" prefWidth="21.0" style="-fx-background-color: #603c40; -fx-background-radius: 100;" text="3" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <MenuBar layoutX="819.0" layoutY="259.0" />
