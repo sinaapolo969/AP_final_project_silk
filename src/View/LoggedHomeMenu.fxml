@@ -13,22 +13,21 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="268.0" stylesheets="@Style/menu.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoggedHomeMenuController.java">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="268.0" stylesheets="@Style/menu.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoggedHomeMenuController">
    <children>
       <AnchorPane fx:id="info" prefHeight="127.0" prefWidth="266.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="28.0" prefHeight="36.0" prefWidth="172.0" text="John Smith" textFill="#808080">
+            <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="28.0" prefHeight="36.0" prefWidth="172.0" textFill="#808080">
                <font>
                   <Font name="Serif Italic" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="8.0" layoutY="51.0" prefHeight="26.0" prefWidth="153.0" text="\@johnSmith">
+            <Label fx:id="username" alignment="CENTER" layoutX="8.0" layoutY="51.0" prefHeight="26.0" prefWidth="153.0">
                <font>
                   <Font name="Sitka Small" size="11.0" />
                </font>
             </Label>
-            <Label layoutX="37.0" layoutY="77.0" prefHeight="21.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 20;" text=" 09116163812">
+            <Label fx:id="number" layoutX="37.0" layoutY="77.0" prefHeight="21.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 20;">
                <font>
                   <Font name="Sylfaen" size="16.0" />
                </font>
@@ -36,7 +35,7 @@
                   <DropShadow height="9.14" radius="5.5525" width="15.07" />
                </effect>
             </Label>
-            <Circle layoutX="202.0" layoutY="64.0" radius="50.0" strokeType="INSIDE">
+            <Circle fx:id="profile" layoutX="202.0" layoutY="64.0" radius="50.0" strokeType="INSIDE">
                <stroke>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -58,7 +57,7 @@
       </AnchorPane>
       <HBox layoutY="127.0" prefHeight="509.0" prefWidth="268.0">
          <children>
-            <VBox fx:id="icons" prefHeight="509.0" prefWidth="41.0" style="-fx-background-color: BBBABAFF;">
+            <VBox fx:id="icons" prefHeight="509.0" prefWidth="41.0" style="-fx-background-color: #48556b;">
                <children>
                   <FontAwesomeIconView glyphName="TH_LARGE" size="40" wrappingWidth="40.595197677612305">
                      <VBox.margin>
@@ -97,12 +96,12 @@
             </VBox>
             <VBox fx:id="menu" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="219.0" style="-fx-background-color: #f3f0ed;" stylesheets="@Style/menu.css">
                <children>
-                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="159.0" onAction="#categories" prefHeight="84.0" prefWidth="223.0" ripplerFill="#9c3a3aab" text="My DashBoard">
+                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="159.0" onAction="#dashboard" prefHeight="84.0" prefWidth="223.0" ripplerFill="#9c3a3aab" text="My DashBoard">
                      <font>
                         <Font name="Simple Bold Jut Out" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="360.0" onAction="#location" prefHeight="85.0" prefWidth="223.0" ripplerFill="#9c3b3bad" text="BookMarks">
+                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="360.0" onAction="#bookmark" prefHeight="85.0" prefWidth="223.0" ripplerFill="#9c3b3bad" text="BookMarks">
                      <font>
                         <Font name="Simple Bold Jut Out" size="20.0" />
                      </font>
@@ -117,7 +116,7 @@
                         <Font name="Simple Bold Jut Out" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="210.0" onAction="#advertise" prefHeight="85.0" prefWidth="223.0" ripplerFill="#9c3a3aad" text="Setting">
+                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="210.0" onAction="#setting" prefHeight="85.0" prefWidth="223.0" ripplerFill="#9c3a3aad" text="Setting">
                      <font>
                         <Font name="Simple Bold Jut Out" size="20.0" />
                      </font>

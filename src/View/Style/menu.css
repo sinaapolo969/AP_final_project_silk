@@ -6,7 +6,7 @@
 
 VBox
 {
-    -fx-opacity: 0.5;
+    /*-fx-opacity: 0.5;*/
     -fx-background-color: white;
     /*-fx-background-image: url('mou.gif');*/
     /*-fx-background-repeat: stretch;*/
@@ -32,5 +32,5 @@ VBox
 
 AnchorPane
 {
-    -fx-opacity: 0.5;
+    /*-fx-opacity: 0.5;*/
 }

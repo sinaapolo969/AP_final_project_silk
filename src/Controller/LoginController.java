@@ -2,6 +2,7 @@ package Controller;
 
 import Model.PageControl;
 import Model.Person.User.Request;
+import Model.Person.User.User;
 import Network.Client;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXPasswordField;
@@ -59,7 +60,17 @@ public class LoginController implements Initializable
         Client client = new Client();
         Socket socket = client.setUp();
         Request request = new Request(socket);
-        request.login(username.getText(), password.getText());
+
+        if (request.login(username.getText(), password.getText()) == null)
+        {
+
+        }
+        else
+        {
+            PageControl.open("LoggedHome");
+            LoggedHomeController.currentUser = request.login(username.getText(), password.getText());
+            LoggedHomeMenuController.currentUser = request.login(username.getText(), password.getText());
+        }
     }
 
     @FXML
