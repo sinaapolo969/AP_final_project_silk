@@ -71,10 +71,10 @@ public class ClientHandler extends Thread
                         //String category = dataInputStream.readUTF();
                         //objectOutputStream.writeObject(getPostByCategory(category));
                         break;
-                    //get user bookmarks
+                    //get post by location
                     case 5:
-                        //userName = dataInputStream.readUTF();
-                        //objectOutputStream.writeObject(getUserBookMarks(userName));
+                        String location = dataInputStream.readUTF();
+                        getPostByLocation(location);
                         break;
                     case 0:
                         return;
@@ -298,6 +298,29 @@ public class ClientHandler extends Thread
             e.printStackTrace();
         }
 
+    }
+
+    private void getPostByLocation(String location)
+    {
+        PostTable postTable = new PostTable();
+        ArrayList<String> posts = null;
+        try
+        {
+            posts = postTable.getPostByLocation(location);
+            postTable.close();
+            for (String post : posts)
+            {
+                JSONObject jsonObject = new JSONObject(post);
+                dataOutputStream.writeUTF(post);
+                sendProfilePhoto(new File(jsonObject.getString("photo")));
+            }
+            //this is temprary
+            dataOutputStream.writeUTF("EXIT");
+        }
+        catch (SQLException | IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     private ArrayList<String> getUserBookMarks(String userName)

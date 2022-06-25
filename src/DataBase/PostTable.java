@@ -87,6 +87,14 @@ public class PostTable extends DbHandler
         return convertDataToArrayJsonString(preparedStatement);
     }
 
+    public ArrayList<String> getPostByLocation(String location) throws SQLException
+    {
+        String query = "select * from posts where location = ?";
+        preparedStatement = connection.prepareStatement(query);
+
+        return convertDataToArrayJsonString(preparedStatement);
+    }
+
     private String getOwnerPhoneNumber(String owner) throws SQLException
     {
         String query2 = "select users.phoneNumber from users inner join posts on posts.owner = users.userName where owner = ?";
@@ -101,7 +109,6 @@ public class PostTable extends DbHandler
 
         return phoneNumber;
     }
-
 
 
     private ArrayList<String> convertDataToArrayJsonString(PreparedStatement preparedStatement1) throws SQLException
