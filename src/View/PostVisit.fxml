@@ -1,8 +1,198 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PostVisitController">
-
+   <children>
+      <ImageView fitHeight="675.0" fitWidth="1254.0" layoutX="-2.0" layoutY="137.0" pickOnBounds="true">
+         <image>
+            <Image url="@Images/lrHome/15.jpg" />
+         </image>
+         <effect>
+            <BoxBlur />
+         </effect>
+      </ImageView>
+      <AnchorPane prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
+         <children>
+            <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/11zon_cropped.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="91.0" layoutY="28.0" text="The Road To Your Comfort" textFill="#cbc4ab">
+               <font>
+                  <Font name="Book Antiqua Italic" size="17.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="#d9cfcf" glyphName="LINKEDIN_SQUARE" layoutX="1192.0" layoutY="46.0" onMouseClicked="#linkedIn" size="25" />
+            <FontAwesomeIconView fill="#d9cfcf" glyphName="INSTAGRAM" layoutX="1157.0" layoutY="46.0" onMouseClicked="#instagram" size="25" text="" />
+            <FontAwesomeIconView fill="#d9cfcf" glyphName="TWITTER_SQUARE" layoutX="1118.0" layoutY="46.0" onMouseClicked="#twitter" size="25" text="" />
+            <Label layoutX="935.0" layoutY="26.0" prefHeight="22.0" prefWidth="165.0" text="Contact Us On Our Social Medias" textFill="#efefef">
+               <font>
+                  <Font name="Bookman Old Style Bold Italic" size="9.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="3.0" layoutY="77.0" prefHeight="58.0" prefWidth="1249.0" style="-fx-background-color: white;">
+         <children>
+            <FontAwesomeIconView fill="#a8a49ed9" glyphName="REORDER" layoutX="24.0" layoutY="38.0" onMouseClicked="#menu" size="30" text="" wrappingWidth="30.66673105955124" />
+            <Circle fx:id="common" layoutX="1209.0" layoutY="29.0" onMouseClicked="#userMenu" radius="26.0" stroke="WHITE" strokeType="INSIDE">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#748d8f" />
+                        <Stop color="#dd7474" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Circle>
+            <JFXTextField fx:id="search" focusColor="WHITE" layoutX="228.0" layoutY="7.0" prefHeight="42.0" prefWidth="724.0" promptText="  Search in the variety of categories ..." styleClass="jfx-textField" stylesheets="@Style/home.css" unFocusColor="WHITE">
+               <font>
+                  <Font name="System Italic" size="13.0" />
+               </font>
+            </JFXTextField>
+            <FontAwesomeIconView fill="#743f3f" glyphName="BELL_ALT" layoutX="1113.0" layoutY="39.0" size="30" text="" />
+            <FontAwesomeIconView fill="#623e3e" glyphName="SEARCH" layoutX="923.0" layoutY="34.0" size="20" />
+            <JFXButton layoutX="150.0" layoutY="16.0" prefHeight="25.0" prefWidth="72.0" text="filters" textFill="#a8a8a8">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="#9a9a9a" glyphName="SLIDERS" size="15" />
+               </graphic>
+            </JFXButton>
+            <Label alignment="CENTER" layoutX="1133.0" layoutY="27.0" prefHeight="21.0" prefWidth="21.0" style="-fx-background-color: #603c40; -fx-background-radius: 100;" text="3" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutY="136.0" prefHeight="634.0" prefWidth="266.0" />
+      <HBox layoutX="160.0" layoutY="184.0" prefHeight="539.0" prefWidth="848.0" style="-fx-border-color: black;">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: black;">
+               <children>
+                  <ImageView fx:id="image" fitHeight="432.0" fitWidth="354.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@Images/2013145a3bc3ad59857920be30a57c5a.jpg" />
+                     </image>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ImageView>
+                  <Label fx:id="title" prefHeight="35.0" prefWidth="354.0" text="Mosque For Sale" textFill="#aea8a8">
+                     <font>
+                        <Font name="Sitka Banner" size="36.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     </padding>
+                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="22.0" prefWidth="78.0" text="owner : " textFill="#5e5e5e">
+                           <font>
+                              <Font name="Sitka Banner" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="owner" prefHeight="35.0" prefWidth="289.0">
+                           <font>
+                              <Font name="Sitka Banner" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <JFXTabPane prefHeight="575.0" prefWidth="494.0" side="RIGHT">
+               <tabs>
+                  <Tab>
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="594.0" style="-fx-background-color: white;">
+                           <children>
+                              <Label layoutX="119.0" layoutY="439.0" text="Contact Information :">
+                                 <font>
+                                    <Font name="Sitka Banner Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="number" alignment="CENTER" layoutX="100.0" layoutY="480.0" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: white; -fx-background-radius: 40;">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font name="Segoe UI Light Italic" size="23.0" />
+                                 </font>
+                              </Label>
+                              <FontAwesomeIconView fill="#847b7b" glyphName="COPY" layoutX="304.0" layoutY="509.0" onMouseClicked="#copy" size="25" wrappingWidth="29.999998211860657" />
+                              <FontAwesomeIconView glyphName="PHONE" layoutX="95.0" layoutY="464.0" size="30" />
+                              <JFXTextArea fx:id="description" editable="false" labelFloat="true" layoutX="17.0" layoutY="93.0" prefHeight="326.0" prefWidth="396.0" promptText="Description :">
+                                 <font>
+                                    <Font name="Sitka Banner Bold" size="19.0" />
+                                 </font>
+                              </JFXTextArea>
+                              <JFXTextField fx:id="category" editable="false" layoutX="10.0" layoutY="37.0" prefHeight="36.0" prefWidth="222.0" promptText="Category :">
+                                 <font>
+                                    <Font name="Sitka Banner Bold" size="19.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="price" editable="false" layoutX="226.0" layoutY="37.0" prefHeight="36.0" prefWidth="194.0" promptText="Price : ">
+                                 <font>
+                                    <Font name="Sitka Banner Bold" size="19.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children></AnchorPane>
+                    </content>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="LIST_ALT" rotate="270.0" size="40" />
+                     </graphic>
+                  </Tab>
+                  <Tab>
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="276.0" style="-fx-background-color: white;">
+                           <children>
+                              <JFXTextField layoutX="6.0" layoutY="487.0" prefHeight="42.0" prefWidth="428.0" style="-fx-border-color: #4a3939; -fx-border-radius: 40;" />
+                              <Label alignment="CENTER" layoutX="365.0" layoutY="487.0" prefHeight="42.0" prefWidth="69.0">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#4a3939" glyphName="PAPER_PLANE" size="25" />
+                                 </graphic>
+                              </Label>
+                              <AnchorPane layoutX="-4.0" layoutY="-4.0" prefHeight="77.0" prefWidth="446.0" style="-fx-background-color: #4a3939;" />
+                           </children></AnchorPane>
+                    </content>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="WECHAT" rotate="270.0" size="40" text="" />
+                     </graphic>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>

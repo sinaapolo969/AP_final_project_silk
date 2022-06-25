@@ -3,6 +3,7 @@ package Model.Post;
 import java.io.File;
 import java.time.LocalDate;
 
+
 public class Post
 {
     private String title;
@@ -80,6 +81,7 @@ public class Post
     }
 
     public File getPhoto()
+
     {
         return photo;
     }
