@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.PageControl;
 import Model.Post.Post;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXTextArea;
@@ -8,9 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -51,19 +55,22 @@ public class PostVisitController implements Initializable
     @FXML
     void copy(MouseEvent event)
     {
-
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent content = new ClipboardContent();
+        content.putString(number.getText());
+        clipboard.setContent(content);
     }
 
     @FXML
-    void instagram(MouseEvent event)
+    void instagram(MouseEvent event) throws IOException
     {
-
+        PageControl.instagram();
     }
 
     @FXML
-    void linkedIn(MouseEvent event)
+    void linkedIn(MouseEvent event) throws IOException
     {
-
+        PageControl.linkedIn();
     }
 
     @FXML
@@ -73,9 +80,9 @@ public class PostVisitController implements Initializable
     }
 
     @FXML
-    void twitter(MouseEvent event)
+    void twitter(MouseEvent event) throws IOException
     {
-
+        PageControl.twitter();
     }
 
     @FXML

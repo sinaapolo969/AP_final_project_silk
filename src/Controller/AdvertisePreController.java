@@ -1,15 +1,12 @@
 package Controller;
 
-import Model.Advertise;
-import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
+import Model.Post.Post;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 public class AdvertisePreController
 {
@@ -49,7 +46,7 @@ public class AdvertisePreController
 //        t.play();
     }
 
-    public void setData(Advertise ad)
+    public void setData(Post ad)
     {
         image.setImage(ad.getImage());
         title.setText(ad.getTitle());

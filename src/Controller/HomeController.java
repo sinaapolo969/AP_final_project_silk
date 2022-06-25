@@ -1,8 +1,7 @@
 package Controller;
 
-import Model.Advertise;
 import Model.PageControl;
-import com.jfoenix.controls.JFXButton;
+import Model.Post.Post;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -19,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -27,15 +27,14 @@ import java.util.logging.Logger;
 
 public class HomeController implements Initializable
 {
-    public static ArrayList<Advertise> advertises = new ArrayList<>();
+    public static ArrayList<Post> posts = new ArrayList<>();
+
+    public static String location;
 
     @FXML
     private ImageView base;
     @FXML
     private GridPane grid;
-
-    @FXML
-    private HBox pages;
 
     @FXML
     private AnchorPane home;
@@ -66,23 +65,12 @@ public class HomeController implements Initializable
         //loading advertises
         try
         {
-            //need to be deleted (temporary)-------------
-            advertises.clear();
-            Image img = new Image("/View/Images/rr.jpg");
-            for (int i = 0; i < 40; i ++)
-            {
-                Advertise ad = new Advertise(img, "Portrait", "anonymous", "20");
-                advertises.add(ad);
-            }
-            for (int i = 0; i < 20; i ++)
-            {
-                Advertise ad = new Advertise(img, "Portrait", "anonymous", "2");
-                advertises.add(ad);
-            }
-            //-------------------------------------------
+//            Client client = new Client();
+//            Socket socket = client.setUp();
+//            PostRequests request = new PostRequests(socket);
+//            posts = request.getPostByLocation(this.location);
 
-            pagesButtons();
-            loading15(1);
+//            loading15(1);
         }
         catch (Exception e)
         {
@@ -110,33 +98,8 @@ public class HomeController implements Initializable
         timeline.play();
     }
 
-    //creating needed buttons to show 30 advertises on each page
-    private void pagesButtons() throws IOException
-    {
-        for (int i = 0; i < Math.ceil(advertises.size() / 15.0); i ++)
-        {
-            JFXButton page = PageControl.loader("PageNumber").load();
-            page.setText(Integer.toString(i + 1));
-            pages.getChildren().add(page);
-        }
-    }
-
-    public void clearingGridPane()
-    {
-        while(grid.getRowConstraints().size() > 1)
-        {
-            grid.getRowConstraints().remove(0);
-        }
-
-        while(grid.getColumnConstraints().size() > 0)
-        {
-            grid.getColumnConstraints().remove(0);
-        }
-    }
-
     public void loading15(int num)
     {
-        //clearingGridPane();
         int column = 0, row = (num * 15) - 14;
 
         try
@@ -148,7 +111,7 @@ public class HomeController implements Initializable
                 VBox vbox = loader.load();
 
                 AdvertisePreController adCon = loader.getController();
-                adCon.setData(HomeController.advertises.get(i));
+                adCon.setData(posts.get(i));
 
                 if (column == 3)
                 {
