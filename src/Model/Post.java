@@ -1,8 +1,6 @@
 package Model;
 
-import javafx.geometry.Pos;
-
-import java.awt.*;
+import javafx.scene.image.Image;
 
 public class Post
 {
@@ -48,7 +46,7 @@ public class Post
         return owner;
     }
 
-    public Image getPhoto()
+    public javafx.scene.image.Image getPhoto()
     {
         return photo;
     }

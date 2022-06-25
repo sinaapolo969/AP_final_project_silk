@@ -87,6 +87,12 @@ public class PostVisitController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        price.setText(String.valueOf(currentPost.getPrice()));
+        category.setText(currentPost.getCategory());
+        description.setText(currentPost.getDescription());
+        image.setImage(currentPost.getPhoto());
+        number.setText(currentPost.getPhoneNumber());
+        owner.setText(currentPost.getOwner());
+        title.setText(currentPost.getTitle());
     }
 }
