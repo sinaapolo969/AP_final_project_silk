@@ -60,7 +60,7 @@
       <AnchorPane layoutX="3.0" layoutY="77.0" prefHeight="58.0" prefWidth="1249.0" style="-fx-background-color: white;">
          <children>
             <FontAwesomeIconView fill="#a8a49ed9" glyphName="REORDER" layoutX="24.0" layoutY="38.0" onMouseClicked="#menu" size="30" text="" wrappingWidth="30.66673105955124" />
-            <Circle fx:id="common" layoutX="1209.0" layoutY="29.0" onMouseClicked="#userMenu" radius="26.0" stroke="WHITE" strokeType="INSIDE">
+            <Circle fx:id="profile" layoutX="1209.0" layoutY="29.0" onMouseClicked="#userMenu" radius="26.0" stroke="WHITE" strokeType="INSIDE">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -75,7 +75,7 @@
                   <Font name="System Italic" size="13.0" />
                </font>
             </JFXTextField>
-            <FontAwesomeIconView fill="#743f3f" glyphName="BELL_ALT" layoutX="1113.0" layoutY="39.0" size="30" text="" />
+            <FontAwesomeIconView fill="#743f3f" glyphName="BELL" layoutX="1113.0" layoutY="39.0" size="30" text="" />
             <FontAwesomeIconView fill="#623e3e" glyphName="SEARCH" layoutX="923.0" layoutY="34.0" size="20" />
             <JFXButton layoutX="150.0" layoutY="16.0" prefHeight="25.0" prefWidth="72.0" text="filters" textFill="#a8a8a8">
                <font>
@@ -85,14 +85,14 @@
                   <FontAwesomeIconView fill="#9a9a9a" glyphName="SLIDERS" size="15" />
                </graphic>
             </JFXButton>
-            <Label alignment="CENTER" layoutX="1133.0" layoutY="27.0" prefHeight="21.0" prefWidth="21.0" style="-fx-background-color: #603c40; -fx-background-radius: 100;" text="3" textFill="WHITE">
+            <Label fx:id="notifs" alignment="CENTER" layoutX="1133.0" layoutY="27.0" prefHeight="21.0" prefWidth="21.0" style="-fx-background-color: #603c40; -fx-background-radius: 100;" text="3" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutY="136.0" prefHeight="634.0" prefWidth="266.0" />
+      <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutX="3.0" layoutY="137.0" prefHeight="634.0" prefWidth="266.0" />
       <HBox layoutX="160.0" layoutY="184.0" prefHeight="539.0" prefWidth="901.0" style="-fx-border-color: black;">
          <children>
             <VBox prefHeight="537.0" prefWidth="357.0" style="-fx-background-color: black;">
@@ -105,14 +105,18 @@
                         <DropShadow />
                      </effect>
                   </ImageView>
-                  <Label fx:id="title" prefHeight="35.0" prefWidth="354.0" text="Mosque For Sale" textFill="#aea8a8">
-                     <font>
-                        <Font name="Sitka Banner" size="36.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-                     </padding>
-                  </Label>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label fx:id="title" prefHeight="54.0" prefWidth="334.0" text="Mosque For Sale" textFill="#aea8a8">
+                           <font>
+                              <Font name="Sitka Banner" size="36.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Label prefHeight="22.0" prefWidth="78.0" text="owner : " textFill="#5e5e5e">
@@ -123,7 +127,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="owner" prefHeight="35.0" prefWidth="289.0">
+                        <Label fx:id="owner" prefHeight="35.0" prefWidth="186.0">
                            <font>
                               <Font name="Sitka Banner" size="20.0" />
                            </font>
@@ -131,6 +135,11 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
+                        <JFXButton fx:id="bk" onAction="#bookmark" prefHeight="27.0" prefWidth="80.0" style="-fx-border-color: #787878;" stylesheets="@Style/post.css" text="BookMark" textFill="#787878">
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                        </JFXButton>
                      </children>
                   </HBox>
                </children>

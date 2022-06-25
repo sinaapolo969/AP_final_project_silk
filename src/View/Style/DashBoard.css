@@ -1,0 +1,26 @@
+.tab
+{
+    -fx-background-color : #18334b;
+    -fx-pref-width : 245;
+    -fx-pref-height : 60;
+}
+
+.tab-header-background
+{
+    -fx-background-color : #18334b;
+}
+
+#createAd:hover
+{
+    -fx-background-color: #234a65;
+    -fx-text-fill: white;
+}
+
+#addPhoto
+{
+    -fx-background-color: #18334b;
+}
+#addPhoto:hover
+{
+    -fx-background-color: #2d7eb4;
+}

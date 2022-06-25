@@ -2,6 +2,7 @@ package Controller;
 
 import Model.PageControl;
 import Model.Post.Post;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class PostVisitController implements Initializable
 {
+    Boolean bookmarked = false;
     Post currentPost;
 
     @FXML
@@ -33,6 +35,9 @@ public class PostVisitController implements Initializable
 
     @FXML
     private ImageView image;
+
+    @FXML
+    private JFXButton bk;
 
     @FXML
     private Label title;
@@ -59,6 +64,21 @@ public class PostVisitController implements Initializable
         final ClipboardContent content = new ClipboardContent();
         content.putString(number.getText());
         clipboard.setContent(content);
+    }
+
+    @FXML
+    void bookmark(MouseEvent event)
+    {
+        if (bookmarked)
+        {
+            bk.setStyle("-fx-background-color: transpose");
+            bookmarked = false;
+        }
+        else
+        {
+            bk.setStyle("-fx-background-color: white");
+            bookmarked = true;
+        }
     }
 
     @FXML

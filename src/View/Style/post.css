@@ -17,3 +17,9 @@
 {
     -fx-fill: #ffffff;
 }
+
+.jfx-button:hover
+{
+    -fx-border-radius: 30;
+    -fx-border-color: white;
+}
