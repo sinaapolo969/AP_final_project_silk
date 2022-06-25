@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
 
-public class test
+public class test3
 {
     static String json = "{\n" +
             "  \"firstName\": \"ariana\",\n" +
@@ -81,7 +81,7 @@ public class test
 //        ImageIO.write(bufferedImage, "jpg", new File("D:/succssed.jpg"));
 //        System.out.println(userData);
 //        objectOutputStream.writeInt(0);
-    //File file = (File) objectInputStream.readObject();
+        //File file = (File) objectInputStream.readObject();
 //        String fileType = dataInputStream.readUTF();
 //        FileOutputStream fileOutputStream = new FileOutputStream("D:/final project/userProfiles/photo" + fileType);
 //        int length = dataInputStream.readInt();

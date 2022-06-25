@@ -2,6 +2,7 @@ package Network;
 
 import DataBase.PostTable;
 import DataBase.UserTable;
+import org.json.JSONObject;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -15,17 +16,12 @@ public class ClientHandler extends Thread
     private final Socket socket;
     private final DataInputStream dataInputStream;
     private final DataOutputStream dataOutputStream;
-    private final ObjectInputStream objectInputStream;
-    private ObjectOutputStream objectOutputStream;
 
-    public ClientHandler(Socket socket, DataInputStream dataInputStream, DataOutputStream dataOutputStream,
-                         ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream)
+    public ClientHandler(Socket socket, DataInputStream dataInputStream, DataOutputStream dataOutputStream)
     {
         this.socket = socket;
         this.dataInputStream = dataInputStream;
-        this.dataOutputStream = dataOutputStream;
-        this.objectInputStream = objectInputStream;
-        this.objectOutputStream = objectOutputStream;
+        this.dataOutputStream =dataOutputStream;
     }
 
 
@@ -43,8 +39,10 @@ public class ClientHandler extends Thread
                     //signUp
                     case 1:
                         String userInfo = dataInputStream.readUTF();
-                        File file = (File) objectInputStream.readObject();
-                        makeNewAccount(userInfo, file);
+                        JSONObject jsonObject = new JSONObject(userInfo);
+                        String fileType = dataInputStream.readUTF();
+                        String path = "D:/final project/userProfiles/" + jsonObject.getString("userName") + fileType;
+                        makeNewAccount(userInfo, path);
                         break;
                     //log in
                     case 2:
@@ -54,9 +52,8 @@ public class ClientHandler extends Thread
                         {
                             if (password.equals(checkPassword(userName)))
                             {
-                                String data = getUserAccount(userName);
-                                dataOutputStream.writeUTF(data);
-                                objectOutputStream.writeObject(getUserProfilePhoto(userName));
+                                dataOutputStream.writeUTF(getUserAccount(userName));
+                                sendProfilePhoto(getUserProfilePhoto(userName));
                             }
                         }
                         catch (NullPointerException e)
@@ -66,24 +63,24 @@ public class ClientHandler extends Thread
                         break;
                     //get post by owner
                     case 3:
-                        userName = dataInputStream.readUTF();
+                        //userName = dataInputStream.readUTF();
                         //objectOutputStream.writeObject(getPostByOwner(userName));
                         break;
                     //get post by category
                     case 4:
-                        String category = dataInputStream.readUTF();
+                        //String category = dataInputStream.readUTF();
                         //objectOutputStream.writeObject(getPostByCategory(category));
                         break;
                     //get user bookmarks
                     case 5:
-                        userName = dataInputStream.readUTF();
+                        //userName = dataInputStream.readUTF();
                         //objectOutputStream.writeObject(getUserBookMarks(userName));
                         break;
                     case 0:
                         return;
                 }
             }
-            catch (IOException | ClassNotFoundException e)
+            catch (IOException e)
             {
                 e.printStackTrace();
             }
@@ -94,18 +91,58 @@ public class ClientHandler extends Thread
     //-----------------user part
 
     //for make a new row in database table for user
-    private void makeNewAccount(String jsonString, File file)
+    private void makeNewAccount(String jsonString, String path)
     {
         UserTable userTable = new UserTable();
         try
         {
-            String path = savePhotoToDirectory(file);
+            receiveProfilePhoto(path);
             userTable.insertUserData(jsonString, path);
             userTable.close();
         }
         catch (SQLException | ClassNotFoundException | IOException e)
         {
             e.printStackTrace();
+        }
+    }
+
+    private void sendProfilePhoto(File file) {
+        try
+        {
+            int bytes = 0;
+            FileInputStream fileInputStream = new FileInputStream(file);
+            dataOutputStream.writeLong(file.length());
+            byte[] buffer = new byte[4 * 1024];
+            while ((bytes = fileInputStream.read(buffer)) != -1)
+            {
+                dataOutputStream.write(buffer, 0, bytes);
+                dataOutputStream.flush();
+            }
+            fileInputStream.close();
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    private synchronized void receiveProfilePhoto(String path)
+    {
+        int bytes = 0;
+        File file = new File(path);
+        try
+        {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            long size = dataInputStream.readLong();
+            byte[] buffer = new byte[4 * 1024];
+            while (size > 0 && (bytes = dataInputStream.read(buffer, 0, (int) Math.min(buffer.length, size))) != -1)
+            {
+                fileOutputStream.write(buffer, 0, bytes);
+                size -= bytes;
+            }
+            fileOutputStream.close();
+        }catch(IOException e){
+            System.err.println(e.getMessage());
         }
     }
 
@@ -168,8 +205,10 @@ public class ClientHandler extends Thread
         UserTable userTable = new UserTable();
         try
         {
-            return userTable.getUserProfilePhoto(userName);
-            //table must be closed
+            File file = userTable.getUserProfilePhoto(userName);
+            userTable.close();
+
+            return file;
         }
         catch (SQLException e)
         {
