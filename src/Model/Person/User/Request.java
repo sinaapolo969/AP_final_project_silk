@@ -16,8 +16,7 @@ public class Request
     private final Socket socket;
     private DataOutputStream dataOutputStream;
     private DataInputStream dataInputStream;
-    private ObjectInputStream objectInputStream;
-    private ObjectOutputStream objectOutputStream;
+
 
     public Request(Socket socket)
     {
@@ -26,8 +25,6 @@ public class Request
         {
             this.dataInputStream = new DataInputStream(socket.getInputStream());
             this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
-            this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            this.objectInputStream = new ObjectInputStream(socket.getInputStream());
         }
         catch (IOException e)
         {
@@ -136,11 +133,11 @@ public class Request
             e.printStackTrace();
         }
         File receivedImage = null;
-        try {
-            receivedImage = (File) objectInputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            //receivedImage = (File) objectInputStream.readObject();
+//        } catch (IOException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
         if(receivedUser == null)
         {
             return null;
@@ -157,11 +154,11 @@ public class Request
 
     private void sendingDataToServer(User receivedUser)
     {
-        String jsonString = "{\n \"firstName\": " + receivedUser.getFirstName() + ",\n" + "\"lastName\": " +
-                receivedUser.getLastName() + ",\n" + "\"userName\": " + receivedUser.getUserName() + ",\n" +
-                "\"password\": " + receivedUser.getPassword() + ",\n" + "\"phoneNumber\": " +
-                receivedUser.getPhoneNumber() + ",\n" + "\"emailAddress\" : " + receivedUser.getEmail() +
-                ",\n" + "\"location\": " + receivedUser.getLocation() + "\n}";
+        String jsonString = "{\n \"firstName\": " + "\"" + receivedUser.getFirstName() + "\"" + ",\n" + "\"lastName\": " +
+                "\"" + receivedUser.getLastName() + "\"" + ",\n" + "\"userName\": " + "\"" + receivedUser.getUserName() + "\"" + ",\n" +
+                "\"password\": " + "\"" + receivedUser.getPassword() + "\"" + ",\n" + "\"phoneNumber\": " +
+                "\"" + receivedUser.getPhoneNumber() + "\"" + ",\n" + "\"emailAddress\" : " + "\"" + receivedUser.getEmail() + "\"" +
+                ",\n" + "\"location\": " + "\"" + receivedUser.getLocation() + "\"" + "\n}";
         System.out.println(jsonString);
         //JSONObject jsonObject = new JSONObject(receivedUser);
 
@@ -169,12 +166,34 @@ public class Request
         {
             dataOutputStream.writeInt(1);
             dataOutputStream.writeUTF(jsonString);
+            sendProfilePhoto(receivedUser.getProfile(), dataOutputStream);
             dataOutputStream.writeInt(0);
-            objectOutputStream.writeObject(receivedUser.getProfile());
         }
         catch (IOException e)
         {
             e.printStackTrace();
+        }
+    }
+
+    private void sendProfilePhoto(File file, DataOutputStream dataOutputStream)
+    {
+        try
+        {
+            int bytes = 0;
+            FileInputStream fileInputStream = new FileInputStream(file);
+            dataOutputStream.writeUTF(file.getName().substring(file.getName().indexOf(".")));
+            dataOutputStream.writeLong(file.length());
+            byte[] buffer = new byte[4 * 1024];
+            while ((bytes = fileInputStream.read(buffer)) != -1)
+            {
+                dataOutputStream.write(buffer, 0, bytes);
+                dataOutputStream.flush();
+            }
+            fileInputStream.close();
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
         }
     }
 
