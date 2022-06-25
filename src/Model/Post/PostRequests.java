@@ -1,13 +1,17 @@
 package Model.Post;
 
-import Model.Person.EmailValidationException;
-import Model.Person.PhoneNumberValidationException;
-import Model.Person.User.User;
+import org.json.JSONObject;
 
 import java.awt.*;
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.Socket;
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import static DataBase.test.receiveProfilePhoto;
 
 public class PostRequests
 {
@@ -32,8 +36,8 @@ public class PostRequests
 
     public void makingPost(Post post)
     {
-        String jsonFormOfThePost = creatingJsonString(post);
-        sendingPostDataToServer(jsonFormOfThePost, post.getPhoto());
+//        String jsonFormOfThePost = creatingJsonString(post);
+//        sendingPostDataToServer(jsonFormOfThePost, post.getPhoto());
     }
 
     private void sendingPostDataToServer(String jsonFormOfThePost, Image photo)
@@ -54,7 +58,7 @@ public class PostRequests
 
     public void editPost(Post editedPost)
     {
-        sendingPostDataToServer(creatingJsonString(editedPost), editedPost.getPhoto());
+        //sendingPostDataToServer(creatingJsonString(editedPost), editedPost.getPhoto());
     }
 
     public void deletePost(String postID)//if they push delete post button
@@ -74,16 +78,42 @@ public class PostRequests
         return jsonString;
     }
 
-    public void getPostByOwner(String userName)// it is not completed yet
+    public ArrayList<Post> getPostByOwner(String userName)// it is not completed yet
     {
+        ArrayList<Post> posts = new ArrayList<>();
         try {
             dataOutputStream.write(3);
             dataOutputStream.writeUTF(userName);
+            String jsonString;
+            while (true)
+            {
+                jsonString = dataInputStream.readUTF();
+                if (!jsonString.equals("EXIT"))
+                {
+                    JSONObject jsonObject = new JSONObject(jsonString);
+                    File file = new File("D:/" + jsonObject.getString("postId") +
+                            jsonObject.getString("photo").substring(jsonObject.getString("photo").indexOf(".")));
+                    receiveProfilePhoto(file.getAbsolutePath(), dataInputStream);
+                    Post post = new Post(jsonObject.getString("title"), jsonObject.getString("postId"),
+                            jsonObject.getString("category"), jsonObject.getString("description"),
+                            Double.parseDouble(jsonObject.getString("price")), jsonObject.getString("sold"),
+                            jsonObject.getString("owner"), file, jsonObject.getString("phoneNumber"),
+                            jsonObject.getString("location"));
+                    posts.add(post);
+                }
+                else
+                {
+                    dataOutputStream.writeInt(0);
+                    break;
+                }
+            }
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
+
+        return posts;
     }
 
     public void getPostByCategory(String category)// it is not completed yet

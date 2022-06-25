@@ -1,6 +1,6 @@
 package DataBase;
 
-import Model.Post;
+import Model.Post.Post;
 import Network.Client;
 import org.json.JSONObject;
 
@@ -48,6 +48,11 @@ public class test
         Client client = new Client();
         Socket socket = client.setUp();
 
+//        PostRequests postRequests = new PostRequests(socket);
+//        ArrayList<Post> posts = postRequests.getPostByOwner("sina");
+//        for (Post post : posts) {
+//            System.out.println(post.getPrice());
+//        }
         DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
         DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
         dataOutputStream.writeInt(3);
@@ -62,9 +67,12 @@ public class test
                 JSONObject jsonObject = new JSONObject(jsonString);
                 File file = new File("D:/" + jsonObject.getString("postId") +
                         jsonObject.getString("photo").substring(jsonObject.getString("photo").indexOf(".")));
-                System.out.println(jsonObject.toString());
-                System.out.println(file.getAbsolutePath());
-                System.out.println(jsonString);
+                Post post = new Post(jsonObject.getString("title"), jsonObject.getString("postId"),
+                        jsonObject.getString("category"), jsonObject.getString("description"),
+                        Double.parseDouble(jsonObject.getString("price")), jsonObject.getString("sold"),
+                        jsonObject.getString("owner"), file, jsonObject.getString("phoneNumber"),
+                        jsonObject.getString("location"));
+                posts.add(post);
                 receiveProfilePhoto(file.getAbsolutePath(), dataInputStream);
             }
             else
@@ -72,6 +80,8 @@ public class test
                 break;
             }
         }
+
+        System.out.println(posts.get(0).getPrice());
         dataOutputStream.writeInt(0);
 
 
@@ -99,7 +109,7 @@ public class test
         }
     }
 
-    private static void receiveProfilePhoto(String path, DataInputStream dataInputStream)
+    public static void receiveProfilePhoto(String path, DataInputStream dataInputStream)
     {
         int bytes = 0;
         File file = new File(path);

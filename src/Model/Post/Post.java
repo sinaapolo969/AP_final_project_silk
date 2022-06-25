@@ -1,8 +1,6 @@
 package Model.Post;
 
-import javafx.geometry.Pos;
-
-import java.awt.*;
+import java.io.File;
 import java.time.LocalDate;
 
 public class Post
@@ -12,16 +10,17 @@ public class Post
     private String category;
     private String description;
     private double price;
-    private boolean saleStatus;
+    private String saleStatus;
     private String owner;
-    private Image photo;
+    private File photo;
     private String phoneNumber;
     private String location;
     private final LocalDate date;
     private final LocalDate EXP;
 
 
-    public Post(String title, String postId, String category, String description, double price, boolean saleStatus, String owner, Image photo, String phoneNumber, String location)
+    public Post(String title, String postId, String category, String description,
+                double price, String saleStatus, String owner, File photo, String phoneNumber, String location)
     {
         this.title = title;
         this.postId = postId;
@@ -53,7 +52,7 @@ public class Post
         return description;
     }
 
-    public boolean isSaleStatus() {
+    public String isSaleStatus() {
         return saleStatus;
     }
 
@@ -70,17 +69,17 @@ public class Post
         return price;
     }
 
-    public boolean saleStatus()
-    {
-        return saleStatus;
-    }
+//    //public boolean saleStatus()
+//    {
+//        return saleStatus;
+//    }
 
     public String getOwner()
     {
         return owner;
     }
 
-    public Image getPhoto()
+    public File getPhoto()
     {
         return photo;
     }
@@ -105,7 +104,7 @@ public class Post
         this.price = price;
     }
 
-    public void setSaleStatus(boolean saleStatus)
+    public void setSaleStatus(String saleStatus)
     {
         this.saleStatus = saleStatus;
     }
@@ -115,7 +114,7 @@ public class Post
         this.owner = owner;
     }
 
-    public void setPhoto(Image photo)
+    public void setPhoto(File photo)
     {
         this.photo = photo;
     }
