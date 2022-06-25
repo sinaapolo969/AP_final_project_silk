@@ -77,23 +77,11 @@ public class Request
     }
 
 
-    public void login(String inputUserName, String inputPassWord) {
+    public User login(String inputUserName, String inputPassWord)
+    {
         User receivedUser = existenceOfUser(inputUserName, inputPassWord);
 
-        if (receivedUser == null)
-        {
-            out.println("You have not signed up yet.\nmiss information");
-        }
-        else
-        {
-            try {
-//                Admin.sendEmail(receivedUser.getEmail(), "Wellcome Back!!!",
-//                        "some one login your account contact us if you didn't do it.");
-                PageControl.open("LoggedHome");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        return receivedUser;
     }
 
 
