@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.FileChooser;
@@ -21,6 +22,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -109,8 +111,9 @@ public class PageControl
     {
         try
         {
-            VBox vb = FXMLLoader.load(PageControl.class.getResource("/View/" + name + ".fxml"));
-            drawer.setSidePane(vb);
+            AnchorPane anc = FXMLLoader.load(Objects.requireNonNull(PageControl.class.getResource
+                    ("/View/" + name + ".fxml")));
+            drawer.setSidePane(anc);
         }
         catch (IOException e)
         {

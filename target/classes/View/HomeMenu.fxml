@@ -2,42 +2,120 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="266.0" style="-fx-background-color: #f3f0ed;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="268.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeMenuController">
    <children>
-      <JFXButton layoutX="10.0" layoutY="159.0" onAction="#categories" prefHeight="75.0" prefWidth="266.0" ripplerFill="#9c3a3aab" text="Categories">
-         <font>
-            <Font name="Sitka Banner Italic" size="20.0" />
-         </font>
-         <graphic>
-            <FontAwesomeIconView glyphName="ALIGN_JUSTIFY" />
-         </graphic>
-      </JFXButton>
-      <JFXButton layoutX="10.0" layoutY="417.0" onAction="#advertise" prefHeight="75.0" prefWidth="266.0" ripplerFill="#9c3a3aad" text="Advertise">
-         <font>
-            <Font name="Sitka Banner Italic" size="20.0" />
-         </font>
-         <graphic>
-            <FontAwesomeIconView glyphName="CAMERA" />
-         </graphic>
-      </JFXButton>
-      <JFXButton onAction="#location" prefHeight="68.0" prefWidth="266.0" ripplerFill="#9c3b3bad" text="Location">
-         <font>
-            <Font name="Sitka Banner Italic" size="20.0" />
-         </font>
-         <graphic>
-            <FontAwesomeIconView glyphName="LOCATION_ARROW" size="15" />
-         </graphic>
-      </JFXButton>
-      <JFXButton layoutX="10.0" layoutY="331.0" onAction="#exit" prefHeight="68.0" prefWidth="273.0" ripplerFill="#9c3b3bad" text="Exit">
-         <font>
-            <Font name="Sitka Banner Italic" size="20.0" />
-         </font>
-         <graphic>
-            <FontAwesomeIconView glyphName="POWER_OFF" size="15" />
-         </graphic>
-      </JFXButton>
+      <AnchorPane fx:id="info" prefHeight="127.0" prefWidth="266.0" stylesheets="@Style/menu.css">
+         <children>
+            <Circle fx:id="photo" layoutX="202.0" layoutY="61.0" radius="50.0" stroke="BLACK" strokeType="INSIDE">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#996565" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Circle>
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" layoutX="141.0" layoutY="103.0" onMouseClicked="#signup" size="50" wrappingWidth="46.000001549720764" />
+            <Label layoutX="14.0" layoutY="38.0" prefHeight="44.0" prefWidth="146.0" text="Sign Up Now">
+               <font>
+                  <Font name="Yu Gothic Bold" size="21.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.3904761904761905">
+                     <stops>
+                        <Stop color="#aa6262" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+         </children>
+      </AnchorPane>
+      <HBox layoutY="127.0" prefHeight="509.0" prefWidth="268.0">
+         <children>
+            <VBox fx:id="icons" prefHeight="509.0" prefWidth="39.0" style="-fx-background-color: #48556BFF;">
+               <children>
+                  <FontAwesomeIconView glyphName="PLUS_SQUARE_ALT" size="25" wrappingWidth="40.595197677612305">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="15.0" top="23.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView glyphName="SIGN_IN" size="25">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="15.0" top="23.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView glyphName="LOCATION_ARROW" size="25">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="15.0" top="23.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView glyphName="ALIGN_JUSTIFY" size="25">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="15.0" top="23.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView glyphName="CAMERA" size="25" wrappingWidth="39.52376842498779">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="15.0" top="23.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+                  <FontAwesomeIconView glyphName="POWER_OFF" size="25">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="15.0" top="23.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox fx:id="menu" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="212.0" style="-fx-background-color: white;" stylesheets="@Style/menu.css">
+               <children>
+                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="159.0" onAction="#signup" prefHeight="69.0" prefWidth="219.0" ripplerFill="#9c3a3aab" text="Register">
+                     <font>
+                        <Font name="Simple Bold Jut Out" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="417.0" onAction="#login" prefHeight="69.0" prefWidth="223.0" ripplerFill="#9c3a3aad" text="Log In">
+                     <font>
+                        <Font name="Simple Bold Jut Out" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" onAction="#signup" prefHeight="69.0" prefWidth="223.0" ripplerFill="#9c3b3bad" text="Choose City">
+                     <font>
+                        <Font name="Simple Bold Jut Out" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="210.0" onAction="#signup" prefHeight="69.0" prefWidth="223.0" ripplerFill="#9c3a3aad" text="Catagories">
+                     <font>
+                        <Font name="Simple Bold Jut Out" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="360.0" onAction="#signup" prefHeight="69.0" prefWidth="223.0" ripplerFill="#9c3b3bad" text="Advertise">
+                     <font>
+                        <Font name="Simple Bold Jut Out" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="331.0" onAction="#exit" prefHeight="69.0" prefWidth="223.0" ripplerFill="#9c3b3bad" text="Exit">
+                     <font>
+                        <Font name="Simple Bold Jut Out" size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
-</VBox>
+</AnchorPane>

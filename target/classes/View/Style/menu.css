@@ -1,0 +1,36 @@
+#info
+{
+    -fx-background-color: #48556b;
+    -fx-background-radius: 0 60 60 0;
+}
+
+VBox
+{
+    -fx-opacity: 0.5;
+    -fx-background-color: white;
+    /*-fx-background-image: url('mou.gif');*/
+    /*-fx-background-repeat: stretch;*/
+    /*-fx-background-size: 1000 700;*/
+    /*-fx-background-position: center center;*/
+}
+
+.jfx-button
+{
+    -fx-text-fill: black;
+}
+
+.jfx-button:hover
+{
+    -fx-background-color: #acc6ea;
+    -fx-background-radius: 0 60 60 0;
+}
+
+#icons
+{
+    -fx-background-color: #bbbaba;
+}
+
+AnchorPane
+{
+    -fx-opacity: 0.5;
+}

@@ -20,6 +20,6 @@ public class PageNumberController
     void toPage(ActionEvent event)
     {
         HomeController h = new HomeController();
-        h.loading32(Integer.parseInt(page.getText()));
+        h.loading15(Integer.parseInt(page.getText()));
     }
 }

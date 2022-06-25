@@ -79,7 +79,7 @@ public class HomeController implements Initializable
             //-------------------------------------------
 
             pagesButtons();
-            loading32(1);
+            loading15(1);
         }
         catch (Exception e)
         {
@@ -111,14 +111,14 @@ public class HomeController implements Initializable
         }
     }
 
-    public void loading32(int num)
+    public void loading15(int num)
     {
         //clearingGridPane();
         int column = 0, row = 1;
 
         try
         {
-            for (int i = 32 * (num - 1); i < 32 * num; i ++)
+            for (int i = 15 * (num - 1); i < 15 * num; i ++)
             {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/View/AdvertisePre.fxml"));
@@ -127,7 +127,7 @@ public class HomeController implements Initializable
                 AdvertisePreController adCon = loader.getController();
                 adCon.setData(HomeController.advertises.get(i));
 
-                if (column == 4)
+                if (column == 3)
                 {
                     column = 0;
                     row ++;
