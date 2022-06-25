@@ -128,7 +128,6 @@ public class Request
         } else {
             sendingDataToServer(receivedUser);
         }
-
     }
 
 

@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class DataRequestSender
 {
-    public ArrayList<Post> postRequestByCategory(String category) throws SQLException
+    public ArrayList<Model.Post> postRequestByCategory(String category) throws SQLException
     {
         PostTable postTable = new PostTable();
         ArrayList<String> jsonPosts = postTable.getPostByCategory(category);
-        ArrayList<Post> posts = new ArrayList<>();
+        ArrayList<Model.Post> posts = new ArrayList<>();
         for (String json : jsonPosts)
         {
-            posts.add(jsonParser(json, new Post()));
+            posts.add(jsonParser(json, new Model.Post()));
         }
 
         return posts;
@@ -27,7 +27,7 @@ public class DataRequestSender
         postTable.updatePostData(jsonString);
     }
 
-    public Post jsonParser(String jsonString, Post post)
+    public Model.Post jsonParser(String jsonString, Model.Post post)
     {
         JSONObject jsonObject = new JSONObject(jsonString);
         post.setTitle(jsonObject.getString("title"));

@@ -1,8 +1,9 @@
-package Model;
+package Model.Post;
 
 import javafx.geometry.Pos;
 
 import java.awt.*;
+import java.time.LocalDate;
 
 public class Post
 {
@@ -16,6 +17,25 @@ public class Post
     private Image photo;
     private String phoneNumber;
     private String location;
+    private final LocalDate date;
+    private final LocalDate EXP;
+
+
+    public Post(String title, String postId, String category, String description, double price, boolean saleStatus, String owner, Image photo, String phoneNumber, String location)
+    {
+        this.title = title;
+        this.postId = postId;
+        this.category = category;
+        this.description = description;
+        this.price = price;
+        this.saleStatus = saleStatus;
+        this.owner = owner;
+        this.photo = photo;
+        this.phoneNumber = phoneNumber;
+        this.location = location;
+        this.EXP = LocalDate.now().plusMonths(1);
+        this.date = LocalDate.now();
+    }
 
 
     public String getTitle()
@@ -31,6 +51,18 @@ public class Post
     public String getDescription()
     {
         return description;
+    }
+
+    public boolean isSaleStatus() {
+        return saleStatus;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LocalDate getEXP() {
+        return EXP;
     }
 
     public Double getPrice()
