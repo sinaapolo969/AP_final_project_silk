@@ -13,8 +13,12 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="268.0" stylesheets="@Style/menu.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoggedHomeMenuController.java">
+=======
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="266.0" style="-fx-background-color: #f3f0ed;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeMenuController">
+>>>>>>> networkPart3
    <children>
       <AnchorPane fx:id="info" prefHeight="127.0" prefWidth="266.0">
          <children>
