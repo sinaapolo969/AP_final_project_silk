@@ -1,7 +1,6 @@
 package Model.Person.User;
 
 
-import Model.PageControl;
 import Model.Person.Admin.Admin;
 import Model.Person.EmailValidationException;
 import Model.Person.PhoneNumberValidationException;
@@ -149,12 +148,7 @@ public class Request
         } catch (IOException e) {
             e.printStackTrace();
         }
-        File receivedImage = null;
-//        try {
-//            //receivedImage = (File) objectInputStream.readObject();
-//        } catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        File receivedImage = receiveProfilePhoto("D:/new.png");
         if(receivedUser == null)
         {
             return null;
@@ -212,6 +206,28 @@ public class Request
         {
             System.err.println(e.getMessage());
         }
+    }
+
+    private File receiveProfilePhoto(String path)
+    {
+        int bytes = 0;
+        File file = new File(path);
+        try
+        {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            long size = dataInputStream.readLong();
+            byte[] buffer = new byte[4 * 1024];
+            while (size > 0 && (bytes = dataInputStream.read(buffer, 0, (int) Math.min(buffer.length, size))) != -1)
+            {
+                fileOutputStream.write(buffer, 0, bytes);
+                size -= bytes;
+            }
+            fileOutputStream.close();
+        }catch(IOException e){
+            System.err.println(e.getMessage());
+        }
+
+        return file;
     }
 
     public void logOut()
