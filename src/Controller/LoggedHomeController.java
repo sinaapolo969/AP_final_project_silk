@@ -34,7 +34,7 @@ public class LoggedHomeController implements Initializable
     @FXML
     private void menu(MouseEvent mouseEvent)
     {
-        PageControl.initialDrawer("LoggedHomeMenu", leftDrawer);
+        PageControl.openOrCloseDrawer(leftDrawer);
     }
 
     @FXML
