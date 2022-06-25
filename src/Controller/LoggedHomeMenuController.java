@@ -74,5 +74,9 @@ public class LoggedHomeMenuController implements Initializable
     {
         Image image  = new Image(currentUser.getProfile().toURI().toString());
         profile.setFill(new ImagePattern(image));
+
+        name.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
+        username.setText("@" + currentUser.getUserName());
+        number.setText((currentUser.getPhoneNumber()));
     }
 }
