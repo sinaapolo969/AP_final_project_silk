@@ -90,7 +90,7 @@ public class Request
         else
         {
             try {
-//                Admin.sendEmail(receivedUser.getEmail(), "Wellcome Back!!!",
+//                Admin.sendEmail(receivedUser.getEmail(), "Welcome Back!!!",
 //                        "some one login your account contact us if you didn't do it.");
                 PageControl.open("LoggedHome");
             } catch (IOException e) {
@@ -145,7 +145,6 @@ public class Request
         } else {
             sendingDataToServer(receivedUser);
         }
-
     }
 
 
@@ -192,7 +191,7 @@ public class Request
                 "\"password\": " + receivedUser.getPassword() + ",\n" + "\"phoneNumber\": " +
                 receivedUser.getPhoneNumber() + ",\n" + "\"emailAddress\" : " + receivedUser.getEmail() +
                 ",\n" + "\"location\": " + receivedUser.getLocation() + "\n}";
-        System.out.println(jsonString);
+        //System.out.println(jsonString);
         //JSONObject jsonObject = new JSONObject(receivedUser);
 
         try

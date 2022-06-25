@@ -16,12 +16,6 @@ import static java.lang.System.out;
 public class Admin {
     private static AdminStruct admin = new AdminStruct("Admin", "1234", "silkroadhelpu@gmail.com");
 
-    public static String[] states = new String[]{"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana",
-                                                "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
-                                                "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
-                                                "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsinite", "Wyoming"};
-
-
     public void adminLogin(String inputUserName, String inputPassWord)
     {
         if (inputUserName == admin.getUserName() && inputPassWord.equals(admin.getPassword()))
