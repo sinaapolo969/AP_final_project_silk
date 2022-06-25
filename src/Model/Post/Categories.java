@@ -1,4 +1,4 @@
-package Model;
+package Model.Post;
 
 public enum Categories
 {
