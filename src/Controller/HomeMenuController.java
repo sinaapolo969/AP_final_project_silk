@@ -2,28 +2,46 @@ package Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
-public class HomeMenuController
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class HomeMenuController implements Initializable
 {
     @FXML
-    private void categories(javafx.event.ActionEvent actionEvent)
-    {
+    private AnchorPane info;
+
+    @FXML
+    private Circle photo;
+
+    @FXML
+    private VBox menu;
+
+    @FXML
+    void exit(ActionEvent event) {
 
     }
 
     @FXML
-    private void advertise(javafx.event.ActionEvent actionEvent)
-    {
+    void login(ActionEvent event) {
+
     }
 
     @FXML
-    private void location(javafx.event.ActionEvent actionEvent)
-    {
+    void signup(ActionEvent event) {
+
     }
 
-    @FXML
-    private void exit(ActionEvent actionEvent)
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
     {
-            System.exit(0);
+        Image image = new Image("/View/Images/user.png");
+        photo.setFill(new ImagePattern(image));
     }
 }

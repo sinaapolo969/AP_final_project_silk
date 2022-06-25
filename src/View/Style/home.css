@@ -1,0 +1,31 @@
+.jfx-Drawer
+{
+    -fx-opacity: 0.2;
+}
+
+AnchorPane
+{
+    -fx-background-color: #ffffff;
+}
+
+.jfx-button
+{
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #ffffff;
+}
+
+.jfx-button:hover
+{
+    -fx-background-color: #91919a;
+    -fx-border-color: #4f2e2e;
+    -fx-text-fill: #4F2E2EFF;
+}
+
+.jfx-textField
+{
+    -fx-border-radius: 30;
+    -fx-border-color: #6e6a6a;
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-text-fill: #563e3e;
+}

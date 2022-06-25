@@ -59,7 +59,17 @@ public class LoginController implements Initializable
         Client client = new Client();
         Socket socket = client.setUp();
         Request request = new Request(socket);
-        request.login(username.getText(), password.getText());
+
+        if (request.login(username.getText(), password.getText()) == null)
+        {
+
+        }
+        else
+        {
+            LoggedHomeController.currentUser = request.login(username.getText(), password.getText());
+            LoggedHomeMenuController.currentUser = request.login(username.getText(), password.getText());
+            PageControl.open("LoggedHome");
+        }
     }
 
     @FXML
