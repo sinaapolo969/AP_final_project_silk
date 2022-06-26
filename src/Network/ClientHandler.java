@@ -76,6 +76,15 @@ public class ClientHandler extends Thread
                         String location = dataInputStream.readUTF();
                         getPostByLocation(location);
                         break;
+                    case 6:
+                        String postData = dataInputStream.readUTF();
+                        jsonObject = new JSONObject(postData);
+                        fileType = dataInputStream.readUTF();
+                        path = "D:/final project/postPhotos/" + jsonObject.getString("postId") + fileType;
+                        makeNewPost(postData, path);
+                    case 7:
+                        userName = dataInputStream.readUTF();
+                        getUserBookMarks(userName);
                     case 0:
                         return;
                 }
@@ -245,12 +254,13 @@ public class ClientHandler extends Thread
         }
     }
 
-    private void makeNewPost(String jsonString)
+    private void makeNewPost(String jsonString, String path)
     {
         PostTable postTable = new PostTable();
         try
         {
-            postTable.insertPostData(jsonString);
+            receiveProfilePhoto(path);
+            postTable.insertPostData(jsonString, path);
             postTable.close();
         }
         catch (SQLException e)
@@ -267,6 +277,7 @@ public class ClientHandler extends Thread
         {
             posts = postTable.getPostByCategory(category);
             postTable.close();
+            sendMultiPosts(posts);
         }
         catch (SQLException e)
         {
@@ -284,16 +295,9 @@ public class ClientHandler extends Thread
         {
             posts = postTable.getPostDataByOwner(userName);
             postTable.close();
-            for (String post : posts)
-            {
-                JSONObject jsonObject = new JSONObject(post);
-                dataOutputStream.writeUTF(post);
-                sendProfilePhoto(new File(jsonObject.getString("photo")));
-            }
-            //this is temprary
-            dataOutputStream.writeUTF("EXIT");
+            sendMultiPosts(posts);
         }
-        catch (SQLException | IOException e)
+        catch (SQLException e)
         {
             e.printStackTrace();
         }
@@ -308,6 +312,34 @@ public class ClientHandler extends Thread
         {
             posts = postTable.getPostByLocation(location);
             postTable.close();
+            sendMultiPosts(posts);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void getUserBookMarks(String userName)
+    {
+        PostTable postTable = new PostTable();
+        ArrayList<String> posts = null;
+        try
+        {
+            posts = postTable.getBookMarks(userName);
+            postTable.close();
+            sendMultiPosts(posts);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendMultiPosts(ArrayList<String> posts)
+    {
+        try
+        {
             for (String post : posts)
             {
                 JSONObject jsonObject = new JSONObject(post);
@@ -317,27 +349,10 @@ public class ClientHandler extends Thread
             //this is temprary
             dataOutputStream.writeUTF("EXIT");
         }
-        catch (SQLException | IOException e)
+        catch(IOException e)
         {
             e.printStackTrace();
         }
-    }
-
-    private ArrayList<String> getUserBookMarks(String userName)
-    {
-        PostTable postTable = new PostTable();
-        ArrayList<String> posts = null;
-        try
-        {
-            posts = postTable.getBookMarks(userName);
-            postTable.close();
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
-        return posts;
     }
 
     //for terminate the thread and logout

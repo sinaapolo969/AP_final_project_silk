@@ -69,6 +69,13 @@
                      <VBox.margin>
                         <Insets bottom="75.0" top="25.0" />
                      </VBox.margin>
+                     <children>
+                        <JFXButton onAction="#loadMore" prefHeight="67.0" prefWidth="300.0" style="-fx-border-color: white;" text="Load More" textFill="WHITE">
+                           <font>
+                              <Font name="Sitka Banner Italic" size="26.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
                   </HBox>
                </children>
             </VBox>
