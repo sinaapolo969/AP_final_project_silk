@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -29,6 +30,36 @@ public class PostRequests
         }
     }
 
+    public void bookmarking (String postID, String username)
+    {
+        //dataOutputStream.writeInt(); ask for the code
+        try
+        {
+            dataOutputStream.writeUTF(username);
+            dataOutputStream.writeUTF(postID);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Post> gettingBookmarks (String username)
+    {
+        ArrayList<Post> bookMarkedPosts = new ArrayList<>();
+        try
+        {
+            dataOutputStream.writeInt(7);
+            dataOutputStream.writeUTF(username);
+            bookMarkedPosts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return bookMarkedPosts;
+    }
 
     public void makingPost(Post post)
     {
@@ -73,7 +104,7 @@ public class PostRequests
         return jsonString;
     }
 
-    public ArrayList<Post> getPostByOwner(String userName)// it is not completed yet
+    public ArrayList<Post> getPostByOwner(String userName)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try {
@@ -186,30 +217,24 @@ public class PostRequests
                 size -= bytes;
             }
             fileOutputStream.close();
-        }catch(IOException e){
+        }
+        catch(IOException e)
+        {
             System.err.println(e.getMessage());
         }
     }
 
-    private void sendPostPhoto(String path) {
+    public LocalDate convertingStringToDate(String dateString)
+    {
+        String[] splitedDate = dateString.split("-");
         try
         {
-            int bytes = 0;
-            File file = new File(path);
-            FileInputStream fileInputStream = new FileInputStream(file);
-            dataOutputStream.writeUTF(file.getName().substring(file.getName().indexOf(".")));
-            dataOutputStream.writeLong(file.length());
-            byte[] buffer = new byte[4 * 1024];
-            while ((bytes = fileInputStream.read(buffer)) != -1)
-            {
-                dataOutputStream.write(buffer, 0, bytes);
-                dataOutputStream.flush();
-            }
-            fileInputStream.close();
+            return LocalDate.of(Integer.parseInt(splitedDate[0]), Integer.parseInt(splitedDate[1]), Integer.parseInt(splitedDate[2]));
         }
-        catch (IOException e)
+        catch (DateTimeException | NumberFormatException exception)
         {
-            System.err.println(e.getMessage());
+            exception.printStackTrace();
         }
+        return null;
     }
 }
