@@ -73,7 +73,7 @@ public class HomeController implements Initializable
             PostRequests request = new PostRequests(socket);
             posts = request.getPostByLocation("Chicago");
 
-            loading15(1);
+            PageControl.loading15(num, row, column, grid, posts);
         }
         catch (Exception e)
         {
@@ -105,35 +105,7 @@ public class HomeController implements Initializable
     void loadMore(ActionEvent event)
     {
         num ++;
-        loading15(num);
-    }
-
-    public void loading15(int num)
-    {
-        try
-        {
-            for (int i = 15 * (num - 1); i < posts.size(); i ++)
-            {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/View/AdvertisePre.fxml"));
-                VBox vbox = loader.load();
-
-                AdvertisePreController adCon = loader.getController();
-                adCon.setData(posts.get(i));
-
-                if (column == 3)
-                {
-                    column = 0;
-                    row ++;
-                }
-
-                this.grid.add(vbox, column ++, row); //child, column, row
-            }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+        PageControl.loading15(num, row, column, grid, posts);
     }
 
     @FXML
