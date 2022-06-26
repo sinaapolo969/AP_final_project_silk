@@ -1,11 +1,6 @@
 package DataBase;
 
-import Model.Post.Post;
-import Network.Client;
-import org.json.JSONObject;
-
 import java.io.*;
-import java.net.Socket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -45,44 +40,47 @@ public class test
 //        ArrayList<String> posts = postTable.getPostDataByOwner("sina");
 //        System.out.println(posts.get(0));
 
-        Client client = new Client();
-        Socket socket = client.setUp();
+//        Client client = new Client();
+//        Socket socket = client.setUp();
+        PostTable postTable = new PostTable();
+        ArrayList<String> posts = postTable.getPostByLocation("yazd");
+        System.out.println(posts.get(0));
 
 //        PostRequests postRequests = new PostRequests(socket);
 //        ArrayList<Post> posts = postRequests.getPostByOwner("sina");
 //        for (Post post : posts) {
 //            System.out.println(post.getPrice());
 //        }
-        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-        dataOutputStream.writeInt(3);
-        dataOutputStream.writeUTF("sina");
-        ArrayList<Post> posts = new ArrayList<>();
-        String jsonString;
-        while (true)
-        {
-            jsonString = dataInputStream.readUTF();
-            if (!jsonString.equals("EXIT"))
-            {
-                JSONObject jsonObject = new JSONObject(jsonString);
-                File file = new File("D:/" + jsonObject.getString("postId") +
-                        jsonObject.getString("photo").substring(jsonObject.getString("photo").indexOf(".")));
-                Post post = new Post(jsonObject.getString("title"), jsonObject.getString("postId"),
-                        jsonObject.getString("category"), jsonObject.getString("description"),
-                        Double.parseDouble(jsonObject.getString("price")), jsonObject.getString("sold"),
-                        jsonObject.getString("owner"), file, jsonObject.getString("phoneNumber"),
-                        jsonObject.getString("location"));
-                posts.add(post);
-                receiveProfilePhoto(file.getAbsolutePath(), dataInputStream);
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        System.out.println(posts.get(0).getPrice());
-        dataOutputStream.writeInt(0);
+//        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+//        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+//        dataOutputStream.writeInt(3);
+//        dataOutputStream.writeUTF("sina");
+//        ArrayList<Post> posts = new ArrayList<>();
+//        String jsonString;
+//        while (true)
+//        {
+//            jsonString = dataInputStream.readUTF();
+//            if (!jsonString.equals("EXIT"))
+//            {
+//                JSONObject jsonObject = new JSONObject(jsonString);
+//                File file = new File("D:/" + jsonObject.getString("postId") +
+//                        jsonObject.getString("photo").substring(jsonObject.getString("photo").indexOf(".")));
+//                Post post = new Post(jsonObject.getString("title"), jsonObject.getString("postId"),
+//                        jsonObject.getString("category"), jsonObject.getString("description"),
+//                        Double.parseDouble(jsonObject.getString("price")), jsonObject.getString("sold"),
+//                        jsonObject.getString("owner"), file, jsonObject.getString("phoneNumber"),
+//                        jsonObject.getString("location"));
+//                posts.add(post);
+//                receiveProfilePhoto(file.getAbsolutePath(), dataInputStream);
+//            }
+//            else
+//            {
+//                break;
+//            }
+//        }
+//
+//        System.out.println(posts.get(0).getPrice());
+//        dataOutputStream.writeInt(0);
 
 
     }

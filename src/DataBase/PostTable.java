@@ -91,6 +91,7 @@ public class PostTable extends DbHandler
     {
         String query = "select * from posts where location = ?";
         preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, location);
 
         return convertDataToArrayJsonString(preparedStatement);
     }
@@ -115,8 +116,13 @@ public class PostTable extends DbHandler
     {
         ResultSet resultSet = preparedStatement1.executeQuery();
         ArrayList<String> posts = new ArrayList<>();
+        int counter = 0;
         while (resultSet.next())
         {
+            if (counter >= 15)
+            {
+                break;
+            }
             String phoneNumber = getOwnerPhoneNumber(resultSet.getString("owner"));
             String jsonString = "{\n \"title\": " + "\"" + resultSet.getString("title") +
                     "\"" + ",\n" + "\"postId\": " + "\"" + resultSet.getInt("postId") + "\"" + ",\n" + "\"category\": " +
@@ -129,6 +135,7 @@ public class PostTable extends DbHandler
                     ",\n" + "\"photo\": " + "\"" + resultSet.getString("photo") + "\"" +",\n" + "\"phoneNumber\": " +
                     "\"" + phoneNumber + "\"" + "\n}";
             posts.add(jsonString);
+            counter++;
         }
 
         return posts;
