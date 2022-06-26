@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import java.awt.*;
 import java.io.*;
 import java.net.Socket;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -29,6 +30,36 @@ public class PostRequests
         }
     }
 
+    public void bookmarking (String postID, String username)
+    {
+        //dataOutputStream.writeInt(); ask for the code
+        try
+        {
+            dataOutputStream.writeUTF(username);
+            dataOutputStream.writeUTF(postID);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Post> gettingBookmarks (String username)
+    {
+        ArrayList<Post> bookMarkedPosts = new ArrayList<>();
+        try
+        {
+            dataOutputStream.writeInt(7);
+            dataOutputStream.writeUTF(username);
+            bookMarkedPosts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return bookMarkedPosts;
+    }
 
     public void makingPost(Post post)
     {
@@ -74,7 +105,7 @@ public class PostRequests
         return jsonString;
     }
 
-    public ArrayList<Post> getPostByOwner(String userName)// it is not completed yet
+    public ArrayList<Post> getPostByOwner(String userName)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try {
@@ -192,8 +223,24 @@ public class PostRequests
                 size -= bytes;
             }
             fileOutputStream.close();
-        }catch(IOException e){
+        }
+        catch(IOException e)
+        {
             System.err.println(e.getMessage());
         }
+    }
+
+    public LocalDate convertingStringToDate(String dateString)
+    {
+        String[] splitedDate = dateString.split("-");
+        try
+        {
+            return LocalDate.of(Integer.parseInt(splitedDate[0]), Integer.parseInt(splitedDate[1]), Integer.parseInt(splitedDate[2]));
+        }
+        catch (DateTimeException | NumberFormatException exception)
+        {
+            exception.printStackTrace();
+        }
+        return null;
     }
 }
