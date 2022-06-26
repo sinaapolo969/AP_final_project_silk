@@ -85,7 +85,7 @@ public class HomeController implements Initializable
 
     private void timelineImages()
     {
-        Image one = new Image("View/Images/lrHome/15.jpg");
+        Image one = new Image("View/Images/lrHome/a.jpg");
         Image two = new Image("View/Images/lrHome/7.jpg");
         Image three = new Image("View/Images/lrHome/12.jpg");
         Image four = new Image("View/Images/lrHome/2.jpg");
