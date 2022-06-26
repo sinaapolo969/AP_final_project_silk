@@ -1,17 +1,13 @@
 package Model.Post;
 
 import org.json.JSONObject;
-
 import java.awt.*;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static DataBase.test.receiveProfilePhoto;
+//import static DataBase.test.receiveProfilePhoto;
 
 public class PostRequests
 {
@@ -84,29 +80,7 @@ public class PostRequests
         try {
             dataOutputStream.write(3);
             dataOutputStream.writeUTF(userName);
-            String jsonString;
-            while (true)
-            {
-                jsonString = dataInputStream.readUTF();
-                if (!jsonString.equals("EXIT"))
-                {
-                    JSONObject jsonObject = new JSONObject(jsonString);
-                    File file = new File("D:/" + jsonObject.getString("postId") +
-                            jsonObject.getString("photo").substring(jsonObject.getString("photo").indexOf(".")));
-                    receiveProfilePhoto(file.getAbsolutePath(), dataInputStream);
-                    Post post = new Post(jsonObject.getString("title"), jsonObject.getString("postId"),
-                            jsonObject.getString("category"), jsonObject.getString("description"),
-                            Double.parseDouble(jsonObject.getString("price")), jsonObject.getString("sold"),
-                            jsonObject.getString("owner"), file, jsonObject.getString("phoneNumber"),
-                            jsonObject.getString("location"));
-                    posts.add(post);
-                }
-                else
-                {
-                    dataOutputStream.writeInt(0);
-                    break;
-                }
-            }
+            posts = gettingPostsFromDataBase();
         }
         catch (IOException e)
         {
@@ -116,16 +90,73 @@ public class PostRequests
         return posts;
     }
 
-    public void getPostByCategory(String category)// it is not completed yet
+    public ArrayList<Post> gettingPostsFromDataBase()
     {
+        ArrayList<Post> posts = new ArrayList<>();
+        String jsonString = null;
+        while (true)
+        {
+            try {
+                jsonString = dataInputStream.readUTF();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (!jsonString.equals("EXIT"))
+            {
+                JSONObject jsonObject = new JSONObject(jsonString);
+                File file = new File("D:/" + jsonObject.getString("postId") +
+                        jsonObject.getString("photo").substring(jsonObject.getString("photo").indexOf(".")));
+                receiveProfilePhoto(file.getAbsolutePath(), dataInputStream);
+                Post post = new Post(jsonObject.getString("title"), jsonObject.getString("postId"),
+                        jsonObject.getString("category"), jsonObject.getString("description"),
+                        Double.parseDouble(jsonObject.getString("price")), jsonObject.getString("sold"),
+                        jsonObject.getString("owner"), file, jsonObject.getString("phoneNumber"),
+                        jsonObject.getString("location"));
+                posts.add(post);
+            }
+            else
+            {
+                try {
+                    dataOutputStream.writeInt(0);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+        return posts;
+    }
+
+    public ArrayList<Post> getPostByCategory(String category)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
         try {
             dataOutputStream.write(4);
             dataOutputStream.writeUTF(category);
+            posts = gettingPostsFromDataBase();
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
+
+        return posts;
+    }
+
+    public ArrayList<Post> getPostByLocation (String location)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try {
+            dataOutputStream.write(5);
+            dataOutputStream.writeUTF(location);
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
     }
 
     private void expiration(Post post)
@@ -143,6 +174,26 @@ public class PostRequests
             dataOutputStream.writeUTF(postID);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void receiveProfilePhoto(String path, DataInputStream dataInputStream)
+    {
+        int bytes = 0;
+        File file = new File(path);
+        try
+        {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            long size = dataInputStream.readLong();
+            byte[] buffer = new byte[4 * 1024];
+            while (size > 0 && (bytes = dataInputStream.read(buffer, 0, (int) Math.min(buffer.length, size))) != -1)
+            {
+                fileOutputStream.write(buffer, 0, bytes);
+                size -= bytes;
+            }
+            fileOutputStream.close();
+        }catch(IOException e){
+            System.err.println(e.getMessage());
         }
     }
 }
