@@ -1,7 +1,7 @@
 package Model.Post;
 
 import org.json.JSONObject;
-import java.awt.*;
+
 import java.io.*;
 import java.net.Socket;
 import java.time.LocalDate;
@@ -32,18 +32,17 @@ public class PostRequests
 
     public void makingPost(Post post)
     {
-//        String jsonFormOfThePost = creatingJsonString(post);
-//        sendingPostDataToServer(jsonFormOfThePost, post.getPhoto());
+        String jsonFormOfThePost = creatingJsonString(post);
+        sendingPostDataToServer(jsonFormOfThePost, post.getPhoto());
     }
 
-    private void sendingPostDataToServer(String jsonFormOfThePost, Image photo)
+    private void sendingPostDataToServer(String jsonFormOfThePost, File photo)
     {
         try
         {
             dataOutputStream.writeInt(6);
             dataOutputStream.writeUTF(jsonFormOfThePost);
-            //dataOutputStream.writeInt(0);
-            //objectOutputStream.writeObject(photo);send photo here
+            sendPostPhoto(photo.getAbsolutePath());
         }
         catch (IOException e)
         {
@@ -106,7 +105,7 @@ public class PostRequests
                 JSONObject jsonObject = new JSONObject(jsonString);
                 File file = new File("D:/" + jsonObject.getString("postId") +
                         jsonObject.getString("photo").substring(jsonObject.getString("photo").indexOf(".")));
-                receiveProfilePhoto(file.getAbsolutePath(), dataInputStream);
+                receiveProfilePhoto(file.getAbsolutePath());
                 Post post = new Post(jsonObject.getString("title"), jsonObject.getString("postId"),
                         jsonObject.getString("category"), jsonObject.getString("description"),
                         Double.parseDouble(jsonObject.getString("price")), jsonObject.getString("sold"),
@@ -177,7 +176,7 @@ public class PostRequests
         }
     }
 
-    public void receiveProfilePhoto(String path, DataInputStream dataInputStream)
+    public void receiveProfilePhoto(String path)
     {
         int bytes = 0;
         File file = new File(path);
@@ -197,7 +196,7 @@ public class PostRequests
         }
     }
 
-    private void sendPostPhoto(String path, DataOutputStream dataOutputStream) {
+    private void sendPostPhoto(String path) {
         try
         {
             int bytes = 0;
