@@ -2,6 +2,8 @@ package Controller;
 
 import Model.PageControl;
 import Model.Post.Post;
+import Model.Post.PostRequests;
+import Network.Client;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -65,12 +68,12 @@ public class HomeController implements Initializable
         //loading advertises
         try
         {
-//            Client client = new Client();
-//            Socket socket = client.setUp();
-//            PostRequests request = new PostRequests(socket);
-//            posts = request.getPostByLocation(this.location);
+            Client client = new Client();
+            Socket socket = client.setUp();
+            PostRequests request = new PostRequests(socket);
+            posts = request.getPostByLocation("Chicago");
 
-//            loading15(1);
+            loading15(1);
         }
         catch (Exception e)
         {

@@ -13,6 +13,8 @@ import java.io.File;
 
 public class AdvertisePreController
 {
+    private Post currentPost;
+
     @FXML
     public ImageView image;
 
