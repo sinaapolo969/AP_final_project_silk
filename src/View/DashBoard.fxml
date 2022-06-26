@@ -23,7 +23,7 @@
    <children>
       <AnchorPane layoutX="-2.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
          <children>
-            <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/11zon_cropped.png" />
                </image>
@@ -45,7 +45,11 @@
       </AnchorPane>
       <AnchorPane layoutX="-1.0" layoutY="77.0" prefHeight="230.0" prefWidth="1252.0" style="-fx-background-color: #503838;" stylesheets="@Style/DashBoard.css">
          <children>
-            <Label fx:id="name" alignment="CENTER" layoutX="501.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" textFill="WHITE">
+            <ImageView fitHeight="230.0" fitWidth="1252.0" opacity="0.31" pickOnBounds="true">
+               <image>
+                  <Image url="@Images/14.jpg" />
+               </image></ImageView>
+            <Label fx:id="nameTop" alignment="CENTER" layoutX="501.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" textFill="WHITE">
                <font>
                   <Font name="Sitka Banner" size="23.0" />
                </font>
@@ -56,7 +60,7 @@
                   <Font name="Sitka Banner" size="23.0" />
                </font>
             </Label>
-            <Label fx:id="number" layoutX="182.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" textFill="WHITE">
+            <Label fx:id="numberTop" layoutX="182.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="23.0" />
                </font>
@@ -71,11 +75,12 @@
                   <Font name="Sitka Banner" size="23.0" />
                </font>
             </Label>
-            <Label fx:id="addPhoto" alignment="CENTER" layoutX="667.0" layoutY="125.0" onMouseClicked="#profileAdder" prefHeight="34.0" prefWidth="41.0" style="-fx-background-radius: 100;" stylesheets="@Style/DashBoard.css" text="+&#10;" textFill="WHITE">
+            <Label fx:id="addPhoto1" alignment="CENTER" layoutX="667.0" layoutY="125.0" onMouseClicked="#profileAdder" prefHeight="34.0" prefWidth="41.0" style="-fx-background-radius: 100;" stylesheets="@Style/DashBoard.css" text="+&#10;" textFill="WHITE">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
+            <FontAwesomeIconView fx:id="back" fill="#18334b" glyphName="ARROW_CIRCLE_LEFT" layoutX="11.0" layoutY="34.0" onMouseClicked="#back" size="40" />
          </children>
       </AnchorPane>
       <JFXTabPane layoutY="307.0" prefHeight="464.0" prefWidth="1252.0" stylesheets="@Style/DashBoard.css">
@@ -88,7 +93,7 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <GridPane layoutY="-7.0">
+                                    <GridPane fx:id="gridBM" layoutY="-7.0">
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
@@ -122,7 +127,7 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="270.0" fitWidth="262.0" layoutX="69.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="advertisement" fitHeight="270.0" fitWidth="262.0" layoutX="69.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/ad2.png" />
                            </image>

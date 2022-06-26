@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static Model.Main.cities;
 import static java.lang.System.out;
 
 public class SignUpController implements Initializable
@@ -189,15 +190,6 @@ public class SignUpController implements Initializable
         this.profile = file;
         Image image = new Image("/View/Images/user.png");
         photo.setFill(new ImagePattern(image));
-
-        ArrayList<String> cities = new ArrayList<>();
-        cities.add("Chicago");
-        cities.add("NewYork");
-        cities.add("Washington");
-        cities.add("Seattle");
-        cities.add("San Francisco");
-        cities.add("Miami");
-        cities.add("Orlando");
 
         city.getItems().addAll(cities);
     }
