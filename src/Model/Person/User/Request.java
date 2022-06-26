@@ -4,26 +4,31 @@ package Model.Person.User;
 import Model.Person.Admin.Admin;
 import Model.Person.EmailValidationException;
 import Model.Person.PhoneNumberValidationException;
+import Model.Post.Post;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class Request
 {
-    private final Socket socket;
-    private DataOutputStream dataOutputStream;
-    private DataInputStream dataInputStream;
+    private Socket socket;
+    private static DataOutputStream dataOutputStream;
+    private static DataInputStream dataInputStream;
 
 
     public Request(Socket socket)
     {
-        this.socket = socket;
+
         try
         {
-            this.dataInputStream = new DataInputStream(socket.getInputStream());
-            this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
+            this.socket = socket;
+            dataInputStream = new DataInputStream(socket.getInputStream());
+            dataOutputStream = new DataOutputStream(socket.getOutputStream());
         }
         catch (IOException e)
         {
@@ -32,7 +37,7 @@ public class Request
     }
 
 
-    public void signUp(User receivedUser)
+    public static void signUp(User receivedUser)
     {
 //        if(!checkingEmail(receivedUser.getEmail()))
 //        {
@@ -75,7 +80,7 @@ public class Request
     }
 
 
-    public User login(String inputUserName, String inputPassWord)
+    public static User login(String inputUserName, String inputPassWord)
     {
         User receivedUser = existenceOfUser(inputUserName, inputPassWord);
         return receivedUser;
@@ -111,7 +116,7 @@ public class Request
     }
 
 
-    public void editInfo(User receivedUser) {
+    public static void editInfo(User receivedUser) {
         if (!checkingEmailValidation(receivedUser.getEmail())) {
             try {
                 throw new EmailValidationException("Wrong Email");
@@ -130,12 +135,15 @@ public class Request
     }
 
 
-    private User existenceOfUser(String inputUserName, String inputPassWord)
+    private static User existenceOfUser(String inputUserName, String inputPassWord)
     {
         try {
             dataOutputStream.writeInt(2);
+            dataOutputStream.flush();
             dataOutputStream.writeUTF(inputUserName);
+            dataOutputStream.flush();
             dataOutputStream.writeUTF(inputPassWord);
+            dataOutputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,7 +169,7 @@ public class Request
         return user;
     }
 
-    private void sendingDataToServer(User receivedUser)
+    private static void sendingDataToServer(User receivedUser)
     {
         String jsonString = "{\n \"firstName\": " + "\"" + receivedUser.getFirstName() + "\"" + ",\n" + "\"lastName\": " +
                 "\"" + receivedUser.getLastName() + "\"" + ",\n" + "\"userName\": " + "\"" + receivedUser.getUserName() + "\"" + ",\n" +
@@ -169,14 +177,16 @@ public class Request
                 "\"" + receivedUser.getPhoneNumber() + "\"" + ",\n" + "\"emailAddress\" : " + "\"" + receivedUser.getEmail() + "\"" +
                 ",\n" + "\"location\": " + "\"" + receivedUser.getLocation() + "\"" + "\n}";
         System.out.println(jsonString);
+        System.out.println(receivedUser.getProfile().getAbsolutePath());
         //JSONObject jsonObject = new JSONObject(receivedUser);
 
         try
         {
             dataOutputStream.writeInt(1);
+            dataOutputStream.flush();
             dataOutputStream.writeUTF(jsonString);
-            sendProfilePhoto(receivedUser.getProfile(), dataOutputStream);
-            dataOutputStream.writeInt(0);
+            dataOutputStream.flush();
+            sendProfilePhoto(receivedUser.getProfile());
         }
         catch (IOException e)
         {
@@ -184,7 +194,7 @@ public class Request
         }
     }
 
-    private void sendProfilePhoto(File file, DataOutputStream dataOutputStream)
+    private static void sendProfilePhoto(File file)
     {
         try
         {
@@ -206,7 +216,7 @@ public class Request
         }
     }
 
-    private File receiveProfilePhoto(String path)
+    private static File receiveProfilePhoto(String path)
     {
         int bytes = 0;
         File file = new File(path);
@@ -232,20 +242,20 @@ public class Request
     {
         try
         {
-            socket.close();
+            this.socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private boolean checkingEmailValidation(String email)
+    private static boolean checkingEmailValidation(String email)
     {
         String regex = "[0-9a-zA-Z_.]*@[0-9a-zA-Z]*\\.[a-zA-Z]{3}";
         return email.matches(regex);
     }
 
 
-    private boolean checkingPhoneNumber(String phoneNumber)
+    private static boolean checkingPhoneNumber(String phoneNumber)
     {
         String regex = "09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}";
         return phoneNumber.matches(regex);
@@ -263,6 +273,250 @@ public class Request
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void bookmarking (String postID, String username)
+    {
+        //dataOutputStream.writeInt(); ask for the code
+        try
+        {
+            dataOutputStream.writeUTF(username);
+            dataOutputStream.writeUTF(postID);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Post> gettingBookmarks(String username, int number)
+    {
+        ArrayList<Post> bookMarkedPosts = new ArrayList<>();
+        try
+        {
+            dataOutputStream.writeInt(7);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(username);
+            dataOutputStream.flush();
+            dataOutputStream.writeInt(number);
+            dataOutputStream.flush();
+            bookMarkedPosts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+
+
+        return bookMarkedPosts;
+    }
+
+    public static void makingPost(Post post)
+    {
+        String jsonFormOfThePost = creatingJsonString(post);
+        sendingPostDataToServer(jsonFormOfThePost, post.getPhoto());
+    }
+
+    private static void sendingPostDataToServer(String jsonFormOfThePost, File photo)
+    {
+        try
+        {
+            dataOutputStream.writeInt(6);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(jsonFormOfThePost);
+            dataOutputStream.flush();
+            sendPostPhoto(photo.getAbsolutePath());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void editPost(Post editedPost)
+    {
+        //sendingPostDataToServer(creatingJsonString(editedPost), editedPost.getPhoto());
+    }
+
+    public static void deletePost(String postID)//if they push delete post button
+    {
+        sendingPostForDeleting(postID);
+    }
+
+    private static String creatingJsonString(Post post)
+    {
+        String jsonString = "{\n \"title\": " + post.getTitle() + ",\n" + "\"postId\": " +
+                post.getPostId() + ",\n" + "\"category\": " + post.getCategory() + ",\n" +
+                "\"description\": " + post.getDescription() + ",\n" + "\"price\": " +
+                post.getPrice() + ",\n" + "\"saleStatus\" : " + post.isSaleStatus() +
+                ",\n" + "\"owner\": " + post.getOwner() + "\"phoneNumber\" : " + post.getPhoneNumber() +
+                ",\n" + "\"location\": " + post.getLocation() + "\"Date\" : " + post.getDate() +
+                ",\n" + "\"EXP\": " + post.getEXP() + "\n}";
+        return jsonString;
+    }
+
+    public static ArrayList<Post> getPostByOwner(String userName, int number)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try
+        {
+            dataOutputStream.writeInt(3);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(userName);
+            dataOutputStream.flush();
+            dataOutputStream.writeInt(number);
+            dataOutputStream.flush();
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+    }
+
+    public static ArrayList<Post> gettingPostsFromDataBase() throws IOException
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        String jsonString;
+        int arraySize = dataInputStream.readInt();
+        for (int i = 0; i < arraySize; i++)
+        {
+            jsonString = dataInputStream.readUTF();
+            JSONObject jsonObject = new JSONObject(jsonString);
+            File file = new File("D:/" + jsonObject.getString("postId") +
+                    jsonObject.getString("photo").substring(jsonObject.getString("photo").indexOf(".")));
+            Post post = new Post(jsonObject.getString("title"), jsonObject.getString("postId"),
+                    jsonObject.getString("category"), jsonObject.getString("description"),
+                    Double.parseDouble(jsonObject.getString("price")), jsonObject.getString("sold"),
+                    jsonObject.getString("owner"), file, jsonObject.getString("phoneNumber"),
+                    jsonObject.getString("location"), convertingStringToDate(jsonObject.getString("date")));
+            posts.add(post);
+            receiveProfilePhoto(file);
+        }
+
+        return posts;
+    }
+
+    public ArrayList<Post> getPostByCategory(String category, int number)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try {
+            dataOutputStream.writeInt(4);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(category);
+            dataOutputStream.flush();
+            dataOutputStream.writeInt(number);
+            dataOutputStream.flush();
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+    }
+
+    public static ArrayList<Post> getPostByLocation(String location, int number)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try {
+            dataOutputStream.writeInt(5);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(location);
+            dataOutputStream.flush();
+            dataOutputStream.writeInt(number);
+            dataOutputStream.flush();
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+    }
+
+    private void expiration(Post post)
+    {
+        if(post.getEXP().compareTo(LocalDate.now()) >= 0)
+        {
+            sendingPostForDeleting(post.getPostId());
+        }
+    }
+
+    private static void sendingPostForDeleting(String postID)
+    {
+        try {
+            dataOutputStream.write(8);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(postID);
+            dataOutputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void receiveProfilePhoto(File file)
+    {
+        int bytes = 0;
+        try
+        {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            long size = dataInputStream.readLong();
+            byte[] buffer = new byte[4 * 1024];
+            while (size > 0 && (bytes = dataInputStream.read(buffer, 0, (int) Math.min(buffer.length, size))) != -1)
+            {
+                fileOutputStream.write(buffer, 0, bytes);
+                size -= bytes;
+            }
+            fileOutputStream.close();
+        }
+        catch(IOException e)
+        {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static LocalDate convertingStringToDate(String dateString)
+    {
+        String[] splitedDate = dateString.split("-");
+        try
+        {
+            return LocalDate.of(Integer.parseInt(splitedDate[0]), Integer.parseInt(splitedDate[1]), Integer.parseInt(splitedDate[2]));
+        }
+        catch (DateTimeException | NumberFormatException exception)
+        {
+            exception.printStackTrace();
+        }
+        return null;
+    }
+
+    private static void sendPostPhoto(String path)
+    {
+        try
+        {
+            int bytes = 0;
+            File file = new File(path);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            dataOutputStream.writeUTF(file.getName().substring(file.getName().indexOf(".")));
+            dataOutputStream.writeLong(file.length());
+            byte[] buffer = new byte[4 * 1024];
+            while ((bytes = fileInputStream.read(buffer)) != -1)
+            {
+                dataOutputStream.write(buffer, 0, bytes);
+                dataOutputStream.flush();
+            }
+            fileInputStream.close();
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+        }
     }
 
 }

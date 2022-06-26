@@ -53,6 +53,7 @@ public class ClientHandler extends Thread
                             if (password.equals(checkPassword(userName)))
                             {
                                 dataOutputStream.writeUTF(getUserAccount(userName));
+                                dataOutputStream.flush();
                                 sendProfilePhoto(getUserProfilePhoto(userName));
                             }
                         }
@@ -344,14 +345,15 @@ public class ClientHandler extends Thread
     {
         try
         {
+            dataOutputStream.writeInt(posts.size());
+            dataOutputStream.flush();
             for (String post : posts)
             {
                 JSONObject jsonObject = new JSONObject(post);
                 dataOutputStream.writeUTF(post);
+                dataOutputStream.flush();
                 sendProfilePhoto(new File(jsonObject.getString("photo")));
             }
-            //this is temprary
-            dataOutputStream.writeUTF("EXIT");
         }
         catch(IOException e)
         {

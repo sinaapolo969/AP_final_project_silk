@@ -2,7 +2,6 @@ package DataBase;
 
 import java.io.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class test
 {
@@ -37,12 +36,19 @@ public class test
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException
     {
 
-        PostTable postTable = new PostTable();
-        ArrayList<String> posts = postTable.getPostByLocation("Chicago", 1);
-        for (String s: posts)
-        {
-            System.out.println(s);
-        }
+//        PostTable postTable = new PostTable();
+//        ArrayList<String> posts = postTable.getPostDataByOwner("meow", 1);
+//        for (String s: posts)
+//        {
+//            System.out.println(s);
+//        }
+
+       // Request request = new Request(new Client().setUp());
+        UserTable userTable = new UserTable();
+        userTable.insertUserData(json, "C:\\Users\\kara\\Downloads\\ish.jpg");
+//
+//        ArrayList<Post> posts = Request.getPostByOwner("meow", 1);
+//        System.out.println(posts.get(0).getPrice());
 
 
 //        ArrayList<String> posts = postTable.getPostByLocation("Chicago");
