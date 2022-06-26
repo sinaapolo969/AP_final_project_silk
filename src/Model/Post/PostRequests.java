@@ -94,8 +94,8 @@ public class PostRequests
 
     private String creatingJsonString(Post post)
     {
-        String jsonString = "{\n \"title\": " + post.getTitle() + ",\n" + "\"postID\": " +
-                post.getPostId() + ",\n" + "\"category\": " + post.getCategory() + ",\n" +
+        String jsonString = "{\n \"title\": " + post.getTitle() + ",\n" + "\"postId\": " + post.getPostId() +
+                ",\n" + "\"category\": " + post.getCategory() + ",\n" +
                 "\"description\": " + post.getDescription() + ",\n" + "\"price\": " +
                 post.getPrice() + ",\n" + "\"saleStatus\" : " + post.isSaleStatus() +
                 ",\n" + "\"owner\": " + post.getOwner() + "\"phoneNumber\" : " + post.getPhoneNumber() +
@@ -136,7 +136,9 @@ public class PostRequests
                         jsonObject.getString("category"), jsonObject.getString("description"),
                         Double.parseDouble(jsonObject.getString("price")), jsonObject.getString("sold"),
                         jsonObject.getString("owner"), file, jsonObject.getString("phoneNumber"),
-                        jsonObject.getString("location"));
+                        jsonObject.getString("location"),
+                        convertingStringToDate(jsonObject.getString("date")),
+                        convertingStringToDate(jsonObject.getString("date")).plusMonths(1));
                 posts.add(post);
                 receiveProfilePhoto(file);
             }
@@ -259,5 +261,80 @@ public class PostRequests
         {
             System.err.println(e.getMessage());
         }
+    }
+
+    public ArrayList<Post> getFilteredPricedPosts(double minPrice, double maxPrice)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try
+        {
+            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeDouble(minPrice);
+            dataOutputStream.writeDouble(maxPrice);
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+    }
+
+    public ArrayList<Post> getFilteredPricedAndLocationPosts(double minPrice, double maxPrice, String location)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try
+        {
+            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeDouble(minPrice);
+            dataOutputStream.writeDouble(maxPrice);
+            dataOutputStream.writeUTF(location);
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+    }
+
+    public ArrayList<Post> getPostsByLocationAndCategory(String category, String location)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try
+        {
+            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeUTF(category);
+            dataOutputStream.writeUTF(location);
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+    }
+
+    public ArrayList<Post> getPostsByLocationAndCategoryAndLimitedPrice(double minPrice,double maxPrice, String category, String location)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try
+        {
+            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeUTF(category);
+            dataOutputStream.writeUTF(location);
+            dataOutputStream.writeDouble(minPrice);
+            dataOutputStream.writeDouble(maxPrice);
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
     }
 }

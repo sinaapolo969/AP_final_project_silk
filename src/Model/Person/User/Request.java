@@ -34,43 +34,47 @@ public class Request
 
     public void signUp(User receivedUser)
     {
-//        if(!checkingEmail(receivedUser.getEmail()))
-//        {
-//            try
-//            {
-//                throw new EmailValidationException("Wrong Email");
-//            }
-//            catch (EmailValidationException e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//        else if(!checkingPhoneNumber(receivedUser.getPhoneNumber()))
-//        {
-//            try
-//            {
-//                throw new PhoneNumberValidationException("Wrong Phone-number");
-//            }
-//            catch (PhoneNumberValidationException e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//        else
-//        {
-//            boolean flag = true;//repetitionOfEmail(receivedUser.getEmail());
-//
-//            if (flag)
-//            {
-//                //sendingDataToServer(userNumber);
-//                sendingDataToServer(receivedUser);
-//                Admin.sendEmail(receivedUser.getEmail());
-//            }
-//            else
-//            {
-//                out.println("u are already signed up");
-//            }
-//        }
+        //if(!checkingEmailValidation(receivedUser.getEmail()))
+        //{
+        //    try
+        //    {
+        //        throw new EmailValidationException("Wrong Email");
+        //    }
+        //    catch (EmailValidationException e)
+        //    {
+        //        e.printStackTrace();
+        //    }
+        //}
+        //else if(!checkingPhoneNumber(receivedUser.getPhoneNumber()))
+        //{
+        //    try
+        //    {
+        //        throw new PhoneNumberValidationException("Wrong Phone-number");
+        //    }
+        //    catch (PhoneNumberValidationException e)
+        //    {
+        //        e.printStackTrace();
+        //    }
+        //}
+        //else if(!checkingStrengthOfPass(receivedUser.getPassword()))
+        //{
+        //    //the password isn't strong enough
+        //}
+        //else
+        //{
+        //    boolean flag = true;//repetitionOfEmail(receivedUser.getEmail());
+        //
+        //    if (flag)
+        //    {
+        //        //sendingDataToServer(userNumber);
+        //        sendingDataToServer(receivedUser);
+        //        Admin.sendEmail(receivedUser.getEmail(), "WellCome", "welcome\n to silk road app we are so glad to have you here");
+        //    }
+        //    else
+        //    {
+        //        System.out.println("u are already signed up");
+        //    }
+        //}
         sendingDataToServer(receivedUser);
     }
 
@@ -265,4 +269,9 @@ public class Request
         return false;
     }
 
+    public boolean checkingStrengthOfPass(String password)
+    {
+        String strongPassRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+        return password.matches(strongPassRegex);
+    }
 }

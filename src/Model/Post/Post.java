@@ -20,8 +20,25 @@ public class Post
     private final LocalDate EXP;
 
 
+    public Post(String title, String category, String description, double price, String saleStatus, String owner, File photo,
+                String phoneNumber, String location) // this constructor is for making new post for the first time
+    {
+        this.title = title;
+        this.category = category;
+        this.description = description;
+        this.price = price;
+        this.saleStatus = saleStatus;
+        this.owner = owner;
+        this.photo = photo;
+        this.phoneNumber = phoneNumber;
+        this.location = location;
+        this.date = LocalDate.now();
+        this.EXP = LocalDate.now().plusMonths(1);
+    }
+
     public Post(String title, String postId, String category, String description,
-                double price, String saleStatus, String owner, File photo, String phoneNumber, String location)
+                double price, String saleStatus, String owner, File photo, String phoneNumber,
+                String location, LocalDate date, LocalDate EXP)// this conjecture is for making obj but not for the fist time
     {
         this.title = title;
         this.postId = postId;
@@ -33,8 +50,8 @@ public class Post
         this.photo = photo;
         this.phoneNumber = phoneNumber;
         this.location = location;
-        this.EXP = LocalDate.now().plusMonths(1);
-        this.date = LocalDate.now();
+        this.date = date;
+        this.EXP = EXP;
     }
 
 
