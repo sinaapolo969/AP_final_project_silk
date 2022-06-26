@@ -129,14 +129,14 @@ public class PageControl
         }
     }
 
-    public static void loading15(int num, int row, int column, GridPane grid, ArrayList<Post> posts)
+    public static void loading15(int num, int row, int column, GridPane grid, ArrayList<Post> posts, String name)
     {
         try
         {
             for (int i = 15 * (num - 1); i < posts.size(); i ++)
             {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(PageControl.class.getResource("/View/AdvertisePre.fxml"));
+                loader.setLocation(PageControl.class.getResource("/View/" + name + ".fxml"));
                 VBox vbox = loader.load();
 
                 AdvertisePreController adCon = loader.getController();
