@@ -48,9 +48,10 @@ public class test
         ArrayList<String> posts = postTable.getPostDataByOwner("mahdi");
         for (String post : posts) {
             JSONObject jsonObject = new JSONObject(post);
-            //long date = jsonObject.ge
+            //Date date = new Date(jsonObject.getString("date"));
             //System.out.println(date);
-            System.out.println(post);
+            //System.out.println(post);
+           // System.out.println(jsonObject.get("date"));
         }
 
 //        PostRequests postRequests = new PostRequests(socket);
