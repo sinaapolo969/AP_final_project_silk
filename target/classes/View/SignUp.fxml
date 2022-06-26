@@ -21,7 +21,7 @@
    <children>
       <ImageView fitHeight="814.0" fitWidth="1284.0" layoutX="-33.0" layoutY="-3.0" pickOnBounds="true">
          <image>
-            <Image url="@Images/shaun-patrick-kbWnCg9hza0-unsplash.jpg" />
+            <Image url="@Images/lrHome/15.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="1.0" layoutY="-3.0" prefHeight="77.0" prefWidth="1249.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
@@ -144,9 +144,9 @@
             <Insets />
          </opaqueInsets>
       </Label>
-      <JFXButton layoutX="547.0" layoutY="724.0" onAction="#logIn" text="Already Have An Account?" textFill="WHITE">
+      <JFXButton layoutX="519.0" layoutY="727.0" onAction="#logIn" text="Already Have An Account?" textFill="WHITE">
          <font>
-            <Font name="System Italic" size="12.0" />
+            <Font name="System Bold Italic" size="16.0" />
          </font>
       </JFXButton>
       <AnchorPane layoutX="1.0" layoutY="74.0" prefHeight="58.0" prefWidth="1249.0" style="-fx-background-color: white;">

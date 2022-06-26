@@ -16,21 +16,21 @@
    <children>
       <ImageView fitHeight="634.0" fitWidth="1257.0" layoutY="137.0" pickOnBounds="true">
          <image>
-            <Image url="@Images/shaun-patrick-kbWnCg9hza0-unsplash.jpg" />
+            <Image url="@Images/lrHome/7.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="320.0" layoutY="171.0" prefHeight="580.0" prefWidth="618.0" style="-fx-border-color: #83430e; -fx-border-width: 4; -fx-border-radius: 5;">
          <children>
-            <AnchorPane layoutX="44.0" layoutY="46.0" prefHeight="489.0" prefWidth="531.0" style="-fx-border-color: #83430e; -fx-border-image-width: 2; -fx-background-color: white; -fx-border-radius: 5;">
+            <AnchorPane layoutX="44.0" layoutY="46.0" prefHeight="489.0" prefWidth="531.0" style="-fx-border-color: #83430e; -fx-border-image-width: 2; -fx-background-color: white; -fx-border-radius: 5;" stylesheets="@Style/login.css">
                <children>
                   <JFXTextField fx:id="username" focusColor="#581f30" labelFloat="true" layoutX="79.0" layoutY="336.0" prefHeight="37.0" prefWidth="213.0" promptText="username" unFocusColor="#83430e" />
                   <JFXPasswordField fx:id="password" focusColor="#581f30" labelFloat="true" layoutX="77.0" layoutY="410.0" prefHeight="37.0" prefWidth="213.0" promptText="password" unFocusColor="#83430e" />
                   <ImageView fitHeight="233.0" fitWidth="434.0" layoutX="49.0" layoutY="63.0" pickOnBounds="true">
                      <image>
-                        <Image url="@Images/shaun-patrick-kbWnCg9hza0-unsplash.jpg" />
+                        <Image url="@Images/lrHome/7.jpg" />
                      </image>
                   </ImageView>
-                  <JFXButton layoutX="319.0" layoutY="345.0" onAction="#logIn" prefHeight="58.0" prefWidth="164.0" ripplerFill="#8f3939" style="-fx-background-radius: 50; -fx-border-color: #83430e;" text="Log In" textFill="#80470b">
+                  <JFXButton fx:id="log" layoutX="319.0" layoutY="345.0" onAction="#logIn" prefHeight="58.0" prefWidth="165.0" ripplerFill="#8f3939" style="-fx-background-radius: 50; -fx-border-color: #83430e;" text="Log In" textFill="#80470b">
                      <font>
                         <Font name="Yu Gothic UI Light" size="21.0" />
                      </font>
@@ -40,13 +40,13 @@
                         <Font name="PMingLiU-ExtB" size="96.0" />
                      </font>
                   </Label>
-                  <JFXButton buttonType="RAISED" layoutX="319.0" layoutY="412.0" onAction="#signUp" prefHeight="27.0" prefWidth="164.0" ripplerFill="#c01d1d" text="Or Create New Account?" textFill="#280f0fbf">
+                  <JFXButton fx:id="sign" buttonType="RAISED" layoutX="319.0" layoutY="412.0" onAction="#signUp" prefHeight="27.0" prefWidth="164.0" ripplerFill="#c01d1d" text="Or Create New Account?" textFill="#280f0fbf">
                      <font>
                         <Font name="System Italic" size="12.0" />
                      </font>
                   </JFXButton>
                   <FontAwesomeIconView fill="#83430e" glyphName="USER" layoutX="49.0" layoutY="371.0" size="20" />
-                  <FontAwesomeIconView fill="#83430e" glyphName="EXPEDITEDSSL" layoutX="50.0" layoutY="442.0" size="20" />
+                  <FontAwesomeIconView fill="#83430e" glyphName="EXPEDITEDSSL" layoutX="47.0" layoutY="445.0" size="20" />
                </children>
                <effect>
                   <DropShadow />

@@ -53,14 +53,15 @@ public class LoggedHomeMenuController implements Initializable
     }
 
     @FXML
-    void exit(ActionEvent event) {
+    void exit(ActionEvent event)
+    {
         System.exit(0);
     }
 
     @FXML
     void location(ActionEvent event) throws IOException
     {
-        PageControl.open("DashBoard");
+
     }
 
     @Override

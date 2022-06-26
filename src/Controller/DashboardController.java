@@ -1,20 +1,33 @@
 package Controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import Model.Person.User.Request;
+import Model.Post.PostRequests;
+import Network.Client;
+import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 
-public class DashboardController
+import java.net.Socket;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class DashboardController implements Initializable
 {
     @FXML
-    private Label name;
+    private Label nameTop;
 
     @FXML
-    private Label number;
+    private Circle photo;
+
+    @FXML
+    private Label userTop;
+
+    @FXML
+    private Label numberTop;
 
     @FXML
     private Label addPhoto;
@@ -29,25 +42,89 @@ public class DashboardController
     private JFXTextField price;
 
     @FXML
+    private JFXComboBox<?> category;
+
+    @FXML
     private JFXButton createAd;
 
     @FXML
-    void createAd(ActionEvent event) {
+    private JFXPasswordField oldPass;
+
+    @FXML
+    private JFXPasswordField NewPass;
+
+    @FXML
+    private JFXTextField name;
+
+    @FXML
+    private JFXTextField lastname;
+
+    @FXML
+    private JFXTextField username;
+
+    @FXML
+    private JFXTextField email;
+
+    @FXML
+    private JFXTextField number;
+
+    @FXML
+    private JFXComboBox<?> chooseCity;
+
+    @FXML
+    void addPhoto(MouseEvent event)
+    {
 
     }
 
     @FXML
-    void instagram(MouseEvent event) {
+    void createAd(ActionEvent event)
+    {
+        Client client = new Client();
+        Socket socket = client.setUp();
+        PostRequests request = new PostRequests(socket);
+//        request.;
+    }
+
+    @FXML
+    void passReset(ActionEvent event)
+    {
 
     }
 
     @FXML
-    void linkedIn(MouseEvent event) {
+    void editInfo(ActionEvent event)
+    {
 
     }
 
     @FXML
-    void twitter(MouseEvent event) {
+    void profileAdder(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    void instagram(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    void linkedIn(MouseEvent event)
+    {
+
+    }
+
+    @FXML
+    void twitter(MouseEvent event)
+    {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
 
     }
 }

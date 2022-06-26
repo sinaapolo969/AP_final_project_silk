@@ -29,6 +29,8 @@ public class HomeController implements Initializable
 {
     public static ArrayList<Post> posts = new ArrayList<>();
 
+    private int column = 0, row = 1, num = 1;
+
     public static String location;
 
     @FXML
@@ -98,10 +100,15 @@ public class HomeController implements Initializable
         timeline.play();
     }
 
+    @FXML
+    void loadMore(ActionEvent event)
+    {
+        num ++;
+        loading15(num);
+    }
+
     public void loading15(int num)
     {
-        int column = 0, row = (num * 15) - 14;
-
         try
         {
             for (int i = 15 * (num - 1); i < 15 * num; i ++)
