@@ -1,6 +1,8 @@
 package Model;
 
+import Controller.AdvertisePreController;
 import Controller.HomeController;
+import Model.Post.Post;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -11,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.FileChooser;
@@ -22,6 +25,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -130,6 +134,34 @@ public class PageControl
         else
         {
             drawer.open();
+        }
+    }
+
+    public static void loading15(int num, int row, int column, GridPane grid, ArrayList<Post> posts)
+    {
+        try
+        {
+            for (int i = 15 * (num - 1); i < posts.size(); i ++)
+            {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(PageControl.class.getResource("/View/AdvertisePre.fxml"));
+                VBox vbox = loader.load();
+
+                AdvertisePreController adCon = loader.getController();
+                adCon.setData(posts.get(i));
+
+                if (column == 3)
+                {
+                    column = 0;
+                    row ++;
+                }
+
+                grid.add(vbox, column ++, row); //child, column, row
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }

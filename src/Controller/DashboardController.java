@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.PageControl;
+import Model.Post.Post;
 import Model.Post.PostRequests;
 import Network.Client;
 import com.jfoenix.controls.*;
@@ -8,14 +10,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 
 import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable
 {
+    private int column = 0, row = 1, num = 1;
+
+    public static ArrayList<Post> bookmarks = new ArrayList<>();
+    public static ArrayList<Post> mine = new ArrayList<>();
+
+    @FXML
+    private GridPane gridBM;
+
     @FXML
     private Label nameTop;
 
@@ -124,6 +136,6 @@ public class DashboardController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        PageControl.loading15(num, row, column, gridBM, bookmarks);
     }
 }
