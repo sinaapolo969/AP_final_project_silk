@@ -9,12 +9,14 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +24,7 @@ import java.util.ResourceBundle;
 public class PostVisitController implements Initializable
 {
     Boolean bookmarked = false;
-    Post currentPost;
+    static Post currentPost;
 
     @FXML
     private Circle common;
@@ -117,7 +119,8 @@ public class PostVisitController implements Initializable
         price.setText(String.valueOf(currentPost.getPrice()));
         category.setText(currentPost.getCategory());
         description.setText(currentPost.getDescription());
-        //image.setImage(currentPost.getPhoto());
+        File file = currentPost.getPhoto();
+        image.setImage(new Image(file.toURI().toString()));
         number.setText(currentPost.getPhoneNumber());
         owner.setText(currentPost.getOwner());
         title.setText(currentPost.getTitle());
