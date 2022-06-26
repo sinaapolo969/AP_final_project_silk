@@ -1,9 +1,9 @@
 package Controller;
 
+import Model.Main;
 import Model.PageControl;
 import Model.Post.Post;
 import Model.Post.PostRequests;
-import Network.Client;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -18,7 +18,6 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -67,12 +66,10 @@ public class HomeController implements Initializable
         //loading advertises
         try
         {
-            Client client = new Client();
-            Socket socket = client.setUp();
-            PostRequests request = new PostRequests(socket);
-            //posts = request.getPostByLocation("Chicago");
+            PostRequests request = new PostRequests(Main.socket);
+            posts = request.getPostByLocation("Chicago", num);
 
-            PageControl.loading15(num, row, column, grid, posts);
+            PageControl.loading15(num, row, column, grid, posts, "AdvertisePre");
         }
         catch (Exception e)
         {
@@ -84,7 +81,7 @@ public class HomeController implements Initializable
 
     private void timelineImages()
     {
-        Image one = new Image("View/Images/lrHome/a.jpg");
+        Image one = new Image("View/Images/lrHome/13.jpg");
         Image two = new Image("View/Images/lrHome/7.jpg");
         Image three = new Image("View/Images/lrHome/12.jpg");
         Image four = new Image("View/Images/lrHome/2.jpg");
@@ -104,7 +101,7 @@ public class HomeController implements Initializable
     void loadMore(ActionEvent event)
     {
         num ++;
-        PageControl.loading15(num, row, column, grid, posts);
+        PageControl.loading15(num, row, column, grid, posts, "AdvertisePre");
     }
 
     @FXML

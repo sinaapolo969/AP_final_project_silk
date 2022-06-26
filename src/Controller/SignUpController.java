@@ -8,7 +8,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,17 +16,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import static Model.Main.cities;
 import static java.lang.System.out;
 
 public class SignUpController implements Initializable
@@ -189,15 +184,6 @@ public class SignUpController implements Initializable
         this.profile = file;
         Image image = new Image("/View/Images/user.png");
         photo.setFill(new ImagePattern(image));
-
-        ArrayList<String> cities = new ArrayList<>();
-        cities.add("Chicago");
-        cities.add("NewYork");
-        cities.add("Washington");
-        cities.add("Seattle");
-        cities.add("San Francisco");
-        cities.add("Miami");
-        cities.add("Orlando");
 
         city.getItems().addAll(cities);
     }

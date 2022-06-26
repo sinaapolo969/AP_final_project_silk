@@ -135,7 +135,7 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <JFXButton fx:id="bk" onAction="#bookmark" prefHeight="27.0" prefWidth="80.0" style="-fx-border-color: #787878;" stylesheets="@Style/post.css" text="BookMark" textFill="#787878">
+                        <JFXButton fx:id="bk" onAction="#bookmark" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #787878;" stylesheets="@Style/post.css" text="BookMark" textFill="#787878">
                            <HBox.margin>
                               <Insets right="15.0" />
                            </HBox.margin>
@@ -150,7 +150,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="594.0" style="-fx-background-color: white;">
                            <children>
-                              <Label layoutX="144.0" layoutY="428.0" text="Contact Information :">
+                              <Label layoutX="144.0" layoutY="428.0" text="Contact Information :" textFill="#702727">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="26.0" />
                                  </font>
@@ -165,21 +165,36 @@
                               </Label>
                               <FontAwesomeIconView fill="#847b7b" glyphName="COPY" layoutX="329.0" layoutY="498.0" onMouseClicked="#copy" size="25" wrappingWidth="29.999998211860657" />
                               <FontAwesomeIconView glyphName="PHONE" layoutX="113.0" layoutY="453.0" size="30" />
-                              <JFXTextArea fx:id="description" editable="false" labelFloat="true" layoutX="34.0" layoutY="105.0" prefHeight="311.0" prefWidth="396.0" promptText="Description :">
+                              <JFXTextArea fx:id="description" editable="false" labelFloat="true" layoutX="34.0" layoutY="149.0" prefHeight="267.0" prefWidth="396.0">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="19.0" />
                                  </font>
                               </JFXTextArea>
-                              <JFXTextField fx:id="category" editable="false" layoutX="23.0" layoutY="37.0" prefHeight="36.0" prefWidth="222.0" promptText="Category :">
+                              <JFXTextField fx:id="category" editable="false" layoutX="20.0" layoutY="73.0" prefHeight="36.0" prefWidth="187.0">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="19.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="price" editable="false" layoutX="241.0" layoutY="37.0" prefHeight="36.0" prefWidth="206.0" promptText="Price : ">
+                              <JFXTextField fx:id="price" editable="false" layoutX="266.0" layoutY="73.0" prefHeight="36.0" prefWidth="187.0">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="19.0" />
                                  </font>
                               </JFXTextField>
+                              <Label layoutX="20.0" layoutY="47.0" text="Category:" textFill="#884747">
+                                 <font>
+                                    <Font name="Sitka Banner Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="266.0" layoutY="47.0" text="Price:" textFill="#884747">
+                                 <font>
+                                    <Font name="Sitka Banner Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="28.0" layoutY="123.0" text="Description:" textFill="#884747">
+                                 <font>
+                                    <Font name="Sitka Banner Bold" size="23.0" />
+                                 </font>
+                              </Label>
                            </children></AnchorPane>
                     </content>
                      <graphic>

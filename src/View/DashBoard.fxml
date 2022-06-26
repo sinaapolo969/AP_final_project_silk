@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,7 +23,7 @@
    <children>
       <AnchorPane layoutX="-2.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
          <children>
-            <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/11zon_cropped.png" />
                </image>
@@ -44,18 +45,22 @@
       </AnchorPane>
       <AnchorPane layoutX="-1.0" layoutY="77.0" prefHeight="230.0" prefWidth="1252.0" style="-fx-background-color: #503838;" stylesheets="@Style/DashBoard.css">
          <children>
-            <Label fx:id="nameTop" alignment="CENTER" layoutX="501.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" text="Hasan Nazir" textFill="WHITE">
+            <ImageView fitHeight="230.0" fitWidth="1252.0" opacity="0.31" pickOnBounds="true">
+               <image>
+                  <Image url="@Images/14.jpg" />
+               </image></ImageView>
+            <Label fx:id="nameTop" alignment="CENTER" layoutX="501.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" textFill="WHITE">
                <font>
                   <Font name="Sitka Banner" size="23.0" />
                </font>
             </Label>
             <Circle fx:id="photo" fill="#c7c7c7" layoutX="620.0" layoutY="96.0" radius="81.0" stroke="#aa8b8b" strokeType="INSIDE" />
-            <Label fx:id="userTop" layoutX="1015.0" layoutY="177.0" prefHeight="34.0" prefWidth="208.0" text="\@shdjsndgsdg" textFill="WHITE">
+            <Label fx:id="username" layoutX="1015.0" layoutY="177.0" prefHeight="34.0" prefWidth="208.0" textFill="WHITE">
                <font>
                   <Font name="Sitka Banner" size="23.0" />
                </font>
             </Label>
-            <Label fx:id="numberTop" layoutX="182.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" text="38928359245" textFill="WHITE">
+            <Label fx:id="numberTop" layoutX="182.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="23.0" />
                </font>
@@ -70,11 +75,12 @@
                   <Font name="Sitka Banner" size="23.0" />
                </font>
             </Label>
-            <Label fx:id="addPhoto" alignment="CENTER" layoutX="667.0" layoutY="125.0" onMouseClicked="#profileAdder" prefHeight="34.0" prefWidth="41.0" style="-fx-background-radius: 100;" stylesheets="@Style/DashBoard.css" text="+&#10;" textFill="WHITE">
+            <Label fx:id="addPhoto1" alignment="CENTER" layoutX="667.0" layoutY="125.0" onMouseClicked="#profileAdder" prefHeight="34.0" prefWidth="41.0" style="-fx-background-radius: 100;" stylesheets="@Style/DashBoard.css" text="+&#10;" textFill="WHITE">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
+            <FontAwesomeIconView fx:id="back" fill="#18334b" glyphName="ARROW_CIRCLE_LEFT" layoutX="11.0" layoutY="34.0" onMouseClicked="#back" size="40" />
          </children>
       </AnchorPane>
       <JFXTabPane layoutY="307.0" prefHeight="464.0" prefWidth="1252.0" stylesheets="@Style/DashBoard.css">
@@ -83,7 +89,7 @@
                <content>
                   <AnchorPane prefHeight="25.0" prefWidth="1252.0">
                      <children>
-                        <ScrollPane layoutX="-1.0" layoutY="-1.0" prefHeight="405.0" prefWidth="1252.0">
+                        <ScrollPane hbarPolicy="NEVER" layoutX="-1.0" layoutY="-1.0" prefHeight="405.0" prefWidth="1252.0">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                                  <children>
@@ -106,7 +112,7 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <GridPane layoutY="-7.0">
+                                    <GridPane fx:id="gridEdit" layoutY="-7.0">
                                        <rowConstraints>
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
@@ -121,7 +127,7 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="270.0" fitWidth="262.0" layoutX="69.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="advertisement" fitHeight="270.0" fitWidth="262.0" layoutX="69.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/ad2.png" />
                            </image>
@@ -142,43 +148,29 @@
                         </JFXButton>
                      </children></AnchorPane>
                </content></Tab>
-            <Tab text="Reset Password">
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
-                     <children>
-                        <ImageView fitHeight="295.0" fitWidth="309.0" layoutX="300.0" layoutY="46.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@Images/security.gif" />
-                           </image>
-                        </ImageView>
-                        <JFXPasswordField fx:id="oldPass" labelFloat="true" layoutX="727.0" layoutY="72.0" prefHeight="47.0" prefWidth="331.0" promptText="Old Password" />
-                        <JFXPasswordField fx:id="NewPass" labelFloat="true" layoutX="727.0" layoutY="170.0" prefHeight="47.0" prefWidth="332.0" promptText="New Password" />
-                        <JFXButton layoutX="727.0" layoutY="275.0" onAction="#passReset" prefHeight="58.0" prefWidth="332.0" style="-fx-border-color: #18334b;" stylesheets="@Style/DashBoard.css" text="Reset">
-                           <font>
-                              <Font name="Serif Regular" size="20.0" />
-                           </font></JFXButton>
-                     </children></AnchorPane>
-               </content></Tab>
             <Tab text="Edit Info">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <JFXTextField fx:id="name" labelFloat="true" layoutX="97.0" layoutY="64.0" prefHeight="43.0" prefWidth="263.0" promptText="name" />
-                        <JFXTextField fx:id="lastname" labelFloat="true" layoutX="97.0" layoutY="158.0" prefHeight="43.0" prefWidth="263.0" promptText="lastname" />
-                        <JFXTextField fx:id="username" labelFloat="true" layoutX="97.0" layoutY="265.0" prefHeight="43.0" prefWidth="263.0" promptText="username" />
-                        <JFXTextField fx:id="email" labelFloat="true" layoutX="480.0" layoutY="64.0" prefHeight="43.0" prefWidth="263.0" promptText="email" />
-                        <JFXTextField fx:id="number" labelFloat="true" layoutX="480.0" layoutY="166.0" prefHeight="43.0" prefWidth="263.0" promptText="phone number" />
-                        <JFXComboBox fx:id="chooseCity" layoutX="478.0" layoutY="274.0" prefHeight="34.0" prefWidth="268.0" promptText="Choose City" />
-                        <JFXButton layoutX="791.0" layoutY="346.0" onAction="#editInfo" prefHeight="58.0" prefWidth="460.0" style="-fx-border-color: #18334b;" stylesheets="@Style/DashBoard.css" text="Done">
+                        <JFXTextField fx:id="name" labelFloat="true" layoutX="86.0" layoutY="65.0" prefHeight="43.0" prefWidth="263.0" promptText="name" />
+                        <JFXTextField fx:id="lastname" labelFloat="true" layoutX="86.0" layoutY="154.0" prefHeight="43.0" prefWidth="263.0" promptText="lastname" />
+                        <JFXTextField fx:id="email" labelFloat="true" layoutX="919.0" layoutY="151.0" prefHeight="43.0" prefWidth="263.0" promptText="email" />
+                        <JFXTextField fx:id="number" labelFloat="true" layoutX="919.0" layoutY="243.0" prefHeight="43.0" prefWidth="263.0" promptText="phone number" />
+                        <JFXComboBox fx:id="chooseCity" layoutX="83.0" layoutY="252.0" prefHeight="34.0" prefWidth="268.0" promptText="Choose City" />
+                        <JFXButton layoutX="453.0" layoutY="307.0" onAction="#editInfo" prefHeight="58.0" prefWidth="344.0" style="-fx-border-color: #18334b;" stylesheets="@Style/DashBoard.css" text="Done">
                            <font>
                               <Font name="Serif Regular" size="22.0" />
                            </font>
                         </JFXButton>
-                        <ImageView fitHeight="346.0" fitWidth="460.0" layoutX="791.0" pickOnBounds="true">
+                        <ImageView fitHeight="307.0" fitWidth="343.0" layoutX="453.0" pickOnBounds="true">
                            <image>
                               <Image url="@Images/comp_1.gif" />
                            </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </ImageView>
+                        <JFXPasswordField fx:id="pass" layoutX="915.0" layoutY="68.0" prefHeight="40.0" prefWidth="274.0" promptText="password" />
                      </children></AnchorPane>
                </content></Tab>
          </tabs>
