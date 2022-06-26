@@ -1,9 +1,9 @@
 package Controller;
 
-import Model.Main;
 import Model.PageControl;
 import Model.Post.Post;
 import Model.Post.PostRequests;
+import Network.Client;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -66,7 +67,9 @@ public class HomeController implements Initializable
         //loading advertises
         try
         {
-            PostRequests request = new PostRequests(Main.socket);
+            Client client = new Client();
+            Socket socket = client.setUp();
+            PostRequests request = new PostRequests(socket);
             posts = request.getPostByLocation("Chicago", num);
 
             PageControl.loading15(num, row, column, grid, posts, "AdvertisePre");

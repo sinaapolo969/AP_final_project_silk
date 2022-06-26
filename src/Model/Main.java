@@ -22,7 +22,7 @@ public class Main extends Application
     public static void main(String[] args)
     {
         Client client = new Client();
-        //socket = client.setUp();
+        socket = client.setUp();
         cities();
         launch(args);
     }
