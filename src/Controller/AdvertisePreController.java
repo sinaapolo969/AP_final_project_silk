@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.PageControl;
 import Model.Post.Post;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +11,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
+import java.io.IOException;
 
 public class AdvertisePreController
 {
-    private Post currentPost;
+    public Post currentPost;
 
     @FXML
     public ImageView image;
@@ -39,7 +41,14 @@ public class AdvertisePreController
     @FXML
     void detail(ActionEvent event)
     {
-
+        try
+        {
+            PostVisitController.currentPost = currentPost;
+            PageControl.open("PostVisit");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

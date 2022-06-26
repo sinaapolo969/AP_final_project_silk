@@ -136,6 +136,8 @@ public class DashboardController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        PostRequests postRequests = new PostRequests(new Client().setUp());
+        bookmarks = postRequests.gettingBookmarks(LoggedHomeController.currentUser.getUserName());
         PageControl.loading15(num, row, column, gridBM, bookmarks);
     }
 }

@@ -140,6 +140,7 @@ public class PageControl
                 VBox vbox = loader.load();
 
                 AdvertisePreController adCon = loader.getController();
+                adCon.currentPost = posts.get(i);
                 adCon.setData(posts.get(i));
 
                 if (column == 3)
