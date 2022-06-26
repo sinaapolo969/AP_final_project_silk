@@ -165,17 +165,17 @@
                               </Label>
                               <FontAwesomeIconView fill="#847b7b" glyphName="COPY" layoutX="329.0" layoutY="498.0" onMouseClicked="#copy" size="25" wrappingWidth="29.999998211860657" />
                               <FontAwesomeIconView glyphName="PHONE" layoutX="113.0" layoutY="453.0" size="30" />
-                              <JFXTextArea fx:id="description" editable="false" labelFloat="true" layoutX="34.0" layoutY="149.0" prefHeight="267.0" prefWidth="396.0">
+                              <JFXTextArea fx:id="description" editable="false" focusColor="#3c3d3f" layoutX="34.0" layoutY="149.0" prefHeight="267.0" prefWidth="396.0">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="19.0" />
                                  </font>
                               </JFXTextArea>
-                              <JFXTextField fx:id="category" editable="false" layoutX="20.0" layoutY="73.0" prefHeight="36.0" prefWidth="187.0">
+                              <JFXTextField fx:id="category" editable="false" focusColor="#505153" layoutX="20.0" layoutY="73.0" prefHeight="36.0" prefWidth="187.0">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="19.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="price" editable="false" layoutX="266.0" layoutY="73.0" prefHeight="36.0" prefWidth="187.0">
+                              <JFXTextField fx:id="price" editable="false" focusColor="#3d3e41" layoutX="266.0" layoutY="73.0" prefHeight="36.0" prefWidth="187.0">
                                  <font>
                                     <Font name="Sitka Banner Bold" size="19.0" />
                                  </font>
@@ -218,7 +218,7 @@
                               <Label alignment="CENTER" layoutX="365.0" layoutY="487.0" prefHeight="42.0" prefWidth="69.0" />
                               <AnchorPane layoutX="-4.0" layoutY="-4.0" prefHeight="70.0" prefWidth="496.0" style="-fx-background-color: #522D2DFF;">
                                  <children>
-                                    <Circle fx:id="profile" layoutX="43.0" layoutY="35.0" radius="21.0" strokeType="INSIDE">
+                                    <Circle fx:id="seller" layoutX="43.0" layoutY="35.0" radius="21.0" strokeType="INSIDE">
                                        <fill>
                                           <LinearGradient endX="1.0" endY="1.0">
                                              <stops>
@@ -236,7 +236,7 @@
                                           </LinearGradient>
                                        </stroke>
                                     </Circle>
-                                    <Label fx:id="owner" layoutX="74.0" layoutY="20.0" prefHeight="30.0" prefWidth="401.0" textFill="#ddd1d1">
+                                    <Label fx:id="name" layoutX="74.0" layoutY="20.0" prefHeight="30.0" prefWidth="401.0" textFill="#ddd1d1">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
@@ -259,7 +259,7 @@
                            </children></AnchorPane>
                     </content>
                      <graphic>
-                        <FontAwesomeIconView fx:id="icon" glyphName="WECHAT" rotate="270.0" size="40" text="">
+                        <FontAwesomeIconView fx:id="icon1" glyphName="WECHAT" rotate="270.0" size="40" text="">
                            <effect>
                               <ColorAdjust />
                            </effect></FontAwesomeIconView>

@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.io.File;
@@ -27,10 +29,13 @@ public class PostVisitController implements Initializable
     static Post currentPost;
 
     @FXML
-    private Circle common;
+    private Circle profile;
 
     @FXML
     private JFXTextField search;
+
+    @FXML
+    private Label notifs;
 
     @FXML
     private JFXDrawer leftDrawer;
@@ -39,13 +44,13 @@ public class PostVisitController implements Initializable
     private ImageView image;
 
     @FXML
-    private JFXButton bk;
-
-    @FXML
     private Label title;
 
     @FXML
     private Label owner;
+
+    @FXML
+    private JFXButton bk;
 
     @FXML
     private Label number;
@@ -58,6 +63,19 @@ public class PostVisitController implements Initializable
 
     @FXML
     private JFXTextField price;
+
+    @FXML
+    private FontAwesomeIconView icon;
+
+    @FXML
+    private Circle seller;
+
+    @FXML
+    private Label name;
+
+    @FXML
+    private FontAwesomeIconView icon1;
+
 
     @FXML
     void copy(MouseEvent event)
@@ -124,5 +142,9 @@ public class PostVisitController implements Initializable
         number.setText(currentPost.getPhoneNumber());
         owner.setText(currentPost.getOwner());
         title.setText(currentPost.getTitle());
+        file = currentPost.getPhoto();
+        Image image = new Image(file.toURI().toString());
+        seller.setFill(new ImagePattern(image));
+        name.setText(currentPost.getOwner());
     }
 }
