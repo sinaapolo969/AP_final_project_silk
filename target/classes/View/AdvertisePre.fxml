@@ -13,7 +13,7 @@
 <VBox fx:id="advertise" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#ad" prefHeight="498.0" prefWidth="411.0" style="-fx-background-radius: 50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdvertisePreController">
    <children>
       <ImageView fx:id="image" fitHeight="266.0" fitWidth="329.0" pickOnBounds="true" />
-      <Label fx:id="title" prefHeight="69.0" prefWidth="338.0">
+      <Label fx:id="title" prefHeight="69.0" prefWidth="389.0">
          <font>
             <Font name="Sitka Banner Bold" size="25.0" />
          </font>
@@ -25,7 +25,7 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="owner" prefHeight="30.0" prefWidth="161.0" textFill="#696262">
+            <Label fx:id="owner" prefHeight="30.0" prefWidth="149.0" textFill="#696262">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -34,7 +34,7 @@
                   <Font name="System Italic" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="price" layoutX="10.0" layoutY="29.0" prefHeight="30.0" prefWidth="82.0" textFill="#696262">
+            <Label fx:id="price" layoutX="10.0" layoutY="29.0" prefHeight="30.0" prefWidth="139.0" textFill="#696262">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
