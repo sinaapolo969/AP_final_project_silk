@@ -57,36 +57,26 @@
       </AnchorPane>
       <HBox layoutY="127.0" prefHeight="509.0" prefWidth="268.0">
          <children>
-            <VBox fx:id="icons" prefHeight="509.0" prefWidth="41.0" style="-fx-background-color: #48556b;">
+            <VBox fx:id="icons" prefHeight="509.0" prefWidth="46.0" style="-fx-background-color: #48556b;">
                <children>
-                  <FontAwesomeIconView glyphName="TH_LARGE" size="40" wrappingWidth="40.595197677612305">
+                  <FontAwesomeIconView glyphName="TH_LARGE" size="35" wrappingWidth="40.595197677612305">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="5.0" top="23.0" />
+                        <Insets bottom="30.0" left="10.0" right="5.0" top="20.0" />
                      </VBox.margin>
                   </FontAwesomeIconView>
-                  <FontAwesomeIconView glyphName="BOOKMARK" size="30">
+                  <FontAwesomeIconView glyphName="BOOKMARK" size="35">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="10.0" top="30.0" />
+                        <Insets bottom="35.0" left="10.0" top="20.0" />
                      </VBox.margin>
                   </FontAwesomeIconView>
-                  <FontAwesomeIconView glyphName="CAMERA" size="30" wrappingWidth="39.52376842498779">
+                  <FontAwesomeIconView glyphName="MAP_MARKER" size="35">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="5.0" top="30.0" />
-                     </VBox.margin>
-                  </FontAwesomeIconView>
-                  <FontAwesomeIconView glyphName="MAP_MARKER" size="40">
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="5.0" top="26.0" />
-                     </VBox.margin>
-                  </FontAwesomeIconView>
-                  <FontAwesomeIconView glyphName="GEARS" size="35">
-                     <VBox.margin>
-                        <Insets bottom="25.0" left="5.0" top="26.0" />
+                        <Insets bottom="30.0" left="15.0" top="20.0" />
                      </VBox.margin>
                   </FontAwesomeIconView>
                   <FontAwesomeIconView glyphName="POWER_OFF" size="35">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="10.0" top="28.0" />
+                        <Insets bottom="20.0" left="10.0" right="5.0" top="20.0" />
                      </VBox.margin>
                   </FontAwesomeIconView>
                </children>
@@ -94,36 +84,26 @@
                   <Insets />
                </HBox.margin>
             </VBox>
-            <VBox fx:id="menu" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="219.0" style="-fx-background-color: #f3f0ed;" stylesheets="@Style/menu.css">
+            <VBox fx:id="menu" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="214.0" style="-fx-background-color: #f3f0ed;" stylesheets="@Style/menu.css">
                <children>
                   <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="159.0" onAction="#dashboard" prefHeight="84.0" prefWidth="223.0" ripplerFill="#9c3a3aab" text="My DashBoard">
                      <font>
-                        <Font name="Simple Bold Jut Out" size="20.0" />
+                        <Font name="Serif Regular" size="22.0" />
                      </font>
                   </JFXButton>
                   <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="360.0" onAction="#bookmark" prefHeight="85.0" prefWidth="223.0" ripplerFill="#9c3b3bad" text="BookMarks">
                      <font>
-                        <Font name="Simple Bold Jut Out" size="20.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="417.0" onAction="#advertise" prefHeight="84.0" prefWidth="223.0" ripplerFill="#9c3a3aad" text="Advertise">
-                     <font>
-                        <Font name="Simple Bold Jut Out" size="20.0" />
+                        <Font name="Serif Regular" size="22.0" />
                      </font>
                   </JFXButton>
                   <JFXButton alignment="BASELINE_LEFT" onAction="#location" prefHeight="85.0" prefWidth="223.0" ripplerFill="#9c3b3bad" text="Change City">
                      <font>
-                        <Font name="Simple Bold Jut Out" size="20.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="210.0" onAction="#setting" prefHeight="85.0" prefWidth="223.0" ripplerFill="#9c3a3aad" text="Setting">
-                     <font>
-                        <Font name="Simple Bold Jut Out" size="20.0" />
+                        <Font name="Serif Regular" size="22.0" />
                      </font>
                   </JFXButton>
                   <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="331.0" onAction="#exit" prefHeight="85.0" prefWidth="223.0" ripplerFill="#9c3b3bad" text="Exit">
                      <font>
-                        <Font name="Simple Bold Jut Out" size="20.0" />
+                        <Font name="Serif Regular" size="22.0" />
                      </font>
                   </JFXButton>
                </children>

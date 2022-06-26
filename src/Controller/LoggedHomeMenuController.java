@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.PageControl;
 import Model.Person.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,19 +41,15 @@ public class LoggedHomeMenuController implements Initializable
     private VBox menu;
 
     @FXML
-    void advertise(ActionEvent event)
+    void bookmark(ActionEvent event) throws IOException
     {
-
+        PageControl.open("DashBoard");
     }
 
     @FXML
-    void bookmark(ActionEvent event) {
-
-    }
-
-    @FXML
-    void dashboard(ActionEvent event) {
-
+    void dashboard(ActionEvent event) throws IOException
+    {
+        PageControl.open("DashBoard");
     }
 
     @FXML
@@ -60,13 +58,9 @@ public class LoggedHomeMenuController implements Initializable
     }
 
     @FXML
-    void location(ActionEvent event) {
-
-    }
-
-    @FXML
-    void setting(ActionEvent event) {
-
+    void location(ActionEvent event) throws IOException
+    {
+        PageControl.open("DashBoard");
     }
 
     @Override

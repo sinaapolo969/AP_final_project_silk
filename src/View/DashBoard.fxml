@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -43,18 +44,18 @@
       </AnchorPane>
       <AnchorPane layoutX="-1.0" layoutY="77.0" prefHeight="230.0" prefWidth="1252.0" style="-fx-background-color: #503838;" stylesheets="@Style/DashBoard.css">
          <children>
-            <Label fx:id="name" alignment="CENTER" layoutX="501.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" text="Hasan Nazir" textFill="WHITE">
+            <Label fx:id="nameTop" alignment="CENTER" layoutX="501.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" text="Hasan Nazir" textFill="WHITE">
                <font>
                   <Font name="Sitka Banner" size="23.0" />
                </font>
             </Label>
-            <Circle fill="#c7c7c7" layoutX="620.0" layoutY="96.0" radius="81.0" stroke="#aa8b8b" strokeType="INSIDE" />
-            <Label layoutX="1015.0" layoutY="177.0" prefHeight="34.0" prefWidth="208.0" text="\@shdjsndgsdg" textFill="WHITE">
+            <Circle fx:id="photo" fill="#c7c7c7" layoutX="620.0" layoutY="96.0" radius="81.0" stroke="#aa8b8b" strokeType="INSIDE" />
+            <Label fx:id="userTop" layoutX="1015.0" layoutY="177.0" prefHeight="34.0" prefWidth="208.0" text="\@shdjsndgsdg" textFill="WHITE">
                <font>
                   <Font name="Sitka Banner" size="23.0" />
                </font>
             </Label>
-            <Label fx:id="number" layoutX="182.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" text="38928359245" textFill="WHITE">
+            <Label fx:id="numberTop" layoutX="182.0" layoutY="177.0" prefHeight="34.0" prefWidth="239.0" text="38928359245" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="23.0" />
                </font>
@@ -67,6 +68,11 @@
             <Label alignment="CENTER" layoutX="886.0" layoutY="177.0" prefHeight="34.0" prefWidth="129.0" text="UserName :" textFill="WHITE">
                <font>
                   <Font name="Sitka Banner" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="addPhoto" alignment="CENTER" layoutX="667.0" layoutY="125.0" onMouseClicked="#profileAdder" prefHeight="34.0" prefWidth="41.0" style="-fx-background-radius: 100;" stylesheets="@Style/DashBoard.css" text="+&#10;" textFill="WHITE">
+               <font>
+                  <Font size="28.0" />
                </font>
             </Label>
          </children>
@@ -120,7 +126,7 @@
                               <Image url="@Images/ad2.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="addPhoto" alignment="CENTER" layoutX="261.0" layoutY="256.0" prefHeight="58.0" prefWidth="58.0" style="-fx-background-radius: 100;" stylesheets="@Style/DashBoard.css" text="+&#10;" textFill="WHITE">
+                        <Label fx:id="addPhoto" alignment="CENTER" layoutX="261.0" layoutY="256.0" onMouseClicked="#addPhoto" prefHeight="58.0" prefWidth="58.0" style="-fx-background-radius: 100;" stylesheets="@Style/DashBoard.css" text="+&#10;" textFill="WHITE">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -128,7 +134,7 @@
                         <JFXTextField fx:id="title" labelFloat="true" layoutX="386.0" layoutY="44.0" prefHeight="42.0" prefWidth="266.0" promptText="Title" />
                         <JFXTextArea fx:id="description" labelFloat="true" layoutX="386.0" layoutY="130.0" prefHeight="192.0" prefWidth="275.0" promptText="Description" />
                         <JFXTextField fx:id="price" labelFloat="true" layoutX="804.0" layoutY="44.0" prefHeight="43.0" prefWidth="266.0" promptText="Price" />
-                        <JFXComboBox labelFloat="true" layoutX="806.0" layoutY="142.0" prefHeight="42.0" prefWidth="263.0" promptText="Choose Category ..." />
+                        <JFXComboBox fx:id="category" labelFloat="true" layoutX="806.0" layoutY="142.0" prefHeight="42.0" prefWidth="263.0" promptText="Choose Category ..." />
                         <JFXButton fx:id="createAd" layoutX="800.0" layoutY="252.0" onAction="#createAd" prefHeight="67.0" prefWidth="275.0" style="-fx-border-color: #18334b;" text="Create Advertisement">
                            <font>
                               <Font name="Serif Regular" size="23.0" />
@@ -138,11 +144,42 @@
                </content></Tab>
             <Tab text="Reset Password">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <ImageView fitHeight="295.0" fitWidth="309.0" layoutX="300.0" layoutY="46.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@Images/security.gif" />
+                           </image>
+                        </ImageView>
+                        <JFXPasswordField fx:id="oldPass" labelFloat="true" layoutX="727.0" layoutY="72.0" prefHeight="47.0" prefWidth="331.0" promptText="Old Password" />
+                        <JFXPasswordField fx:id="NewPass" labelFloat="true" layoutX="727.0" layoutY="170.0" prefHeight="47.0" prefWidth="332.0" promptText="New Password" />
+                        <JFXButton layoutX="727.0" layoutY="275.0" onAction="#passReset" prefHeight="58.0" prefWidth="332.0" style="-fx-border-color: #18334b;" stylesheets="@Style/DashBoard.css" text="Reset">
+                           <font>
+                              <Font name="Serif Regular" size="20.0" />
+                           </font></JFXButton>
+                     </children></AnchorPane>
                </content></Tab>
             <Tab text="Edit Info">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <JFXTextField fx:id="name" labelFloat="true" layoutX="97.0" layoutY="64.0" prefHeight="43.0" prefWidth="263.0" promptText="name" />
+                        <JFXTextField fx:id="lastname" labelFloat="true" layoutX="97.0" layoutY="158.0" prefHeight="43.0" prefWidth="263.0" promptText="lastname" />
+                        <JFXTextField fx:id="username" labelFloat="true" layoutX="97.0" layoutY="265.0" prefHeight="43.0" prefWidth="263.0" promptText="username" />
+                        <JFXTextField fx:id="email" labelFloat="true" layoutX="480.0" layoutY="64.0" prefHeight="43.0" prefWidth="263.0" promptText="email" />
+                        <JFXTextField fx:id="number" labelFloat="true" layoutX="480.0" layoutY="166.0" prefHeight="43.0" prefWidth="263.0" promptText="phone number" />
+                        <JFXComboBox fx:id="chooseCity" layoutX="478.0" layoutY="274.0" prefHeight="34.0" prefWidth="268.0" promptText="Choose City" />
+                        <JFXButton layoutX="791.0" layoutY="346.0" onAction="#editInfo" prefHeight="58.0" prefWidth="460.0" style="-fx-border-color: #18334b;" stylesheets="@Style/DashBoard.css" text="Done">
+                           <font>
+                              <Font name="Serif Regular" size="22.0" />
+                           </font>
+                        </JFXButton>
+                        <ImageView fitHeight="346.0" fitWidth="460.0" layoutX="791.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@Images/comp_1.gif" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
                </content></Tab>
          </tabs>
       </JFXTabPane>

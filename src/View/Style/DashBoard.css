@@ -10,7 +10,7 @@
     -fx-background-color : #18334b;
 }
 
-#createAd:hover
+.jfx-button:hover
 {
     -fx-background-color: #234a65;
     -fx-text-fill: white;
