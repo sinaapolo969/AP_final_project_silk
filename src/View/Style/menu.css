@@ -1,6 +1,6 @@
 #info
 {
-    -fx-background-color: #48556b;
+    -fx-background-color: #4f2e2e;
     -fx-background-radius: 0 60 60 0;
 }
 
@@ -27,7 +27,7 @@ VBox
 
 #icons
 {
-    -fx-background-color: #bbbaba;
+    -fx-fill: white;
 }
 
 AnchorPane
