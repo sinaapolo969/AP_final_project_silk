@@ -1,5 +1,7 @@
 package DataBase;
 
+import org.json.JSONObject;
+
 import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -43,8 +45,13 @@ public class test
 //        Client client = new Client();
 //        Socket socket = client.setUp();
         PostTable postTable = new PostTable();
-        ArrayList<String> posts = postTable.getPostByLocation("yazd");
-        System.out.println(posts.get(0));
+        ArrayList<String> posts = postTable.getPostDataByOwner("mahdi");
+        for (String post : posts) {
+            JSONObject jsonObject = new JSONObject(post);
+            //long date = jsonObject.ge
+            //System.out.println(date);
+            System.out.println(post);
+        }
 
 //        PostRequests postRequests = new PostRequests(socket);
 //        ArrayList<Post> posts = postRequests.getPostByOwner("sina");
