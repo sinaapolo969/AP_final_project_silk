@@ -2,6 +2,7 @@ package DataBase;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class test
 {
@@ -37,8 +38,10 @@ public class test
     {
 
         PostTable postTable = new PostTable();
-        for (int i = 0; i < 15; i++) {
-            postTable.insertPostData(json3, "D:/final project/postPhotos/meow.jpg");
+        ArrayList<String> posts = postTable.getPostByLocation("Chicago", 1);
+        for (String s: posts)
+        {
+            System.out.println(s);
         }
 
 

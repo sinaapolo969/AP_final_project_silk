@@ -275,11 +275,12 @@ public class ClientHandler extends Thread
         ArrayList<String> posts = null;
         try
         {
-            posts = postTable.getPostByCategory(category);
+            int num = dataInputStream.readInt();
+            posts = postTable.getPostByCategory(category, num);
             postTable.close();
             sendMultiPosts(posts);
         }
-        catch (SQLException e)
+        catch (SQLException | IOException e)
         {
             e.printStackTrace();
         }
@@ -293,11 +294,12 @@ public class ClientHandler extends Thread
         ArrayList<String> posts = null;
         try
         {
-            posts = postTable.getPostDataByOwner(userName);
+            int num = dataInputStream.readInt();
+            posts = postTable.getPostDataByOwner(userName, num);
             postTable.close();
             sendMultiPosts(posts);
         }
-        catch (SQLException e)
+        catch (SQLException | IOException e)
         {
             e.printStackTrace();
         }
@@ -310,11 +312,12 @@ public class ClientHandler extends Thread
         ArrayList<String> posts = null;
         try
         {
-            posts = postTable.getPostByLocation(location);
+            int num = dataInputStream.readInt();
+            posts = postTable.getPostByLocation(location, num);
             postTable.close();
             sendMultiPosts(posts);
         }
-        catch (SQLException e)
+        catch (SQLException | IOException e)
         {
             e.printStackTrace();
         }
@@ -326,11 +329,12 @@ public class ClientHandler extends Thread
         ArrayList<String> posts = null;
         try
         {
-            posts = postTable.getBookMarks(userName);
+            int num = dataInputStream.readInt();
+            posts = postTable.getBookMarks(userName, num);
             postTable.close();
             sendMultiPosts(posts);
         }
-        catch (SQLException e)
+        catch (SQLException | IOException e)
         {
             e.printStackTrace();
         }
@@ -350,6 +354,33 @@ public class ClientHandler extends Thread
             dataOutputStream.writeUTF("EXIT");
         }
         catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void editPostInfo(String jsonString)
+    {
+        PostTable postTable = new PostTable();
+        try
+        {
+            postTable.updatePostData(jsonString);
+            postTable.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deletePostData(String postId)
+    {
+        PostTable postTable = new PostTable();
+        try
+        {
+            postTable.deletePost(postId);
+            postTable.close();
+        }
+        catch (SQLException e)
         {
             e.printStackTrace();
         }
