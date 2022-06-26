@@ -177,7 +177,7 @@ public class PostRequests
         }
     }
 
-    public static void receiveProfilePhoto(String path, DataInputStream dataInputStream)
+    public void receiveProfilePhoto(String path, DataInputStream dataInputStream)
     {
         int bytes = 0;
         File file = new File(path);
@@ -193,6 +193,28 @@ public class PostRequests
             }
             fileOutputStream.close();
         }catch(IOException e){
+            System.err.println(e.getMessage());
+        }
+    }
+
+    private void sendPostPhoto(String path, DataOutputStream dataOutputStream) {
+        try
+        {
+            int bytes = 0;
+            File file = new File(path);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            dataOutputStream.writeUTF(file.getName().substring(file.getName().indexOf(".")));
+            dataOutputStream.writeLong(file.length());
+            byte[] buffer = new byte[4 * 1024];
+            while ((bytes = fileInputStream.read(buffer)) != -1)
+            {
+                dataOutputStream.write(buffer, 0, bytes);
+                dataOutputStream.flush();
+            }
+            fileInputStream.close();
+        }
+        catch (IOException e)
+        {
             System.err.println(e.getMessage());
         }
     }
