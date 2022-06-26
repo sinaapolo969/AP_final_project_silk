@@ -9,10 +9,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
+import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,16 +32,7 @@ public class DashboardController implements Initializable
     private GridPane gridBM;
 
     @FXML
-    private Label nameTop;
-
-    @FXML
     private Circle photo;
-
-    @FXML
-    private Label userTop;
-
-    @FXML
-    private Label numberTop;
 
     @FXML
     private Label addPhoto;
@@ -59,10 +53,7 @@ public class DashboardController implements Initializable
     private JFXButton createAd;
 
     @FXML
-    private JFXPasswordField oldPass;
-
-    @FXML
-    private JFXPasswordField NewPass;
+    private JFXPasswordField pass;
 
     @FXML
     private JFXTextField name;
@@ -80,7 +71,7 @@ public class DashboardController implements Initializable
     private JFXTextField number;
 
     @FXML
-    private JFXComboBox<?> chooseCity;
+    private JFXComboBox<String> chooseCity;
 
     @FXML
     void addPhoto(MouseEvent event)
@@ -116,21 +107,21 @@ public class DashboardController implements Initializable
     }
 
     @FXML
-    void instagram(MouseEvent event)
+    void instagram(MouseEvent event) throws IOException
     {
-
+        PageControl.instagram();
     }
 
     @FXML
-    void linkedIn(MouseEvent event)
+    void linkedIn(MouseEvent event) throws IOException
     {
-
+        PageControl.linkedIn();
     }
 
     @FXML
-    void twitter(MouseEvent event)
+    void twitter(MouseEvent event) throws IOException
     {
-
+        PageControl.twitter();
     }
 
     @Override
@@ -139,5 +130,24 @@ public class DashboardController implements Initializable
         PostRequests postRequests = new PostRequests(new Client().setUp());
         bookmarks = postRequests.gettingBookmarks(LoggedHomeController.currentUser.getUserName());
         PageControl.loading15(num, row, column, gridBM, bookmarks);
+
+        //user profile in the top of the page and edit info page
+        Image image = new Image(LoggedHomeController.currentUser.getProfile().toURI().toString());
+        photo.setFill(new ImagePattern(image));
+
+        name.setText(LoggedHomeController.currentUser.getFirstName() + " " +
+                LoggedHomeController.currentUser.getLastName());
+
+        chooseCity.setValue(LoggedHomeController.currentUser.getLocation());
+
+        lastname.setText(LoggedHomeController.currentUser.getLastName());
+
+        username.setText(LoggedHomeController.currentUser.getUserName());
+
+        number.setText(LoggedHomeController.currentUser.getPhoneNumber());
+
+        email.setText(LoggedHomeController.currentUser.getEmail());
+
+        pass.setText(LoggedHomeController.currentUser.getPassword());
     }
 }
