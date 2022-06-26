@@ -82,6 +82,9 @@ public class ClientHandler extends Thread
                         fileType = dataInputStream.readUTF();
                         path = "D:/final project/postPhotos/" + jsonObject.getString("postId") + fileType;
                         makeNewPost(postData, path);
+                    case 7:
+                        userName = dataInputStream.readUTF();
+                        getUserBookMarks(userName);
                     case 0:
                         return;
                 }
@@ -317,7 +320,7 @@ public class ClientHandler extends Thread
         }
     }
 
-    private ArrayList<String> getUserBookMarks(String userName)
+    private void getUserBookMarks(String userName)
     {
         PostTable postTable = new PostTable();
         ArrayList<String> posts = null;
@@ -325,13 +328,12 @@ public class ClientHandler extends Thread
         {
             posts = postTable.getBookMarks(userName);
             postTable.close();
+            sendMultiPosts(posts);
         }
         catch (SQLException e)
         {
             e.printStackTrace();
         }
-
-        return posts;
     }
 
     private void sendMultiPosts(ArrayList<String> posts)
