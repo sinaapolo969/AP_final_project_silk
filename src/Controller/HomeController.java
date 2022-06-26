@@ -1,9 +1,8 @@
 package Controller;
 
-import Model.Main;
 import Model.PageControl;
+import Model.Person.User.Request;
 import Model.Post.Post;
-import Model.Post.PostRequests;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -26,7 +25,8 @@ import java.util.logging.Logger;
 
 public class HomeController implements Initializable
 {
-    public static ArrayList<Post> posts = new ArrayList<>();
+    public static ArrayList<Post> posts = Request.getPostByLocation("Chicago", 1);
+
 
     private int column = 0, row = 1, num = 1;
 
@@ -66,9 +66,6 @@ public class HomeController implements Initializable
         //loading advertises
         try
         {
-            PostRequests request = new PostRequests(Main.socket);
-            posts = request.getPostByLocation("Chicago", num);
-
             PageControl.loading15(num, row, column, grid, posts, "AdvertisePre");
         }
         catch (Exception e)

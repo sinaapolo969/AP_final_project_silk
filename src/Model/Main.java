@@ -1,5 +1,6 @@
 package Model;
 
+import Model.Person.User.Request;
 import Network.Client;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -9,10 +10,8 @@ import java.util.ArrayList;
 
 public class Main extends Application
 {
-    public static Socket socket;
-
     public static ArrayList<String> cities = new ArrayList<>();
-
+    public static Socket socket;
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -22,7 +21,7 @@ public class Main extends Application
     public static void main(String[] args)
     {
         Client client = new Client();
-        socket = client.setUp();
+        Request request = new Request(client.setUp());
         cities();
         launch(args);
     }

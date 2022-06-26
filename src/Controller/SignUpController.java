@@ -3,7 +3,6 @@ package Controller;
 import Model.PageControl;
 import Model.Person.User.Request;
 import Model.Person.User.User;
-import Network.Client;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXPasswordField;
@@ -18,7 +17,6 @@ import javafx.scene.shape.Circle;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -123,10 +121,8 @@ public class SignUpController implements Initializable
             {
                 User user = new User(username.getText(), pass.getText(), name.getText(), lastName.getText(),
                         number.getText(), email.getText(), city.getValue(), profile);
-                Client client = new Client();
-                Socket socket = client.setUp();
-                Request request = new Request(socket);
-                request.signUp(user);
+
+                Request.signUp(user);
             }
 
         }

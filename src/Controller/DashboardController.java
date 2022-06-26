@@ -4,8 +4,6 @@ import Model.Main;
 import Model.PageControl;
 import Model.Person.User.Request;
 import Model.Post.Post;
-import Model.Post.PostRequests;
-import Network.Client;
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,8 +28,9 @@ public class DashboardController implements Initializable
     private int columnE = 0, rowE = 1, numE = 1;
 
     public static ArrayList<Post> bookmarks = new ArrayList<>();
-    public static ArrayList<Post> mine = new ArrayList<>();
+    public static ArrayList<Post> mine = Request.getPostByOwner(LoggedHomeController.currentUser.getUserName(), 1);
     File advertise = new File("View/Images/ad2.png");
+    File profile = LoggedHomeController.currentUser.getProfile();
 
     @FXML
     private GridPane gridBM;
@@ -103,13 +102,10 @@ public class DashboardController implements Initializable
     @FXML
     void createAd(ActionEvent event)
     {
-//        Post newPost = new Post(title.getText(), ,category.getValue(), description.getText(),
-//                price.getText(), "true", LoggedHomeController.currentUser.getUserName(), advertise,
-//                LoggedHomeController.currentUser.getPhoneNumber(), LoggedHomeController.currentUser.getLocation())
-//        Client client = new Client();
-//        Socket socket = client.setUp();
-//        PostRequests request = new PostRequests(socket);
-//        request.makingPost(newPost);
+        Post newPost = new Post(title.getText() ,category.getValue(), description.getText(),
+                Double.parseDouble(price.getText()), "0", LoggedHomeController.currentUser.getUserName(), advertise,
+                LoggedHomeController.currentUser.getPhoneNumber(), LoggedHomeController.currentUser.getLocation());
+        Request.makingPost(newPost);
     }
 
     @FXML
@@ -122,26 +118,22 @@ public class DashboardController implements Initializable
         LoggedHomeController.currentUser.setEmail(email.getText());
         LoggedHomeController.currentUser.setPassword(pass.getText());
 
-        Request request = new Request(Main.socket);
-
-        request.editInfo(LoggedHomeController.currentUser);
+        Request.editInfo(LoggedHomeController.currentUser);
     }
 
     @FXML
     void profileAdder(MouseEvent event)
     {
-        File file = PageControl.fileChoose();
-        Image image = new Image(file.toURI().toString());
-        LoggedHomeController.currentUser.setProfile(file);
-
-        Request request = new Request(Main.socket);
-        request.editInfo(LoggedHomeController.currentUser);
+        profile = PageControl.fileChoose();
+        Image image = new Image(profile.toURI().toString());
+        LoggedHomeController.currentUser.setProfile(profile);
+        photo.setFill(new ImagePattern(image));
     }
 
     @FXML
     void back(MouseEvent event) throws IOException
     {
-        PageControl.open("LoggedHomeMenu");
+        PageControl.open("LoggedHome");
     }
 
     @FXML
@@ -166,14 +158,13 @@ public class DashboardController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         //bookmarks tab
-        PostRequests postRequests = new PostRequests(new Client().setUp());
 
-        bookmarks = postRequests.gettingBookmarks(LoggedHomeController.currentUser.getUserName(), 1);
+        bookmarks = Request.gettingBookmarks(LoggedHomeController.currentUser.getUserName(), 1);
         PageControl.loading15(numB, rowB, columnB, gridBM, bookmarks, "AdvertisePre");
 
         //my advertisements tab
-        bookmarks = postRequests.getPostByOwner(LoggedHomeController.currentUser.getUserName(), 1);
-        PageControl.loading15(numE, rowE, columnE, gridEdit, mine, "editPost");
+//        mine = Request.getPostByOwner(LoggedHomeController.currentUser.getUserName(), 1);
+        PageControl.loading15(numE, rowE, columnE, gridEdit, mine, "AdvertisePre");
 
         //user profile in the top of the page and edit info page
         Image image = new Image(LoggedHomeController.currentUser.getProfile().toURI().toString());

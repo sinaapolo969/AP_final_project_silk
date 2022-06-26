@@ -5,13 +5,13 @@ import java.net.Socket;
 
 public class Client
 {
-    private Socket socket;
+    public static Socket socket;
 
     public Socket setUp()
     {
         try
         {
-            socket = new Socket("127.0.0.1", 6666);
+            socket = new Socket("localhost", 6666);
             //we should call the launch method here and send the requests for server
         }
         catch (IOException e)

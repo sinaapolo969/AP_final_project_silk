@@ -2,7 +2,6 @@ package Controller;
 
 import Model.PageControl;
 import Model.Person.User.Request;
-import Network.Client;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -12,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -56,18 +54,15 @@ public class LoginController implements Initializable
     @FXML
     private void logIn(ActionEvent event) throws IOException
     {
-        Client client = new Client();
-        Socket socket = client.setUp();
-        Request request = new Request(socket);
 
-        if (request.login(username.getText(), password.getText()) == null)
+        if (Request.login(username.getText(), password.getText()) == null)
         {
 
         }
         else
         {
-            LoggedHomeController.currentUser = request.login(username.getText(), password.getText());
-            LoggedHomeMenuController.currentUser = request.login(username.getText(), password.getText());
+            LoggedHomeController.currentUser = Request.login(username.getText(), password.getText());
+            LoggedHomeMenuController.currentUser = Request.login(username.getText(), password.getText());
             PageControl.open("LoggedHome");
         }
     }
