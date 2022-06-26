@@ -174,11 +174,11 @@ public class DashboardController implements Initializable
         //bookmarks tab
         PostRequests postRequests = new PostRequests(new Client().setUp());
         bookmarks = postRequests.gettingBookmarks(LoggedHomeController.currentUser.getUserName());
-        PageControl.loading15(numB, rowB, columnB, gridBM, bookmarks);
+        PageControl.loading15(numB, rowB, columnB, gridBM, bookmarks, "AdvertisePre");
 
         //my advertisements tab
         bookmarks = postRequests.getPostByOwner(LoggedHomeController.currentUser.getUserName());
-        PageControl.loading15(numE, rowE, columnE, gridEdit, mine);
+        PageControl.loading15(numE, rowE, columnE, gridEdit, mine, "editPost");
 
         //user profile in the top of the page and edit info page
         Image image = new Image(LoggedHomeController.currentUser.getProfile().toURI().toString());

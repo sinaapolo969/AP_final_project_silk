@@ -73,7 +73,7 @@ public class HomeController implements Initializable
             PostRequests request = new PostRequests(socket);
             posts = request.getPostByLocation("Chicago");
 
-            PageControl.loading15(num, row, column, grid, posts);
+            PageControl.loading15(num, row, column, grid, posts, "AdvertisePre");
         }
         catch (Exception e)
         {
@@ -105,7 +105,7 @@ public class HomeController implements Initializable
     void loadMore(ActionEvent event)
     {
         num ++;
-        PageControl.loading15(num, row, column, grid, posts);
+        PageControl.loading15(num, row, column, grid, posts, "AdvertisePre");
     }
 
     @FXML
