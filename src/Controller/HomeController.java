@@ -112,7 +112,7 @@ public class HomeController implements Initializable
     {
         try
         {
-            for (int i = 15 * (num - 1); i < 15 * num; i ++)
+            for (int i = 15 * (num - 1); i < posts.size(); i ++)
             {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/View/AdvertisePre.fxml"));

@@ -78,7 +78,6 @@ public class Request
     public User login(String inputUserName, String inputPassWord)
     {
         User receivedUser = existenceOfUser(inputUserName, inputPassWord);
-
         return receivedUser;
     }
 
