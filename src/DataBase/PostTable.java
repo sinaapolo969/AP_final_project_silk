@@ -63,49 +63,49 @@ public class PostTable extends DbHandler
     }
 
 
-    public void deletePost(String userName) throws SQLException
+    public void deletePost(String postId) throws SQLException
     {
-        String query = "delete from posts where owner = ?";
+        String query = "delete from posts where postId = ?";
         preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, userName);
+        preparedStatement.setString(1, postId);
         preparedStatement.executeUpdate();
     }
 
-    public ArrayList<String> getPostDataByOwner(String userName) throws SQLException
+    public ArrayList<String> getPostDataByOwner(String userName, int number) throws SQLException
     {
         String query = "select * from posts where owner = ?";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
 
-        return convertDataToArrayJsonString(preparedStatement);
+        return convertDataToArrayJsonString(preparedStatement, number);
     }
 
-    public ArrayList<String> getPostByCategory(String category) throws SQLException
+    public ArrayList<String> getPostByCategory(String category, int number) throws SQLException
     {
         String query = "select * from posts where category = ?";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, category);
 
-        return convertDataToArrayJsonString(preparedStatement);
+        return convertDataToArrayJsonString(preparedStatement, number);
     }
 
-    public ArrayList<String> getPostByCategoryAndLocation(String category, String location) throws SQLException
+    public ArrayList<String> getPostByCategoryAndLocation(String category, String location, int number) throws SQLException
     {
         String query = "select * from posts where category = ? and location = ? order by date";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, category);
         preparedStatement.setString(2, location);
 
-        return convertDataToArrayJsonString(preparedStatement);
+        return convertDataToArrayJsonString(preparedStatement, number);
     }
 
-    public ArrayList<String> getPostByLocation(String location) throws SQLException
+    public ArrayList<String> getPostByLocation(String location, int number) throws SQLException
     {
         String query = "select * from posts where location = ? order by date";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, location);
 
-        return convertDataToArrayJsonString(preparedStatement);
+        return convertDataToArrayJsonString(preparedStatement, number);
     }
 
     private String getOwnerPhoneNumber(String owner) throws SQLException
@@ -124,14 +124,14 @@ public class PostTable extends DbHandler
     }
 
 
-    private ArrayList<String> convertDataToArrayJsonString(PreparedStatement preparedStatement1) throws SQLException
+    private ArrayList<String> convertDataToArrayJsonString(PreparedStatement preparedStatement1, int number) throws SQLException
     {
         ResultSet resultSet = preparedStatement1.executeQuery();
         ArrayList<String> posts = new ArrayList<>();
         int counter = 0;
         while (resultSet.next())
         {
-            if (counter >= 15)
+            if (counter * number >= 15)
             {
                 break;
             }
@@ -163,17 +163,17 @@ public class PostTable extends DbHandler
     }
 
     //this method is for return posts that bookmarked from a user
-    public ArrayList<String> getBookMarks(String userName) throws SQLException
+    public ArrayList<String> getBookMarks(String userName, int number) throws SQLException
     {
         String query = "select * from posts inner join bookmarks on posts.postId = bookmarks.postId where bookmarks.userName = ? order by date";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
 
-        return convertDataToArrayJsonString(preparedStatement);
+        return convertDataToArrayJsonString(preparedStatement, number);
     }
 
     //this method returns posts with specified filter
-    public ArrayList<String> getFilteredPriceAndLocationPost(String min, String max, String location) throws SQLException
+    public ArrayList<String> getFilteredPriceAndLocationPost(String min, String max, String location, int number) throws SQLException
     {
         String query = "select * from posts where price between ? and ? and location = ? order by date";
         preparedStatement = connection.prepareStatement(query);
@@ -181,20 +181,21 @@ public class PostTable extends DbHandler
         preparedStatement.setString(2, max);
         preparedStatement.setString(3, location);
 
-        return convertDataToArrayJsonString(preparedStatement);
+        return convertDataToArrayJsonString(preparedStatement, number);
     }
 
-    public ArrayList<String> getFilteredPricePost(String min, String max) throws SQLException
+    public ArrayList<String> getFilteredPricePost(String min, String max, int number) throws SQLException
     {
         String query = "select * from posts where price between ? and ? order by date";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, min);
         preparedStatement.setString(2, max);
 
-        return convertDataToArrayJsonString(preparedStatement);
+        return convertDataToArrayJsonString(preparedStatement, number);
     }
 
-    public ArrayList<String> getFilteredPriceAndLocationAndCategory(String min, String max, String location, String category) throws SQLException
+    public ArrayList<String> getFilteredPriceAndLocationAndCategory(String min, String max, String location
+            , String category, int number) throws SQLException
     {
         String query = "select * from posts where price between ? and ? and location = ? and category = ? order by date";
         preparedStatement = connection.prepareStatement(query);
@@ -203,7 +204,7 @@ public class PostTable extends DbHandler
         preparedStatement.setString(3, location);
         preparedStatement.setString(4, category);
 
-        return convertDataToArrayJsonString(preparedStatement);
+        return convertDataToArrayJsonString(preparedStatement, number);
     }
 
 

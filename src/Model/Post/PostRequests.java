@@ -44,13 +44,14 @@ public class PostRequests
         }
     }
 
-    public ArrayList<Post> gettingBookmarks (String username)
+    public ArrayList<Post> gettingBookmarks (String username, int number)
     {
         ArrayList<Post> bookMarkedPosts = new ArrayList<>();
         try
         {
             dataOutputStream.writeInt(7);
             dataOutputStream.writeUTF(username);
+            dataOutputStream.writeInt(number);
             bookMarkedPosts = gettingPostsFromDataBase();
         }
         catch (IOException e)
@@ -104,12 +105,13 @@ public class PostRequests
         return jsonString;
     }
 
-    public ArrayList<Post> getPostByOwner(String userName)
+    public ArrayList<Post> getPostByOwner(String userName, int number)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try {
             dataOutputStream.write(3);
             dataOutputStream.writeUTF(userName);
+            dataOutputStream.writeInt(number);
             posts = gettingPostsFromDataBase();
         }
         catch (IOException e)
@@ -153,12 +155,13 @@ public class PostRequests
         return posts;
     }
 
-    public ArrayList<Post> getPostByCategory(String category)
+    public ArrayList<Post> getPostByCategory(String category, int number)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try {
             dataOutputStream.write(4);
             dataOutputStream.writeUTF(category);
+            dataOutputStream.writeInt(number);
             posts = gettingPostsFromDataBase();
         }
         catch (IOException e)
@@ -169,12 +172,13 @@ public class PostRequests
         return posts;
     }
 
-    public ArrayList<Post> getPostByLocation (String location)
+    public ArrayList<Post> getPostByLocation (String location, int number)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try {
             dataOutputStream.writeInt(5);
             dataOutputStream.writeUTF(location);
+            dataOutputStream.writeInt(number);
             posts = gettingPostsFromDataBase();
         }
         catch (IOException e)

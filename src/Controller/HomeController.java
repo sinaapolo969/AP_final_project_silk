@@ -15,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -71,7 +70,7 @@ public class HomeController implements Initializable
             Client client = new Client();
             Socket socket = client.setUp();
             PostRequests request = new PostRequests(socket);
-            posts = request.getPostByLocation("Chicago");
+            //posts = request.getPostByLocation("Chicago");
 
             PageControl.loading15(num, row, column, grid, posts);
         }
