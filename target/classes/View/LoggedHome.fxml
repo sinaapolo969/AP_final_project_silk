@@ -12,97 +12,102 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="home" prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoggedHomeController">
+
+<StackPane fx:id="stack" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoggedHomeController">
    <children>
-      <ScrollPane hbarPolicy="NEVER" layoutX="13.0" layoutY="152.0" prefHeight="649.0" prefWidth="1246.0" style="-fx-background-color: white;">
-         <content>
-            <VBox prefHeight="631.0" prefWidth="1249.0">
-               <children>
-                  <Label prefHeight="72.0" prefWidth="1224.0" text="Latest Advertises" textFill="#8b7f7f">
-                     <font>
-                        <Font name="Sitka Banner Bold Italic" size="52.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="25.0" left="25.0" top="50.0" />
-                     </VBox.margin>
-                  </Label>
-                  <GridPane fx:id="grid">
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                     </rowConstraints>
-                  </GridPane>
-                  <HBox fx:id="pages" alignment="CENTER" prefHeight="126.0" prefWidth="1248.0" spacing="5.0">
-                     <VBox.margin>
-                        <Insets bottom="75.0" top="25.0" />
-                     </VBox.margin>
+      <AnchorPane fx:id="home" prefHeight="769.0" prefWidth="1249.0">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" layoutY="135.0" prefHeight="666.0" prefWidth="1259.0" style="-fx-background-color: white;">
+               <content>
+                  <VBox prefHeight="631.0" prefWidth="1244.0">
                      <children>
-                        <JFXButton onAction="#loadMore" prefHeight="67.0" prefWidth="300.0" style="-fx-border-color: black;" text="Load More">
+                        <Label prefHeight="58.0" prefWidth="1219.0" text="Latest Advertises" textFill="#8b7f7f">
                            <font>
-                              <Font name="Sitka Banner Italic" size="26.0" />
+                              <Font name="Sitka Banner Bold Italic" size="52.0" />
                            </font>
-                        </JFXButton>
+                           <VBox.margin>
+                              <Insets bottom="25.0" left="25.0" top="50.0" />
+                           </VBox.margin>
+                        </Label>
+                        <GridPane fx:id="grid">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                        <HBox fx:id="pages" alignment="CENTER" prefHeight="126.0" prefWidth="1241.0" spacing="5.0">
+                           <VBox.margin>
+                              <Insets bottom="75.0" top="25.0" />
+                           </VBox.margin>
+                           <children>
+                              <JFXButton onAction="#loadMore" prefHeight="67.0" prefWidth="300.0" style="-fx-border-color: black;" text="Load More">
+                                 <font>
+                                    <Font name="Sitka Banner Italic" size="26.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutY="135.0" prefHeight="634.0" prefWidth="266.0" />
+            <AnchorPane prefHeight="77.0" prefWidth="1259.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;" stylesheets="@Style/IconHomeTab.css">
+               <children>
+                  <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/11zon_cropped.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="91.0" layoutY="28.0" text="The Road To Your Comfort" textFill="#cbc4ab">
+                     <font>
+                        <Font name="Book Antiqua Italic" size="17.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#d9cfcf" glyphName="LINKEDIN_SQUARE" layoutX="1192.0" layoutY="46.0" onMouseClicked="#linkedIn" size="25" />
+                  <FontAwesomeIconView fill="#d9cfcf" glyphName="INSTAGRAM" layoutX="1157.0" layoutY="46.0" onMouseClicked="#instagram" size="25" text="" />
+                  <FontAwesomeIconView fill="#d9cfcf" glyphName="TWITTER_SQUARE" layoutX="1118.0" layoutY="46.0" onMouseClicked="#twitter" size="25" text="" />
+                  <Label layoutX="935.0" layoutY="26.0" prefHeight="22.0" prefWidth="165.0" text="Contact Us On Our Social Medias" textFill="#efefef">
+                     <font>
+                        <Font name="Bookman Old Style Bold Italic" size="9.0" />
+                     </font>
+                  </Label>
                </children>
-            </VBox>
-         </content>
-      </ScrollPane>
-      <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutY="135.0" prefHeight="634.0" prefWidth="266.0" />
-      <JFXDrawer fx:id="filter" direction="TOP" layoutX="228.0" layoutY="127.0" prefHeight="428.0" prefWidth="704.0" />
-      <AnchorPane layoutX="9.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
-         <children>
-            <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/11zon_cropped.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="91.0" layoutY="28.0" text="The Road To Your Comfort" textFill="#cbc4ab">
-               <font>
-                  <Font name="Book Antiqua Italic" size="17.0" />
-               </font>
-            </Label>
-            <FontAwesomeIconView fill="#d9cfcf" glyphName="LINKEDIN_SQUARE" layoutX="1192.0" layoutY="46.0" onMouseClicked="#linkedIn" size="25" />
-            <FontAwesomeIconView fill="#d9cfcf" glyphName="INSTAGRAM" layoutX="1157.0" layoutY="46.0" onMouseClicked="#instagram" size="25" text="" />
-            <FontAwesomeIconView fill="#d9cfcf" glyphName="TWITTER_SQUARE" layoutX="1118.0" layoutY="46.0" onMouseClicked="#twitter" size="25" text="" />
-            <Label layoutX="935.0" layoutY="26.0" prefHeight="22.0" prefWidth="165.0" text="Contact Us On Our Social Medias" textFill="#efefef">
-               <font>
-                  <Font name="Bookman Old Style Bold Italic" size="9.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="9.0" layoutY="77.0" prefHeight="58.0" prefWidth="1254.0" style="-fx-background-color: white;" stylesheets="@Style/HomeTab.css">
-         <children>
-            <FontAwesomeIconView fill="#a8a49ed9" glyphName="REORDER" layoutX="24.0" layoutY="38.0" onMouseClicked="#menu" size="30" text="" wrappingWidth="30.66673105955124" />
-            <Circle fx:id="profile" layoutX="1209.0" layoutY="29.0" onMouseClicked="#userMenu" radius="26.0" stroke="WHITE" strokeType="INSIDE">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#748d8f" />
-                        <Stop color="#dd7474" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Circle>
-            <FontAwesomeIconView fill="#743f3f" glyphName="BELL_ALT" layoutX="1113.0" layoutY="39.0" size="30" text="" />
-            <FontAwesomeIconView fill="#623e3e" glyphName="SEARCH" layoutX="923.0" layoutY="34.0" size="20" />
-            <Label alignment="CENTER" layoutX="1133.0" layoutY="27.0" prefHeight="21.0" prefWidth="21.0" style="-fx-background-color: #603c40; -fx-background-radius: 100;" text="3" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
-            <JFXButton buttonType="RAISED" layoutX="226.0" layoutY="9.0" onAction="#search" prefHeight="37.0" prefWidth="687.0" text="choose your prefered filters ">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </JFXButton>
+            </AnchorPane>
+            <AnchorPane layoutY="77.0" prefHeight="58.0" prefWidth="1259.0" style="-fx-background-color: white;" stylesheets="@Style/HomeTab.css">
+               <children>
+                  <FontAwesomeIconView fill="#a8a49ed9" glyphName="REORDER" layoutX="24.0" layoutY="38.0" onMouseClicked="#menu" size="30" text="" wrappingWidth="30.66673105955124" />
+                  <Circle fx:id="profile" layoutX="1209.0" layoutY="29.0" onMouseClicked="#userMenu" radius="26.0" stroke="WHITE" strokeType="INSIDE">
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#748d8f" />
+                              <Stop color="#dd7474" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Circle>
+                  <FontAwesomeIconView fill="#743f3f" glyphName="BELL_ALT" layoutX="1113.0" layoutY="39.0" size="30" text="" />
+                  <Label alignment="CENTER" layoutX="1133.0" layoutY="27.0" prefHeight="21.0" prefWidth="21.0" style="-fx-background-color: #603c40; -fx-background-radius: 100;" text="3" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <JFXButton buttonType="RAISED" layoutX="276.0" layoutY="9.0" onAction="#search" prefHeight="37.0" prefWidth="637.0" text="choose your prefered filters ">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <FontAwesomeIconView fill="#623e3e" glyphName="SEARCH" layoutX="254.0" layoutY="33.0" size="20" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

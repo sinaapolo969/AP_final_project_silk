@@ -1,13 +1,3 @@
-.glyph-icon:hover
-{
-    -fx-fill: #ffffff;
-}
-
-.glyph-icon
-{
-    -fx-background-color: #d9cfcf;
-}
-
 .jfx-button
 {
     -fx-border-radius: 30;
