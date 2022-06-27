@@ -1,10 +1,9 @@
 package DataBase;
 
-import Model.Person.User.Request;
-import Model.Person.User.User;
 import Network.Client;
 
 import java.io.*;
+import java.net.Socket;
 import java.sql.SQLException;
 
 public class test
@@ -37,6 +36,13 @@ public class test
             "  \"photo\": \"something\",\n" +
             "  \"date\": 2022-04-8" +
             "}";
+
+    static String message = "{\n " +
+            "  \"chatId\": \"34\", \n " +
+            "  \"sender\": \"sina\", \n" +
+            "  \"receiver\": \"mahdiA\", \n" +
+            "  \"text\": \"salam\", \n " +
+            "  \"dateTime\": \"2022-06-28 12:54:51\" \n } ";
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException
     {
 
@@ -47,9 +53,14 @@ public class test
 //            System.out.println(s);
 //        }
 
-        Request request = new Request(new Client().setUp());
-        Request.editInfo(new User("sina", "1234", "sina", "tayebi",
-                "09167287588", "sinaapolo969@gmail.com", "Chicago", new File("D:/new.png")));
+//        Request request = new Request(new Client().setUp());
+//        Request.editInfo(new User("sina", "1234", "sina", "tayebi",
+//                "09167287588", "sinaapolo969@gmail.com", "Chicago", new File("D:/new.png")));
+//        PostTable postTable = new PostTable();
+//        ArrayList<String> message = postTable.getConversation("30", "sina", "mahdiA");
+//        for (String sss : message) {
+//            System.out.println(sss);
+//        }
        // PostTable postTable = new PostTable();
 //        for (int i = 0; i < 10; i++)
 //        {
@@ -120,6 +131,56 @@ public class test
 //
 //        System.out.println(posts.get(0).getPrice());
 //        dataOutputStream.writeInt(0);
+
+        Socket socket = Client.chatSetUp();
+        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        dataOutputStream.writeUTF("sina");
+        dataOutputStream.flush();
+        Thread sendMessage = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                String message = test.message;
+                while (true)
+                {
+                    try {
+                        dataOutputStream.writeUTF(message);
+                        dataOutputStream.flush();
+                        Thread.currentThread().join();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        Thread receiveMessage = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                String received;
+                while (true)
+                {
+                    try {
+                        received = dataInputStream.readUTF();
+                        System.out.println(received);
+                        Thread.currentThread().join();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
+        receiveMessage.start();
+        sendMessage.start();
 
 
     }

@@ -6,8 +6,8 @@ import java.net.Socket;
 public class Client
 {
     public static Socket socket;
-
-    public Socket setUp()
+    public static Socket chatSocket;
+    public static Socket setUp()
     {
         try
         {
@@ -20,6 +20,16 @@ public class Client
         }
 
         return socket;
+    }
+
+    public static Socket chatSetUp()
+    {
+        try {
+            chatSocket = new Socket("localhost", 5056);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return chatSocket;
     }
 
     public void logOut()

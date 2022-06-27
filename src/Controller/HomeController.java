@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 
 public class HomeController implements Initializable
 {
-    public static ArrayList<Post> posts = Request.getPostByLocation("Chicago");
+    public static ArrayList<Post> posts = new ArrayList<>();
 
 
     private int column = 0, row = 1, num = 1;
@@ -77,6 +77,7 @@ public class HomeController implements Initializable
         }
 
         //left drawer initializing
+        posts = Request.getPostByLocation("Chicago");
         PageControl.initialDrawer("HomeMenu", leftDrawer);
 
         //loading advertises

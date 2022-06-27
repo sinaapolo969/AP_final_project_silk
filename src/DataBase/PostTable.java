@@ -3,10 +3,7 @@ package DataBase;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class PostTable extends DbHandler
@@ -199,6 +196,46 @@ public class PostTable extends DbHandler
         preparedStatement.setString(4, category);
 
         return convertDataToArrayJsonString(preparedStatement);
+    }
+
+    public void saveMessage(String jsonString) throws SQLException
+    {
+        String query = "insert into conversations (chatId, sender, receiver, message, dateTime) " +
+                "values (?, ?, ?, ?, ?)";
+        preparedStatement = connection.prepareStatement(query);
+        JSONObject jsonObject = new JSONObject(jsonString);
+        preparedStatement.setInt(1, jsonObject.getInt("chatId"));
+        preparedStatement.setString(2, jsonObject.getString("sender"));
+        preparedStatement.setString(3, jsonObject.getString("receiver"));
+        preparedStatement.setString(4, jsonObject.getString("text"));
+        preparedStatement.setString(5, jsonObject.getString("dateTime"));
+        preparedStatement.executeUpdate();
+    }
+
+    //for getting the conversation of the post between specified users
+    public ArrayList<String> getConversation(String postId, String userName1, String userName2) throws SQLException
+    {
+        ArrayList<String> messages = new ArrayList<>();
+
+        String query = "select * from conversations inner join posts on conversations.sender = ? and conversations.receiver = ? or " +
+                "conversations.sender = ? and conversations.receiver = ? where posts.postId = ?";
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, userName1);
+        preparedStatement.setString(2, userName2);
+        preparedStatement.setString(3, userName2);
+        preparedStatement.setString(4, userName1);
+        preparedStatement.setString(5, postId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next())
+        {
+            String jsonString = "{\n \"text\": " + "\"" + resultSet.getString("message") + "\"" + ",\n" + "\"sender\": " +
+                    "\"" + resultSet.getString("sender") + "\"" + ",\n" + "\"receiver\": " + "\"" +
+                    resultSet.getString("receiver") + "\"" +
+                    ",\n" + "\"dateTime\": " + "\"" + resultSet.getString("dateTime") + "\"" + "\n}";
+            messages.add(jsonString);
+        }
+
+        return messages;
     }
 
 
