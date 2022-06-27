@@ -2,6 +2,7 @@ package Model.Post;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.Date;
 
 
 public class Post
@@ -38,7 +39,7 @@ public class Post
 
     public Post(String title, String postId, String category, String description,
                 double price, String saleStatus, String owner, File photo, String phoneNumber,
-                String location, LocalDate date, LocalDate EXP)// this conjecture is for making obj but not for the fist time
+                String location, LocalDate date)// this conjecture is for making obj but not for the fist time
     {
         this.title = title;
         this.postId = postId;
@@ -51,9 +52,8 @@ public class Post
         this.phoneNumber = phoneNumber;
         this.location = location;
         this.date = date;
-        this.EXP = EXP;
+        this.EXP = date.plusMonths(1);
     }
-
 
     public String getTitle()
     {

@@ -108,7 +108,7 @@ public class PostRequests
     {
         ArrayList<Post> posts = new ArrayList<>();
         try {
-            dataOutputStream.write(3);
+            dataOutputStream.writeInt(3);
             dataOutputStream.writeUTF(userName);
             posts = gettingPostsFromDataBase();
         }
@@ -137,8 +137,7 @@ public class PostRequests
                         Double.parseDouble(jsonObject.getString("price")), jsonObject.getString("sold"),
                         jsonObject.getString("owner"), file, jsonObject.getString("phoneNumber"),
                         jsonObject.getString("location"),
-                        convertingStringToDate(jsonObject.getString("date")),
-                        convertingStringToDate(jsonObject.getString("date")).plusMonths(1));
+                        convertingStringToDate(jsonObject.getString("date")));
                 posts.add(post);
                 receiveProfilePhoto(file);
             }
@@ -159,7 +158,7 @@ public class PostRequests
     {
         ArrayList<Post> posts = new ArrayList<>();
         try {
-            dataOutputStream.write(4);
+            dataOutputStream.writeInt(4);
             dataOutputStream.writeUTF(category);
             posts = gettingPostsFromDataBase();
         }
@@ -198,7 +197,7 @@ public class PostRequests
     private void sendingPostForDeleting(String postID)
     {
         try {
-            dataOutputStream.write(8);
+            dataOutputStream.writeInt(8);
             dataOutputStream.writeUTF(postID);
         } catch (IOException e) {
             e.printStackTrace();
