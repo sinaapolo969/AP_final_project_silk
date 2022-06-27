@@ -1,8 +1,10 @@
 package Controller;
 
 import Model.PageControl;
+import Model.Person.Person;
 import Model.Person.User.Request;
 import Model.Person.User.User;
+import Model.States;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXPasswordField;
@@ -58,7 +60,7 @@ public class SignUpController implements Initializable
     private JFXDrawer leftDrawer;
 
     @FXML
-    private JFXComboBox<String> city;
+    private JFXComboBox<States> state;
 
     @FXML
     private void linkedIn(MouseEvent mouseEvent) throws IOException
@@ -120,7 +122,7 @@ public class SignUpController implements Initializable
             if (nullChecker())
             {
                 User user = new User(username.getText(), pass.getText(), name.getText(), lastName.getText(),
-                        number.getText(), email.getText(), city.getValue(), profile);
+                        number.getText(), email.getText(), String.valueOf(state), profile);
 
                 Request.signUp(user);
             }
@@ -181,7 +183,7 @@ public class SignUpController implements Initializable
         Image image = new Image("/View/Images/user.png");
         photo.setFill(new ImagePattern(image));
 
-        city.getItems().addAll(cities);
+        state.getItems().addAll(States.values());
     }
 }
 

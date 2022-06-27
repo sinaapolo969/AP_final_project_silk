@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class EditPostController implements Initializable
 {
+    public Post currentPost;
     @FXML
     private VBox advertise;
 

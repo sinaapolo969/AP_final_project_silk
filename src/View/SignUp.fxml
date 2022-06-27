@@ -71,7 +71,7 @@
                   <Font name="Book Antiqua Italic" size="13.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="city" focusColor="#86331e" labelFloat="true" layoutX="27.0" layoutY="297.0" opacity="0.75" prefHeight="31.0" prefWidth="197.0" promptText="select your city" unFocusColor="#651515" />
+            <JFXComboBox fx:id="state" focusColor="#86331e" labelFloat="true" layoutX="27.0" layoutY="301.0" opacity="0.75" prefHeight="31.0" prefWidth="197.0" promptText="select your state" unFocusColor="#651515" />
          </children>
          <effect>
             <DropShadow />

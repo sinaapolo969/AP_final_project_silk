@@ -5,6 +5,11 @@
     -fx-pref-height : 60;
 }
 
+.tab:hover
+{
+    -fx-background-color : #2e4e69;
+}
+
 .tab-header-background
 {
     -fx-background-color : #18334b;
@@ -22,7 +27,7 @@
 }
 #addPhoto:hover
 {
-    -fx-background-color: #2d7eb4;
+    -fx-background-color: #2e4e69;
 }
 
 #addPhoto1
@@ -31,15 +36,5 @@
 }
 #addPhoto1:hover
 {
-    -fx-background-color: #2d7eb4;
-}
-
-.glyph-icon
-{
-    -fx-background-color: #d0d5dc;
-}
-
-.glyph-icon:hover
-{
-    -fx-background-color: #4d638d;
+    -fx-background-color: #2e4e69;
 }
