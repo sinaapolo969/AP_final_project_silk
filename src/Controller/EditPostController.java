@@ -16,7 +16,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditPostController implements Initializable
+public class EditPostController
 {
     public Post currentPost;
     @FXML
@@ -27,9 +27,6 @@ public class EditPostController implements Initializable
 
     @FXML
     private JFXTextField title;
-
-    @FXML
-    private JFXComboBox<String> category;
 
     @FXML
     private JFXTextField price;
@@ -44,6 +41,12 @@ public class EditPostController implements Initializable
         Request.editPost(currentPost);
     }
 
+    @FXML
+    void delete(ActionEvent event)
+    {
+        Request.deletePost(currentPost.getPostId());
+    }
+
     public void setData(Post ad)
     {
         File temp = ad.getPhoto();
@@ -51,13 +54,6 @@ public class EditPostController implements Initializable
         image.setImage(profile);
         price.setText(String.valueOf(ad.getPrice()));
         title.setText(ad.getTitle());
-        category.setValue(ad.getCategory());
         description.setText(ad.getDescription());
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-
     }
 }
