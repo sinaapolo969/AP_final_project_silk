@@ -188,6 +188,9 @@ public class DashboardController implements Initializable
         Image image = new Image(LoggedHomeController.currentUser.getProfile().toURI().toString());
         photo.setFill(new ImagePattern(image));
 
+        //category comboBox
+        state.getItems().addAll(States.values().toString());
+
         //user data in the top of the page and edit info tab
         userDataSet();
     }
