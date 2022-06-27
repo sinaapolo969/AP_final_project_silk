@@ -1,0 +1,18 @@
+.glyph-icon:hover
+{
+    -fx-fill: #ffffff;
+}
+
+.glyph-icon
+{
+    -fx-background-color: #d9cfcf;
+}
+
+.jfx-textField
+{
+    -fx-border-radius: 30;
+    -fx-border-color: #6e6a6a;
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-text-fill: #563e3e;
+}

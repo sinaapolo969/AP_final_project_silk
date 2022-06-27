@@ -1,11 +1,8 @@
 package DataBase;
 
-import Model.Person.User.Request;
-import Model.Person.User.User;
-import Network.Client;
-
 import java.io.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class test
 {
@@ -47,9 +44,14 @@ public class test
 //            System.out.println(s);
 //        }
 
-        Request request = new Request(new Client().setUp());
-        Request.editInfo(new User("sina", "1234", "sina", "tayebi",
-                "09167287588", "sinaapolo969@gmail.com", "Chicago", new File("D:/new.png")));
+//        Request request = new Request(new Client().setUp());
+//        Request.editInfo(new User("sina", "1234", "sina", "tayebi",
+//                "09167287588", "sinaapolo969@gmail.com", "Chicago", new File("D:/new.png")));
+        PostTable postTable = new PostTable();
+        ArrayList<String> message = postTable.getConversation("30", "sina", "mahdiA");
+        for (String sss : message) {
+            System.out.println(sss);
+        }
        // PostTable postTable = new PostTable();
 //        for (int i = 0; i < 10; i++)
 //        {
