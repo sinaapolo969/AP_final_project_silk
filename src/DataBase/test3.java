@@ -2,10 +2,7 @@ package DataBase;
 
 import Network.Client;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
 
@@ -40,89 +37,16 @@ public class test3
             "}";
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException
     {
-        //ArrayList<Post> posts = new DataRequestSender().postRequestByCategory("home");
-//        PostTable postTable = new PostTable();
-//        ArrayList<String> posts = postTable.getPostDataByOwner("sina");
-//        JSONObject jsonObject = new JSONObject(posts.get(0));
-//        System.out.println(jsonObject.getString("title"));
-//        String json = userTable.getUserData("sina");
-//        JSONObject jsonObject = new JSONObject(json);
-//        System.out.println(jsonObject.getString("firstName"));
-//        for (Post post : posts)
-//        {
-//            System.out.println(post.getCategory() + "   " + post.getTitle() +
-//                     post.getPostId() + "  " + post.getPhoneNumber() + "   " + post.getLocation());
-//        }
-
-        //PostTable postTable = new PostTable();
-//        ArrayList<String> posts = postTable.getPostDataByOwner("omidslt");
-//        for (String s : posts) {
-//            System.out.println(s);
-//        }
-        //postTable.insertBookMark("sina", 3);
-
-        Client client = new Client();
-        Socket socket = client.setUp();
-
-        //DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+        Socket socket = Client.chatSetUp();
+        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
         DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-//        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-//        dataOutputStream.writeInt(2);
-//        dataOutputStream.writeUTF("meow");
-//        dataOutputStream.writeUTF("sina1381");
-//        String userData = dataInputStream.readUTF();
-//        objectOutputStream.writeInt(2);
-//        objectOutputStream.writeUTF("meow");
-//        objectOutputStream.writeUTF("sina1381");
-//        String userData = objectInputStream.readUTF();
-//        File file = (File) objectInputStream.readObject();
-//        BufferedImage bufferedImage = ImageIO.read(file);
-//        ImageIO.write(bufferedImage, "jpg", new File("D:/succssed.jpg"));
-//        System.out.println(userData);
-//        objectOutputStream.writeInt(0);
-        //File file = (File) objectInputStream.readObject();
-//        String fileType = dataInputStream.readUTF();
-//        FileOutputStream fileOutputStream = new FileOutputStream("D:/final project/userProfiles/photo" + fileType);
-//        int length = dataInputStream.readInt();
-//        if (length > 0)
-//        {
-//            byte[] bytes = new byte[length];
-//            dataInputStream.readFully(bytes, 0, length);
-//            fileOutputStream.write(bytes);
-//            System.out.println("file received!");
-//            fileOutputStream.close();
-//            dataOutputStream.writeInt(0);
-//        }
-
-
-//        dataOutputStream.writeInt(2);
-//        dataOutputStream.writeUTF("sina");
-//        String data;
-//        data = dataInputStream.readUTF();
-//        System.out.println(data);
-        dataOutputStream.writeInt(1);
-        dataOutputStream.writeUTF(json);
-        File file = new File("D:/succssed.jpg");
-        sendProfile(file.getAbsolutePath(), dataOutputStream);
-        dataOutputStream.writeInt(0);
-//        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-//        Object o = objectInputStream.readObject();
-//        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-//        String data = null;
-//        while (dataInputStream.available() > 0)
-//        {
-//            data = dataInputStream.readUTF();
-//        }
-//        System.out.println(data);
-//        dataInputStream.close();
-
-
-//        for (String string : posts)
-//        {
-//            System.out.println(string);
-//        }
-
+        while (true)
+        {
+            dataOutputStream.writeInt(0);
+            dataOutputStream.flush();
+            String message = dataInputStream.readUTF();
+            System.out.println(message);
+        }
     }
 
     private static void sendProfile (String path, DataOutputStream dataOutputStream) {

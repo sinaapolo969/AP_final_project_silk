@@ -1,8 +1,10 @@
 package DataBase;
 
+import Network.Client;
+
 import java.io.*;
+import java.net.Socket;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class test
 {
@@ -34,6 +36,13 @@ public class test
             "  \"photo\": \"something\",\n" +
             "  \"date\": 2022-04-8" +
             "}";
+
+    static String message = "{\n " +
+            "  \"chatId\": \"34\", \n " +
+            "  \"sender\": \"sina\", \n" +
+            "  \"receiver\": \"mahdiA\", \n" +
+            "  \"text\": \"salam\", \n " +
+            "  \"dateTime\": \"2022-06-28 12:54:51\" \n } ";
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException
     {
 
@@ -47,11 +56,11 @@ public class test
 //        Request request = new Request(new Client().setUp());
 //        Request.editInfo(new User("sina", "1234", "sina", "tayebi",
 //                "09167287588", "sinaapolo969@gmail.com", "Chicago", new File("D:/new.png")));
-        PostTable postTable = new PostTable();
-        ArrayList<String> message = postTable.getConversation("30", "sina", "mahdiA");
-        for (String sss : message) {
-            System.out.println(sss);
-        }
+//        PostTable postTable = new PostTable();
+//        ArrayList<String> message = postTable.getConversation("30", "sina", "mahdiA");
+//        for (String sss : message) {
+//            System.out.println(sss);
+//        }
        // PostTable postTable = new PostTable();
 //        for (int i = 0; i < 10; i++)
 //        {
@@ -122,6 +131,18 @@ public class test
 //
 //        System.out.println(posts.get(0).getPrice());
 //        dataOutputStream.writeInt(0);
+
+        Socket socket = Client.chatSetUp();
+        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+        while (true)
+        {
+            dataOutputStream.writeInt(1);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(message);
+            dataOutputStream.flush();
+            dataOutputStream.writeInt(0);
+            dataOutputStream.flush();
+        }
 
 
     }
