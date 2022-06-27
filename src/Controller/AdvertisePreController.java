@@ -1,7 +1,9 @@
 package Controller;
 
 import Model.PageControl;
+import Model.Person.User.Request;
 import Model.Post.Post;
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -24,6 +26,9 @@ public class AdvertisePreController
     public Label title;
 
     @FXML
+    private JFXButton bk;
+
+    @FXML
     public Label owner;
 
     @FXML
@@ -35,7 +40,8 @@ public class AdvertisePreController
     @FXML
     void bookmark(ActionEvent event)
     {
-
+        Request.bookmarking(currentPost.getPostId(), LoggedHomeController.currentUser.getUserName());
+        bk.setStyle("-fx-background-color: #563e3e");
     }
 
     @FXML
@@ -46,18 +52,10 @@ public class AdvertisePreController
             PostVisitController.currentPost = currentPost;
             PageControl.open("PostVisit");
         }
-        catch (IOException e) {
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    void ad(MouseEvent event)
-    {
-//        ScaleTransition t = new ScaleTransition(Duration.seconds(5), advertise);
-//        t.setToX(1.2);
-//        t.setToY(1.2);
-//        t.play();
     }
 
     public void setData(Post ad)

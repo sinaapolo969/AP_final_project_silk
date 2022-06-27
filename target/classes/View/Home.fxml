@@ -40,7 +40,7 @@
                                                 <Insets left="10.0" right="10.0" />
                                             </padding>
                                         </Label>
-                                        <JFXButton layoutX="290.0" layoutY="385.0" prefHeight="134.0" prefWidth="632.0" ripplerFill="#bca6a6" style="-fx-border-color: white;" text="Start Your Journey ..." textFill="WHITE">
+                                        <JFXButton layoutX="290.0" layoutY="385.0" onAction="#journey" prefHeight="134.0" prefWidth="632.0" ripplerFill="#bca6a6" style="-fx-border-color: white;" text="Start Your Journey ..." textFill="WHITE">
                                             <font>
                                                 <Font name="Times New Roman Italic" size="23.0" />
                                             </font>

@@ -27,7 +27,7 @@
 
 <AnchorPane prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PostVisitController">
    <children>
-      <ImageView fitHeight="675.0" fitWidth="1254.0" layoutX="-2.0" layoutY="137.0" pickOnBounds="true">
+      <ImageView fitHeight="737.0" fitWidth="1254.0" layoutX="-2.0" layoutY="75.0" pickOnBounds="true">
          <image>
             <Image url="@Images/lrHome/15.jpg" />
          </image>
@@ -37,7 +37,7 @@
       </ImageView>
       <AnchorPane prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
          <children>
-            <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/11zon_cropped.png" />
                </image>
@@ -53,41 +53,6 @@
             <Label layoutX="935.0" layoutY="26.0" prefHeight="22.0" prefWidth="165.0" text="Contact Us On Our Social Medias" textFill="#efefef">
                <font>
                   <Font name="Bookman Old Style Bold Italic" size="9.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="3.0" layoutY="77.0" prefHeight="58.0" prefWidth="1249.0" style="-fx-background-color: white;">
-         <children>
-            <FontAwesomeIconView fill="#a8a49ed9" glyphName="REORDER" layoutX="24.0" layoutY="38.0" onMouseClicked="#menu" size="30" text="" wrappingWidth="30.66673105955124" />
-            <Circle fx:id="profile" layoutX="1209.0" layoutY="29.0" onMouseClicked="#userMenu" radius="26.0" stroke="WHITE" strokeType="INSIDE">
-               <fill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#748d8f" />
-                        <Stop color="#dd7474" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Circle>
-            <JFXTextField fx:id="search" focusColor="WHITE" layoutX="228.0" layoutY="7.0" prefHeight="42.0" prefWidth="724.0" promptText="  Search in the variety of categories ..." styleClass="jfx-textField" stylesheets="@Style/home.css" unFocusColor="WHITE">
-               <font>
-                  <Font name="System Italic" size="13.0" />
-               </font>
-            </JFXTextField>
-            <FontAwesomeIconView fill="#743f3f" glyphName="BELL" layoutX="1113.0" layoutY="39.0" size="30" text="" />
-            <FontAwesomeIconView fill="#623e3e" glyphName="SEARCH" layoutX="923.0" layoutY="34.0" size="20" />
-            <JFXButton layoutX="150.0" layoutY="16.0" prefHeight="25.0" prefWidth="72.0" text="filters" textFill="#a8a8a8">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#9a9a9a" glyphName="SLIDERS" size="15" />
-               </graphic>
-            </JFXButton>
-            <Label fx:id="notifs" alignment="CENTER" layoutX="1133.0" layoutY="27.0" prefHeight="21.0" prefWidth="21.0" style="-fx-background-color: #603c40; -fx-background-radius: 100;" text="3" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
          </children>
@@ -119,7 +84,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="22.0" prefWidth="78.0" text="owner : " textFill="#5e5e5e">
+                        <Label prefHeight="22.0" prefWidth="97.0" text="owner : " textFill="#5e5e5e">
                            <font>
                               <Font name="Sitka Banner" size="20.0" />
                            </font>
@@ -127,7 +92,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="owner" prefHeight="35.0" prefWidth="186.0">
+                        <Label fx:id="owner" prefHeight="35.0" prefWidth="200.0">
                            <font>
                               <Font name="Sitka Banner" size="20.0" />
                            </font>
@@ -135,10 +100,13 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <JFXButton fx:id="bk" onAction="#bookmark" prefHeight="27.0" prefWidth="101.0" style="-fx-border-color: #787878;" stylesheets="@Style/post.css" text="BookMark" textFill="#787878">
+                        <JFXButton fx:id="bk" onAction="#bookmark" prefHeight="43.0" prefWidth="41.0" style="-fx-border-color: #787878;" stylesheets="@Style/post.css" text="Book&#10;Mark" textFill="#787878">
                            <HBox.margin>
                               <Insets right="15.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
                         </JFXButton>
                      </children>
                   </HBox>
@@ -204,7 +172,7 @@
                            </effect></FontAwesomeIconView>
                      </graphic>
                   </Tab>
-                  <Tab>
+                  <Tab fx:id="chat">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="276.0" style="-fx-background-color: white;">
                            <children>
@@ -269,5 +237,6 @@
             </JFXTabPane>
          </children>
       </HBox>
+      <FontAwesomeIconView fx:id="back" fill="#886363" glyphName="ARROW_CIRCLE_ALT_LEFT" layoutX="14.0" layoutY="121.0" onMouseClicked="#back" size="40" />
    </children>
 </AnchorPane>

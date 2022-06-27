@@ -3,6 +3,7 @@ package Controller;
 import Model.PageControl;
 import Model.Person.User.Request;
 import Model.Post.Post;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.*;
@@ -35,6 +36,8 @@ public class HomeController implements Initializable
 
     private int column = 0, row = 1, num = 1;
 
+    public static int loadedCount = 0;
+
     public static String location;
 
     @FXML
@@ -48,6 +51,8 @@ public class HomeController implements Initializable
     @FXML
     private AnchorPane home;
 
+    @FXML
+    private JFXButton loadM;
 
     @FXML
     private JFXDrawer leftDrawer;
@@ -82,6 +87,11 @@ public class HomeController implements Initializable
         catch (Exception e)
         {
             e.printStackTrace();
+        }
+        if (loadedCount == posts.size())
+        {
+            loadM.setDisable(true);
+            loadM.setVisible(false);
         }
 
         timelineImages();
@@ -125,6 +135,11 @@ public class HomeController implements Initializable
         num ++;
         row += 5;
         PageControl.loading15(num, row, column, grid, posts, "AdvertisePre");
+        if (loadedCount == posts.size())
+        {
+            loadM.setDisable(true);
+            loadM.setVisible(false);
+        }
     }
 
     @FXML
