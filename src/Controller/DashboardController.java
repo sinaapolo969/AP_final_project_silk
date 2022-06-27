@@ -3,6 +3,7 @@ package Controller;
 import Model.Main;
 import Model.PageControl;
 import Model.Person.User.Request;
+import Model.Post.Categories;
 import Model.Post.Post;
 import Model.States;
 import com.jfoenix.controls.*;
@@ -61,7 +62,7 @@ public class DashboardController implements Initializable
     private JFXTextField price;
 
     @FXML
-    private JFXComboBox<String> category;
+    private JFXComboBox<Categories> category;
 
     @FXML
     private JFXButton createAd;
@@ -85,7 +86,7 @@ public class DashboardController implements Initializable
     private JFXTextField number;
 
     @FXML
-    private JFXComboBox<String> state;
+    private JFXComboBox<States> state;
 
     @FXML
     private ImageView advertisement;
@@ -103,7 +104,7 @@ public class DashboardController implements Initializable
     @FXML
     void createAd(ActionEvent event)
     {
-        Post newPost = new Post(title.getText() ,category.getValue(), description.getText(),
+        Post newPost = new Post(title.getText() ,category.getValue().toString(), description.getText(),
                 Double.parseDouble(price.getText()), "0",
                 LoggedHomeController.currentUser.getUserName(), advertise,
                 LoggedHomeController.currentUser.getPhoneNumber(),
@@ -161,7 +162,6 @@ public class DashboardController implements Initializable
     private void userDataSet()
     {
         name.setText(LoggedHomeController.currentUser.getFirstName());
-        state.setValue(LoggedHomeController.currentUser.getLocation());
         lastname.setText(LoggedHomeController.currentUser.getLastName());
         username.setText(LoggedHomeController.currentUser.getUserName());
         number.setText(LoggedHomeController.currentUser.getPhoneNumber());
@@ -170,7 +170,7 @@ public class DashboardController implements Initializable
         nameTop.setText(LoggedHomeController.currentUser.getFirstName() + " " +
                 LoggedHomeController.currentUser.getLastName());
         numberTop.setText(LoggedHomeController.currentUser.getPhoneNumber());
-        state.getItems().addAll(States.values().toString());
+        state.getItems().addAll(States.values());
     }
 
     @Override
@@ -189,7 +189,9 @@ public class DashboardController implements Initializable
         photo.setFill(new ImagePattern(image));
 
         //category comboBox
-        state.getItems().addAll(States.values().toString());
+        state.getItems().addAll(States.values());
+
+        category.getItems().addAll(Categories.values());
 
         //user data in the top of the page and edit info tab
         userDataSet();

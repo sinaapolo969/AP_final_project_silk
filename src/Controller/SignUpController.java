@@ -60,7 +60,7 @@ public class SignUpController implements Initializable
     private JFXDrawer leftDrawer;
 
     @FXML
-    private JFXComboBox<String> state;
+    private JFXComboBox<States> state;
 
     @FXML
     private void linkedIn(MouseEvent mouseEvent) throws IOException
@@ -183,7 +183,7 @@ public class SignUpController implements Initializable
         Image image = new Image("/View/Images/user.png");
         photo.setFill(new ImagePattern(image));
 
-        state.getItems().addAll(States.values().toString());
+        state.getItems().addAll(States.values());
     }
 }
 
