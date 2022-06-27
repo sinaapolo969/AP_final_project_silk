@@ -158,6 +158,25 @@ public class DashboardController implements Initializable
         PageControl.twitter();
     }
 
+
+    @FXML
+    void loadMoreB(ActionEvent event)
+    {
+        numB ++;
+        rowB += 5;
+            PageControl.loading15(numB, rowB, columnB, gridBM,
+                    Request.gettingBookmarks(LoggedHomeController.currentUser.getUserName()), "AdvertisePre");
+    }
+
+    @FXML
+    void loadMoreE(ActionEvent event)
+    {
+        numE ++;
+        rowE += 5;
+        PageControl.loading15(numE, rowE, columnE, gridEdit,
+                Request.gettingBookmarks(LoggedHomeController.currentUser.getUserName()), "editPost");
+    }
+
     private void userDataSet()
     {
         name.setText(LoggedHomeController.currentUser.getFirstName());
