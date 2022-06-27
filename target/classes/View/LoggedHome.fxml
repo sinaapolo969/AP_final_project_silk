@@ -28,7 +28,7 @@
                <content>
                   <VBox prefHeight="631.0" prefWidth="1244.0">
                      <children>
-                        <Label prefHeight="72.0" prefWidth="1224.0" text="Latest Advertises" textFill="#8b7f7f">
+                        <Label prefHeight="58.0" prefWidth="1219.0" text="Latest Advertises" textFill="#8b7f7f">
                            <font>
                               <Font name="Sitka Banner Bold Italic" size="52.0" />
                            </font>

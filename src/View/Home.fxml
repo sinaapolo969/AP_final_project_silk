@@ -5,7 +5,6 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -72,7 +71,7 @@
                                         <Insets bottom="75.0" top="25.0" />
                                     </VBox.margin>
                                     <children>
-                                        <JFXButton onAction="#loadMore" prefHeight="67.0" prefWidth="300.0" style="-fx-border-color: white;" text="Load More" textFill="WHITE">
+                                        <JFXButton onAction="#loadMore" prefHeight="67.0" prefWidth="300.0" style="-fx-border-color: black;" text="Load More">
                                             <font>
                                                 <Font name="Sitka Banner Italic" size="26.0" />
                                             </font>
@@ -83,7 +82,6 @@
                         </VBox>
                     </content>
                 </ScrollPane>
-                <MenuBar layoutX="819.0" layoutY="259.0" />
                 <AnchorPane fx:id="topBar" layoutY="77.0" prefHeight="67.0" prefWidth="1253.0" stylesheets="@Style/HomeTab.css">
                     <children>
                         <FontAwesomeIconView fill="#664141" glyphName="SEARCH" layoutX="248.0" layoutY="38.0" size="20" text="" wrappingWidth="21.428565368056297" />

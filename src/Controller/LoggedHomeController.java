@@ -12,9 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
@@ -25,24 +23,25 @@ import java.util.ResourceBundle;
 
 public class LoggedHomeController implements Initializable
 {
+    private int column = 0, row = 1, num = 1;
     public static User currentUser;
+    @FXML
+    private StackPane stack;
+
     @FXML
     private AnchorPane home;
 
     @FXML
-    private JFXDrawer filter;
+    private GridPane grid;
+
+    @FXML
+    private HBox pages;
 
     @FXML
     private JFXDrawer leftDrawer;
 
     @FXML
-    private StackPane stack;
-
-    @FXML
     private Circle profile;
-
-    @FXML
-    private JFXTextField search;
 
     @FXML
     private void menu(MouseEvent mouseEvent)
@@ -89,11 +88,14 @@ public class LoggedHomeController implements Initializable
         String url = currentUser.getProfile().toURI().toString().replaceAll("file:/", "file:///");
         Image image  = new Image(url);
         profile.setFill(new ImagePattern(image));
+
+        PageControl.loading15(num, row, column, grid, HomeController.posts, "AdvertisePre");
     }
 
     public void loadMore(ActionEvent actionEvent)
     {
-
+        num ++;
+        PageControl.loading15(num, row, column, grid, HomeController.posts, "AdvertisePre");
     }
 
 }
