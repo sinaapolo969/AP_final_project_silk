@@ -80,7 +80,7 @@ public class Request
         //        System.out.println("u are already signed up");
         //    }
         //}
-        sendingDataToServer(receivedUser);
+        sendingUserDataToServer(receivedUser);
     }
 
 
@@ -135,7 +135,7 @@ public class Request
                 e.printStackTrace();
             }
         } else {
-            sendingDataToServer(receivedUser);
+            sendingUserDataToServer(receivedUser);
         }
     }
 
@@ -174,7 +174,7 @@ public class Request
         return user;
     }
 
-    private static void sendingDataToServer(User receivedUser)
+    private static void sendingUserDataToServer(User receivedUser)
     {
         String jsonString = "{\n \"firstName\": " + "\"" + receivedUser.getFirstName() + "\"" + ",\n" + "\"lastName\": " +
                 "\"" + receivedUser.getLastName() + "\"" + ",\n" + "\"userName\": " + "\"" + receivedUser.getUserName() + "\"" + ",\n" +
