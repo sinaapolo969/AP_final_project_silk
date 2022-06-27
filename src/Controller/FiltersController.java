@@ -93,6 +93,13 @@ public class FiltersController implements Initializable
 
         }
 
-        PageControl.open("Home");
+        if(LoggedHomeController.currentUser == null)
+        {
+            PageControl.open("Home");
+        }
+        else
+        {
+            PageControl.open("LoggedHome");
+        }
     }
 }

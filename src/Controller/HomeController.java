@@ -101,6 +101,18 @@ public class HomeController implements Initializable
     }
 
     @FXML
+    void search(ActionEvent event)
+    {
+        PageControl.openOrCloseDrawer(filter);
+    }
+
+    @FXML
+    void journey(ActionEvent event) throws IOException
+    {
+        PageControl.open("SignUp");
+    }
+
+    @FXML
     void loadMore(ActionEvent event)
     {
         num ++;
