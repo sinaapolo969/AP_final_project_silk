@@ -69,8 +69,8 @@ public class ClientHandler extends Thread
                         break;
                     //get post by category
                     case 4:
-                        //String category = dataInputStream.readUTF();
-                        //objectOutputStream.writeObject(getPostByCategory(category));
+                        String category = dataInputStream.readUTF();
+                        getPostByCategory(category);
                         break;
                     //get post by location
                     case 5:
@@ -98,6 +98,12 @@ public class ClientHandler extends Thread
                         fileType = dataInputStream.readUTF();
                         path = "D:/final project/userProfiles/" + jsonObject.getString("userName") + fileType;
                         editUserInfo(userInfo, path);
+                        break;
+                    //get post by location and category
+                    case 9:
+                        location = dataInputStream.readUTF();
+                        category = dataInputStream.readUTF();
+                        getPostByCategoryAndLocation(category, location);
                         break;
                     case 0:
                         return;
@@ -327,6 +333,22 @@ public class ClientHandler extends Thread
         try
         {
             posts = postTable.getPostByLocation(location);
+            postTable.close();
+            sendMultiPosts(posts);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void getPostByCategoryAndLocation(String category, String location)
+    {
+        PostTable postTable = new PostTable();
+        ArrayList<String> posts = null;
+        try
+        {
+            posts = postTable.getPostByCategoryAndLocation(category, location);
             postTable.close();
             sendMultiPosts(posts);
         }

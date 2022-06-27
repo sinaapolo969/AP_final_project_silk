@@ -89,7 +89,7 @@
                <content>
                   <AnchorPane prefHeight="25.0" prefWidth="1252.0">
                      <children>
-                        <ScrollPane hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="405.0" prefWidth="1252.0" vbarPolicy="ALWAYS">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="403.0" prefWidth="1253.0">
                                  <children>
@@ -108,7 +108,7 @@
                <content>
                   <AnchorPane prefHeight="25.0" prefWidth="1252.0">
                      <children>
-                        <ScrollPane hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="405.0" prefWidth="1252.0" vbarPolicy="ALWAYS">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="403.0" prefWidth="1251.0">
                                  <children>
@@ -156,7 +156,7 @@
                         <JFXTextField fx:id="lastname" labelFloat="true" layoutX="86.0" layoutY="154.0" prefHeight="43.0" prefWidth="263.0" promptText="lastname" />
                         <JFXTextField fx:id="email" labelFloat="true" layoutX="919.0" layoutY="151.0" prefHeight="43.0" prefWidth="263.0" promptText="email" />
                         <JFXTextField fx:id="number" labelFloat="true" layoutX="919.0" layoutY="243.0" prefHeight="43.0" prefWidth="263.0" promptText="phone number" />
-                        <JFXComboBox fx:id="chooseCity" layoutX="83.0" layoutY="252.0" prefHeight="34.0" prefWidth="268.0" promptText="Choose City" />
+                        <JFXComboBox fx:id="state" layoutX="83.0" layoutY="252.0" prefHeight="34.0" prefWidth="268.0" promptText="Choose State" />
                         <JFXButton layoutX="453.0" layoutY="307.0" onAction="#editInfo" prefHeight="58.0" prefWidth="344.0" style="-fx-border-color: #18334b;" stylesheets="@Style/DashBoard.css" text="Done">
                            <font>
                               <Font name="Serif Regular" size="22.0" />

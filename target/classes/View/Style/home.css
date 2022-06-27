@@ -10,13 +10,13 @@ AnchorPane
 
 .jfx-button
 {
-    -fx-text-fill: #ffffff;
-    -fx-border-color: #ffffff;
+    -fx-text-fill: #441a1a;
+    -fx-border-color: #460e0e;
 }
 
 .jfx-button:hover
 {
-    -fx-background-color: #91919a;
+    -fx-background-color: #818186;
     -fx-border-color: #4f2e2e;
     -fx-text-fill: #4F2E2EFF;
 }

@@ -79,4 +79,10 @@ public class LoggedHomeController implements Initializable
         Image image  = new Image(url);
         profile.setFill(new ImagePattern(image));
     }
+
+    public void loadMore(ActionEvent actionEvent)
+    {
+
+    }
+
 }

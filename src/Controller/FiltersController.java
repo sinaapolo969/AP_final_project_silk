@@ -43,7 +43,7 @@ public class FiltersController implements Initializable
         String startPrice = start.getText();
         String endPrice = end.getText();
 
-        Boolean byPrice = startPrice.equals("") & endPrice.equals("");
+        boolean byPrice = !startPrice.equals("") & !endPrice.equals("");
 
         if (!byPrice)
         {

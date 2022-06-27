@@ -4,12 +4,16 @@
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
@@ -53,8 +57,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <MenuBar layoutX="819.0" layoutY="259.0" />
-      <ScrollBar layoutX="1228.0" layoutY="135.0" orientation="VERTICAL" prefHeight="634.0" prefWidth="14.0" />
       <AnchorPane layoutX="-2.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
          <children>
             <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
@@ -77,5 +79,39 @@
             </Label>
          </children>
       </AnchorPane>
+      <ScrollPane hbarPolicy="NEVER" layoutX="13.0" layoutY="152.0" prefHeight="649.0" prefWidth="1246.0" style="-fx-background-color: white;">
+         <content>
+            <VBox prefHeight="631.0" prefWidth="1249.0">
+               <children>
+                  <Label prefHeight="237.0" prefWidth="1257.0" text="Latest Advertises" textFill="#8b7f7f">
+                     <font>
+                        <Font name="Sitka Banner Bold Italic" size="52.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <GridPane fx:id="grid">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+                  <HBox fx:id="pages" alignment="CENTER" prefHeight="126.0" prefWidth="1248.0" spacing="5.0">
+                     <VBox.margin>
+                        <Insets bottom="75.0" top="25.0" />
+                     </VBox.margin>
+                     <children>
+                        <JFXButton onAction="#loadMore" prefHeight="67.0" prefWidth="300.0" style="-fx-border-color: black;" text="Load More">
+                           <font>
+                              <Font name="Sitka Banner Italic" size="26.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <JFXDrawer fx:id="filter" direction="TOP" layoutX="228.0" layoutY="127.0" prefHeight="369.0" prefWidth="695.0" />
    </children>
 </AnchorPane>
