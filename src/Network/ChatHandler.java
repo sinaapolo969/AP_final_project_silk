@@ -31,6 +31,8 @@ public class ChatHandler extends Thread
                 {
                     //send and save message
                     case 1:
+                        String message = dataInputStream.readUTF();
+                        String receiver = dataInputStream.readUTF();
                         break;
                     //receive message
                     case 2:
@@ -42,5 +44,11 @@ public class ChatHandler extends Thread
                 e.printStackTrace();
             }
         }
+    }
+
+    private void sendMessage(String receiver, String message) throws IOException
+    {
+        Socket socket = ChatServer.onlineUsers.get(receiver);
+        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
     }
 }

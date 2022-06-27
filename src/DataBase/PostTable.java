@@ -209,7 +209,7 @@ public class PostTable extends DbHandler
         preparedStatement.setString(3, jsonObject.getString("receiver"));
         preparedStatement.setString(4, jsonObject.getString("text"));
         preparedStatement.setDate(5, Date.valueOf(jsonObject.getString("dateTime")));
-
+        preparedStatement.executeUpdate();
     }
 
     //for getting the conversation of the post between specified users
