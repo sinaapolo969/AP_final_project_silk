@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.PageControl;
-import Model.Person.Person;
 import Model.Person.User.Request;
 import Model.Person.User.User;
 import Model.States;
@@ -22,7 +21,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static Model.Main.cities;
 import static java.lang.System.out;
 
 public class SignUpController implements Initializable
@@ -60,7 +58,7 @@ public class SignUpController implements Initializable
     private JFXDrawer leftDrawer;
 
     @FXML
-    private JFXComboBox<String> state;
+    private JFXComboBox<States> state;
 
     @FXML
     private void linkedIn(MouseEvent mouseEvent) throws IOException
@@ -183,7 +181,7 @@ public class SignUpController implements Initializable
         Image image = new Image("/View/Images/user.png");
         photo.setFill(new ImagePattern(image));
 
-        state.getItems().addAll(States.values().toString());
+        state.getItems().addAll(States.values());
     }
 }
 
