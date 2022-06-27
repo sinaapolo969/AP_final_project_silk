@@ -27,8 +27,8 @@ public class DashboardController implements Initializable
     private int columnB = 0, rowB = 1, numB = 1;
     private int columnE = 0, rowE = 1, numE = 1;
 
-    public static ArrayList<Post> bookmarks = new ArrayList<>();
-    public static ArrayList<Post> mine = Request.getPostByOwner(LoggedHomeController.currentUser.getUserName(), 1);
+    public static ArrayList<Post> bookmarks = Request.gettingBookmarks(LoggedHomeController.currentUser.getUserName());
+    public static ArrayList<Post> mine = Request.getPostByOwner(LoggedHomeController.currentUser.getUserName());
     File advertise = new File("View/Images/ad2.png");
     File profile = LoggedHomeController.currentUser.getProfile();
 
@@ -159,7 +159,7 @@ public class DashboardController implements Initializable
     {
         //bookmarks tab
 
-        bookmarks = Request.gettingBookmarks(LoggedHomeController.currentUser.getUserName(), 1);
+        //bookmarks = Request.gettingBookmarks(LoggedHomeController.currentUser.getUserName(), 1);
         PageControl.loading15(numB, rowB, columnB, gridBM, bookmarks, "AdvertisePre");
 
         //my advertisements tab

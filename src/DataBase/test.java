@@ -1,5 +1,9 @@
 package DataBase;
 
+import Model.Person.User.Request;
+import Model.Person.User.User;
+import Network.Client;
+
 import java.io.*;
 import java.sql.SQLException;
 
@@ -43,9 +47,16 @@ public class test
 //            System.out.println(s);
 //        }
 
-       // Request request = new Request(new Client().setUp());
-        UserTable userTable = new UserTable();
-        userTable.insertUserData(json, "C:\\Users\\kara\\Downloads\\ish.jpg");
+        Request request = new Request(new Client().setUp());
+        Request.editInfo(new User("sina", "1234", "sina", "tayebi",
+                "09167287588", "sinaapolo969@gmail.com", "Chicago", new File("D:/new.png")));
+       // PostTable postTable = new PostTable();
+//        for (int i = 0; i < 10; i++)
+//        {
+//            userTable.insertPostData(json3, "C:\\Users\\kara\\Downloads\\ish.jpg");
+//        }
+
+
 //
 //        ArrayList<Post> posts = Request.getPostByOwner("meow", 1);
 //        System.out.println(posts.get(0).getPrice());

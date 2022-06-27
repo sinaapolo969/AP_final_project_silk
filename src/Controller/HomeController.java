@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 
 public class HomeController implements Initializable
 {
-    public static ArrayList<Post> posts = Request.getPostByLocation("Chicago", 1);
+    public static ArrayList<Post> posts = Request.getPostByLocation("Chicago");
 
 
     private int column = 0, row = 1, num = 1;
