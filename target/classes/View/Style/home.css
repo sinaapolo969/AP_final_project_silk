@@ -20,12 +20,3 @@ AnchorPane
     -fx-border-color: #4f2e2e;
     -fx-text-fill: #4F2E2EFF;
 }
-
-.jfx-textField
-{
-    -fx-border-radius: 30;
-    -fx-border-color: #6e6a6a;
-    -fx-background-color: white;
-    -fx-background-radius: 30;
-    -fx-text-fill: #563e3e;
-}

@@ -19,17 +19,17 @@
             <Font size="18.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="10.0" />
+            <Insets bottom="10.0" left="20.0" right="20.0" />
          </VBox.margin>
       </JFXTextField>
       <HBox alignment="CENTER" prefHeight="51.0" prefWidth="391.0">
          <children>
-            <JFXComboBox fx:id="category" prefHeight="25.0" prefWidth="153.0" promptText="Category">
+            <JFXComboBox fx:id="category" prefHeight="25.0" prefWidth="169.0" promptText="Category">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </JFXComboBox>
-            <JFXTextField fx:id="price" prefHeight="25.0" prefWidth="150.0" promptText="Price">
+            <JFXTextField fx:id="price" prefHeight="25.0" prefWidth="160.0" promptText="Price">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -40,7 +40,7 @@
          <children>
             <JFXTextArea fx:id="description" prefHeight="181.0" prefWidth="312.0" promptText="Description">
                <HBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="20.0" top="10.0" />
                </HBox.margin>
             </JFXTextArea>
             <AnchorPane prefHeight="35.0" prefWidth="4.0" />

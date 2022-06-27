@@ -177,4 +177,8 @@ public class HomeController implements Initializable
             }
         });
     }
+
+    public void search(ActionEvent actionEvent)
+    {
+    }
 }

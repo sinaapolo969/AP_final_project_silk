@@ -21,7 +21,7 @@
 
 <AnchorPane prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DashboardController">
    <children>
-      <AnchorPane layoutX="-2.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
+      <AnchorPane layoutX="-2.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;" stylesheets="@Style/HomeTab.css">
          <children>
             <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -43,9 +43,9 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="-1.0" layoutY="77.0" prefHeight="230.0" prefWidth="1252.0" style="-fx-background-color: #503838;" stylesheets="@Style/DashBoard.css">
+      <AnchorPane layoutX="-1.0" layoutY="77.0" prefHeight="230.0" prefWidth="1252.0" style="-fx-background-color: #503838;" stylesheets="@Style/backButton.css">
          <children>
-            <ImageView fitHeight="230.0" fitWidth="1254.0" layoutX="-1.0" layoutY="10.0" opacity="0.31" pickOnBounds="true">
+            <ImageView fitHeight="230.0" fitWidth="1254.0" layoutX="-1.0" layoutY="3.0" opacity="0.31" pickOnBounds="true">
                <image>
                   <Image url="@Images/14.jpg" />
                </image></ImageView>
@@ -80,7 +80,7 @@
                   <Font size="28.0" />
                </font>
             </Label>
-            <FontAwesomeIconView fx:id="back" fill="#18334b" glyphName="ARROW_CIRCLE_LEFT" layoutX="11.0" layoutY="34.0" onMouseClicked="#back" size="40" />
+            <FontAwesomeIconView fx:id="back" fill="#18334b" glyphName="ARROW_CIRCLE_ALT_LEFT" layoutX="5.0" layoutY="43.0" onMouseClicked="#back" size="40" />
          </children>
       </AnchorPane>
       <JFXTabPane layoutY="307.0" prefHeight="464.0" prefWidth="1252.0" stylesheets="@Style/DashBoard.css">
@@ -89,9 +89,9 @@
                <content>
                   <AnchorPane prefHeight="25.0" prefWidth="1252.0">
                      <children>
-                        <ScrollPane hbarPolicy="NEVER" layoutX="-1.0" layoutY="-1.0" prefHeight="405.0" prefWidth="1252.0">
+                        <ScrollPane hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="403.0" prefWidth="1253.0">
                                  <children>
                                     <GridPane fx:id="gridBM" layoutY="-7.0">
                                       <rowConstraints>
@@ -108,9 +108,9 @@
                <content>
                   <AnchorPane prefHeight="25.0" prefWidth="1252.0">
                      <children>
-                        <ScrollPane prefHeight="405.0" prefWidth="1252.0">
+                        <ScrollPane hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="403.0" prefWidth="1251.0">
                                  <children>
                                     <GridPane fx:id="gridEdit" layoutY="-7.0">
                                        <rowConstraints>
