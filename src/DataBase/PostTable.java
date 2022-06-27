@@ -208,7 +208,7 @@ public class PostTable extends DbHandler
         preparedStatement.setString(2, jsonObject.getString("sender"));
         preparedStatement.setString(3, jsonObject.getString("receiver"));
         preparedStatement.setString(4, jsonObject.getString("text"));
-        preparedStatement.setDate(5, Date.valueOf(jsonObject.getString("dateTime")));
+        preparedStatement.setString(5, jsonObject.getString("dateTime"));
         preparedStatement.executeUpdate();
     }
 

@@ -40,13 +40,46 @@ public class test3
         Socket socket = Client.chatSetUp();
         DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
         DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-        while (true)
+        dataOutputStream.writeUTF("mahdiA");
+        dataOutputStream.flush();
+        Thread sendMessage = new Thread(new Runnable()
         {
-            dataOutputStream.writeInt(0);
-            dataOutputStream.flush();
-            String message = dataInputStream.readUTF();
-            System.out.println(message);
-        }
+            @Override
+            public void run()
+            {
+                String message = test.message;
+                while (true)
+                {
+                    try {
+                        dataOutputStream.writeUTF(message);
+                        dataOutputStream.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        Thread receiveMessage = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                String received;
+                while (true)
+                {
+                    try {
+                        received = dataInputStream.readUTF();
+                        System.out.println(received);
+                        Thread.currentThread().join();
+                    } catch (IOException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
+        receiveMessage.start();
     }
 
     private static void sendProfile (String path, DataOutputStream dataOutputStream) {

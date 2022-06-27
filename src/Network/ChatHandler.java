@@ -14,52 +14,54 @@ public class ChatHandler extends Thread
     private final Socket socket;
     private final DataInputStream dataInputStream;
     private final DataOutputStream dataOutputStream;
+    private boolean isLoggedIn;
 
     public ChatHandler(Socket socket, DataInputStream dataInputStream, DataOutputStream dataOutputStream)
     {
         this.socket = socket;
         this.dataInputStream = dataInputStream;
         this.dataOutputStream =dataOutputStream;
+        this.isLoggedIn = true;
     }
 
     @Override
     public void run()
     {
-        int command;
+        String received;
         while (true)
         {
             try
             {
-                command = dataInputStream.readInt();
-                switch (command)
+                received = dataInputStream.readUTF();
+                JSONObject jsonObject = new JSONObject(received);
+
+                if (received.equals("endChat"))
                 {
-                    //send and save message
-                    case 1:
-                        String message = dataInputStream.readUTF();
-                        sendMessage(message);
-                        break;
-                    //receive message
-                    case 2:
-                        break;
-                    case 0:
-                        Thread.currentThread().join();
-                        break;
+                    isLoggedIn = false;
+                    this.socket.close();
                 }
+
+                if (ChatServer.onlineUsers.get(jsonObject.getString("receiver")).isLoggedIn)
+                {
+                    ChatServer.onlineUsers.get(jsonObject.getString("receiver")).dataOutputStream.writeUTF(received);
+                    dataOutputStream.flush();
+                    saveMessage(received);
+                }
+                else
+                {
+                    saveMessage(received);
+                }
+
             }
-            catch (IOException | InterruptedException e)
+            catch (IOException e)
             {
                 e.printStackTrace();
             }
         }
     }
 
-    private void sendMessage(String message) throws IOException
+    private void saveMessage(String message)
     {
-        JSONObject jsonObject = new JSONObject();
-        Socket socket = ChatServer.onlineUsers.get(jsonObject.getString("receiver"));
-        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-        dataOutputStream.writeUTF(message);
-        dataOutputStream.flush();
         try {
             new PostTable().saveMessage(message);
         } catch (SQLException e) {
