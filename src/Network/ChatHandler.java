@@ -40,16 +40,16 @@ public class ChatHandler extends Thread
                     isLoggedIn = false;
                     this.socket.close();
                 }
-
+                
                 if (ChatServer.onlineUsers.get(jsonObject.getString("receiver")).isLoggedIn)
                 {
                     ChatServer.onlineUsers.get(jsonObject.getString("receiver")).dataOutputStream.writeUTF(received);
                     dataOutputStream.flush();
-                    saveMessage(received);
+                    //saveMessage(received);
                 }
                 else
                 {
-                    saveMessage(received);
+                    //saveMessage(received);
                 }
 
             }

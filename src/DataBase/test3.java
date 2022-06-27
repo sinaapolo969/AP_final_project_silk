@@ -5,6 +5,7 @@ import Network.Client;
 import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class test3
 {
@@ -37,6 +38,7 @@ public class test3
             "}";
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException
     {
+        Scanner in = new Scanner(System.in);
         Socket socket = Client.chatSetUp();
         DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
         DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
@@ -47,13 +49,16 @@ public class test3
             @Override
             public void run()
             {
-                String message = test.message;
+                String message = in.next();
                 while (true)
                 {
                     try {
                         dataOutputStream.writeUTF(message);
                         dataOutputStream.flush();
+                        Thread.currentThread().join();
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
@@ -72,13 +77,16 @@ public class test3
                         received = dataInputStream.readUTF();
                         System.out.println(received);
                         Thread.currentThread().join();
-                    } catch (IOException | InterruptedException e) {
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
 
                 }
             }
         });
+        sendMessage.start();
         receiveMessage.start();
     }
 

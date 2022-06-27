@@ -149,7 +149,9 @@ public class test
                         dataOutputStream.writeUTF(message);
                         dataOutputStream.flush();
                         Thread.currentThread().join();
-                    } catch (IOException | InterruptedException e) {
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
@@ -167,14 +169,17 @@ public class test
                     try {
                         received = dataInputStream.readUTF();
                         System.out.println(received);
+                        Thread.currentThread().join();
                     } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
 
                 }
             }
         });
-        //receiveMessage.start();
+        receiveMessage.start();
         sendMessage.start();
 
 
