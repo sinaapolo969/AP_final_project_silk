@@ -52,7 +52,7 @@ public class ClientHandler extends Thread
                         {
                             if (password.equals(checkPassword(userName)))
                             {
-                                dataOutputStream.writeUTF(getUserAccount(userName));
+                                dataOutputStream.writeUTF(getUserAccount(userName, password));
                                 dataOutputStream.flush();
                                 sendProfilePhoto(getUserProfilePhoto(userName));
                             }
@@ -77,15 +77,28 @@ public class ClientHandler extends Thread
                         String location = dataInputStream.readUTF();
                         getPostByLocation(location);
                         break;
+                    //making new post
                     case 6:
                         String postData = dataInputStream.readUTF();
                         jsonObject = new JSONObject(postData);
                         fileType = dataInputStream.readUTF();
                         path = "D:/final project/postPhotos/" + jsonObject.getString("postId") + fileType;
                         makeNewPost(postData, path);
+                        break;
+                    //get user bookMarks
                     case 7:
                         userName = dataInputStream.readUTF();
                         getUserBookMarks(userName);
+                        break;
+                    //edit info
+                    case 8:
+                        userInfo = dataInputStream.readUTF();
+                        //this json object is null!!!
+                        jsonObject = new JSONObject(userInfo);
+                        fileType = dataInputStream.readUTF();
+                        path = "D:/final project/userProfiles/" + jsonObject.getString("userName") + fileType;
+                        editUserInfo(userInfo, path);
+                        break;
                     case 0:
                         return;
                 }
@@ -176,13 +189,13 @@ public class ClientHandler extends Thread
 
     //for get the user data when it logged in
     //this method should return an object of User class that has not made yet!
-    private String getUserAccount(String userName)
+    private String getUserAccount(String userName, String password)
     {
         UserTable userTable = new UserTable();
         String userInfo = null;
         try
         {
-            userInfo = userTable.getUserData(userName);
+            userInfo = userTable.getUserData(userName, password);
             userTable.close();
         }
         catch (SQLException | ClassNotFoundException | IOException e)
@@ -228,11 +241,13 @@ public class ClientHandler extends Thread
         return null;
     }
 
-    private void editUserInfo(String jsonString, File file)
+    private synchronized void editUserInfo(String jsonString, String path)
     {
         UserTable userTable = new UserTable();
-        try {
-            userTable.updateUserData(jsonString, file.getAbsolutePath());
+        try
+        {
+            receiveProfilePhoto(path);
+            userTable.updateUserData(jsonString, path);
             userTable.close();
         }
         catch (SQLException | IOException | ClassNotFoundException e)
@@ -276,12 +291,11 @@ public class ClientHandler extends Thread
         ArrayList<String> posts = null;
         try
         {
-            int num = dataInputStream.readInt();
-            posts = postTable.getPostByCategory(category, num);
+            posts = postTable.getPostByCategory(category);
             postTable.close();
             sendMultiPosts(posts);
         }
-        catch (SQLException | IOException e)
+        catch (SQLException e)
         {
             e.printStackTrace();
         }
@@ -295,12 +309,11 @@ public class ClientHandler extends Thread
         ArrayList<String> posts = null;
         try
         {
-            int num = dataInputStream.readInt();
-            posts = postTable.getPostDataByOwner(userName, num);
+            posts = postTable.getPostDataByOwner(userName);
             postTable.close();
             sendMultiPosts(posts);
         }
-        catch (SQLException | IOException e)
+        catch (SQLException e)
         {
             e.printStackTrace();
         }
@@ -313,12 +326,11 @@ public class ClientHandler extends Thread
         ArrayList<String> posts = null;
         try
         {
-            int num = dataInputStream.readInt();
-            posts = postTable.getPostByLocation(location, num);
+            posts = postTable.getPostByLocation(location);
             postTable.close();
             sendMultiPosts(posts);
         }
-        catch (SQLException | IOException e)
+        catch (SQLException e)
         {
             e.printStackTrace();
         }
@@ -330,12 +342,11 @@ public class ClientHandler extends Thread
         ArrayList<String> posts = null;
         try
         {
-            int num = dataInputStream.readInt();
-            posts = postTable.getBookMarks(userName, num);
+            posts = postTable.getBookMarks(userName);
             postTable.close();
             sendMultiPosts(posts);
         }
-        catch (SQLException | IOException e)
+        catch (SQLException e)
         {
             e.printStackTrace();
         }

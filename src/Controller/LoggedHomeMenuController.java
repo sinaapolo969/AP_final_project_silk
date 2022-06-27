@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.PageControl;
-import Model.Person.User.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +17,6 @@ import java.util.ResourceBundle;
 
 public class LoggedHomeMenuController implements Initializable
 {
-    public static User currentUser;
     @FXML
     private AnchorPane info;
 
@@ -67,11 +65,11 @@ public class LoggedHomeMenuController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        Image image  = new Image(currentUser.getProfile().toURI().toString());
+        Image image  = new Image(LoggedHomeController.currentUser.getProfile().toURI().toString());
         profile.setFill(new ImagePattern(image));
 
-        name.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
-        username.setText("@" + currentUser.getUserName());
-        number.setText((currentUser.getPhoneNumber()));
+        name.setText(LoggedHomeController.currentUser.getFirstName() + " " + LoggedHomeController.currentUser.getLastName());
+        username.setText("@" + LoggedHomeController.currentUser.getUserName());
+        number.setText((LoggedHomeController.currentUser.getPhoneNumber()));
     }
 }

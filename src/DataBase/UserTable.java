@@ -41,8 +41,18 @@ public class UserTable extends DbHandler
     {
         JSONObject jsonObject = new JSONObject(jsonString);
         String query = "update users set firstName = ?, lastName = ?," +
-                " phoneNumber = ?, emailAddress = ?, location = ? where userName = ?";
-        userExecutor(jsonObject, query, photoUrl);
+                " userName = ?, password = ?, phoneNumber = ?, emailAddress = ?, location = ?, profilePhoto = ? where userName = ?";
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, jsonObject.getString("firstName"));
+        preparedStatement.setString(2, jsonObject.getString("lastName"));
+        preparedStatement.setString(3, jsonObject.getString("userName"));
+        preparedStatement.setString(4, jsonObject.getString("password"));
+        preparedStatement.setString(5, jsonObject.getString("phoneNumber"));
+        preparedStatement.setString(6, jsonObject.getString("emailAddress"));
+        preparedStatement.setString(7, jsonObject.getString("location"));
+        preparedStatement.setString(8, photoUrl);
+        preparedStatement.setString(9 , jsonObject.getString("userName"));
+        preparedStatement.executeUpdate();
     }
 
     //to avoid duplicate code
@@ -70,11 +80,12 @@ public class UserTable extends DbHandler
     }
 
     //getting user data from table
-    public String getUserData(String userName) throws SQLException, IOException, ClassNotFoundException
+    public String getUserData(String userName, String password) throws SQLException, IOException, ClassNotFoundException
     {
-        String query = "select * from users where userName = ?";
+        String query = "select * from users where userName = ? and password = ?";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
+        preparedStatement.setString(2, password);
         ResultSet resultSet = preparedStatement.executeQuery();
         //this is for make a json string for passing to clients
         String jsonString = null;

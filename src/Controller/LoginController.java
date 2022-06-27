@@ -62,7 +62,7 @@ public class LoginController implements Initializable
         else
         {
             LoggedHomeController.currentUser = Request.login(username.getText(), password.getText());
-            LoggedHomeMenuController.currentUser = Request.login(username.getText(), password.getText());
+            LoggedHomeController.currentUser = Request.login(username.getText(), password.getText());
             PageControl.open("LoggedHome");
         }
     }

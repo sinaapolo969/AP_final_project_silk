@@ -135,7 +135,15 @@ public class Request
                 e.printStackTrace();
             }
         } else {
-            sendingUserDataToServer(receivedUser);
+            try
+            {
+                dataOutputStream.writeInt(8);
+                dataOutputStream.flush();
+                sendingUserDataToServer(receivedUser);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -181,14 +189,9 @@ public class Request
                 "\"password\": " + "\"" + receivedUser.getPassword() + "\"" + ",\n" + "\"phoneNumber\": " +
                 "\"" + receivedUser.getPhoneNumber() + "\"" + ",\n" + "\"emailAddress\" : " + "\"" + receivedUser.getEmail() + "\"" +
                 ",\n" + "\"location\": " + "\"" + receivedUser.getLocation() + "\"" + "\n}";
-        System.out.println(jsonString);
-        System.out.println(receivedUser.getProfile().getAbsolutePath());
-        //JSONObject jsonObject = new JSONObject(receivedUser);
 
         try
         {
-            dataOutputStream.writeInt(1);
-            dataOutputStream.flush();
             dataOutputStream.writeUTF(jsonString);
             dataOutputStream.flush();
             sendProfilePhoto(receivedUser.getProfile());
@@ -290,7 +293,7 @@ public class Request
         }
     }
 
-    public static ArrayList<Post> gettingBookmarks(String username, int number)
+    public static ArrayList<Post> gettingBookmarks(String username)
     {
         ArrayList<Post> bookMarkedPosts = new ArrayList<>();
         try
@@ -298,8 +301,6 @@ public class Request
             dataOutputStream.writeInt(7);
             dataOutputStream.flush();
             dataOutputStream.writeUTF(username);
-            dataOutputStream.flush();
-            dataOutputStream.writeInt(number);
             dataOutputStream.flush();
             bookMarkedPosts = gettingPostsFromDataBase();
         }
@@ -358,7 +359,7 @@ public class Request
         return jsonString;
     }
 
-    public static ArrayList<Post> getPostByOwner(String userName, int number)
+    public static ArrayList<Post> getPostByOwner(String userName)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try
@@ -366,8 +367,6 @@ public class Request
             dataOutputStream.writeInt(3);
             dataOutputStream.flush();
             dataOutputStream.writeUTF(userName);
-            dataOutputStream.flush();
-            dataOutputStream.writeInt(number);
             dataOutputStream.flush();
             posts = gettingPostsFromDataBase();
         }
@@ -402,15 +401,13 @@ public class Request
         return posts;
     }
 
-    public ArrayList<Post> getPostByCategory(String category, int number)
+    public ArrayList<Post> getPostByCategory(String category)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try {
             dataOutputStream.writeInt(4);
             dataOutputStream.flush();
             dataOutputStream.writeUTF(category);
-            dataOutputStream.flush();
-            dataOutputStream.writeInt(number);
             dataOutputStream.flush();
             posts = gettingPostsFromDataBase();
         }
@@ -422,15 +419,13 @@ public class Request
         return posts;
     }
 
-    public static ArrayList<Post> getPostByLocation(String location, int number)
+    public static ArrayList<Post> getPostByLocation(String location)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try {
             dataOutputStream.writeInt(5);
             dataOutputStream.flush();
             dataOutputStream.writeUTF(location);
-            dataOutputStream.flush();
-            dataOutputStream.writeInt(number);
             dataOutputStream.flush();
             posts = gettingPostsFromDataBase();
         }
