@@ -4,6 +4,7 @@ import Model.Main;
 import Model.PageControl;
 import Model.Person.User.Request;
 import Model.Post.Post;
+import Model.States;
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -84,7 +85,7 @@ public class DashboardController implements Initializable
     private JFXTextField number;
 
     @FXML
-    private JFXComboBox<String> chooseCity;
+    private JFXComboBox<String> state;
 
     @FXML
     private ImageView advertisement;
@@ -115,7 +116,7 @@ public class DashboardController implements Initializable
     {
         LoggedHomeController.currentUser.setFirstName(name.getText());
         LoggedHomeController.currentUser.setLastName(lastname.getText());
-        LoggedHomeController.currentUser.setLocation(chooseCity.getValue());
+        LoggedHomeController.currentUser.setLocation(state.getValue().toString());
         LoggedHomeController.currentUser.setPhoneNumber(number.getText());
         LoggedHomeController.currentUser.setEmail(email.getText());
         LoggedHomeController.currentUser.setPassword(pass.getText());
@@ -160,7 +161,7 @@ public class DashboardController implements Initializable
     private void userDataSet()
     {
         name.setText(LoggedHomeController.currentUser.getFirstName());
-        chooseCity.setValue(LoggedHomeController.currentUser.getLocation());
+        state.setValue(LoggedHomeController.currentUser.getLocation());
         lastname.setText(LoggedHomeController.currentUser.getLastName());
         username.setText(LoggedHomeController.currentUser.getUserName());
         number.setText(LoggedHomeController.currentUser.getPhoneNumber());
@@ -169,7 +170,7 @@ public class DashboardController implements Initializable
         nameTop.setText(LoggedHomeController.currentUser.getFirstName() + " " +
                 LoggedHomeController.currentUser.getLastName());
         numberTop.setText(LoggedHomeController.currentUser.getPhoneNumber());
-        chooseCity.getItems().addAll(Main.cities);
+        state.getItems().addAll(States.values().toString());
     }
 
     @Override

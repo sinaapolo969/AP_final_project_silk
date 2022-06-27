@@ -51,7 +51,7 @@
                            </font>
                         </Label>
                         <FontAwesomeIconView fill="#ffffff6e" glyphName="ARROW_CIRCLE_DOWN" layoutX="589.0" layoutY="615.0" size="40" />
-                        <JFXDrawer fx:id="filters" direction="TOP" layoutX="279.0" layoutY="-14.0" prefHeight="364.0" prefWidth="695.0" />
+                        <JFXDrawer fx:id="filter" direction="TOP" layoutX="259.0" layoutY="-15.0" prefHeight="364.0" prefWidth="695.0" />
                      </children>
                   </AnchorPane>
                   <Label prefHeight="237.0" prefWidth="1257.0" text="Latest Advertises" textFill="#8b7f7f">
@@ -106,7 +106,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="topBar" layoutY="77.0" prefHeight="67.0" prefWidth="1253.0">
+      <AnchorPane fx:id="topBar" layoutX="-16.0" layoutY="77.0" prefHeight="67.0" prefWidth="1253.0">
          <children>
             <JFXTextField editable="false" focusColor="WHITE" layoutX="270.0" layoutY="11.0" onAction="#search" prefHeight="42.0" prefWidth="724.0" promptText="choose your prefered filters ..." styleClass="jfx-textField" stylesheets="@Style/home.css" unFocusColor="WHITE">
                <font>

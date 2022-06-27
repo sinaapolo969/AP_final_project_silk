@@ -44,6 +44,9 @@ public class HomeController implements Initializable
     @FXML
     private JFXDrawer leftDrawer;
 
+    @FXML
+    private JFXDrawer filter;
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -62,6 +65,9 @@ public class HomeController implements Initializable
 
         //left drawer initializing
         PageControl.initialDrawer("HomeMenu", leftDrawer);
+
+        //filter drawer initializing
+        PageControl.initialDrawer("filters", filter);
 
         //loading advertises
         try

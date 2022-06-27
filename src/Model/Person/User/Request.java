@@ -401,7 +401,7 @@ public class Request
         return posts;
     }
 
-    public ArrayList<Post> getPostByCategory(String category)
+    public static ArrayList<Post> getPostByCategory(String category)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try {
