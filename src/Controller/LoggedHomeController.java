@@ -4,6 +4,7 @@ import Model.PageControl;
 import Model.Person.User.User;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -21,6 +22,9 @@ public class LoggedHomeController implements Initializable
     public static User currentUser;
     @FXML
     private AnchorPane home;
+
+    @FXML
+    private JFXDrawer filter;
 
     @FXML
     private JFXDrawer leftDrawer;
@@ -41,6 +45,12 @@ public class LoggedHomeController implements Initializable
     private void userMenu(MouseEvent mouseEvent)
     {
 
+    }
+
+    @FXML
+    void search(ActionEvent event)
+    {
+        PageControl.openOrCloseDrawer(filter);
     }
 
     @FXML

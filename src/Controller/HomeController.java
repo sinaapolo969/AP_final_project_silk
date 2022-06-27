@@ -44,6 +44,9 @@ public class HomeController implements Initializable
     @FXML
     private JFXDrawer leftDrawer;
 
+    @FXML
+    private JFXDrawer filter;
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -62,6 +65,9 @@ public class HomeController implements Initializable
 
         //left drawer initializing
         PageControl.initialDrawer("HomeMenu", leftDrawer);
+
+        //filter drawer initializing
+        PageControl.initialDrawer("filters", filter);
 
         //loading advertises
         try
@@ -92,6 +98,18 @@ public class HomeController implements Initializable
         );
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+    }
+
+    @FXML
+    void search(ActionEvent event)
+    {
+        PageControl.openOrCloseDrawer(filter);
+    }
+
+    @FXML
+    void journey(ActionEvent event) throws IOException
+    {
+        PageControl.open("SignUp");
     }
 
     @FXML
