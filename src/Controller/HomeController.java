@@ -3,22 +3,27 @@ package Controller;
 import Model.PageControl;
 import Model.Person.User.Request;
 import Model.Post.Post;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +36,9 @@ public class HomeController implements Initializable
     private int column = 0, row = 1, num = 1;
 
     public static String location;
+
+    @FXML
+    private StackPane stack;
 
     @FXML
     private ImageView base;
@@ -66,9 +74,6 @@ public class HomeController implements Initializable
         //left drawer initializing
         PageControl.initialDrawer("HomeMenu", leftDrawer);
 
-        //filter drawer initializing
-        PageControl.initialDrawer("filters", filter);
-
         //loading advertises
         try
         {
@@ -101,9 +106,11 @@ public class HomeController implements Initializable
     }
 
     @FXML
-    void search(ActionEvent event)
+    void search(ActionEvent event) throws IOException
     {
-        PageControl.openOrCloseDrawer(filter);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/View/filters.fxml")));
+        JFXDialog dialog = new JFXDialog(stack, (Region) root, JFXDialog.DialogTransition.TOP);
+        dialog.show();
     }
 
     @FXML
@@ -186,7 +193,7 @@ public class HomeController implements Initializable
         {
             try
             {
-                AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("/View/Home.fxml")));
+                StackPane parentContent = FXMLLoader.load(getClass().getResource(("/View/Home.fxml")));
                 home.getChildren().setAll(parentContent);
             }
             catch (IOException ex)
