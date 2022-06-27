@@ -349,12 +349,12 @@ public class Request
 
     private static String creatingJsonString(Post post)
     {
-        String jsonString = "{\n \"title\": " + post.getTitle() + ",\n" + "\"postId\": " +
-                post.getPostId() + ",\n" + "\"category\": " + post.getCategory() + ",\n" +
-                "\"description\": " + post.getDescription() + ",\n" + "\"price\": " +
-                post.getPrice() + ",\n" + "\"sold\" : " + post.isSaleStatus() +
-                ",\n" + "\"owner\": " + post.getOwner() + "\"phoneNumber\" : " + post.getPhoneNumber() +
-                ",\n" + "\"location\": " + post.getLocation() + "\"date\" : " + post.getDate() + "\n}";
+        String jsonString = "{\n \"title\": " + "\"" + post.getTitle() + "\"" + ",\n" + "\"postId\": " +
+                "\"" + post.getPostId() + "\"" + ",\n" + "\"category\": " + "\"" + post.getCategory() + "\"" + ",\n" +
+                "\"description\": " + "\"" + post.getDescription() + "\"" + ",\n" + "\"price\": " +
+                "\"" + post.getPrice() + "\"" + ",\n" + "\"sold\" : " + "\"" + post.isSaleStatus() + "\"" +
+                ",\n" + "\"owner\": " + "\"" + post.getOwner() + "\"" + ",\n" + "\"phoneNumber\" : " + "\"" + post.getPhoneNumber() +
+                "\"" + ",\n" + "\"location\": " + "\"" + post.getLocation() + "\"" + ",\n" + "\"date\" : " + "\"" + post.getDate() + "\"" + "\n}";
 
         return jsonString;
     }
