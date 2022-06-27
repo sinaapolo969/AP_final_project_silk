@@ -11,6 +11,7 @@ import java.io.*;
 import java.net.Socket;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -416,6 +417,14 @@ public class Request
             e.printStackTrace();
         }
 
+        for (int i = 0; i < posts.size(); i++)
+        {
+            if(expiration(posts.get(i)));
+            {
+                posts.remove(i);
+            }
+        }
+
         return posts;
     }
 
@@ -523,12 +532,14 @@ public class Request
         return posts;
     }
 
-    private void expiration(Post post)
+    private boolean expiration(Post post)
     {
         if(post.getEXP().compareTo(LocalDate.now()) >= 0)
         {
             sendingPostForDeleting(post.getPostId());
+            return true;
         }
+        return false;
     }
 
     private static void sendingPostForDeleting(String postID)
@@ -615,5 +626,19 @@ public class Request
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String duration(LocalDateTime postTime)
+    {
+        int duration = postTime.compareTo(LocalDateTime.now());
+        if (duration < 0 && postTime.getDayOfMonth() != LocalDateTime.now().getDayOfMonth())
+        {
+            return (duration + "days ago");
+        }
+        else if(duration <= 0)
+        {
+            return "just now";
+        }
+        return null;
     }
 }
