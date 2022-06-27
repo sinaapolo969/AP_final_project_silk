@@ -9,6 +9,7 @@ public enum States
     California,
     Colorado,
     Connecticut,
+    Chicago,
     Delaware,
     Florida,
     Georgia,

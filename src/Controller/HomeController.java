@@ -123,6 +123,7 @@ public class HomeController implements Initializable
     void loadMore(ActionEvent event)
     {
         num ++;
+        row += 5;
         PageControl.loading15(num, row, column, grid, posts, "AdvertisePre");
     }
 

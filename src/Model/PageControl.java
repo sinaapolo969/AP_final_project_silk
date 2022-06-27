@@ -136,7 +136,7 @@ public class PageControl
         int min = Math.min(15, posts.size() - 15 * (num - 1));
         try
         {
-            for (int i = 15 * (num - 1); i < min; i ++)
+            for (int i = 15 * (num - 1); i < min + (15 * (num - 1)); i ++)
             {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(PageControl.class.getResource("/View/" + name + ".fxml"));

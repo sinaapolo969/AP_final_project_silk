@@ -38,7 +38,16 @@ public class FiltersController implements Initializable
     @FXML
     void done(ActionEvent event) throws IOException
     {
-        String selectedCategory = category.getSelectedToggle().toString();
+        String selectedCategory;
+        if (category.getSelectedToggle() != null)
+        {
+            selectedCategory = category.getSelectedToggle().toString();
+        }
+        else
+        {
+            selectedCategory = "";
+        }
+
         States usState = state.getValue();
         String startPrice = start.getText();
         String endPrice = end.getText();

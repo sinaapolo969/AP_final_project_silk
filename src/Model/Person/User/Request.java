@@ -483,7 +483,7 @@ public class Request
         ArrayList<Post> posts = new ArrayList<>();
         try
         {
-            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeInt(9);
             dataOutputStream.writeUTF(category);
             dataOutputStream.flush();
             dataOutputStream.writeUTF(location);
