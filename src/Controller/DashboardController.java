@@ -103,8 +103,10 @@ public class DashboardController implements Initializable
     void createAd(ActionEvent event)
     {
         Post newPost = new Post(title.getText() ,category.getValue(), description.getText(),
-                Double.parseDouble(price.getText()), "0", LoggedHomeController.currentUser.getUserName(), advertise,
-                LoggedHomeController.currentUser.getPhoneNumber(), LoggedHomeController.currentUser.getLocation());
+                Double.parseDouble(price.getText()), "0",
+                LoggedHomeController.currentUser.getUserName(), advertise,
+                LoggedHomeController.currentUser.getPhoneNumber(),
+                LoggedHomeController.currentUser.getLocation());
         Request.makingPost(newPost);
     }
 
@@ -119,6 +121,7 @@ public class DashboardController implements Initializable
         LoggedHomeController.currentUser.setPassword(pass.getText());
 
         Request.editInfo(LoggedHomeController.currentUser);
+        userDataSet();
     }
 
     @FXML
@@ -154,41 +157,37 @@ public class DashboardController implements Initializable
         PageControl.twitter();
     }
 
+    private void userDataSet()
+    {
+        name.setText(LoggedHomeController.currentUser.getFirstName());
+        chooseCity.setValue(LoggedHomeController.currentUser.getLocation());
+        lastname.setText(LoggedHomeController.currentUser.getLastName());
+        username.setText(LoggedHomeController.currentUser.getUserName());
+        number.setText(LoggedHomeController.currentUser.getPhoneNumber());
+        email.setText(LoggedHomeController.currentUser.getEmail());
+        pass.setText(LoggedHomeController.currentUser.getPassword());
+        nameTop.setText(LoggedHomeController.currentUser.getFirstName() + " " +
+                LoggedHomeController.currentUser.getLastName());
+        numberTop.setText(LoggedHomeController.currentUser.getPhoneNumber());
+        chooseCity.getItems().addAll(Main.cities);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         //bookmarks tab
-
-        //bookmarks = Request.gettingBookmarks(LoggedHomeController.currentUser.getUserName(), 1);
+        bookmarks = Request.gettingBookmarks(LoggedHomeController.currentUser.getUserName());
         PageControl.loading15(numB, rowB, columnB, gridBM, bookmarks, "AdvertisePre");
 
         //my advertisements tab
-//        mine = Request.getPostByOwner(LoggedHomeController.currentUser.getUserName(), 1);
+        mine = Request.getPostByOwner(LoggedHomeController.currentUser.getUserName());
         PageControl.loading15(numE, rowE, columnE, gridEdit, mine, "AdvertisePre");
 
-        //user profile in the top of the page and edit info page
+        //user profile photo in the top of the page
         Image image = new Image(LoggedHomeController.currentUser.getProfile().toURI().toString());
         photo.setFill(new ImagePattern(image));
 
-        name.setText(LoggedHomeController.currentUser.getFirstName());
-
-        chooseCity.setValue(LoggedHomeController.currentUser.getLocation());
-
-        lastname.setText(LoggedHomeController.currentUser.getLastName());
-
-        username.setText(LoggedHomeController.currentUser.getUserName());
-
-        number.setText(LoggedHomeController.currentUser.getPhoneNumber());
-
-        email.setText(LoggedHomeController.currentUser.getEmail());
-
-        pass.setText(LoggedHomeController.currentUser.getPassword());
-
-        nameTop.setText(LoggedHomeController.currentUser.getFirstName() + " " +
-                LoggedHomeController.currentUser.getLastName());
-
-        numberTop.setText(LoggedHomeController.currentUser.getPhoneNumber());
-
-        chooseCity.getItems().addAll(Main.cities);
+        //user data in the top of the page and edit info tab
+        userDataSet();
     }
 }

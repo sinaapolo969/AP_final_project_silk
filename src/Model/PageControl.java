@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.AdvertisePreController;
+import Controller.EditPostController;
 import Controller.HomeController;
 import Model.Post.Post;
 import com.jfoenix.controls.JFXDrawer;
@@ -129,19 +130,30 @@ public class PageControl
         }
     }
 
-    public static void loading15(int num, int row, int column, GridPane grid, ArrayList<Post> posts, String name)
+    public static void loading15(int num, int row, int column, GridPane grid,
+                                 ArrayList<Post> posts, String name)
     {
+        int min = Math.min(15, posts.size() - 15 * (num - 1));
         try
         {
-            for (int i = 15 * (num - 1); i < posts.size(); i ++)
+            for (int i = 15 * (num - 1); i < min; i ++)
             {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(PageControl.class.getResource("/View/" + name + ".fxml"));
                 VBox vbox = loader.load();
 
-                AdvertisePreController adCon = loader.getController();
-                adCon.currentPost = posts.get(i);
-                adCon.setData(posts.get(i));
+                if (name.equals("AdvertisePre"))
+                {
+                    AdvertisePreController adCon = loader.getController();
+                    adCon.currentPost = posts.get(i);
+                    adCon.setData(posts.get(i));
+                }
+                else if (name.equals("editPost"))
+                {
+                    EditPostController editPost = new EditPostController();
+                    editPost.currentPost = posts.get(i);
+                    editPost.setData(posts.get(i));
+                }
 
                 if (column == 3)
                 {
