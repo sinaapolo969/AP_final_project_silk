@@ -532,7 +532,7 @@ public class Request
         return posts;
     }
 
-    private boolean expiration(Post post)
+    private static boolean expiration(Post post)
     {
         if(post.getEXP().compareTo(LocalDate.now()) >= 0)
         {
