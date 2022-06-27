@@ -134,6 +134,8 @@ public class PageControl
                                  ArrayList<Post> posts, String name)
     {
         int min = Math.min(15, posts.size() - 15 * (num - 1));
+        HomeController.loadedCount += min;
+
         try
         {
             for (int i = 15 * (num - 1); i < min + (15 * (num - 1)); i ++)

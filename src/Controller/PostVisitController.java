@@ -1,15 +1,16 @@
 package Controller;
 
 import Model.PageControl;
+import Model.Person.User.Request;
 import Model.Post.Post;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
@@ -27,19 +28,6 @@ public class PostVisitController implements Initializable
 {
     Boolean bookmarked = false;
     static Post currentPost;
-
-    @FXML
-    private Circle profile;
-
-    @FXML
-    private JFXTextField search;
-
-    @FXML
-    private Label notifs;
-
-    @FXML
-    private JFXDrawer leftDrawer;
-
     @FXML
     private ImageView image;
 
@@ -65,13 +53,13 @@ public class PostVisitController implements Initializable
     private JFXTextField price;
 
     @FXML
-    private FontAwesomeIconView icon;
-
-    @FXML
     private Circle seller;
 
     @FXML
     private Label name;
+
+    @FXML
+    private Tab chat;
 
     @FXML
     private FontAwesomeIconView icon1;
@@ -87,17 +75,42 @@ public class PostVisitController implements Initializable
     }
 
     @FXML
-    void bookmark(MouseEvent event)
+    void bookmark(MouseEvent event) throws IOException
     {
-        if (bookmarked)
+        if (LoggedHomeController.currentUser == null)
         {
-            bk.setStyle("-fx-background-color: transpose");
-            bookmarked = false;
+            PageControl.open("SignUp");
         }
         else
         {
-            bk.setStyle("-fx-background-color: white");
-            bookmarked = true;
+            Request.bookmarking(currentPost.getPostId(), LoggedHomeController.currentUser.getUserName());
+            bk.setStyle("-fx-background-color: #914c4c");
+        }
+    }
+
+    @FXML
+    void back(MouseEvent event) throws IOException
+    {
+        if (LoggedHomeController.currentUser == null)
+        {
+            PageControl.open("Home");
+        }
+        else
+        {
+            PageControl.open("LoggedHome");
+        }
+    }
+
+    @FXML
+    void home(MouseEvent event) throws IOException
+    {
+        if (LoggedHomeController.currentUser == null)
+        {
+            PageControl.open("Home");
+        }
+        else
+        {
+            PageControl.open("LoggedHome");
         }
     }
 
@@ -146,5 +159,14 @@ public class PostVisitController implements Initializable
         Image image = new Image(file.toURI().toString());
         seller.setFill(new ImagePattern(image));
         name.setText(currentPost.getOwner());
+
+        if (LoggedHomeController.currentUser == null)
+        {
+            chat.setDisable(true);
+            icon1.setDisable(true);
+            icon1.setVisible(false);
+            bk.setDisable(true);
+            bk.setVisible(false);
+        }
     }
 }

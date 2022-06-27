@@ -40,7 +40,7 @@
                                                 <Insets left="10.0" right="10.0" />
                                             </padding>
                                         </Label>
-                                        <JFXButton layoutX="290.0" layoutY="385.0" prefHeight="134.0" prefWidth="632.0" ripplerFill="#bca6a6" style="-fx-border-color: white;" text="Start Your Journey ..." textFill="WHITE">
+                                        <JFXButton layoutX="290.0" layoutY="385.0" onAction="#journey" prefHeight="134.0" prefWidth="632.0" ripplerFill="#bca6a6" style="-fx-border-color: white;" text="Start Your Journey ..." textFill="WHITE">
                                             <font>
                                                 <Font name="Times New Roman Italic" size="23.0" />
                                             </font>
@@ -71,7 +71,7 @@
                                         <Insets bottom="75.0" top="25.0" />
                                     </VBox.margin>
                                     <children>
-                                        <JFXButton onAction="#loadMore" prefHeight="67.0" prefWidth="300.0" style="-fx-border-color: black;" text="Load More">
+                                        <JFXButton fx:id="loadM" onAction="#loadMore" prefHeight="67.0" prefWidth="300.0" style="-fx-border-color: black;" text="Load More">
                                             <font>
                                                 <Font name="Sitka Banner Italic" size="26.0" />
                                             </font>
@@ -103,7 +103,7 @@
                         </JFXButton>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="-1.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;" stylesheets="@Style/IconHomeTab.css">
+                <AnchorPane prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;" stylesheets="@Style/IconHomeTab.css">
                     <children>
                         <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>

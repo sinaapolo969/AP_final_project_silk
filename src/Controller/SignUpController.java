@@ -84,6 +84,12 @@ public class SignUpController implements Initializable
         PageControl.openOrCloseDrawer(leftDrawer);
     }
 
+    @FXML
+    void back(MouseEvent event) throws IOException
+    {
+        PageControl.open("Home");
+    }
+
 
     @FXML
     void fileChoose(ActionEvent event)
@@ -174,8 +180,6 @@ public class SignUpController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        PageControl.initialDrawer("HomeMenu", leftDrawer);
-
         File file = new File("/View/Images/user.png");
         this.profile = file;
         Image image = new Image("/View/Images/user.png");

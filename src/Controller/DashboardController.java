@@ -181,7 +181,7 @@ public class DashboardController implements Initializable
 
         //my advertisements tab
         mine = Request.getPostByOwner(LoggedHomeController.currentUser.getUserName());
-        PageControl.loading15(numE, rowE, columnE, gridEdit, mine, "AdvertisePre");
+        PageControl.loading15(numE, rowE, columnE, gridEdit, mine, "editPost");
 
         //user profile photo in the top of the page
         Image image = new Image(LoggedHomeController.currentUser.getProfile().toURI().toString());

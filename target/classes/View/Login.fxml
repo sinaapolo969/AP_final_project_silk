@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
@@ -12,11 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<AnchorPane prefHeight="769.0" prefWidth="1249.0" stylesheets="@Style/backButton.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
-      <ImageView fitHeight="634.0" fitWidth="1257.0" layoutY="137.0" pickOnBounds="true">
+      <ImageView fitHeight="694.0" fitWidth="1257.0" layoutY="77.0" pickOnBounds="true">
          <image>
-            <Image url="@Images/lrHome/7.jpg" />
+            <Image url="@Images/lrHome/15.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="320.0" layoutY="171.0" prefHeight="580.0" prefWidth="618.0" style="-fx-border-color: #83430e; -fx-border-width: 4; -fx-border-radius: 5;">
@@ -27,7 +26,7 @@
                   <JFXPasswordField fx:id="password" focusColor="#581f30" labelFloat="true" layoutX="77.0" layoutY="410.0" prefHeight="37.0" prefWidth="213.0" promptText="password" unFocusColor="#83430e" />
                   <ImageView fitHeight="233.0" fitWidth="434.0" layoutX="49.0" layoutY="63.0" pickOnBounds="true">
                      <image>
-                        <Image url="@Images/lrHome/7.jpg" />
+                        <Image url="@Images/lrHome/15.jpg" />
                      </image>
                   </ImageView>
                   <JFXButton fx:id="log" layoutX="319.0" layoutY="345.0" onAction="#logIn" prefHeight="58.0" prefWidth="165.0" ripplerFill="#8f3939" style="-fx-background-radius: 50; -fx-border-color: #83430e;" text="Log In" textFill="#80470b">
@@ -54,8 +53,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutX="1.0" layoutY="137.0" prefHeight="634.0" prefWidth="263.0" />
-      <AnchorPane prefHeight="77.0" prefWidth="1257.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
+      <AnchorPane prefHeight="77.0" prefWidth="1257.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;" stylesheets="@Style/HomeTab.css">
          <children>
             <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -77,26 +75,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="4.0" layoutY="77.0" prefHeight="58.0" prefWidth="1250.0" style="-fx-background-color: white;">
-         <children>
-            <JFXTextField focusColor="#9fa3ae" layoutX="79.0" layoutY="8.0" prefHeight="42.0" prefWidth="187.0" promptText="Search ..." unFocusColor="#e9e0e0">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </JFXTextField>
-            <FontAwesomeIconView fill="#cccccc" glyphName="SEARCH" layoutX="58.0" layoutY="35.0" size="15" text="" />
-            <FontAwesomeIconView fill="#a8a49ed9" glyphName="REORDER" layoutX="14.0" layoutY="43.0" onMouseClicked="#menu" size="30" text="" wrappingWidth="30.66673105955124" />
-            <JFXButton buttonType="RAISED" layoutX="1147.0" layoutY="9.0" prefHeight="42.0" prefWidth="95.0" ripplerFill="#141414" style="-fx-border-color: #8f8e8e;" text="Log In" textFill="#8f8e8e">
-               <font>
-                  <Font name="Bookman Old Style Italic" size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="1038.0" layoutY="9.0" onAction="#signUp" prefHeight="42.0" prefWidth="95.0" ripplerFill="#141414" style="-fx-border-color: #8f8e8e;" text="Sign Up" textFill="#8f8e8e">
-               <font>
-                  <Font name="Bookman Old Style Italic" size="16.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </AnchorPane>
+      <FontAwesomeIconView fx:id="back" fill="#886363" glyphName="ARROW_CIRCLE_ALT_LEFT" layoutX="14.0" layoutY="118.0" onMouseClicked="#back" size="40" />
    </children>
 </AnchorPane>

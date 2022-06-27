@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="advertise" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#ad" prefHeight="498.0" prefWidth="411.0" style="-fx-background-radius: 50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdvertisePreController">
+<VBox fx:id="advertise" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="411.0" style="-fx-background-radius: 50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdvertisePreController">
    <children>
       <ImageView fx:id="image" fitHeight="266.0" fitWidth="329.0" pickOnBounds="true" />
       <Label fx:id="title" prefHeight="69.0" prefWidth="389.0">
@@ -46,7 +46,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="81.0" prefWidth="405.0">
          <children>
-            <JFXButton buttonType="RAISED" onAction="#bookmark" prefHeight="43.0" prefWidth="136.0" ripplerFill="#9c3838" style="-fx-background-radius: 20; -fx-border-color: #603c40;" text="BookMark" textFill="#571f1f">
+            <JFXButton fx:id="bk" buttonType="RAISED" onAction="#bookmark" prefHeight="43.0" prefWidth="136.0" ripplerFill="#9c3838" style="-fx-background-radius: 20; -fx-border-color: #603c40;" text="BookMark" textFill="#571f1f">
                <font>
                   <Font name="System Italic" size="15.0" />
                </font>
