@@ -36,46 +36,50 @@ public class Request
         }
     }
 
-
+    //the emails method should uncomment
     public static void signUp(User receivedUser)
     {
-//        if(!checkingEmail(receivedUser.getEmail()))
-//        {
-//            try
-//            {
-//                throw new EmailValidationException("Wrong Email");
-//            }
-//            catch (EmailValidationException e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//        else if(!checkingPhoneNumber(receivedUser.getPhoneNumber()))
-//        {
-//            try
-//            {
-//                throw new PhoneNumberValidationException("Wrong Phone-number");
-//            }
-//            catch (PhoneNumberValidationException e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//        else
-//        {
-//            boolean flag = true;//repetitionOfEmail(receivedUser.getEmail());
-//
-//            if (flag)
-//            {
-//                //sendingDataToServer(userNumber);
-//                sendingDataToServer(receivedUser);
-//                Admin.sendEmail(receivedUser.getEmail());
-//            }
-//            else
-//            {
-//                out.println("u are already signed up");
-//            }
-//        }
+        //if(!checkingEmailValidation(receivedUser.getEmail()))
+        //{
+        //    try
+        //    {
+        //        throw new EmailValidationException("Wrong Email");
+        //    }
+        //    catch (EmailValidationException e)
+        //    {
+        //        e.printStackTrace();
+        //    }
+        //}
+        //else if(!checkingPhoneNumber(receivedUser.getPhoneNumber()))
+        //{
+        //    try
+        //    {
+        //        throw new PhoneNumberValidationException("Wrong Phone-number");
+        //    }
+        //    catch (PhoneNumberValidationException e)
+        //    {
+        //        e.printStackTrace();
+        //    }
+        //}
+        //else if(!checkingStrengthOfPass(receivedUser.getPassword()))
+        //{
+        //    //the password isn't strong enough
+        //}
+        //else
+        //{
+        //    boolean flag = true;//repetitionOfEmail(receivedUser.getEmail());
+        //
+        //    if (flag)
+        //    {
+        //        //sendingDataToServer(userNumber);
+        //        sendingDataToServer(receivedUser);
+        //        Admin.sendEmail(receivedUser.getEmail(), "WellCome", "welcome\n to silk road app we are so glad to have you here");
+        //    }
+        //    else
+        //    {
+        //        System.out.println("u are already signed up");
+        //    }
+        //}
         sendingDataToServer(receivedUser);
     }
 
@@ -94,6 +98,7 @@ public class Request
         // I will send this code and user for ariana
     }
 
+    //this method doesnt synced with database and fx
     public synchronized void gettingCode(int inputCode, int originalCode, User user) // ariana will send the input code for me and als resend the original code and the user
     {
         if (inputCode == originalCode)
@@ -238,15 +243,7 @@ public class Request
         return file;
     }
 
-    public void logOut()
-    {
-        try
-        {
-            this.socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     private static boolean checkingEmailValidation(String email)
     {
@@ -261,17 +258,19 @@ public class Request
         return phoneNumber.matches(regex);
     }
 
+    //this method doesnt work
     private boolean existenceOfEmail(String email) {
-        try {
-            dataOutputStream.writeUTF(email);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            return dataInputStream.readBoolean();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            dataOutputStream.writeUTF(email);
+//            dataOutputStream.flush();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            return dataInputStream.readBoolean();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return false;
     }
 
@@ -281,7 +280,9 @@ public class Request
         try
         {
             dataOutputStream.writeUTF(username);
+            dataOutputStream.flush();
             dataOutputStream.writeUTF(postID);
+            dataOutputStream.flush();
         }
         catch (IOException e)
         {
@@ -318,6 +319,12 @@ public class Request
         sendingPostDataToServer(jsonFormOfThePost, post.getPhoto());
     }
 
+
+    public static void editPost(Post editedPost)
+    {
+        sendingPostDataToServer(creatingJsonString(editedPost), editedPost.getPhoto());
+    }
+
     private static void sendingPostDataToServer(String jsonFormOfThePost, File photo)
     {
         try
@@ -332,12 +339,6 @@ public class Request
         {
             e.printStackTrace();
         }
-
-    }
-
-    public static void editPost(Post editedPost)
-    {
-        //sendingPostDataToServer(creatingJsonString(editedPost), editedPost.getPhoto());
     }
 
     public static void deletePost(String postID)//if they push delete post button
@@ -350,10 +351,10 @@ public class Request
         String jsonString = "{\n \"title\": " + post.getTitle() + ",\n" + "\"postId\": " +
                 post.getPostId() + ",\n" + "\"category\": " + post.getCategory() + ",\n" +
                 "\"description\": " + post.getDescription() + ",\n" + "\"price\": " +
-                post.getPrice() + ",\n" + "\"saleStatus\" : " + post.isSaleStatus() +
+                post.getPrice() + ",\n" + "\"sold\" : " + post.isSaleStatus() +
                 ",\n" + "\"owner\": " + post.getOwner() + "\"phoneNumber\" : " + post.getPhoneNumber() +
-                ",\n" + "\"location\": " + post.getLocation() + "\"Date\" : " + post.getDate() +
-                ",\n" + "\"EXP\": " + post.getEXP() + "\n}";
+                ",\n" + "\"location\": " + post.getLocation() + "\"date\" : " + post.getDate() + "\n}";
+
         return jsonString;
     }
 
@@ -441,6 +442,92 @@ public class Request
         return posts;
     }
 
+    public static ArrayList<Post> getFilteredPricedPosts(String minPrice, String maxPrice)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try
+        {
+            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeUTF(minPrice);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(maxPrice);
+            dataOutputStream.flush();
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+    }
+
+    public static ArrayList<Post> getFilteredPricedAndLocationPosts(String minPrice, String maxPrice, String location)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try
+        {
+            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeUTF(minPrice);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(maxPrice);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(location);
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+    }
+
+    public static ArrayList<Post> getPostsByLocationAndCategory(String category, String location)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try
+        {
+            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeUTF(category);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(location);
+            dataOutputStream.flush();
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+    }
+
+    public static ArrayList<Post> getPostsByLocationAndCategoryAndLimitedPrice(String minPrice,String maxPrice,
+                                                                               String category, String location)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try
+        {
+            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeUTF(category);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(location);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(minPrice);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(maxPrice);
+            dataOutputStream.flush();
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+    }
+
     private void expiration(Post post)
     {
         if(post.getEXP().compareTo(LocalDate.now()) >= 0)
@@ -452,7 +539,7 @@ public class Request
     private static void sendingPostForDeleting(String postID)
     {
         try {
-            dataOutputStream.write(8);
+            dataOutputStream.writeInt(8);
             dataOutputStream.flush();
             dataOutputStream.writeUTF(postID);
             dataOutputStream.flush();
@@ -519,4 +606,19 @@ public class Request
         }
     }
 
+    public boolean checkingStrengthOfPass(String password)
+    {
+        String strongPassRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+        return password.matches(strongPassRegex);
+    }
+
+    public void logOut()
+    {
+        try
+        {
+            this.socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

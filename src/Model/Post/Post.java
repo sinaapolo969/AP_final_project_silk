@@ -1,6 +1,11 @@
 package Model.Post;
 import java.io.File;
 import java.time.LocalDate;
+
+import java.util.Date;
+
+
+
 public class Post
 {
     private String title;
@@ -15,6 +20,7 @@ public class Post
     private String location;
     private final LocalDate date;
     private final LocalDate EXP;
+
     public Post(String title, String category, String description, double price, String saleStatus, String owner, File photo,
                 String phoneNumber, String location) // this constructor is for making new post for the first time
     {
@@ -30,7 +36,8 @@ public class Post
         this.date = LocalDate.now();
         this.EXP = LocalDate.now().plusMonths(1);
     }
-    public Post(String title, String category, String description, String postId,
+
+    public Post(String title, String postId, String category, String description,
                 double price, String saleStatus, String owner, File photo, String phoneNumber,
                 String location, LocalDate date)// this conjecture is for making obj but not for the fist time
     {
@@ -47,6 +54,7 @@ public class Post
         this.date = date;
         this.EXP = date.plusMonths(1);
     }
+
     public String getTitle()
     {
         return title;
