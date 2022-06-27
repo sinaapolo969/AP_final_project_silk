@@ -324,15 +324,22 @@ public class Request
 
     public static void editPost(Post editedPost)
     {
-        sendingPostDataToServer(creatingJsonString(editedPost), editedPost.getPhoto());
+        try
+        {
+            dataOutputStream.writeInt(10);
+            dataOutputStream.flush();
+            sendingPostDataToServer(creatingJsonString(editedPost), editedPost.getPhoto());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     private static void sendingPostDataToServer(String jsonFormOfThePost, File photo)
     {
         try
         {
-            dataOutputStream.writeInt(6);
-            dataOutputStream.flush();
             dataOutputStream.writeUTF(jsonFormOfThePost);
             dataOutputStream.flush();
             sendPostPhoto(photo.getAbsolutePath());

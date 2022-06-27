@@ -105,6 +105,11 @@ public class ClientHandler extends Thread
                         category = dataInputStream.readUTF();
                         getPostByCategoryAndLocation(category, location);
                         break;
+                    //edit post info
+                    case 10:
+                        postData = dataInputStream.readUTF();
+                        editPostInfo(postData);
+                        break;
                     case 0:
                         return;
                 }
