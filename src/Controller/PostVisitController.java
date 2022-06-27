@@ -4,7 +4,6 @@ import Model.PageControl;
 import Model.Person.User.Request;
 import Model.Post.Post;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;

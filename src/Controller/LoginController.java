@@ -52,6 +52,12 @@ public class LoginController implements Initializable
     }
 
     @FXML
+    void back(MouseEvent event) throws IOException
+    {
+        PageControl.open("Home");
+    }
+
+    @FXML
     private void logIn(ActionEvent event) throws IOException
     {
 
@@ -76,6 +82,6 @@ public class LoginController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        PageControl.initialDrawer("HomeMenu", leftDrawer);
+
     }
 }

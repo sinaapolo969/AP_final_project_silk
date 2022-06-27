@@ -38,10 +38,17 @@ public class AdvertisePreController
     private VBox advertise;
 
     @FXML
-    void bookmark(ActionEvent event)
+    void bookmark(ActionEvent event) throws IOException
     {
-        Request.bookmarking(currentPost.getPostId(), LoggedHomeController.currentUser.getUserName());
-        bk.setStyle("-fx-background-color: #563e3e");
+        if (LoggedHomeController.currentUser == null)
+        {
+            PageControl.open("SignUp");
+        }
+        else
+        {
+            Request.bookmarking(currentPost.getPostId(), LoggedHomeController.currentUser.getUserName());
+            bk.setStyle("-fx-background-color: #563e3e");
+        }
     }
 
     @FXML

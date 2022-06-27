@@ -35,7 +35,7 @@
             <BoxBlur />
          </effect>
       </ImageView>
-      <AnchorPane prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
+      <AnchorPane prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;" stylesheets="@Style/HomeTab.css">
          <children>
             <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
                <image>
