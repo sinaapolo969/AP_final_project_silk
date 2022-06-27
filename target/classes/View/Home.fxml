@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="stack" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeController">
     <children>
         <AnchorPane fx:id="home" prefHeight="769.0" prefWidth="1249.0">
@@ -106,7 +105,7 @@
                         </JFXButton>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="-1.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;">
+                <AnchorPane layoutX="-1.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;" stylesheets="@Style/IconHomeTab.css">
                     <children>
                         <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
