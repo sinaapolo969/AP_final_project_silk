@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Person.User.Request;
 import Model.Post.Post;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
@@ -40,7 +41,7 @@ public class EditPostController implements Initializable
     @FXML
     void edit(ActionEvent event)
     {
-
+        Request.editPost(currentPost);
     }
 
     public void setData(Post ad)

@@ -152,7 +152,7 @@ public class PageControl
                 }
                 else if (name.equals("editPost"))
                 {
-                    EditPostController editPost = new EditPostController();
+                    EditPostController editPost = loader.getController();
                     editPost.currentPost = posts.get(i);
                     editPost.setData(posts.get(i));
                 }
