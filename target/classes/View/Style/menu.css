@@ -1,6 +1,6 @@
 #info
 {
-    -fx-background-color: #4f2e2e;
+    -fx-background-color: #cecece;
     -fx-background-radius: 0 60 60 0;
 }
 
@@ -21,7 +21,7 @@ VBox
 
 .jfx-button:hover
 {
-    -fx-background-color: #acc6ea;
+    -fx-background-color: #cbcbcb;
     -fx-background-radius: 0 60 60 0;
 }
 

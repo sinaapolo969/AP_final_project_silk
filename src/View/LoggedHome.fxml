@@ -56,7 +56,7 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutY="135.0" prefHeight="634.0" prefWidth="266.0" />
+            <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutY="135.0" prefHeight="666.0" prefWidth="266.0" />
             <AnchorPane prefHeight="77.0" prefWidth="1259.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;" stylesheets="@Style/IconHomeTab.css">
                <children>
                   <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">

@@ -35,6 +35,10 @@ public class AdvertisePreController
     public Label price;
 
     @FXML
+    private Label date;
+
+
+    @FXML
     private VBox advertise;
 
     @FXML
@@ -73,5 +77,6 @@ public class AdvertisePreController
         price.setText(String.valueOf(ad.getPrice()));
         title.setText(ad.getTitle());
         owner.setText(ad.getOwner());
+        date.setText(Request.duration(currentPost.getDate()) + " ago");
     }
 }

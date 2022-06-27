@@ -13,11 +13,16 @@
 <VBox fx:id="advertise" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="411.0" style="-fx-background-radius: 50;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdvertisePreController">
    <children>
       <ImageView fx:id="image" fitHeight="266.0" fitWidth="329.0" pickOnBounds="true" />
-      <Label fx:id="title" prefHeight="69.0" prefWidth="389.0">
-         <font>
-            <Font name="Sitka Banner Bold" size="25.0" />
-         </font>
-      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="title" prefHeight="69.0" prefWidth="328.0">
+               <font>
+                  <Font name="Sitka Banner Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="date" alignment="CENTER" prefHeight="38.0" prefWidth="72.0" />
+         </children>
+      </HBox>
       <HBox alignment="CENTER" prefHeight="38.0" prefWidth="260.0">
          <children>
             <Label prefHeight="27.0" prefWidth="55.0" text="Owner :" textFill="#a3a0a0">

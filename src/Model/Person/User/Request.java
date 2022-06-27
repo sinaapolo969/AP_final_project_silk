@@ -628,10 +628,10 @@ public class Request
         }
     }
 
-    public String duration(LocalDateTime postTime)
+    public static String duration(LocalDate postTime)
     {
-        int duration = postTime.compareTo(LocalDateTime.now());
-        if (duration < 0 && postTime.getDayOfMonth() != LocalDateTime.now().getDayOfMonth())
+        int duration = postTime.compareTo(LocalDate.now());
+        if (duration < 0 && postTime.getDayOfMonth() != LocalDate.now().getDayOfMonth())
         {
             return (duration + "days ago");
         }

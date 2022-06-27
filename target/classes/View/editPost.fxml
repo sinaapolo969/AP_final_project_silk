@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="advertise" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="411.0" style="-fx-background-radius: 50;" stylesheets="@Style/DashBoard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx= "http://javafx.com/fxml/1" fx:controller="Controller.EditPostController">
+<VBox fx:id="advertise" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="411.0" style="-fx-background-radius: 50;" stylesheets="@Style/DashBoard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditPostController">
     <children>
         <ImageView fx:id="image" fitHeight="246.0" fitWidth="335.0" pickOnBounds="true">
             <VBox.margin>
@@ -22,9 +22,9 @@
                 <Font size="28.0" />
             </font>
         </Label>
-        <HBox alignment="BOTTOM_LEFT" prefHeight="47.0" prefWidth="391.0">
+        <HBox alignment="BOTTOM_LEFT" prefHeight="62.0" prefWidth="391.0">
             <children>
-                <JFXTextField fx:id="title" prefHeight="39.0" prefWidth="197.0" promptText="Title">
+                <JFXTextField fx:id="title" labelFloat="true" prefHeight="39.0" prefWidth="197.0" promptText="Title">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -32,7 +32,7 @@
                         <Insets left="20.0" />
                     </HBox.margin>
                 </JFXTextField>
-                <JFXTextField fx:id="price" prefHeight="25.0" prefWidth="113.0" promptText="Price">
+                <JFXTextField fx:id="price" labelFloat="true" prefHeight="25.0" prefWidth="113.0" promptText="Price">
                     <HBox.margin>
                         <Insets left="40.0" />
                     </HBox.margin>
@@ -41,7 +41,7 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="201.0" prefWidth="391.0">
             <children>
-                <JFXTextArea fx:id="description" prefHeight="128.0" prefWidth="340.0" promptText="Description">
+                <JFXTextArea fx:id="description" labelFloat="true" prefHeight="128.0" prefWidth="340.0" promptText="Description">
                     <HBox.margin>
                         <Insets bottom="40.0" top="30.0" />
                     </HBox.margin>
