@@ -92,7 +92,7 @@ public class FiltersController implements Initializable
             {
                 if (!selectedCategory.equals(""))
                 {
-                    //Request.getPost(selectedCategory);
+                    Request.getPostByCategoryAndPrice(selectedCategory, startPrice, endPrice);
                 }
                 else
                 {
@@ -103,11 +103,13 @@ public class FiltersController implements Initializable
             {
                 if (!selectedCategory.equals(""))
                 {
-                    //HomeController.posts = Request.getPostsByLocationAndCategoryAndLimitedPrice(startPrice, endPrice, selectedCategory, usState.toString());
+                    HomeController.posts = Request.getPostsByLocationAndCategoryAndLimitedPrice(startPrice,
+                            endPrice, selectedCategory, usState.toString());
                 }
                 else
                 {
-                    //HomeController.posts = Request.getFilteredPricedAndLocationPosts(startPrice, endPrice, usState.toString());
+                    HomeController.posts = Request.getFilteredPricedAndLocationPosts(startPrice, endPrice,
+                            usState.toString());
                 }
             }
 

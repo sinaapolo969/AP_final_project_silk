@@ -126,9 +126,18 @@ public class SignUpController implements Initializable
             if (nullChecker())
             {
                 User user = new User(username.getText(), pass.getText(), name.getText(), lastName.getText(),
-                        number.getText(), email.getText(), String.valueOf(state), profile);
+                        number.getText(), email.getText(), state.getValue().toString(), profile);
 
                 Request.signUp(user);
+                LoggedHomeController.currentUser = user;
+                try
+                {
+                    PageControl.open("LoggedHome");
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -180,7 +189,7 @@ public class SignUpController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        File file = new File("/View/Images/user.png");
+        File file = new File("D:/final project/divar/src/View/Images/user.png");
         this.profile = file;
         Image image = new Image("/View/Images/user.png");
         photo.setFill(new ImagePattern(image));
