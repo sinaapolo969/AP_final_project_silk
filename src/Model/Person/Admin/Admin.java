@@ -1,47 +1,49 @@
-package Model.Person.Admin;
-
-
-//import javax.mail.*;
-//import javax.mail.internet.InternetAddress;
-//import javax.mail.internet.MimeMessage;
-import Model.PageControl;
-import Model.Person.User.User;
-
-import java.io.IOException;
-import java.util.*;
-
-import static java.lang.System.out;
-
-
-public class Admin {
-    private static AdminStruct admin = new AdminStruct("Admin", "1234", "silkroadhelpu@gmail.com");
-
-    public void adminLogin(String inputUserName, String inputPassWord)
-    {
-        if (inputUserName == admin.getUserName() && inputPassWord.equals(admin.getPassword()))
-        {
-            //login
-        }
-        else
-        {
-            out.println("miss information");
-        }
-    }
-
-
-    public static void sendEmail(String recipient, String subject, String sentMassage) {
-        String sender = "omidsltni@gmail.com";
-        //String password = "Asap1234";
-        //String host = "smtp.gmail.com";
-
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.user", "omidsltni@gmail.com");
-        //properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.elasticemail.com");
-        properties.put("mail.smtp.port", "2525");
-
-
+//package Model.Person.Admin;
+//
+//
+////import javax.mail.*;
+////import javax.mail.internet.InternetAddress;
+////import javax.mail.internet.MimeMessage;
+//
+//import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+//import sun.plugin2.message.Message;
+//
+//import java.net.Authenticator;
+//import java.net.PasswordAuthentication;
+//import java.util.Properties;
+//
+//import static java.lang.System.out;
+//
+//
+//public class Admin {
+//    private static AdminStruct admin = new AdminStruct("Admin", "1234", "silkroadhelpu@gmail.com");
+//
+//    public void adminLogin(String inputUserName, String inputPassWord)
+//    {
+//        if (inputUserName == admin.getUserName() && inputPassWord.equals(admin.getPassword()))
+//        {
+//            //login
+//        }
+//        else
+//        {
+//            out.println("miss information");
+//        }
+//    }
+//
+//
+//    public static void sendEmail(String recipient, String subject, String sentMassage) {
+//        String sender = "omidsltni@gmail.com";
+//        //String password = "Asap1234";
+//        //String host = "smtp.gmail.com";
+//
+//        Properties properties = new Properties();
+//        properties.put("mail.smtp.auth", "true");
+//        properties.put("mail.smtp.user", "omidsltni@gmail.com");
+//        //properties.put("mail.smtp.starttls.enable", "true");
+//        properties.put("mail.smtp.host", "smtp.elasticemail.com");
+//        properties.put("mail.smtp.port", "2525");
+//
+//
 //        Session session = Session.getInstance(properties, new Authenticator() {
 //            @Override
 //            protected PasswordAuthentication getPasswordAuthentication() {
@@ -74,5 +76,5 @@ public class Admin {
 //        }
 //        return null;
 //    }
-    }
-}
+//    }
+//}

@@ -164,34 +164,45 @@ public class PostTable extends DbHandler
     }
 
     //this method returns posts with specified filter
-    public ArrayList<String> getFilteredPriceAndLocationPost(String min, String max, String location) throws SQLException
+    public ArrayList<String> getFilteredPriceAndLocationPost(int min, int max, String location) throws SQLException
     {
         String query = "select * from posts where price between ? and ? and location = ? order by date";
         preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, min);
-        preparedStatement.setString(2, max);
+        preparedStatement.setInt(1, min);
+        preparedStatement.setInt(2, max);
         preparedStatement.setString(3, location);
 
         return convertDataToArrayJsonString(preparedStatement);
     }
 
-    public ArrayList<String> getFilteredPricePost(String min, String max) throws SQLException
+    public ArrayList<String> getFilteredPricePost(int min, int max) throws SQLException
     {
         String query = "select * from posts where price between ? and ? order by date";
         preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, min);
-        preparedStatement.setString(2, max);
+        preparedStatement.setInt(1, min);
+        preparedStatement.setInt(2, max);
 
         return convertDataToArrayJsonString(preparedStatement);
     }
 
-    public ArrayList<String> getFilteredPriceAndLocationAndCategory(String min, String max, String location
-            , String category) throws SQLException
+    public ArrayList<String> getPostByCategoryAndPrice(String category, int min, int max) throws SQLException
+    {
+        String query = "select * from posts where price between ? and ? and category = ?";
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, min);
+        preparedStatement.setInt(2, max);
+        preparedStatement.setString(3, category);
+
+        return convertDataToArrayJsonString(preparedStatement);
+    }
+
+    public ArrayList<String> getFilteredPriceAndLocationAndCategory(String location
+            , String category, int min, int max) throws SQLException
     {
         String query = "select * from posts where price between ? and ? and location = ? and category = ? order by date";
         preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, min);
-        preparedStatement.setString(2, max);
+        preparedStatement.setInt(1, min);
+        preparedStatement.setInt(2, max);
         preparedStatement.setString(3, location);
         preparedStatement.setString(4, category);
 

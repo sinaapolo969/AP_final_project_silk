@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -16,12 +17,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PostVisitController implements Initializable
@@ -41,6 +46,9 @@ public class PostVisitController implements Initializable
     private JFXButton bk;
 
     @FXML
+    private GridPane grid;
+
+    @FXML
     private Label number;
 
     @FXML
@@ -56,6 +64,9 @@ public class PostVisitController implements Initializable
     private Circle seller;
 
     @FXML
+    private JFXTextField message;
+
+    @FXML
     private Label name;
 
     @FXML
@@ -63,6 +74,8 @@ public class PostVisitController implements Initializable
 
     @FXML
     private FontAwesomeIconView icon1;
+
+    int row = 0;
 
 
     @FXML
@@ -85,6 +98,26 @@ public class PostVisitController implements Initializable
         {
             Request.bookmarking(currentPost.getPostId(), LoggedHomeController.currentUser.getUserName());
             bk.setStyle("-fx-background-color: #914c4c");
+        }
+    }
+
+
+    @FXML
+    void send(MouseEvent event) throws IOException
+    {
+        if (!Objects.equals(message.getText(), ""))
+        {
+            row ++;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(PageControl.class.getResource("/View/Chat.fxml"));
+            AnchorPane anc = loader.load();
+
+            ChatController chat = loader.getController();
+            chat.setData(message.getText());
+
+            grid.add(anc, 1, row);
+
+            message.setText("");
         }
     }
 
@@ -127,21 +160,9 @@ public class PostVisitController implements Initializable
     }
 
     @FXML
-    void menu(MouseEvent event)
-    {
-
-    }
-
-    @FXML
     void twitter(MouseEvent event) throws IOException
     {
         PageControl.twitter();
-    }
-
-    @FXML
-    void userMenu(MouseEvent event)
-    {
-
     }
 
     @Override

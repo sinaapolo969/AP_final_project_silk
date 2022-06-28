@@ -151,5 +151,10 @@
       </JFXButton>
       <JFXDrawer fx:id="leftDrawer" defaultDrawerSize="266.0" layoutY="132.0" prefHeight="679.0" prefWidth="237.0" />
       <FontAwesomeIconView fx:id="back" fill="#886363" glyphName="ARROW_CIRCLE_ALT_LEFT" layoutX="14.0" layoutY="116.0" onMouseClicked="#back" size="40" />
+      <Label fx:id="msg" alignment="CENTER" layoutX="403.0" layoutY="106.0" prefHeight="51.0" prefWidth="445.0" textFill="#00038a">
+         <font>
+            <Font name="Sitka Text" size="27.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

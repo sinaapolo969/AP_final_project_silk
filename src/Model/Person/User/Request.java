@@ -1,7 +1,7 @@
 package Model.Person.User;
 
 
-import Model.Person.Admin.Admin;
+//import Model.Person.Admin.Admin;
 import Model.Person.EmailValidationException;
 import Model.Person.PhoneNumberValidationException;
 import Model.Post.Post;
@@ -39,48 +39,51 @@ public class Request
     //the emails method should uncomment
     public static void signUp(User receivedUser)
     {
-        //if(!checkingEmailValidation(receivedUser.getEmail()))
-        //{
-        //    try
-        //    {
-        //        throw new EmailValidationException("Wrong Email");
-        //    }
-        //    catch (EmailValidationException e)
-        //    {
-        //        e.printStackTrace();
-        //    }
-        //}
-        //else if(!checkingPhoneNumber(receivedUser.getPhoneNumber()))
-        //{
-        //    try
-        //    {
-        //        throw new PhoneNumberValidationException("Wrong Phone-number");
-        //    }
-        //    catch (PhoneNumberValidationException e)
-        //    {
-        //        e.printStackTrace();
-        //    }
-        //}
-        //else if(!checkingStrengthOfPass(receivedUser.getPassword()))
-        //{
-        //    //the password isn't strong enough
-        //}
-        //else
-        //{
-        //    boolean flag = true;//repetitionOfEmail(receivedUser.getEmail());
-        //
-        //    if (flag)
-        //    {
-        //        //sendingDataToServer(userNumber);
-        //        sendingDataToServer(receivedUser);
-        //        Admin.sendEmail(receivedUser.getEmail(), "WellCome", "welcome\n to silk road app we are so glad to have you here");
-        //    }
-        //    else
-        //    {
-        //        System.out.println("u are already signed up");
-        //    }
-        //}
-        sendingUserDataToServer(receivedUser);
+//        if(!checkingEmailValidation(receivedUser.getEmail()))
+//        {
+//            try
+//            {
+//                throw new EmailValidationException("Wrong Email");
+//            }
+//            catch (EmailValidationException e)
+//            {
+//                e.printStackTrace();
+//            }
+//        }
+//        else if(!checkingPhoneNumber(receivedUser.getPhoneNumber()))
+//        {
+//            try
+//            {
+//                throw new PhoneNumberValidationException("Wrong Phone-number");
+//            }
+//            catch (PhoneNumberValidationException e)
+//            {
+//                e.printStackTrace();
+//            }
+//        }
+//        else
+//        {
+//            try
+//            {
+//                dataOutputStream.writeInt(1);
+//                dataOutputStream.flush();
+//            }
+//            catch (IOException e)
+//            {
+//                e.printStackTrace();
+//            }
+//            sendingUserDataToServer(receivedUser);
+//            Admin.sendEmail(receivedUser.getEmail(), "WellCome", "welcome\n to silk road app we are so glad to have you here");
+//        }
+        try
+        {
+            dataOutputStream.writeInt(1);
+            dataOutputStream.flush();
+            sendingUserDataToServer(receivedUser);
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
@@ -102,7 +105,7 @@ public class Request
     public synchronized void sendingEmailForResettingPassword(User user)// ariana should call this when user push reset password button
     {
         int code = 1000 + (int) (Math.random() * 10000);
-        Admin.sendEmail(user.getEmail(), "Resetting Email", "here's your code for resetting your password" + code);
+        //Admin.sendEmail(user.getEmail(), "Resetting Email", "here's your code for resetting your password" + code);
         // I will send this code and user for ariana
     }
 
@@ -170,10 +173,9 @@ public class Request
         }
 
         String receivedUser = null;
-        try {
+        try
+        {
             receivedUser = dataInputStream.readUTF();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         if(receivedUser == null)
@@ -335,7 +337,14 @@ public class Request
     public static void makingPost(Post post)
     {
         String jsonFormOfThePost = creatingJsonString(post);
-        sendingPostDataToServer(jsonFormOfThePost, post.getPhoto());
+        try
+        {
+            dataOutputStream.writeInt(6);
+            dataOutputStream.flush();
+            sendingPostDataToServer(jsonFormOfThePost, post.getPhoto());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -379,7 +388,8 @@ public class Request
                 "\"description\": " + "\"" + post.getDescription() + "\"" + ",\n" + "\"price\": " +
                 "\"" + post.getPrice() + "\"" + ",\n" + "\"sold\" : " + "\"" + post.isSaleStatus() + "\"" +
                 ",\n" + "\"owner\": " + "\"" + post.getOwner() + "\"" + ",\n" + "\"phoneNumber\" : " + "\"" + post.getPhoneNumber() +
-                "\"" + ",\n" + "\"location\": " + "\"" + post.getLocation() + "\"" + ",\n" + "\"date\" : " + "\"" + post.getDate() + "\"" + "\n}";
+                "\"" + ",\n" + "\"location\": " + "\"" + post.getLocation() + "\""
+                +  ",\n" + "\"photo\": " + "\"" + post.getPhoto() + "\"" + ",\n" + "\"date\" : " + "\"" + post.getDate() + "\"" + "\n}";
 
         return jsonString;
     }
@@ -441,14 +451,6 @@ public class Request
             e.printStackTrace();
         }
 
-        for (int i = 0; i < posts.size(); i++)
-        {
-            if(expiration(posts.get(i)));
-            {
-                posts.remove(i);
-            }
-        }
-
         return posts;
     }
 
@@ -495,12 +497,12 @@ public class Request
         ArrayList<Post> posts = new ArrayList<>();
         try
         {
-            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeInt(12);
+            dataOutputStream.writeUTF(location);
             dataOutputStream.writeInt(minPrice);
             dataOutputStream.flush();
             dataOutputStream.writeInt(maxPrice);
             dataOutputStream.flush();
-            dataOutputStream.writeUTF(location);
             posts = gettingPostsFromDataBase();
         }
         catch (IOException e)
@@ -537,7 +539,7 @@ public class Request
         ArrayList<Post> posts = new ArrayList<>();
         try
         {
-            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeInt(14);
             dataOutputStream.writeUTF(category);
             dataOutputStream.flush();
             dataOutputStream.writeUTF(location);
@@ -554,6 +556,29 @@ public class Request
         }
 
         return posts;
+    }
+
+    public static ArrayList<Post> getPostByCategoryAndPrice(String category, int minPrice, int maxPrice)
+    {
+        ArrayList<Post> posts = new ArrayList<>();
+        try
+        {
+            dataOutputStream.writeInt(13);
+            dataOutputStream.writeUTF(category);
+            dataOutputStream.flush();
+            dataOutputStream.writeInt(minPrice);
+            dataOutputStream.flush();
+            dataOutputStream.writeInt(maxPrice);
+            dataOutputStream.flush();
+            posts = gettingPostsFromDataBase();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return posts;
+
     }
 
     private static boolean expiration(Post post)
@@ -636,7 +661,7 @@ public class Request
         }
     }
 
-    public boolean checkingStrengthOfPass(String password)
+    public static boolean checkingStrengthOfPass(String password)
     {
         String strongPassRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
         return password.matches(strongPassRegex);

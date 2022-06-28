@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
@@ -59,6 +60,9 @@ public class SignUpController implements Initializable
 
     @FXML
     private JFXComboBox<States> state;
+
+    @FXML
+    private Label msg;
 
     @FXML
     private void linkedIn(MouseEvent mouseEvent) throws IOException
@@ -115,20 +119,29 @@ public class SignUpController implements Initializable
     {
         if (!pass.getText().equals(confirmPass.getText()))
         {
-            out.println("confirmation of password is false");
+            msg.setText("false password confirmation");
         }
         else if (!email.getText().equals(confirmEmail.getText()))
         {
-            out.println("confirmation of email is false");
+            msg.setText("false email confirmation");
         }
         else
         {
             if (nullChecker())
             {
                 User user = new User(username.getText(), pass.getText(), name.getText(), lastName.getText(),
-                        number.getText(), email.getText(), String.valueOf(state), profile);
+                        number.getText(), email.getText(), state.getValue().toString(), profile);
 
                 Request.signUp(user);
+                LoggedHomeController.currentUser = user;
+                try
+                {
+                    PageControl.open("LoggedHome");
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -138,34 +151,42 @@ public class SignUpController implements Initializable
     {
         if (name.getText().equals(""))
         {
+            msg.setText("name not entered!");
             return false;
         }
         if (lastName.getText().equals(""))
         {
+            msg.setText("lastname not entered!");
             return false;
         }
         if (username.getText().equals(""))
         {
+            msg.setText("username not entered!");
             return false;
         }
         if (pass.getText().equals(""))
         {
+            msg.setText("password not entered!");
             return false;
         }
         if (confirmPass.getText().equals(""))
         {
+            msg.setText("confirmPassword not entered!");
             return false;
         }
         if (email.getText().equals(""))
         {
+            msg.setText("email not entered!");
             return false;
         }
         if (confirmEmail.getText().equals(""))
         {
+            msg.setText("confirmEmail not entered!");
             return false;
         }
         if (number.getText().equals(""))
         {
+            msg.setText("number not entered!");
             return false;
         }
         return true;
@@ -180,7 +201,7 @@ public class SignUpController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        File file = new File("/View/Images/user.png");
+        File file = new File("D:/final project/divar/src/View/Images/user.png");
         this.profile = file;
         Image image = new Image("/View/Images/user.png");
         photo.setFill(new ImagePattern(image));
