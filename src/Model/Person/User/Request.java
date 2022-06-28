@@ -293,6 +293,22 @@ public class Request
         }
     }
 
+    public static void unbookmarking (String postID, String username)
+    {
+        try
+        {
+            //dataOutputStream.writeInt(); ask for the code
+            dataOutputStream.writeUTF(username);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(postID);
+            dataOutputStream.flush();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<Post> gettingBookmarks(String username)
     {
         ArrayList<Post> bookMarkedPosts = new ArrayList<>();
@@ -634,12 +650,13 @@ public class Request
         }
     }
 
+
     public static String duration(LocalDate postTime)
     {
         int duration = postTime.compareTo(LocalDate.now());
         if (duration < 0 && postTime.getDayOfMonth() != LocalDate.now().getDayOfMonth())
         {
-            return (duration + "days ago");
+            return (Math.abs(duration) + "days ago");
         }
         else if(duration <= 0)
         {
