@@ -2,7 +2,6 @@ package DataBase;
 
 import java.io.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class test
 {
@@ -179,11 +178,11 @@ public class test
 //        });
 //        receiveMessage.start();
 //        sendMessage.start();
-        PostTable postTable = new PostTable();
-        ArrayList<String> posts = postTable.getFilteredPricePost("1000", "100000");
-        for (String s : posts) {
-            System.out.println(s);
-        }
+//        PostTable postTable = new PostTable();
+//        ArrayList<String> posts = postTable.getFilteredPricePost("1000", "100000");
+//        for (String s : posts) {
+//            System.out.println(s);
+//        }
 
 
     }

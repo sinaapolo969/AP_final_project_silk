@@ -468,15 +468,15 @@ public class Request
         return posts;
     }
 
-    public static ArrayList<Post> getFilteredPricedPosts(String minPrice, String maxPrice)
+    public static ArrayList<Post> getFilteredPricedPosts(int minPrice, int maxPrice)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try
         {
             dataOutputStream.writeInt(11);
-            dataOutputStream.writeUTF(minPrice);
+            dataOutputStream.writeInt(minPrice);
             dataOutputStream.flush();
-            dataOutputStream.writeUTF(maxPrice);
+            dataOutputStream.writeInt(maxPrice);
             dataOutputStream.flush();
             posts = gettingPostsFromDataBase();
         }

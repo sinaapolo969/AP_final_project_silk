@@ -112,9 +112,31 @@ public class ClientHandler extends Thread
                         break;
                     //get post by filtered price
                     case 11:
-                        String min = dataInputStream.readUTF();
-                        String max = dataInputStream.readUTF();
+                        int min = dataInputStream.readInt();
+                        int max = dataInputStream.readInt();
                         getPostByFilteredPrice(min, max);
+                    //get post by location and price
+                    case 12:
+                        location = dataInputStream.readUTF();
+                        min = dataInputStream.readInt();
+                        max = dataInputStream.readInt();
+                        getPostByLocationAndPrice(location, min, max);
+                        break;
+                    //get post by category and price
+                    case 13:
+                        category = dataInputStream.readUTF();
+                        min = dataInputStream.readInt();
+                        max = dataInputStream.readInt();
+                        getPostByCategoryAndPrice(category, min, max);
+                        break;
+                    //get post by category and price and location
+                    case 14:
+                        category = dataInputStream.readUTF();
+                        location = dataInputStream.readUTF();
+                        min = dataInputStream.readInt();
+                        max = dataInputStream.readInt();
+                        getPostByCategoryAndLocationAndPrice(category, location, min, max);
+                        break;
                     case 0:
                         return;
                 }
@@ -368,7 +390,7 @@ public class ClientHandler extends Thread
         }
     }
 
-    private void getPostByFilteredPrice(String min, String max)
+    private void getPostByFilteredPrice(int min, int max)
     {
         PostTable postTable = new PostTable();
         ArrayList<String> posts = null;
@@ -383,6 +405,54 @@ public class ClientHandler extends Thread
             e.printStackTrace();
         }
 
+    }
+
+    private void getPostByLocationAndPrice(String location, int min, int max)
+    {
+        PostTable postTable = new PostTable();
+        ArrayList<String> posts = null;
+        try
+        {
+            posts = postTable.getFilteredPriceAndLocationPost(min, max, location);
+            postTable.close();
+            sendMultiPosts(posts);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void getPostByCategoryAndPrice(String category, int min, int max)
+    {
+        PostTable postTable = new PostTable();
+        ArrayList<String> posts = null;
+        try
+        {
+            posts = postTable.getPostByCategoryAndPrice(category, min, max);
+            postTable.close();
+            sendMultiPosts(posts);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void getPostByCategoryAndLocationAndPrice(String category, String location, int min, int max)
+    {
+        PostTable postTable = new PostTable();
+        ArrayList<String> posts = null;
+        try
+        {
+            posts = postTable.getFilteredPriceAndLocationAndCategory(location ,category , min, max);
+            postTable.close();
+            sendMultiPosts(posts);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     private void getUserBookMarks(String userName)

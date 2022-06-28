@@ -49,10 +49,21 @@ public class FiltersController implements Initializable
         }
 
         States usState = state.getValue();
-        String startPrice = start.getText();
-        String endPrice = end.getText();
+        int startPrice;
+        int endPrice;
+        if (!start.getText().equals("") && !end.getText().equals(""))
+        {
+            startPrice = Integer.parseInt(start.getText());
+            endPrice = Integer.parseInt(end.getText());
+        }
+        else
+        {
+            startPrice = 0;
+            endPrice = 0;
+        }
 
-        boolean byPrice = !startPrice.equals("") & !endPrice.equals("");
+
+        boolean byPrice = !(startPrice == 0) & !(endPrice == 0);
 
         if (!byPrice)
         {
@@ -92,11 +103,11 @@ public class FiltersController implements Initializable
             {
                 if (!selectedCategory.equals(""))
                 {
-                    HomeController.posts = Request.getPostsByLocationAndCategoryAndLimitedPrice(startPrice, endPrice, selectedCategory, usState.toString());
+                    //HomeController.posts = Request.getPostsByLocationAndCategoryAndLimitedPrice(startPrice, endPrice, selectedCategory, usState.toString());
                 }
                 else
                 {
-                    HomeController.posts = Request.getFilteredPricedAndLocationPosts(startPrice, endPrice, usState.toString());
+                    //HomeController.posts = Request.getFilteredPricedAndLocationPosts(startPrice, endPrice, usState.toString());
                 }
             }
 
