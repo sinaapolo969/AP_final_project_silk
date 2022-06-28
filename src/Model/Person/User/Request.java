@@ -87,10 +87,18 @@ public class Request
     }
 
 
-    public static User login(String inputUserName, String inputPassWord)
+    public static User login(String JsonStringUser)
     {
-        User receivedUser = existenceOfUser(inputUserName, inputPassWord);
-        return receivedUser;
+        File receivedImage = receiveProfilePhoto("D:/new.png");
+
+        JSONObject receivedUserJason = new JSONObject(JsonStringUser);
+
+        User user = new User(receivedUserJason.getString("userName"), receivedUserJason.getString("password"),
+                receivedUserJason.getString("firstName"), receivedUserJason.getString("lastName"),
+                receivedUserJason.getString("phoneNumber"), receivedUserJason.getString("emailAddress"),
+                receivedUserJason.getString("location"), receivedImage);
+
+        return user;
     }
 
 
@@ -151,7 +159,7 @@ public class Request
     }
 
 
-    private static User existenceOfUser(String inputUserName, String inputPassWord)
+    public static String existenceOfUser(String inputUserName, String inputPassWord)
     {
         try {
             dataOutputStream.writeInt(2);
@@ -169,19 +177,13 @@ public class Request
         {
             receivedUser = dataInputStream.readUTF();
         }
-        catch (IOException e)
+
+        if(receivedUser == null)
         {
             return null;
         }
-        File receivedImage = receiveProfilePhoto("D:/new.png");
-        JSONObject receivedUserJason = new JSONObject(receivedUser);
 
-        User user = new User(receivedUserJason.getString("userName"), receivedUserJason.getString("password"),
-                receivedUserJason.getString("firstName"), receivedUserJason.getString("lastName"),
-                receivedUserJason.getString("phoneNumber"), receivedUserJason.getString("emailAddress"),
-                receivedUserJason.getString("location"), receivedImage);
-
-        return user;
+        return receivedUser;
     }
 
     private static void sendingUserDataToServer(User receivedUser)

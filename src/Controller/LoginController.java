@@ -61,7 +61,17 @@ public class LoginController implements Initializable
     @FXML
     private void logIn(ActionEvent event) throws IOException
     {
-        if (username.getText().equals(""))
+        String jsonStringUser = Request.existenceOfUser(username.getText(), password.getText());
+
+        if (Request.existenceOfUser(username.getText(), password.getText()) == null)
+        {
+
+        }
+        else if(jsonStringUser.equals("1"))
+        {
+
+        }
+        else if(jsonStringUser.equals("2"))
         {
             msg.setText("username not entered");
         }
@@ -75,8 +85,7 @@ public class LoginController implements Initializable
         }
         else
         {
-            LoggedHomeController.currentUser = Request.login(username.getText(), password.getText());
-            LoggedHomeController.currentUser = Request.login(username.getText(), password.getText());
+            LoggedHomeController.currentUser = Request.login(jsonStringUser);
             PageControl.open("LoggedHome");
         }
     }
