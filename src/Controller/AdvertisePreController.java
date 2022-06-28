@@ -76,6 +76,6 @@ public class AdvertisePreController
         price.setText(String.valueOf(ad.getPrice()));
         title.setText(ad.getTitle());
         owner.setText(ad.getOwner());
-        date.setText(Request.duration(currentPost.getDate()) + " ago");
+        date.setText(Request.duration(currentPost.getDate()));
     }
 }

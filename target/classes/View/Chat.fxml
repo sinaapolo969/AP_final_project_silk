@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="70.0" prefWidth="292.0" stylesheets="@Style/chat.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ChatController">
+   <children>
+      <Label fx:id="message" alignment="CENTER_RIGHT" layoutY="11.0" prefHeight="49.0" prefWidth="292.0">
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </Label>
+   </children>
+</AnchorPane>
