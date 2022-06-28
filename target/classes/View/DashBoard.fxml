@@ -15,6 +15,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -22,7 +23,7 @@
 
 <AnchorPane prefHeight="769.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DashboardController">
    <children>
-      <AnchorPane layoutX="-2.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;" stylesheets="@Style/HomeTab.css">
+      <AnchorPane layoutX="-2.0" prefHeight="77.0" prefWidth="1254.0" style="-fx-border-color: #7f5e08; -fx-background-color: #603c40;" stylesheets="@Style/IconHomeTab.css">
          <children>
             <ImageView fitHeight="61.0" fitWidth="58.0" layoutX="24.0" layoutY="10.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -99,6 +100,15 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                     </GridPane>
+                                    <HBox fx:id="pages" alignment="CENTER" prefHeight="126.0" prefWidth="1248.0" spacing="5.0">
+                                       <children>
+                                          <JFXButton fx:id="loadM" onAction="#loadMoreB" prefHeight="67.0" prefWidth="300.0" style="-fx-border-color: black;" text="Load More">
+                                             <font>
+                                                <Font name="Sitka Banner Italic" size="26.0" />
+                                             </font>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </content>
@@ -118,6 +128,15 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                     </GridPane>
+                                    <HBox fx:id="pages1" alignment="CENTER" prefHeight="126.0" prefWidth="1248.0" spacing="5.0">
+                                       <children>
+                                          <JFXButton fx:id="loadM1" onAction="#loadMoreE" prefHeight="67.0" prefWidth="300.0" style="-fx-border-color: black;" text="Load More">
+                                             <font>
+                                                <Font name="Sitka Banner Italic" size="26.0" />
+                                             </font>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </content>

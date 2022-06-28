@@ -59,6 +59,12 @@ public class LoggedHomeMenuController implements Initializable
     @FXML
     void location(ActionEvent event) throws IOException
     {
+        PageControl.open("Dashboard");
+    }
+
+    @FXML
+    void logOut(ActionEvent event)
+    {
 
     }
 

@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
@@ -33,6 +32,10 @@ public class AdvertisePreController
 
     @FXML
     public Label price;
+
+    @FXML
+    private Label date;
+
 
     @FXML
     private VBox advertise;
@@ -73,5 +76,6 @@ public class AdvertisePreController
         price.setText(String.valueOf(ad.getPrice()));
         title.setText(ad.getTitle());
         owner.setText(ad.getOwner());
+        date.setText(Request.duration(currentPost.getDate()) + " ago");
     }
 }
