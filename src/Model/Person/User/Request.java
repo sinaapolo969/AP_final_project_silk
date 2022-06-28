@@ -11,7 +11,6 @@ import java.io.*;
 import java.net.Socket;
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -458,7 +457,7 @@ public class Request
         ArrayList<Post> posts = new ArrayList<>();
         try
         {
-            //dataOutputStream.writeInt();ask about the code
+            dataOutputStream.writeInt(11);
             dataOutputStream.writeUTF(minPrice);
             dataOutputStream.flush();
             dataOutputStream.writeUTF(maxPrice);

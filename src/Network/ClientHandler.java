@@ -110,6 +110,11 @@ public class ClientHandler extends Thread
                         postData = dataInputStream.readUTF();
                         editPostInfo(postData);
                         break;
+                    //get post by filtered price
+                    case 11:
+                        String min = dataInputStream.readUTF();
+                        String max = dataInputStream.readUTF();
+                        getPostByFilteredPrice(min, max);
                     case 0:
                         return;
                 }
@@ -361,6 +366,23 @@ public class ClientHandler extends Thread
         {
             e.printStackTrace();
         }
+    }
+
+    private void getPostByFilteredPrice(String min, String max)
+    {
+        PostTable postTable = new PostTable();
+        ArrayList<String> posts = null;
+        try
+        {
+            posts = postTable.getFilteredPricePost(min, max);
+            postTable.close();
+            sendMultiPosts(posts);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
     private void getUserBookMarks(String userName)

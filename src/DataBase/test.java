@@ -1,10 +1,8 @@
 package DataBase;
 
-import Network.Client;
-
 import java.io.*;
-import java.net.Socket;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class test
 {
@@ -132,55 +130,60 @@ public class test
 //        System.out.println(posts.get(0).getPrice());
 //        dataOutputStream.writeInt(0);
 
-        Socket socket = Client.chatSetUp();
-        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
-        dataOutputStream.writeUTF("sina");
-        dataOutputStream.flush();
-        Thread sendMessage = new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                String message = test.message;
-                while (true)
-                {
-                    try {
-                        dataOutputStream.writeUTF(message);
-                        dataOutputStream.flush();
-                        Thread.currentThread().join();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        Thread receiveMessage = new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                String received;
-                while (true)
-                {
-                    try {
-                        received = dataInputStream.readUTF();
-                        System.out.println(received);
-                        Thread.currentThread().join();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-        });
-        receiveMessage.start();
-        sendMessage.start();
+//        Socket socket = Client.chatSetUp();
+//        DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
+//        DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+//        dataOutputStream.writeUTF("sina");
+//        dataOutputStream.flush();
+//        Thread sendMessage = new Thread(new Runnable()
+//        {
+//            @Override
+//            public void run()
+//            {
+//                String message = test.message;
+//                while (true)
+//                {
+//                    try {
+//                        dataOutputStream.writeUTF(message);
+//                        dataOutputStream.flush();
+//                        Thread.currentThread().join();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
+//
+//        Thread receiveMessage = new Thread(new Runnable()
+//        {
+//            @Override
+//            public void run()
+//            {
+//                String received;
+//                while (true)
+//                {
+//                    try {
+//                        received = dataInputStream.readUTF();
+//                        System.out.println(received);
+//                        Thread.currentThread().join();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//            }
+//        });
+//        receiveMessage.start();
+//        sendMessage.start();
+        PostTable postTable = new PostTable();
+        ArrayList<String> posts = postTable.getFilteredPricePost("1000", "100000");
+        for (String s : posts) {
+            System.out.println(s);
+        }
 
 
     }
