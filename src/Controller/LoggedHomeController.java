@@ -1,11 +1,11 @@
 package Controller;
 
 import Model.PageControl;
+import Model.Person.User.Request;
 import Model.Person.User.User;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -96,6 +96,7 @@ public class LoggedHomeController implements Initializable
         Image image  = new Image(url);
         profile.setFill(new ImagePattern(image));
 
+        posts = Request.getPostByLocation("Chicago");
         PageControl.loading15(num, row, column, grid, posts, "AdvertisePre");
         if (loadedCount == posts.size())
         {

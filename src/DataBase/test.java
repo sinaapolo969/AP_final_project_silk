@@ -184,6 +184,8 @@ public class test
 //            System.out.println(s);
 //        }
 
+        System.out.println(new PostTable().getPostByCategory("Personal").get(0));
+
 
     }
 

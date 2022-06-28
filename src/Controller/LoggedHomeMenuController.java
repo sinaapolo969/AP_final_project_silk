@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.PageControl;
+import Model.Person.User.Request;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,6 +54,7 @@ public class LoggedHomeMenuController implements Initializable
     @FXML
     void exit(ActionEvent event)
     {
+        Request.logOut();
         System.exit(0);
     }
 
@@ -65,7 +67,13 @@ public class LoggedHomeMenuController implements Initializable
     @FXML
     void logOut(ActionEvent event)
     {
-
+        Request.logOut();
+        LoggedHomeController.currentUser = null;
+        try {
+            PageControl.open("Home");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

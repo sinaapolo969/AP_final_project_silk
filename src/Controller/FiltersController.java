@@ -41,7 +41,9 @@ public class FiltersController implements Initializable
         String selectedCategory;
         if (category.getSelectedToggle() != null)
         {
-            selectedCategory = category.getSelectedToggle().toString();
+            selectedCategory =  category.getSelectedToggle().toString().
+                    substring(category.getSelectedToggle().toString().indexOf("'") + 1,
+                            category.getSelectedToggle().toString().lastIndexOf("'"));
         }
         else
         {

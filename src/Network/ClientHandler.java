@@ -160,6 +160,16 @@ public class ClientHandler extends Thread
                         max = dataInputStream.readInt();
                         getPostByCategoryAndLocationAndPrice(category, location, min, max);
                         break;
+                    //bookmark
+                    case 15:
+                        String postId = dataInputStream.readUTF();
+                        userName = dataInputStream.readUTF();
+                        bookMarkPost(postId, userName);
+                        break;
+                    case 16:
+                        postId = dataInputStream.readUTF();
+                        deletePost(postId);
+                        break;
                     case 0:
                         return;
                 }
@@ -490,6 +500,28 @@ public class ClientHandler extends Thread
         }
         catch (SQLException e)
         {
+            e.printStackTrace();
+        }
+    }
+
+    private void bookMarkPost(String postId, String userName)
+    {
+        PostTable postTable = new PostTable();
+        try {
+            postTable.insertBookMark(userName, Integer.parseInt(postId));
+            postTable.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deletePost(String postId)
+    {
+        PostTable postTable = new PostTable();
+        try {
+            postTable.deletePost(postId);
+            postTable.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Request
 {
-    private Socket socket;
+    private static Socket socket;
     private static DataOutputStream dataOutputStream;
     private static DataInputStream dataInputStream;
 
@@ -26,7 +26,7 @@ public class Request
 
         try
         {
-            this.socket = socket;
+            Request.socket = socket;
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
         }
@@ -287,12 +287,12 @@ public class Request
 
     public static void bookmarking (String postID, String username)
     {
-        //dataOutputStream.writeInt(); ask for the code
         try
         {
-            dataOutputStream.writeUTF(username);
-            dataOutputStream.flush();
+            dataOutputStream.writeInt(15);
             dataOutputStream.writeUTF(postID);
+            dataOutputStream.flush();
+            dataOutputStream.writeUTF(username);
             dataOutputStream.flush();
         }
         catch (IOException e)
@@ -598,7 +598,7 @@ public class Request
     private static void sendingPostForDeleting(String postID)
     {
         try {
-            dataOutputStream.writeInt(8);
+            dataOutputStream.writeInt(16);
             dataOutputStream.flush();
             dataOutputStream.writeUTF(postID);
             dataOutputStream.flush();
@@ -671,17 +671,6 @@ public class Request
         return password.matches(strongPassRegex);
     }
 
-    public void logOut()
-    {
-        try
-        {
-            this.socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public static String duration(LocalDate postTime)
     {
         int duration = postTime.compareTo(LocalDate.now());
@@ -694,5 +683,18 @@ public class Request
             return "just now";
         }
         return null;
+    }
+
+    public static void logOut()
+    {
+        try
+        {
+            socket.close();
+            dataOutputStream.close();
+            dataInputStream.close();
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

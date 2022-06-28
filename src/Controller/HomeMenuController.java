@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.PageControl;
+import Model.Person.User.Request;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +29,7 @@ public class HomeMenuController implements Initializable
     @FXML
     void exit(ActionEvent event)
     {
+        Request.logOut();
         System.exit(0);
     }
 

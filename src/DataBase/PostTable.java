@@ -70,7 +70,7 @@ public class PostTable extends DbHandler
 
     public ArrayList<String> getPostDataByOwner(String userName) throws SQLException
     {
-        String query = "select * from posts where owner = ?";
+        String query = "select * from posts where owner = ? order by date";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, userName);
 
@@ -79,7 +79,7 @@ public class PostTable extends DbHandler
 
     public ArrayList<String> getPostByCategory(String category) throws SQLException
     {
-        String query = "select * from posts where category = ?";
+        String query = "select * from posts where category = ? order by date";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, category);
 
