@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -17,13 +18,13 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable
 {
     @FXML
-    private JFXDrawer leftDrawer;
-
-    @FXML
     private JFXTextField username;
 
     @FXML
     private JFXPasswordField password;
+
+    @FXML
+    private Label msg;
 
 
     @FXML
@@ -60,10 +61,17 @@ public class LoginController implements Initializable
     @FXML
     private void logIn(ActionEvent event) throws IOException
     {
-
-        if (Request.login(username.getText(), password.getText()) == null)
+        if (username.getText().equals(""))
         {
-
+            msg.setText("username not entered");
+        }
+        else if (password.getText().equals(""))
+        {
+            msg.setText("password not entered");
+        }
+        else if (Request.login(username.getText(), password.getText()) == null)
+        {
+            msg.setText("user not found");
         }
         else
         {
@@ -71,12 +79,6 @@ public class LoginController implements Initializable
             LoggedHomeController.currentUser = Request.login(username.getText(), password.getText());
             PageControl.open("LoggedHome");
         }
-    }
-
-    @FXML
-    private void menu(MouseEvent mouseEvent)
-    {
-        PageControl.openOrCloseDrawer(leftDrawer);
     }
 
     @Override

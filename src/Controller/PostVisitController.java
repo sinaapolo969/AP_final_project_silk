@@ -160,21 +160,9 @@ public class PostVisitController implements Initializable
     }
 
     @FXML
-    void menu(MouseEvent event)
-    {
-
-    }
-
-    @FXML
     void twitter(MouseEvent event) throws IOException
     {
         PageControl.twitter();
-    }
-
-    @FXML
-    void userMenu(MouseEvent event)
-    {
-
     }
 
     @Override

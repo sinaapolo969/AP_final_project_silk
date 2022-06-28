@@ -165,16 +165,15 @@ public class Request
         }
 
         String receivedUser = null;
-        try {
+        try
+        {
             receivedUser = dataInputStream.readUTF();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        File receivedImage = receiveProfilePhoto("D:/new.png");
-        if(receivedUser == null)
+        catch (IOException e)
         {
             return null;
         }
+        File receivedImage = receiveProfilePhoto("D:/new.png");
         JSONObject receivedUserJason = new JSONObject(receivedUser);
 
         User user = new User(receivedUserJason.getString("userName"), receivedUserJason.getString("password"),
