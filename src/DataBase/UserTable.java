@@ -115,6 +115,20 @@ public class UserTable extends DbHandler
         return null;
     }
 
+    public boolean checkUserName(String userName) throws SQLException
+    {
+        String query = "select * from users where exists (select * from users where userName = ?)";
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, userName);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public File getUserProfilePhoto(String userName) throws SQLException
     {
         String query = "select profilePhoto from users where userName = ?";

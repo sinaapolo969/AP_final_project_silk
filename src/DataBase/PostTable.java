@@ -41,11 +41,11 @@ public class PostTable extends DbHandler
         preparedStatement.executeUpdate();
     }
 
-    public void updatePostData(String jsonString) throws SQLException
+    public void updatePostData(String jsonString, String path) throws SQLException
     {
         JSONObject jsonObject = new JSONObject(jsonString);
         String query = "update posts set title= ?, category = ?," +
-                " price = ?, description = ?, location = ?,  sold = ?, photo = ?, where owner = ? and postId = ?";
+                " price = ?, description = ?, location = ?,  sold = ?, photo = ? where owner = ? and postId = ?";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, jsonObject.getString("title"));
         preparedStatement.setString(2, jsonObject.getString("category"));
@@ -53,7 +53,7 @@ public class PostTable extends DbHandler
         preparedStatement.setString(4, jsonObject.getString("description"));
         preparedStatement.setString(5, jsonObject.getString("location"));
         preparedStatement.setString(6, jsonObject.getString("sold"));
-        preparedStatement.setString(7, jsonObject.getString("photo"));
+        preparedStatement.setString(7, path);
         preparedStatement.setString(8, jsonObject.getString("owner"));
         preparedStatement.setString(9, jsonObject.getString("postId"));
         preparedStatement.executeUpdate();

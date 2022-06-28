@@ -50,11 +50,31 @@ public class ClientHandler extends Thread
                         String password = dataInputStream.readUTF();
                         try
                         {
-                            if (password.equals(checkPassword(userName)))
+                            try
                             {
-                                dataOutputStream.writeUTF(getUserAccount(userName, password));
-                                dataOutputStream.flush();
-                                sendProfilePhoto(getUserProfilePhoto(userName));
+                                if (new UserTable().checkUserName(userName))
+                                {
+                                    if (password.equals(checkPassword(userName)))
+                                    {
+                                        dataOutputStream.writeUTF(getUserAccount(userName, password));
+                                        dataOutputStream.flush();
+                                        sendProfilePhoto(getUserProfilePhoto(userName));
+                                    }
+                                    else
+                                    {
+                                        dataOutputStream.writeUTF("2");
+                                        dataOutputStream.flush();
+                                    }
+                                }
+                                else
+                                {
+                                    dataOutputStream.writeUTF("1");
+                                    dataOutputStream.flush();
+                                }
+                            }
+                            catch (SQLException e)
+                            {
+                                e.printStackTrace();
                             }
                         }
                         catch (NullPointerException e)
@@ -108,7 +128,10 @@ public class ClientHandler extends Thread
                     //edit post info
                     case 10:
                         postData = dataInputStream.readUTF();
-                        editPostInfo(postData);
+                        jsonObject = new JSONObject(postData);
+                        fileType = dataInputStream.readUTF();
+                        path = "D:/final project/postPhotos/" + jsonObject.getString("postId") + fileType;
+                        editPostInfo(postData, path);
                         break;
                     //get post by filtered price
                     case 11:
@@ -491,13 +514,14 @@ public class ClientHandler extends Thread
         }
     }
 
-    private void editPostInfo(String jsonString)
+    private void editPostInfo(String jsonString, String path)
     {
         PostTable postTable = new PostTable();
         try
         {
-            postTable.updatePostData(jsonString);
+            postTable.updatePostData(jsonString, path);
             postTable.close();
+            receiveProfilePhoto(path);
         }
         catch (SQLException e) {
             e.printStackTrace();

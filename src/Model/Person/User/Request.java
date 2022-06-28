@@ -388,7 +388,7 @@ public class Request
                 "\"" + post.getPrice() + "\"" + ",\n" + "\"sold\" : " + "\"" + post.isSaleStatus() + "\"" +
                 ",\n" + "\"owner\": " + "\"" + post.getOwner() + "\"" + ",\n" + "\"phoneNumber\" : " + "\"" + post.getPhoneNumber() +
                 "\"" + ",\n" + "\"location\": " + "\"" + post.getLocation() + "\""
-                +  ",\n" + "\"photo\": " + "\"" + post.getPhoto() + "\"" + ",\n" + "\"date\" : " + "\"" + post.getDate() + "\"" + "\n}";
+                +  ",\n" + "\"date\" : " + "\"" + post.getDate() + "\"" + "\n}";
 
         return jsonString;
     }
