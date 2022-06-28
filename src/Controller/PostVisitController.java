@@ -19,7 +19,6 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
@@ -160,21 +159,9 @@ public class PostVisitController implements Initializable
     }
 
     @FXML
-    void menu(MouseEvent event)
-    {
-
-    }
-
-    @FXML
     void twitter(MouseEvent event) throws IOException
     {
         PageControl.twitter();
-    }
-
-    @FXML
-    void userMenu(MouseEvent event)
-    {
-
     }
 
     @Override

@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Model:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Model_jar</output-path>
+    <root id="archive" name="Model.jar">
+      <element id="module-output" name="Model" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../fontawesomefx-8.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../activation.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../mail.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../json-20220320 (1).jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../mysql-connector-java-8.0.29.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
