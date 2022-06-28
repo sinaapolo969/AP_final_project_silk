@@ -468,15 +468,15 @@ public class Request
         return posts;
     }
 
-    public static ArrayList<Post> getFilteredPricedPosts(String minPrice, String maxPrice)
+    public static ArrayList<Post> getFilteredPricedPosts(int minPrice, int maxPrice)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try
         {
             dataOutputStream.writeInt(11);
-            dataOutputStream.writeUTF(minPrice);
+            dataOutputStream.writeInt(minPrice);
             dataOutputStream.flush();
-            dataOutputStream.writeUTF(maxPrice);
+            dataOutputStream.writeInt(maxPrice);
             dataOutputStream.flush();
             posts = gettingPostsFromDataBase();
         }
@@ -488,15 +488,15 @@ public class Request
         return posts;
     }
 
-    public static ArrayList<Post> getFilteredPricedAndLocationPosts(String minPrice, String maxPrice, String location)
+    public static ArrayList<Post> getFilteredPricedAndLocationPosts(int minPrice, int maxPrice, String location)
     {
         ArrayList<Post> posts = new ArrayList<>();
         try
         {
             //dataOutputStream.writeInt();ask about the code
-            dataOutputStream.writeUTF(minPrice);
+            dataOutputStream.writeInt(minPrice);
             dataOutputStream.flush();
-            dataOutputStream.writeUTF(maxPrice);
+            dataOutputStream.writeInt(maxPrice);
             dataOutputStream.flush();
             dataOutputStream.writeUTF(location);
             posts = gettingPostsFromDataBase();
@@ -529,7 +529,7 @@ public class Request
         return posts;
     }
 
-    public static ArrayList<Post> getPostsByLocationAndCategoryAndLimitedPrice(String minPrice,String maxPrice,
+    public static ArrayList<Post> getPostsByLocationAndCategoryAndLimitedPrice(int minPrice,int maxPrice,
                                                                                String category, String location)
     {
         ArrayList<Post> posts = new ArrayList<>();
@@ -540,9 +540,9 @@ public class Request
             dataOutputStream.flush();
             dataOutputStream.writeUTF(location);
             dataOutputStream.flush();
-            dataOutputStream.writeUTF(minPrice);
+            dataOutputStream.writeInt(minPrice);
             dataOutputStream.flush();
-            dataOutputStream.writeUTF(maxPrice);
+            dataOutputStream.writeInt(maxPrice);
             dataOutputStream.flush();
             posts = gettingPostsFromDataBase();
         }
