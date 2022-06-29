@@ -29,6 +29,7 @@ public class LoggedHomeController implements Initializable
 {
     private int column = 0, row = 1, num = 1;
     public static User currentUser;
+    boolean firstTime = true;
     @FXML
     private StackPane stack;
 
@@ -91,12 +92,16 @@ public class LoggedHomeController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        if (firstTime)
+        {
+            posts = Request.getPostByLocation(currentUser.getLocation());
+            firstTime = false;
+        }
         PageControl.initialDrawer("LoggedHomeMenu", leftDrawer);
         String url = currentUser.getProfile().toURI().toString().replaceAll("file:/", "file:///");
         Image image  = new Image(url);
         profile.setFill(new ImagePattern(image));
 
-        posts = Request.getPostByLocation("Chicago");
         PageControl.loading15(num, row, column, grid, posts, "AdvertisePre");
         if (loadedCount == posts.size())
         {
