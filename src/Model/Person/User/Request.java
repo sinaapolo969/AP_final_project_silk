@@ -102,15 +102,14 @@ public class Request
     }
 
 
-    public synchronized void sendingEmailForResettingPassword(User user)// ariana should call this when user push reset password button
+    public synchronized void sendingEmailForResettingPassword(User user)
     {
         int code = 1000 + (int) (Math.random() * 10000);
         //Admin.sendEmail(user.getEmail(), "Resetting Email", "here's your code for resetting your password" + code);
         // I will send this code and user for ariana
     }
 
-    //this method doesnt synced with database and fx
-    public synchronized void gettingCode(int inputCode, int originalCode, User user) // ariana will send the input code for me and als resend the original code and the user
+    public synchronized void gettingCode(int inputCode, int originalCode, User user)
     {
         if (inputCode == originalCode)
         {
@@ -285,7 +284,7 @@ public class Request
         return false;
     }
 
-    public static void bookmarking (String postID, String username)
+    public static void bookmarking(String postID, String username)
     {
         try
         {
@@ -301,7 +300,7 @@ public class Request
         }
     }
 
-    public static void unbookmarking (String postID, String username)
+    public  void unbookmarking (String postID, String username)
     {
         try
         {
@@ -537,7 +536,7 @@ public class Request
         return posts;
     }
 
-    public static ArrayList<Post> getPostsByLocationAndCategoryAndLimitedPrice(int minPrice,int maxPrice,
+    public static ArrayList<Post> getPostsByLocationAndCategoryAndLimitedPrice(int minPrice, int maxPrice,
                                                                                String category, String location)
     {
         ArrayList<Post> posts = new ArrayList<>();
@@ -585,7 +584,7 @@ public class Request
 
     }
 
-    private static boolean expiration(Post post)
+    private  boolean expiration(Post post)
     {
         if(post.getEXP().compareTo(LocalDate.now()) >= 0)
         {
@@ -665,7 +664,7 @@ public class Request
         }
     }
 
-    public static boolean checkingStrengthOfPass(String password)
+    public  boolean checkingStrengthOfPass(String password)
     {
         String strongPassRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
         return password.matches(strongPassRegex);

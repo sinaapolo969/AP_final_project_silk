@@ -166,6 +166,7 @@ public class ClientHandler extends Thread
                         userName = dataInputStream.readUTF();
                         bookMarkPost(postId, userName);
                         break;
+                    // delete post
                     case 16:
                         postId = dataInputStream.readUTF();
                         deletePost(postId);

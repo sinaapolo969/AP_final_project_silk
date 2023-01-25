@@ -1,5 +1,6 @@
-package Model;
+package App;
 
+import Model.PageControl;
 import Model.Person.User.Request;
 import Network.Client;
 import javafx.application.Application;
